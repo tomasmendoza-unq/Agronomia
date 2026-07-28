@@ -1,17 +1,11 @@
 import type { InputData } from "@/shared/types/input/input";
 import TextInput from "../../input/text/TextInput";
+import SelectInput from "../../input/select/SelectInput";
 
 const Input = (input: InputData) => {
-    switch(input.type) {
-        case 'email':
-            return <TextInput input = {input} />
-        case 'password': 
-            return <TextInput input = {input} />
-        case 'text': 
-            return<TextInput input = {input} />
-        case 'select': 
-            return <SelectInput input = {input} />
-    }
+    return 'options' in input ? 
+        <SelectInput input = {input} /> : 
+        <TextInput input = {input} />
 }
 
 export default Input;

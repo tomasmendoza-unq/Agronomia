@@ -7,7 +7,7 @@ const CredentialsForm = ({ title, inputs, button, links }: CredentialsFormProps)
         <div>
             <header>{title}</header>
             <InsertForm inputs = {inputs} button = {button} />
-            <Footer links = {links}/>
+            <Footer links = {links} />
         </div>
     )
 }

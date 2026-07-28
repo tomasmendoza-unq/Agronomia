@@ -1,7 +1,7 @@
-import type { InputData } from "@/shared/types/input/input";
+import type { TextInputData } from "@/shared/types/input/input";
 
 interface TextInputProps {
-    input: InputData
+    input: TextInputData
 }
 
 const TextInput = ({input}: TextInputProps) => {
