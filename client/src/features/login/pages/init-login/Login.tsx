@@ -1,3 +1,4 @@
+import CredentialsForm from "@/shared/components/credentials-form/CredentialsForm";
 import styles from "./styles";
 import loginButton from "./types/button";
 import loginInputs from "./types/inputs";
@@ -9,7 +10,7 @@ const Login = () => {
             <CredentialsForm 
                 title = "Bienvenido"
                 inputs = {loginInputs}
-                button = {loginButton} // pasar por parametro la funcionalidad al apretar botón
+                button = {loginButton(() => console.log("Hola"))} //button = {loginButton} // pasar por parametro la funcionalidad al apretar botón
                 links = {loginLinks}
             />
         </section>
