@@ -1,7 +1,6 @@
-import { css, sva } from "@styled-system/css";
-import { token } from "@styled-system/tokens";
+import { css } from "@styled-system/css";
 
-const container = css.raw({
+export const container = css({
     display: 'grid',
     placeItems: 'center',
     gridTemplateRows: '20% 50% 30%',
@@ -12,36 +11,7 @@ const container = css.raw({
     borderRadius: '4vw'
 });
 
-const title = css.raw({
+export const headerTitle = css({
     fontSize: '24px',
     fontWeight: 'bold'
 });
-
-const form = sva({
-    slots: ['form', 'input', 'button'],
-    base: {
-        form: {
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-evenly',
-            alignItems: 'center',
-            width: '100%',
-            height: '100%'
-        },
-        input: {},
-        button: {
-            bg: token("colors.greenColor")
-        }
-    }
-}).raw();
-
-
-
-export const styles = sva({
-    slots: ['container', 'title', 'form'],
-    base: {
-        container: container,
-        title: title,
-        form: form
-    }
-}).raw();
