@@ -1,4 +1,5 @@
 import { defineConfig } from "@pandacss/dev";
+import tokenColors from './src/core/styles/token/colors'
 
 export default defineConfig({
   // Whether to use css reset
@@ -12,7 +13,11 @@ export default defineConfig({
 
   // Useful for theme customization
   theme: {
-    extend: {},
+    extend: {
+      tokens: {
+        colors: tokenColors
+      }
+    },
   },
 
   // The output directory for your css system
