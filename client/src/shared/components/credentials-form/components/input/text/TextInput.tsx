@@ -10,9 +10,10 @@ interface TextInputProps {
 
 const TextInput = ({input, inputStyles}: TextInputProps) => {
     return (
-        <div className = {styles}>
-            <label htmlFor = {input.name}></label>
-            <span>{input.title}</span>
+        <div className = {css(styles.container)}>
+            <label htmlFor = {input.name} className = {css(styles.label)}>
+                <span>{input.title}</span>
+            </label>
             <input 
                 className = {css(inputStyles)}
                 type = {input.type} 

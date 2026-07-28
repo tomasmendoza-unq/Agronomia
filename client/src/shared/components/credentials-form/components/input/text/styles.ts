@@ -1,7 +1,16 @@
-import { css } from "@styled-system/css";
+import { sva } from "@styled-system/css";
 
-export const styles = css({
-    display: 'grid',
-    placeItems: 'center',
-    width: '100%'
-})
+export const styles = sva({
+    slots: ['container', 'label'],
+    base: {
+        container: {
+            display: 'grid',
+            placeItems: 'center',
+            gap: '6px',
+            width: '100%',
+        },
+        label: {
+            width: '90%',
+        }
+    }
+}).raw()
