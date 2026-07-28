@@ -1,10 +1,14 @@
-import { LOGIN } from "@/core/routes/login";
-import Login from "../Login";
-import type { RouteData } from "@/shared/types/route-data";
+import Login from "../pages/init-login/Login";
+import type { RouteData } from "../../../core/routes/route-data";
+import { ACCOUNT_LOCKED, INIT_LOGIN } from "@/core/routes/login";
 
 export const loginRoutes: RouteData[] = [
     {
-        path: LOGIN,
+        path: INIT_LOGIN,
+        element: <Login />
+    },
+    {
+        path: ACCOUNT_LOCKED,
         element: <Login />
     }
 ]
