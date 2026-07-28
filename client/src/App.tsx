@@ -1,6 +1,9 @@
+import { RouterProvider } from "react-router"
+import { routes } from "./core/routes/create-routes"
+
 function App() {
   return (
-   <p>aa</p>
+    <RouterProvider router = {routes} />
   )
 }
 
