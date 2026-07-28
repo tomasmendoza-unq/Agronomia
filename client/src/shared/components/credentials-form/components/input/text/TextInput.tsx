@@ -12,6 +12,7 @@ const TextInput = ({input}: TextInputProps) => {
             <input 
                 type = {input.type} 
                 name = {input.name} 
+                placeholder = {input.placeholder}
                 id = {input.name} 
                 required 
             />
