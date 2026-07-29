@@ -1,4 +1,4 @@
-import type { InputData } from "@/shared/types/input/input";
+import type { InputData } from "../../../../../shared/types/input/credentials-input";
 
 const loginInputs: InputData[] = [
     {
