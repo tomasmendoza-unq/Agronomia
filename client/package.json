@@ -11,6 +11,7 @@
     "prepare": "panda codegen"
   },
   "dependencies": {
+    "axios": "^1.18.1",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
     "react-hook-form": "^7.83.0",
