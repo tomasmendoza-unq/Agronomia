@@ -4,7 +4,7 @@ import logger from "../../logs/logger";
 const isDev = import.meta.env.DEV 
 
 function handlerSuccessLoggerService(response: AxiosResponse) {
-    if(isDev) logger.success(response.data, response.status);
+    if(isDev) logger.success({ data: response.data, status: response.status });
 }
 
 export default handlerSuccessLoggerService;
