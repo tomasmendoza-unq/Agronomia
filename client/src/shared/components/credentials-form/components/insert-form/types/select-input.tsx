@@ -1,4 +1,4 @@
-import type { InputData } from "../../../../../types/input/credentials-input";
+import type { InputData } from "../../../types/input/credentials-input";
 import TextInput from "../../input/text/TextInput";
 import SelectInput from "../../input/select/SelectInput";
 import type { SystemStyleObject } from "@styled-system/types";
