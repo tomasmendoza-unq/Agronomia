@@ -1,0 +1,1 @@
+export type ErrorCause = 'INTERNAL_SERVER_ERROR';

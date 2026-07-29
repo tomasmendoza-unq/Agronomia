@@ -1,4 +1,4 @@
-import type { ButtonData } from "@/shared/types/button/button";
+import type { ButtonData } from "../../../../../shared/types/button/credentials-button";
 
 function loginButton(onLogin: () => void): ButtonData {
     return {
