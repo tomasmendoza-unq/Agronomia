@@ -3,9 +3,9 @@ import type { Credentials } from "../types/credentials"
 import type { HttpError } from "@/core/server/errors/http-error"
 
 export interface UseAuth {
-    user:  User | null 
+    user: User | null 
+    isLoading: boolean 
     error: HttpError | null
-    isLoading: boolean
-    login: (credentials: Credentials) => Promise<User> 
-    logout: () => Promise<void>
+    login: Promise<(credentials: Credentials) => Promise<void>> 
+    logout: Promise<(credentials: Credentials) => Promise<void>> 
 }
