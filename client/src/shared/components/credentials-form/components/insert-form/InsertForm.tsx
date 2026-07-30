@@ -8,7 +8,7 @@ function InsertForm({inputsData, buttonData}: InsertFormProps) {
     const {form, input, button} = styles;
 
     return (
-        <form action="" className = {css(form)}>
+        <form className = {css(form)}>
             {inputsData.map(i => Input(i, input))}
             <button 
                 onClick = {buttonData.onSubmit} 
