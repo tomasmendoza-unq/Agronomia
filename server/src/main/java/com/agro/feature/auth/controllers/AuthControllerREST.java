@@ -1,5 +1,6 @@
 package com.agro.feature.auth.controllers;
 
+import com.agro.core.api.Api;
 import com.agro.feature.auth.dtos.AuthRequest;
 import com.agro.feature.auth.dtos.AuthResponse;
 import org.springframework.http.ResponseEntity;
@@ -9,11 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("api/v1/auth")
-public class AuthController {
+@RequestMapping(Api.AUTH)
+public class AuthControllerREST {
 
-    @PostMapping("/login")
+    @PostMapping(Api.LOGIN)
     public ResponseEntity<AuthResponse> login(@RequestBody AuthRequest credentials) {
-
+        return null;
     }
 }
