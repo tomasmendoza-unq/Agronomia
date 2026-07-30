@@ -1,15 +1,13 @@
 import { useState } from "react";
 import type { UseFetch } from "./use-fetch";
 import { HttpError } from "@/core/server/errors/http-error";
-import { useNavigate } from "react-router";
 
 function useFetch<D>(): UseFetch<D> {
-    const navegate = useNavigate();
-    const [data, setData] = useState<D | null>(null);
+    const [data, setData] = useState<D>();
     const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState<HttpError | null>(null);
+    const [error, setError] = useState<HttpError>();
 
-    async function execute<Args extends unknown[]>(request: (...args: Args) => Promise<D>) {
+    function execute<Args extends unknown[]>(request: (...args: Args) => Promise<D>) {
         
         return async (...args: Args) => {
             setIsLoading(true);
@@ -25,9 +23,8 @@ function useFetch<D>(): UseFetch<D> {
     }
 
     function handleError(error: unknown) {
-        if (error instanceof HttpError && error.getSideError === 'Server') {
+        if (error instanceof HttpError) {
             setError(error);
-            navegate('/');
         }
     }
 
