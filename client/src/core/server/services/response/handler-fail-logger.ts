@@ -6,10 +6,10 @@ const isDev = import.meta.env.DEV
 
 function handlerFailLoggerService(response: AxiosResponse<ErrorResponse>) {
     if (isDev) {
-        logger.warn(response.data, response.status);
+        logger.error({ data: response.data });
     }
     else {
-        logger.error(response.data, response.status);
+        logger.error({ data: response.data });
     }
 }
 
