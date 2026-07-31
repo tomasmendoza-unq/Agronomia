@@ -2,10 +2,12 @@ import { css } from "@styled-system/css";
 
 export const navBar = css({
     display: "flex",
-    flexDirection: "column",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
     backgroundColor: "#f0f0f0",
-    padding: "1rem",
-    width: "100vw",
+    padding: "1rem 2rem",
+    width: "100%",
 });
 
 export const navBarList = css({
@@ -14,11 +16,11 @@ export const navBarList = css({
     margin: 0,
     display: "flex",
     flexDirection: "row",
-    justifyContent: "space-around",
+    alignItems: "center",
+    gap: "2rem",
 });
 
 export const wrapLogo = css({
     display: "flex",
     alignItems: "center",
-    marginBottom: "1rem",
 });

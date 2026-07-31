@@ -1,6 +1,7 @@
 import type { CompanyData } from "@/features/company/types/CompanyData.t";
 import { navBar, navBarList, wrapLogo } from "./styles";
-import WrapLogo from "../WrapLogo";
+import { Link } from "react-router";
+import WrapLogo from "@/shared/components/wrapLogo/WrapLogo";
 
 const NavBar = ({
     companyData,
@@ -23,12 +24,12 @@ const NavBar = ({
                         key={link.name}
                         className="navbar__item"
                     >
-                        <a
-                            href={link.path}
+                        <Link
+                            to={link.path}
                             className="navbar__link"
                         >
                             {link.name}
-                        </a>
+                        </Link>
                     </li>
                 ))}
             </ul>
