@@ -1,11 +1,11 @@
-import { css } from "@styled-system/css";
 import type { InsertFormProps } from "./insert-form";
 import Input from "./types/select-input";
 import { styles } from "./styles";
+import { css } from "@styled-system/css";
 
 function InsertForm({inputsData, buttonData}: InsertFormProps) {
     
-    const {form, input, button} = styles;
+    const { form, input, button } = styles;
 
     return (
         <form className = {css(form)}>

@@ -1,9 +1,12 @@
 import Footer from "./components/footer/Footer";
 import InsertForm from "./components/insert-form/InsertForm";
 import type { CredentialsFormProps } from "./credentials-form";
-import { container, headerTitle } from "./styles";
+import { styles } from "./styles";
 
 const CredentialsForm = ({ title, inputs, button, links }: CredentialsFormProps) => {
+
+    const { container, headerTitle } = styles();
+    
     return (
         <div className = {container}>
             <header>

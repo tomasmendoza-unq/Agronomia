@@ -1,6 +1,6 @@
-import { css } from "@styled-system/css";
+import { css, sva } from "@styled-system/css";
 
-export const container = css({
+const container = css.raw({
     display: 'grid',
     placeItems: 'center',
     gridTemplateRows: '20% 50% 30%',
@@ -13,7 +13,15 @@ export const container = css({
     borderRadius: '1vw',
 });
 
-export const headerTitle = css({
+const headerTitle = css.raw({
     fontSize: '24px',
     fontWeight: 'bold'
 });
+
+export const styles = sva({
+    slots: ['container', 'headerTitle'],
+    base: {
+        container: container,
+        headerTitle: headerTitle
+    }
+})
