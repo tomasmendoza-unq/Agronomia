@@ -1,15 +1,12 @@
-import { useEffect } from "react";
-import { UseGetUsers } from "../hook/get-users";
 import type { User } from "../types/user";
 import Table from "@/shared/components/table/Table";
+import type { TablePaginator } from "@/shared/types/table/Table";
 
-export const TableUsers = () => {
-    const { users, getUsers } = UseGetUsers();
-
-    useEffect(() => {
-        getUsers();
-    }, []);
-
+export const TableUsers = ({
+    users,
+}: {
+    users: TablePaginator<User> | null;
+}) => {
     if (!users) return <p>Cargando usuarios...</p>;
 
     return (
