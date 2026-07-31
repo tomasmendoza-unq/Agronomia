@@ -1,4 +1,4 @@
-import type { LinkData } from "@/shared/types/link/Link"
+import type { LinkData } from "../../types/link/Link"
 import { Link } from "react-router"
 
 interface FooterProps {
