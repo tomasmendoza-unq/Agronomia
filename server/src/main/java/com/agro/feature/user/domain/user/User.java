@@ -1,5 +1,6 @@
 package com.agro.feature.user.domain.user;
 
+import com.agro.feature.user.domain.user.valueObjects.EmailValue;
 import jakarta.persistence.Entity;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -10,10 +11,11 @@ import lombok.Setter;
 public class User {
 
     private String name;
-    private String role;
+    @Getter
+    private Role role;
     private EmailValue email;
 
-    public User(String name, String role, String email) {
+    public User(String name, Role role, String email) {
         setName(name);
         setEmail(new EmailValue((email)));
         setRole(role);
@@ -22,4 +24,5 @@ public class User {
     public String geEmail() {
         return this.email.get();
     }
+
 }

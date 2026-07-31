@@ -1,4 +1,4 @@
-package com.agro.feature.user.domain.user;
+package com.agro.feature.user.domain.user.valueObjects;
 
 
 import com.agro.feature.user.domain.user.exceptions.EmailException;
