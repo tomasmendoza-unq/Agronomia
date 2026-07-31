@@ -1,14 +1,13 @@
 import { useEffect, type ReactNode } from "react";
-import { overlay, modal, header, title, closeButton, body } from "./styles";
+import { overlay, modal, body } from "./styles";
 
 interface ModalProps {
     isOpen: boolean;
     onClose: () => void;
-    title: string;
     children: ReactNode;
 }
 
-const Modal = ({ isOpen, onClose, title: titleText, children }: ModalProps) => {
+const Modal = ({ isOpen, onClose, children }: ModalProps) => {
     useEffect(() => {
         if (!isOpen) return;
 
@@ -36,16 +35,6 @@ const Modal = ({ isOpen, onClose, title: titleText, children }: ModalProps) => {
                 className={modal}
                 onClick={(e) => e.stopPropagation()}
             >
-                <div className={header}>
-                    <h2 className={title}>{titleText}</h2>
-                    <button
-                        className={closeButton}
-                        onClick={onClose}
-                        type="button"
-                    >
-                        ✕
-                    </button>
-                </div>
                 <div className={body}>{children}</div>
             </div>
         </div>

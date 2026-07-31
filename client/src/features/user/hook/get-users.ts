@@ -56,5 +56,22 @@ export const UseGetUsers = () => {
         setUsers(mockUsers);
     };
 
-    return { users, getUsers };
+    const addUser = async (newUser: User) => {
+        setUsers((prev) => {
+            const base = prev ?? mockUsers;
+
+            const newRow = {
+                id: base.rows.length + 1,
+                data: newUser,
+            };
+
+            return {
+                ...base,
+                rows: [...base.rows, newRow],
+                totalElements: base.totalElements + 1,
+            };
+        });
+    };
+
+    return { users, getUsers, addUser };
 };
