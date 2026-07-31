@@ -1,4 +1,4 @@
-package com.agro.feature.user.domain;
+package com.agro.feature.user.domain.user;
 
 import jakarta.persistence.Entity;
 import lombok.AccessLevel;
@@ -7,16 +7,19 @@ import lombok.Setter;
 
 @Entity
 @Setter(AccessLevel.PRIVATE)
-@Getter
 public class User {
 
     private String name;
     private String role;
-    private String mail;
+    private EmailValue email;
 
-    public User(String name, String role, String mail) {
+    public User(String name, String role, String email) {
         setName(name);
-        setMail(mail);
+        setEmail(new EmailValue((email)));
         setRole(role);
+    }
+
+    public String geEmail() {
+        return this.email.get();
     }
 }
