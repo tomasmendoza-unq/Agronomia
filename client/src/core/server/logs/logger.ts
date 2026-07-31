@@ -4,14 +4,16 @@ import type { ErrorResponse } from "../types/error-response";
 const logger = {
     success: <T>(debug: SuccessType<T>) => 
         console.info(
-            '[DEBUG]', 'Respuesta recibida correctamente', 
+            '[SUCESS]' + ' ' + isField(debug.status), 
+            debug.message, 
             debug.data, 
             isField(debug.path), 
             isField(debug.status)
         ),
     error: (error: ErrorType) => 
         console.error(
-            '[ERROR]', 'Error', 
+            '[ERROR]' + ' ' + isField(error.status),
+            error.message,
             isField(error.data.id), 
             isField(error.data.path), 
             isField(error.data.cause), 
@@ -19,20 +21,20 @@ const logger = {
         ),
     uknow: (status?: number) =>
         console.error(
-            '[ERROR]', 
-            'Error ' + 
-            isField(status) + 
-            ' al recibir la respuesta del servidor'
+            '[ERROR]' + ' ' + isField(status),
+            'Hubo un problema inesperado'
         ),
 }
 
 type ErrorType = {
+    message: string
     data: ErrorResponse, 
     status?: number
 }
 
 type SuccessType<T> = {
     data: T, 
+    message: string
     status?: number, 
     path?: string
 }

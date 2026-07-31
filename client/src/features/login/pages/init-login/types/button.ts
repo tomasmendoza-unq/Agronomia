@@ -1,6 +1,7 @@
-import type { ButtonData } from "../../../../../shared/types/button/credentials-button";
+import type { Credentials } from "@/shared/auth/types/credentials";
+import type { ButtonData } from "../../../../../shared/components/credentials-form/types/button/credentials-button";
 
-function loginButton(onLogin: () => void): ButtonData {
+function loginButton(onLogin: (credentials: Credentials) => void): ButtonData<Credentials> {
     return {
         text: 'Iniciar Sesión',
         onSubmit: onLogin,

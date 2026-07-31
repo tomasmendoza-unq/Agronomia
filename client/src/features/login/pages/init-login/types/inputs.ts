@@ -1,4 +1,4 @@
-import type { InputData } from "../../../../../shared/types/input/credentials-input";
+import type { InputData } from "../../../../../shared/components/credentials-form/types/input/credentials-input";
 
 const loginInputs: InputData[] = [
     {
@@ -12,7 +12,7 @@ const loginInputs: InputData[] = [
         type: 'password',
         name: 'password',
         title: 'Contraseña',
-        placeholder: 'Ingrese su Contrseña',
+        placeholder: 'Ingrese su Contraseña',
         id: 1,
     }
 ];
