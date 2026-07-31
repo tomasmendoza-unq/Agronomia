@@ -10,4 +10,5 @@ export const card = css({
     boxShadow: "sm",
     width: "fit-content",
     minWidth: "220px",
+    borderColor: "borderColor",
 });
