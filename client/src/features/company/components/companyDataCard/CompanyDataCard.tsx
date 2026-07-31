@@ -12,7 +12,7 @@ const CompanyDataCard = ({ companyData }: CompanyDataCardProps) => {
     const fields = getCompanyFields(companyData);
     return (
         <SupplierCard>
-            <button className={editButton}>Edit</button>
+            <button className={editButton}> Editar</button>
             {fields.map((field) => (
                 <DataField
                     key={field.label}

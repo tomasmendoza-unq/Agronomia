@@ -1,8 +1,9 @@
 import CompanyDataCard from "@/features/company/components/companyDataCard/CompanyDataCard";
 import ConfigPanel from "../../components/panel/ConfigPanel";
+import { panel } from "./styles";
 
 const Configuration = () => (
-    <section className="panel">
+    <section className={panel}>
         <h1>Configuracion</h1>
         <ConfigPanel title="Datos empresa">
             <CompanyDataCard

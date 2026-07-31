@@ -1,9 +1,17 @@
 import type { RouteData } from "@/core/routes/route-data";
 import Configuration from "../pages/configuration/Configuration";
+import AuthenticatedLayout from "@/shared/layout/auth/AuthenticatedLayout";
+import { ADMIN_ROUTES } from "@/core/routes/admin";
 
 export const adminRoutes: RouteData[] = [
     {
-        path: "/admin/configuration",
-        element: <Configuration />,
+        path: `${ADMIN_ROUTES.BASE}`,
+        element: <AuthenticatedLayout />,
+        children: [
+            {
+                path: `${ADMIN_ROUTES.CONFIGURATION}`,
+                element: <Configuration />,
+            },
+        ],
     },
 ];
