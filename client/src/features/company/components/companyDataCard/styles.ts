@@ -1,13 +1,8 @@
 import { css } from "@styled-system/css";
 
-export const card = css({
-    display: "flex",
-    flexDirection: "column",
-    gap: "4",
-    padding: "4",
-    borderRadius: "lg",
-    bg: "surfaceCardColor",
-    boxShadow: "sm",
-    width: "fit-content",
-    minWidth: "220px",
+export const editButton = css({
+    alignSelf: "flex-end",
+    padding: "2",
+    cursor: "pointer",
+    transition: "background-color 0.3s ease",
 });
