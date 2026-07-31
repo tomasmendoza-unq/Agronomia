@@ -1,6 +1,6 @@
 import { wrap, wrapLabel, wrapLogo } from "./styles";
 
-const WrapLogo = ({ img, label }: { img: string; label: string }) => {
+const WrapLogo = ({ img, label }: { img: string; label?: string }) => {
     return (
         <div className={wrap}>
             <img

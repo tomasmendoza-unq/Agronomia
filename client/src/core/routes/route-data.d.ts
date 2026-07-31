@@ -4,4 +4,7 @@ export type RouteData = {
     path: string;
     element: React.JSX.Element;
     children?: RouteData[];
+    handle?: {
+        breadcrumb?: string;
+    };
 };

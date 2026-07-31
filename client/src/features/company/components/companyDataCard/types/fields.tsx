@@ -1,4 +1,5 @@
 import type { CompanyData } from "@/features/company/types/CompanyData.t";
+import WrapLogo from "@/shared/components/wrapLogo/WrapLogo";
 import type { ReactNode } from "react";
 
 interface CompanyField {
@@ -15,12 +16,7 @@ export const getCompanyFields = (companyData: CompanyData): CompanyField[] => {
         { label: "CUIT", value: cuit },
         {
             label: "Logo",
-            value: (
-                <img
-                    src={logo}
-                    alt="Logo de la empresa"
-                />
-            ),
+            value: <WrapLogo img={logo} />,
         },
     ];
 };

@@ -7,10 +7,12 @@ export const adminRoutes: RouteData[] = [
     {
         path: `${ADMIN_ROUTES.BASE}`,
         element: <AuthenticatedLayout />,
+        handle: { breadcrumb: "Inicio" },
         children: [
             {
                 path: `${ADMIN_ROUTES.CONFIGURATION}`,
                 element: <Configuration />,
+                handle: { breadcrumb: "Configuración" },
             },
         ],
     },

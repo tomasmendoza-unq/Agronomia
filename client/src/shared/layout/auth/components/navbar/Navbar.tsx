@@ -4,9 +4,11 @@ import { Link } from "react-router";
 import WrapLogo from "@/shared/components/wrapLogo/WrapLogo";
 
 const NavBar = ({
+    // user,
     companyData,
     links,
 }: {
+    // user: User;
     companyData: CompanyData;
     links: { name: string; path: string }[];
 }) => {
@@ -20,18 +22,16 @@ const NavBar = ({
             </div>
             <ul className={navBarList}>
                 {links.map((link) => (
-                    <li
-                        key={link.name}
-                        className="navbar__item"
-                    >
-                        <Link
-                            to={link.path}
-                            className="navbar__link"
-                        >
-                            {link.name}
-                        </Link>
+                    <li key={link.name}>
+                        <Link to={link.path}>{link.name}</Link>
                     </li>
                 ))}
+                <li>
+                    <WrapLogo
+                        img={companyData.logo}
+                        label={companyData.name}
+                    />
+                </li>
             </ul>
         </nav>
     );

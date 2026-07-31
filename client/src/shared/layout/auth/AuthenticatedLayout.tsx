@@ -4,6 +4,7 @@ import NavBar from "./components/navbar/Navbar";
 import { links } from "./links";
 import { UseAuth } from "@/shared/hooks/use-auth";
 import { ProtectedRoute } from "@/shared/routes/ProtectedRoute";
+import Breadcrumb from "@/shared/components/breadcrumb/Breadcrumb";
 
 const AuthenticatedLayout = () => {
     const { isAuthenticated, companyData } = UseAuth();
@@ -11,9 +12,11 @@ const AuthenticatedLayout = () => {
         <ProtectedRoute isAuthenticated={isAuthenticated}>
             <main className={authLayout}>
                 <NavBar
+                    // user={user}
                     companyData={companyData}
                     links={links}
                 />
+                <Breadcrumb />
                 <Outlet />
             </main>
         </ProtectedRoute>
