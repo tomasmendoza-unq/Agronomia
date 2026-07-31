@@ -1,7 +1,7 @@
-package com.agro.feature.user.domain.user.valueObjects;
+package com.agro.feature.user.domain.valueObjects;
 
 
-import com.agro.feature.user.domain.user.exceptions.EmailException;
+import com.agro.feature.user.domain.exceptions.EmailException;
 
 public class EmailValue {
     private String value;

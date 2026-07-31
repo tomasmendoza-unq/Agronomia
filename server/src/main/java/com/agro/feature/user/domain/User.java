@@ -1,6 +1,6 @@
-package com.agro.feature.user.domain.user;
+package com.agro.feature.user.domain;
 
-import com.agro.feature.user.domain.user.valueObjects.EmailValue;
+import com.agro.feature.user.domain.valueObjects.EmailValue;
 import jakarta.persistence.Entity;
 import lombok.AccessLevel;
 import lombok.Getter;

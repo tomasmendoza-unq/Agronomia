@@ -1,4 +1,4 @@
-package com.agro.feature.user.domain.user;
+package com.agro.feature.user.domain;
 
 public enum Role{
     ADMIN,
