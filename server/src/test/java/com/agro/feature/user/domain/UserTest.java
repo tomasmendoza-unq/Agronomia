@@ -17,7 +17,7 @@ class UserTest {
 
     @Test
     void testUnUsuarioTieneUnMail() {
-        assertEquals(user.geEmail(), "n@gmail.com");
+        assertEquals(user.getEmail(), "n@gmail.com");
     }
 
     @Test

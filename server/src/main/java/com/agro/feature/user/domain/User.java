@@ -2,13 +2,21 @@ package com.agro.feature.user.domain;
 
 import com.agro.feature.user.domain.valueObjects.EmailValue;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
+import org.jspecify.annotations.Nullable;
 
 @Entity
 @Setter(AccessLevel.PRIVATE)
 public class User {
+
+    @Id
+    @GeneratedValue
+    @Getter
+    private Long id;
 
     private String name;
     @Getter
@@ -21,8 +29,7 @@ public class User {
         setRole(role);
     }
 
-    public String geEmail() {
+    public String getEmail() {
         return this.email.get();
     }
-
 }
