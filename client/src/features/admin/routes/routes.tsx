@@ -14,6 +14,11 @@ export const adminRoutes: RouteData[] = [
                 element: <Configuration />,
                 handle: { breadcrumb: "Configuración" },
             },
+            {
+                path: `${ADMIN_ROUTES.PROVEEDORES}`,
+                element: <Configuration />,
+                handle: { breadcrumb: "Proveedores" },
+            },
         ],
     },
 ];

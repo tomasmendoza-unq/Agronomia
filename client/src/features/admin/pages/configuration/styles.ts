@@ -3,7 +3,6 @@ import { css } from "@styled-system/css";
 export const panel = css({
     width: "100vw",
     height: "100vh",
-    paddingLeft: "4",
     bg: "surfacePageColor",
 });
 
@@ -18,4 +17,10 @@ export const buttonAddUser = css({
         backgroundColor: "#7AA12B",
         color: "#fff",
     },
+});
+
+export const h1 = css({
+    fontSize: "32px",
+    fontWeight: "bold",
+    marginBottom: "4",
 });

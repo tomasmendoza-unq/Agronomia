@@ -5,7 +5,7 @@ export const breadcrumbList = css({
     alignItems: "center",
     fontSize: "sm",
     color: "fg.muted",
-    padding: "1rem 2rem 0",
+    padding: "1rem 0 0",
 });
 
 export const breadcrumbItem = css({

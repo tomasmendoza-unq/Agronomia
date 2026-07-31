@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import CompanyDataCard from "@/features/company/components/companyDataCard/CompanyDataCard";
 import ConfigPanel from "../../components/panel/ConfigPanel";
-import { buttonAddUser, panel } from "./styles";
+import { buttonAddUser, h1, panel } from "./styles";
 import { UseAuth } from "@/shared/hooks/use-auth";
 import TableUsers from "@/features/user/components/TableUsers";
 import { UseGetUsers } from "@/features/user/hook/get-users";
@@ -19,7 +19,7 @@ const Configuration = () => {
 
     return (
         <section className={panel}>
-            <h1>Configuracion</h1>
+            <h1 className={h1}>Configuracion</h1>
             <ConfigPanel title="Datos empresa">
                 <CompanyDataCard companyData={companyData} />
             </ConfigPanel>
@@ -40,7 +40,6 @@ const Configuration = () => {
             <Modal
                 isOpen={isCreateUserOpen}
                 onClose={() => setIsCreateUserOpen(false)}
-                title=""
             >
                 <CreateUser onSubmit={() => {}} />
             </Modal>

@@ -10,12 +10,12 @@ const AuthenticatedLayout = () => {
     const { isAuthenticated, companyData } = UseAuth();
     return (
         <ProtectedRoute isAuthenticated={isAuthenticated}>
+            <NavBar
+                // user={user}
+                companyData={companyData}
+                links={links}
+            />
             <main className={authLayout}>
-                <NavBar
-                    // user={user}
-                    companyData={companyData}
-                    links={links}
-                />
                 <Breadcrumb />
                 <Outlet />
             </main>
