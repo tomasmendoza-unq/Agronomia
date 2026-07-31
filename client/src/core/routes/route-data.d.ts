@@ -1,6 +1,10 @@
-import type React from "react"
+import type React from "react";
 
 export type RouteData = {
-    path: string 
-    element: React.JSX.Element
-}
+    path: string;
+    element: React.JSX.Element;
+    children?: RouteData[];
+    handle?: {
+        breadcrumb?: string;
+    };
+};
