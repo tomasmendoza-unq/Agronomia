@@ -24,6 +24,7 @@ class UserRepositoryImplTest {
     @Autowired
     private UserDAO userDao;
 
+    @Autowired
     private UserRepositoryImpl repository;
 
     private User user;

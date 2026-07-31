@@ -1,15 +1,15 @@
 package com.agro.feature.user.domain;
 
 import com.agro.feature.user.domain.valueObjects.EmailValue;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.jspecify.annotations.Nullable;
 
 @Entity
+@Table(name = "users")
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Setter(AccessLevel.PRIVATE)
 public class User {
 
@@ -21,6 +21,9 @@ public class User {
     private String name;
     @Getter
     private Role role;
+
+    @Embedded
+    @AttributeOverride(name = "value", column = @Column(name = "email"))
     private EmailValue email;
 
     public User(String name, Role role, String email) {
