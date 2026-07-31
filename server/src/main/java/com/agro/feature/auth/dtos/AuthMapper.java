@@ -11,7 +11,5 @@ public interface AuthMapper {
 
     AuthMapper INSTANCE = Mappers.getMapper(AuthMapper.class);
 
-    @Mapping(target = "token", ignore = true)
-    @Mapping(target = "password", ignore = true)
     AuthResponse modelToDto(Auth auth);
 }
