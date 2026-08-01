@@ -3,7 +3,6 @@ package com.agro.feature.user.services;
 import com.agro.feature.user.contracts.UserAuthenticatorService;
 import com.agro.feature.user.domain.User;
 import com.agro.feature.user.persistence.daos.UserDAO;
-import com.agro.feature.user.persistence.repositories.UserRepository;
 import com.agro.shared.entities.UserAuthenticate;
 import com.agro.shared.persistence.excepitons.NotFoundEntityException;
 import org.springframework.stereotype.Service;
