@@ -4,6 +4,6 @@ public record Auth(
         String name,
         String email,
         String token,
-        Integer id
+        Long id
 ) {
 }
