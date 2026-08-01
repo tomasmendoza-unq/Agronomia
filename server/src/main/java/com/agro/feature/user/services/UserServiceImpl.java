@@ -20,7 +20,7 @@ public class UserServiceImpl implements UserService, UserAuthenticatorService {
     @Override
     public UserAuthenticate getCredentialsByEmail(String email) {
         User user = userDao.findByEmail(email).orElseThrow(() -> new NotFoundEntityException("Entidad no encontrada"));
-        return new UserAuthenticate(user.getEmail(), user.getRole().toString(), user.getId());
+        return new UserAuthenticate(user.getEmail(), user.getRole().toString(), user.getName(), user.getId());
     }
 
     @Override
