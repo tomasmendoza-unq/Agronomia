@@ -3,7 +3,7 @@ package com.agro.feature.auth.controllers;
 import com.agro.core.api.Api;
 import com.agro.feature.auth.domain.Auth;
 import com.agro.feature.auth.dtos.AuthMapper;
-import com.agro.feature.auth.dtos.Credentials;
+import com.agro.shared.entities.Credentials;
 import com.agro.feature.auth.dtos.AuthResponse;
 import com.agro.feature.auth.orchestrator.AuthOrchestrator;
 import org.springframework.http.ResponseEntity;

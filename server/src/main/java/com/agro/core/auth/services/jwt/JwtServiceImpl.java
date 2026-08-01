@@ -1,0 +1,44 @@
+package com.agro.core.auth.services.jwt;
+
+import com.agro.core.auth.contracts.TokenGenerator;
+import com.agro.shared.entities.UserAuthenticate;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.security.Keys;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+
+import java.security.Key;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+
+@Service
+public class JwtServiceImpl implements JwtService, TokenGenerator {
+
+    @Value("${jwt.secret}")
+    private String key;
+
+    private Key getKey() {
+        return Keys.hmacShaKeyFor(key.getBytes());
+    }
+
+    @Override
+    public String generate(UserAuthenticate credentials) {
+        return Jwts.builder()
+                .claims(claims(credentials))
+                .signWith(getKey())
+                .compact();
+    }
+
+    private Map<String, Object> claims(UserAuthenticate credentials) {
+        Map<String, Object> claims = new HashMap<>();
+        claims.put("sub", credentials.id());
+        claims.put("name", credentials.name());
+        claims.put("role", credentials.role());
+        claims.put("iat", new Date());
+        claims.put("exp", new Date(System.currentTimeMillis() + 30 * 60 * 1000));
+        claims.put("jti", UUID.randomUUID());
+        return claims;
+    }
+}

@@ -1,5 +1,6 @@
 package com.agro.feature.user.domain;
 
+import com.agro.feature.user.domain.exceptions.EmailException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -11,11 +12,23 @@ class UserTest {
 
     @BeforeEach
     void setUp() {
-        user = new User("Nicolás Fernando Bossi", "admin", "n@gmail.com");
+        user = new User("Nicolás Fernando Bossi", Role.ADMIN, "n@gmail.com");
     }
 
     @Test
     void testUnUsuarioTieneUnMail() {
-        assertEquals(user.getMail(), "n@gmail.com");
+        assertEquals(user.getEmail(), "n@gmail.com");
+    }
+
+    @Test
+    void testSiElMailNoTieneArroba_HayExcepcion() {
+        assertThrows(
+                EmailException.class,
+                () -> new User("Nicolás Fernando Bossi", Role.ADMIN, "n_gmail.com"));
+    }
+
+    @Test
+    void testUnUsuarioTieneUnRol() {
+        assertEquals(user.getRole(), Role.ADMIN);
     }
 }

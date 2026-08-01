@@ -1,22 +1,40 @@
 package com.agro.feature.user.domain;
 
-import jakarta.persistence.Entity;
+import com.agro.feature.user.domain.valueObjects.EmailValue;
+import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
+@Table(name = "users")
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Setter(AccessLevel.PRIVATE)
-@Getter
 public class User {
 
-    private String name;
-    private String role;
-    private String mail;
+    @Id
+    @GeneratedValue
+    @Getter
+    private Long id;
 
-    public User(String name, String role, String mail) {
+    @Getter
+    private String name;
+
+    @Getter
+    private Role role;
+
+    @Embedded
+    @AttributeOverride(name = "value", column = @Column(name = "email"))
+    private EmailValue email;
+
+    public User(String name, Role role, String email) {
         setName(name);
-        setMail(mail);
+        setEmail(new EmailValue((email)));
         setRole(role);
+    }
+
+    public String getEmail() {
+        return this.email.get();
     }
 }
