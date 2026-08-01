@@ -18,7 +18,9 @@ public class User {
     @Getter
     private Long id;
 
+    @Getter
     private String name;
+
     @Getter
     private Role role;
 
