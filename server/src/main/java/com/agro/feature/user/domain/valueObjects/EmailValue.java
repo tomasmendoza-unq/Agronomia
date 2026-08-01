@@ -2,10 +2,13 @@ package com.agro.feature.user.domain.valueObjects;
 
 
 import com.agro.feature.user.domain.exceptions.EmailException;
+import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 
 @Embeddable
 public class EmailValue {
+
+    @Column(name = "value", unique = true)
     private String value;
 
     protected EmailValue() {}
