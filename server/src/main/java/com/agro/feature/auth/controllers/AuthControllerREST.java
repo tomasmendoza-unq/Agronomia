@@ -24,7 +24,7 @@ public class AuthControllerREST {
 
     @PostMapping(Api.LOGIN)
     public ResponseEntity<AuthResponse> login(@RequestBody Credentials credentials) {
-        Auth auth = orchestrator.auth(credentials);
+        Auth auth = orchestrator.login(credentials);
         return ResponseEntity.ok()
                 .header("Authorization", "Bearer " + auth.token())
                 .body(AuthMapper.INSTANCE.modelToDto(auth));

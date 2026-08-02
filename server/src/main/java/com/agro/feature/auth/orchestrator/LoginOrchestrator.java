@@ -4,5 +4,5 @@ import com.agro.feature.auth.domain.Auth;
 import com.agro.shared.entities.Credentials;
 
 public interface LoginOrchestrator {
-    Auth auth(Credentials credentials);
+    Auth login(Credentials credentials);
 }
