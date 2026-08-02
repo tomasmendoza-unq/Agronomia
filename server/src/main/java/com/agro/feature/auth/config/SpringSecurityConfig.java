@@ -1,5 +1,6 @@
 package com.agro.feature.auth.config;
 
+import com.agro.feature.auth.services.userDetails.UserDetailsServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -21,7 +22,7 @@ public class SpringSecurityConfig {
     @Bean
     public AuthenticationProvider authenticationProvider(
             PasswordEncoder passwordEncoder,
-            UserDetailsService userDetailsService
+            UserDetailsServiceImpl userDetailsService
     )  {
         DaoAuthenticationProvider dao = new DaoAuthenticationProvider(userDetailsService);
         dao.setPasswordEncoder(passwordEncoder);

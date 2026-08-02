@@ -28,13 +28,21 @@ public class User {
     @AttributeOverride(name = "value", column = @Column(name = "email"))
     private EmailValue email;
 
-    public User(String name, Role role, String email) {
+    @Getter
+    private String password;
+
+    public User(String name, Role role, String email, String password) {
         setName(name);
         setEmail(new EmailValue((email)));
         setRole(role);
+        setPassword(password);
     }
 
     public String getEmail() {
         return this.email.get();
+    }
+
+    public void addEncriptedPassword(String encripted) {
+        setPassword(encripted);
     }
 }

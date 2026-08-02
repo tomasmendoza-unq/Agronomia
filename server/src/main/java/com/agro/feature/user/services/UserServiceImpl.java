@@ -5,6 +5,7 @@ import com.agro.feature.user.domain.User;
 import com.agro.feature.user.persistence.daos.UserDAO;
 import com.agro.shared.entities.UserAuthenticate;
 import com.agro.shared.persistence.excepitons.NotFoundEntityException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,19 +13,23 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class UserServiceImpl implements UserService, UserCredentialsService {
     private UserDAO userDao;
+    private PasswordEncoder encoder;
 
-    public UserServiceImpl(UserDAO userDao) {
+    public UserServiceImpl(UserDAO userDao, PasswordEncoder encoder) {
         this.userDao = userDao;
+        this.encoder = encoder;
     }
 
     @Override
     public UserAuthenticate getCredentialsByEmail(String email) {
         User user = userDao.findByEmail(email).orElseThrow(() -> new NotFoundEntityException("Entidad no encontrada"));
-        return new UserAuthenticate(user.getEmail(), user.getRole().toString(), user.getName(), user.getId());
+        return new UserAuthenticate(user.getEmail(), user.getPassword(), user.getRole().toString(), user.getName(), user.getId());
     }
 
     @Override
     public User save(User user) {
+        String encripted = encoder.encode(user.getPassword());
+        user.addEncriptedPassword(encripted);
         return userDao.save(user);
     }
 
