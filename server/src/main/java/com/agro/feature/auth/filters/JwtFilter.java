@@ -28,7 +28,7 @@ public class JwtFilter extends OncePerRequestFilter {
     }
 
     private final List<RequestMatcher> PUBLICS = List.of(
-            PathPatternRequestMatcher.withDefaults().matcher(HttpMethod.POST, "/"+Api.AUTH)
+            PathPatternRequestMatcher.withDefaults().matcher(HttpMethod.POST, "/" + Api.AUTH + Api.LOGIN)
     );
 
     @Override
@@ -38,6 +38,6 @@ public class JwtFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-
+        System.out.println("JwtFilter ejecutado: {} {}" + request.getMethod() + request.getRequestURI());
     }
 }

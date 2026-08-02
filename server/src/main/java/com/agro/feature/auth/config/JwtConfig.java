@@ -23,11 +23,10 @@ public class JwtConfig {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth ->
-                        auth.requestMatchers("/"+Api.AUTH).permitAll()
+                        auth.requestMatchers("/" + Api.AUTH + Api.LOGIN).permitAll()
                                 .anyRequest().authenticated())
                 .addFilterAfter(filter, UsernamePasswordAuthenticationFilter.class);
 
         return  http.build();
     }
-
 }
