@@ -1,4 +1,4 @@
-package com.agro.core.auth.config;
+package com.agro.feature.auth.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

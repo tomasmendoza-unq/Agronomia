@@ -1,6 +1,5 @@
-package com.agro.core.auth.services.jwt;
+package com.agro.feature.auth.services.jwt;
 
-import com.agro.core.auth.contracts.TokenGenerator;
 import com.agro.shared.entities.UserAuthenticate;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
@@ -14,7 +13,7 @@ import java.util.Map;
 import java.util.UUID;
 
 @Service
-public class JwtServiceImpl implements JwtService, TokenGenerator {
+public class JwtServiceImpl implements JwtService {
 
     @Value("${jwt.secret}")
     private String key;
