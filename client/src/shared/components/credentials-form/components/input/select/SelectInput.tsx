@@ -1,6 +1,7 @@
 import type { SelectInputData } from "../../../types/input/credentials-input";
 import { css } from "@styled-system/css";
 import type { SystemStyleObject } from "@styled-system/types";
+import { styles as textStyles } from "../text/styles";
 
 interface SelectInputProps {
     input: SelectInputData;
@@ -9,8 +10,11 @@ interface SelectInputProps {
 
 const SelectInput = ({ input, styles }: SelectInputProps) => {
     return (
-        <div>
-            <label htmlFor={input.name}>
+        <div className={css(textStyles.container)}>
+            <label
+                htmlFor={input.name}
+                className={css(textStyles.label)}
+            >
                 <span>{input.title}</span>
             </label>
             <select
@@ -19,6 +23,7 @@ const SelectInput = ({ input, styles }: SelectInputProps) => {
                 id={input.name}
                 defaultValue=""
                 required
+                style={{ color: "#111", backgroundColor: "transparent" }}
             >
                 <option
                     value=""

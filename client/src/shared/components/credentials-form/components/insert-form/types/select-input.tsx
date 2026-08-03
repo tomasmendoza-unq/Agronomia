@@ -4,9 +4,19 @@ import SelectInput from "../../input/select/SelectInput";
 import type { SystemStyleObject } from "@styled-system/types";
 
 const Input = (input: InputData, styles: SystemStyleObject) => {
-    return 'options' in input ? 
-        <SelectInput input = {input} key = {input.id} styles = {styles} /> : 
-        <TextInput input = {input} key = {input.id} inputStyles = {styles} />
-}
+    return input.type === "select" ? (
+        <SelectInput
+            input={input as any}
+            key={input.id}
+            styles={styles}
+        />
+    ) : (
+        <TextInput
+            input={input as any}
+            key={input.id}
+            inputStyles={styles}
+        />
+    );
+};
 
 export default Input;
