@@ -1,4 +1,4 @@
-import type { InputData } from "@/shared/types/input/credentials-input";
+import type { InputData } from "@/shared/components/credentials-form/types/input/credentials-input";
 
 const createUserInputs: InputData[] = [
     {

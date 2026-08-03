@@ -13,6 +13,7 @@ export const CreateUser = ({ onSubmit }: CreateUserProps) => (
         inputs={createUserInputs}
         button={createUserButton(onSubmit)}
         links={createUserLinks}
+        compact={true}
     />
 );
 

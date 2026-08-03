@@ -1,13 +1,15 @@
-import type { User } from "../types/user";
+import type { User } from "@/features/user/types/user";
 import Table from "@/shared/components/table/Table";
 import type { TablePaginator } from "@/shared/types/table/Table";
 
 export const TableUsers = ({
+    isloading,
     users,
 }: {
+    isloading: boolean;
     users: TablePaginator<User> | null;
 }) => {
-    if (!users) return <p>Cargando usuarios...</p>;
+    if (!users || isloading) return <p>Cargando usuarios...</p>;
 
     return (
         <Table<User>
