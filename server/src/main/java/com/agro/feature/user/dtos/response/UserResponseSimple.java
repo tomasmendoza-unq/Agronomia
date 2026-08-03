@@ -4,6 +4,7 @@ import com.agro.feature.user.domain.User;
 import org.jspecify.annotations.Nullable;
 
 public record UserResponseSimple(
+        Long id,
         String name,
         String role,
         String email
@@ -11,9 +12,10 @@ public record UserResponseSimple(
 ) {
     public static @Nullable UserResponseSimple fromModel(User user) {
         return new UserResponseSimple(
+                user.getId(),
                 user.getName(),
-                user.getEmail(),
-                user.getRole().toString()
+                user.getRole().toString(),
+                user.getEmail()
         );
     }
 }

@@ -7,8 +7,8 @@ import Modal from "@/shared/components/modal/Modal";
 import SectionPanel from "@/shared/components/section-panel/SectionPanel";
 import TableUsers from "./components/TableUsers";
 import CreateUser from "./components/form/CreateUser";
-import { UseGetUsers } from "../../hook/get-users";
 import { useRegister } from "@/features/user/hook/use-register";
+import { UseGetUsers } from "@/features/user/hook/use-get-users";
 
 const Configuration = () => {
     const { user } = UseAuth();
@@ -18,7 +18,7 @@ const Configuration = () => {
 
     useEffect(() => {
         getUsers();
-    }, [getUsers]);
+    }, []);
 
     const handleCreateUser = async () => {
         const form = document.querySelector("form");
@@ -39,7 +39,6 @@ const Configuration = () => {
         });
 
         setIsCreateUserOpen(false);
-        getUsers();
     };
 
     return (

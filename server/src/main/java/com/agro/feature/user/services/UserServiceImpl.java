@@ -5,6 +5,8 @@ import com.agro.feature.user.domain.User;
 import com.agro.feature.user.persistence.daos.UserDAO;
 import com.agro.shared.entities.UserAuthenticate;
 import com.agro.shared.persistence.excepitons.NotFoundEntityException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,6 +33,11 @@ public class UserServiceImpl implements UserService, UserCredentialsService {
         String encripted = encoder.encode(user.getPassword());
         user.addEncriptedPassword(encripted);
         return userDao.save(user);
+    }
+
+    @Override
+    public Page<User> findAll(int page, int size) {
+        return userDao.findAll(PageRequest.of(page, size));
     }
 
     public void clearAll() {

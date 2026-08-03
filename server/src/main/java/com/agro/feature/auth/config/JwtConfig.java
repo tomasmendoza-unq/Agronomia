@@ -13,7 +13,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 public class JwtConfig {
 
-    private JwtFilter filter;
+    private final JwtFilter filter;
 
     public JwtConfig(JwtFilter filter) {
         this.filter = filter;
@@ -25,16 +25,7 @@ public class JwtConfig {
             .cors(Customizer.withDefaults())
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth ->
-                auth.requestMatchers(
-                        "/" + Api.AUTH + Api.LOGIN,
-                        "/swagger-ui/**",
-                        "/v3/api-docs/**",
-                        "/swagger-ui.html",
-                        "/api/**/swagger-ui/**",
-                        "/api/**/v3/api-docs/**",
-                        "/api/**/swagger-ui.html"
-                    ).permitAll()
-                    .anyRequest().authenticated())
+                    auth.anyRequest().permitAll())
                 .addFilterAfter(filter, UsernamePasswordAuthenticationFilter.class);
 
         return  http.build();
