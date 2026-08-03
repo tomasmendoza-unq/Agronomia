@@ -5,7 +5,7 @@ import com.agro.feature.auth.domain.Auth;
 import com.agro.feature.auth.dtos.AuthMapper;
 import com.agro.shared.entities.Credentials;
 import com.agro.feature.auth.dtos.AuthResponse;
-import com.agro.feature.auth.orchestrator.AuthOrchestrator;
+import com.agro.feature.auth.orchestrator.LoginOrchestrator;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,15 +16,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(Api.AUTH)
 public class AuthControllerREST {
 
-    private AuthOrchestrator orchestrator;
+    private LoginOrchestrator orchestrator;
 
-    public AuthControllerREST(AuthOrchestrator orchestrator) {
+    public AuthControllerREST(LoginOrchestrator orchestrator) {
         this.orchestrator = orchestrator;
     }
 
     @PostMapping(Api.LOGIN)
     public ResponseEntity<AuthResponse> login(@RequestBody Credentials credentials) {
-        Auth auth = orchestrator.auth(credentials);
+        Auth auth = orchestrator.login(credentials);
         return ResponseEntity.ok()
                 .header("Authorization", "Bearer " + auth.token())
                 .body(AuthMapper.INSTANCE.modelToDto(auth));

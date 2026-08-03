@@ -1,4 +1,4 @@
-package com.agro.core.auth.services.userDetails;
+package com.agro.feature.auth.services.userDetails;
 
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

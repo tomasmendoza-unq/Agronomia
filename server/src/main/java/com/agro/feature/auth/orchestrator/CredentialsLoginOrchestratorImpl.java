@@ -1,0 +1,27 @@
+package com.agro.feature.auth.orchestrator;
+
+import com.agro.feature.auth.domain.Auth;
+import com.agro.feature.auth.services.jwt.JwtService;
+import com.agro.feature.auth.services.userDetails.UserCredentials;
+import com.agro.feature.auth.services.validate.AuthService;
+import com.agro.shared.entities.Credentials;
+import org.springframework.stereotype.Service;
+
+@Service
+public class CredentialsLoginOrchestratorImpl implements LoginOrchestrator {
+
+    private AuthService authService;
+    private JwtService jwtService;
+
+    public CredentialsLoginOrchestratorImpl(AuthService authService, JwtService jwtService) {
+        this.authService = authService;
+        this.jwtService = jwtService;
+    }
+
+    @Override
+    public Auth login(Credentials credentials) {
+        UserCredentials userCredentials = authService.login(credentials);
+        String token = jwtService.generate(userCredentials);
+        return new Auth(userCredentials.getName(), userCredentials.getEmail(), token, userCredentials.getId());
+    }
+}

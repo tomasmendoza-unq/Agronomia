@@ -32,7 +32,7 @@ class UserRepositoryImplTest {
 
     @BeforeEach
     void setUp() {
-        user = new User("Nicolás Fernando Bossi", Role.VISITANT, "n@gmail.com");
+        user = new User("Nicolás Fernando Bossi", Role.VISITANT, "n@gmail.com", "aa");
     }
 
     @Test
