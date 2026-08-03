@@ -1,5 +1,6 @@
 package com.agro.feature.user.domain;
 
+import com.agro.feature.company.domain.Company;
 import com.agro.feature.user.domain.valueObjects.EmailValue;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -9,6 +10,7 @@ import lombok.Setter;
 
 @Entity
 @Table(name = "users")
+@Inheritance(strategy = InheritanceType.JOINED)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Setter(AccessLevel.PRIVATE)
 public class User {
@@ -23,6 +25,9 @@ public class User {
 
     @Getter
     private Role role;
+
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    private Company company;
 
     @Embedded
     @AttributeOverride(name = "value", column = @Column(name = "email"))
