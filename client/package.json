@@ -11,6 +11,7 @@
     "prepare": "panda codegen"
   },
   "dependencies": {
+    "@hookform/resolvers": "^5.7.1",
     "axios": "^1.18.1",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
