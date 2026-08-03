@@ -1,7 +1,6 @@
-export type User = {
-    id: string;
+export type UserRequest = {
     name: string;
-    surname: string;
     rol: "Dueño" | "Facturacion" | "Vendedor" | "Administrador";
     email: string;
+    id_company: number;
 };
