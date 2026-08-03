@@ -1,18 +1,23 @@
 import { Outlet } from "react-router";
-import { authLayout } from "./styles";
-import NavBar from "./components/navbar/Navbar";
-import { links } from "./links";
-import { UseAuth } from "@/shared/hooks/use-auth";
+import NavBar from "../../../shared/components/navbar/Navbar";
+import { links } from "./types/links";
 import { ProtectedRoute } from "@/shared/routes/ProtectedRoute";
 import Breadcrumb from "@/shared/components/breadcrumb/Breadcrumb";
+import { authLayout } from "./styles";
+import Brand from "./components/Brand";
+import Avatar from "./components/Avatar";
+import { UseAuth } from "@/shared/hooks/use-auth";
 
 const AuthenticatedLayout = () => {
-    const { isAuthenticated, companyData } = UseAuth();
+    const { user, isAuthenticated } = UseAuth();
+
+    if (!user) return null;
+
     return (
         <ProtectedRoute isAuthenticated={isAuthenticated}>
             <NavBar
-                // user={user}
-                companyData={companyData}
+                brand={<Brand companyData={user.company} />}
+                avatar={<Avatar avatar={user} />}
                 links={links}
             />
             <main className={authLayout}>

@@ -11,5 +11,12 @@ export const UseAuth = () => {
         logo: "https://res.cloudinary.com/dvkvlpq07/image/upload/v1785440325/logo_tfzoil.jpg",
     };
 
-    return { isAuthenticated, setIsAuthenticated, companyData };
+    const user = {
+        id: 1,
+        name: "John Doe",
+        email: "john.doe@example.com",
+        company: companyData,
+    };
+
+    return { isAuthenticated, setIsAuthenticated, user };
 };

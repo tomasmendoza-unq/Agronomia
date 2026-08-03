@@ -1,6 +1,6 @@
-import { panel, header, title, body } from "./styles";
+import { body, header, panel, title } from "./styles";
 
-const ConfigPanel = ({
+const SectionPanel = ({
     title: titleText,
     children,
     actions,
@@ -18,4 +18,4 @@ const ConfigPanel = ({
     </section>
 );
 
-export default ConfigPanel;
+export default SectionPanel;

@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 import CompanyDataCard from "@/features/company/components/companyDataCard/CompanyDataCard";
-import ConfigPanel from "../../components/panel/ConfigPanel";
 import { buttonAddUser, h1, panel } from "./styles";
 import { UseAuth } from "@/shared/hooks/use-auth";
-import TableUsers from "@/features/user/components/TableUsers";
-import { UseGetUsers } from "@/features/user/hook/get-users";
 import Modal from "@/shared/components/modal/Modal";
-import CreateUser from "@/features/user/components/form/CreateUser";
+import SectionPanel from "@/shared/components/section-panel/SectionPanel";
+import TableUsers from "./components/TableUsers";
+import CreateUser from "./components/form/CreateUser";
+import { UseGetUsers } from "../../hook/get-users";
 
 const Configuration = () => {
-    const { companyData } = UseAuth();
+    const { user } = UseAuth();
     const { users, getUsers } = UseGetUsers();
     const [isCreateUserOpen, setIsCreateUserOpen] = useState(false);
 
@@ -20,10 +20,10 @@ const Configuration = () => {
     return (
         <section className={panel}>
             <h1 className={h1}>Configuracion</h1>
-            <ConfigPanel title="Datos empresa">
-                <CompanyDataCard companyData={companyData} />
-            </ConfigPanel>
-            <ConfigPanel
+            <SectionPanel title="Datos empresa">
+                <CompanyDataCard companyData={user.company} />
+            </SectionPanel>
+            <SectionPanel
                 title="Usuarios"
                 actions={
                     <button
@@ -35,7 +35,7 @@ const Configuration = () => {
                 }
             >
                 <TableUsers users={users} />
-            </ConfigPanel>
+            </SectionPanel>
 
             <Modal
                 isOpen={isCreateUserOpen}
