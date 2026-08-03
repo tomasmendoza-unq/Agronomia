@@ -1,4 +1,3 @@
-export type ButtonData<T> = {
+export type ButtonData = {
     text: string
-    onSubmit: (data: T) => void 
 }
