@@ -7,13 +7,13 @@ interface TableProps<T> extends TablePaginator<T> {
 }
 
 export const Table = <T extends Record<string, unknown>>({
-    headers,
-    rows,
-    page,
-    size,
-    totalElements,
-    totalPages,
-    last,
+    headers = [],
+    rows = [],
+    page = 0,
+    size = 0,
+    totalElements = 0,
+    totalPages = 0,
+    last = true,
     onPageChange,
     renderCell,
 }: TableProps<T>) => {

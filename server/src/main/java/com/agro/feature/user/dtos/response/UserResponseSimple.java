@@ -5,9 +5,10 @@ import org.jspecify.annotations.Nullable;
 
 public record UserResponseSimple(
         Long id,
-        String name,
+        String email,
         String role,
-        String email
+        String name
+
 
 ) {
     public static @Nullable UserResponseSimple fromModel(User user) {

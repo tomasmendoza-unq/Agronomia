@@ -3,13 +3,12 @@ import type { InputData } from "@/shared/components/credentials-form/types/input
 const createUserInputs: InputData[] = [
     {
         type: "select",
-        name: "rol",
+        name: "role",
         title: "Rol",
         placeholder: "Selecciona rol",
         id: 0,
         options: [
             { id: 1, value: "Administrador" },
-            { id: 2, value: "Dueño" },
             { id: 3, value: "Vendedor" },
             { id: 4, value: "Facturacion" },
         ],

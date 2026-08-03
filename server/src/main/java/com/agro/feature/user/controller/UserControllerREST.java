@@ -6,7 +6,7 @@ import com.agro.feature.user.dtos.request.UserRequest;
 import com.agro.feature.user.dtos.response.UserResponseSimple;
 import com.agro.feature.user.orchestrator.RegisterOrchestrator;
 import com.agro.feature.user.services.UserService;
-import com.agro.shared.dto.PageResponseDTO;
+import com.agro.shared.dto.TableResponseDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -16,6 +16,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(Api.USER)
@@ -65,24 +67,22 @@ public class UserControllerREST {
             )
     })
     public ResponseEntity<UserResponseSimple> register(@RequestBody UserRequest request) {
-        System.out.println(request.toString()+ "aaaaaaaaaaaaaaaaaaaaaaa");
-        System.out.println(request.toString()+ "aaaaaaaaaaaaaaaaaaaaaaa");
         User user = registerOrchestrator.register(request.toModel(), request.id_company());
-
-        System.out.println("Usuario registrado correctamente: " + user.toString());
 
         return ResponseEntity.ok(UserResponseSimple.fromModel(user));
     }
 
     @GetMapping
-        @Operation(summary = "Obtener usuarios paginados", description = "Devuelve los usuarios en formato paginado.")
-        public ResponseEntity<PageResponseDTO<UserResponseSimple>> getAll(
+        @Operation(summary = "Obtener usuarios paginados", description = "Devuelve los usuarios en formato tabla paginada.")
+        public ResponseEntity<TableResponseDTO<UserResponseSimple>> getAll(
                         @RequestParam(defaultValue = "0") int page,
                         @RequestParam(defaultValue = "10") int size
         ) {
                 Page<User> users = userService.findAll(page, size);
                 Page<UserResponseSimple> response = users.map(UserResponseSimple::fromModel);
 
-                return ResponseEntity.ok(PageResponseDTO.from(response));
+                return ResponseEntity.ok(
+                                TableResponseDTO.fromPage(List.of("ID","Nombre", "Email", "Rol"), response, UserResponseSimple::id)
+                );
     }
 }

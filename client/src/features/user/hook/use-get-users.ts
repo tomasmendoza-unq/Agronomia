@@ -1,21 +1,21 @@
 import type { TablePaginator } from "@/shared/types/table/Table";
 import type { User } from "../types/user";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import getUsersService from "@/features/user/service/get-users";
 
 export const UseGetUsers = () => {
     const [users, setUsers] = useState<TablePaginator<User> | null>(null);
 
-    const getUsers = async () => {
+    const getUsers = useCallback(async () => {
         try {
             const data = await getUsersService();
             setUsers(data);
         } catch (err) {
             setUsers(null);
         }
-    };
+    }, []);
 
-    const addUser = async (newUser: User) => {
+    const addUser = useCallback(async (newUser: User) => {
         setUsers((prev) => {
             const base =
                 prev ??
@@ -40,7 +40,7 @@ export const UseGetUsers = () => {
                 totalElements: base.totalElements + 1,
             };
         });
-    };
+    }, []);
 
     return { users, getUsers, addUser };
 };

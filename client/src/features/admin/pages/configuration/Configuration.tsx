@@ -12,13 +12,19 @@ import { UseGetUsers } from "@/features/user/hook/use-get-users";
 
 const Configuration = () => {
     const { user } = UseAuth();
-    const { users, getUsers } = UseGetUsers();
+    const { users, getUsers, addUser } = UseGetUsers();
     const [isCreateUserOpen, setIsCreateUserOpen] = useState(false);
-    const { isLoading, register } = useRegister();
+    const { isLoading, register, user: createdUser } = useRegister();
 
     useEffect(() => {
         getUsers();
-    }, []);
+    }, [getUsers]);
+
+    useEffect(() => {
+        if (!createdUser) return;
+
+        addUser(createdUser);
+    }, [createdUser, addUser]);
 
     const handleCreateUser = async () => {
         const form = document.querySelector("form");
@@ -27,14 +33,14 @@ const Configuration = () => {
         const formData = new FormData(form as HTMLFormElement);
         const name = String(formData.get("name") ?? "").trim();
         const email = String(formData.get("email") ?? "").trim();
-        const rol = String(
-            formData.get("rol") ?? "Vendedor",
-        ) as unknown as UserRequest["rol"];
+        const role = String(
+            formData.get("role") ?? "Vendedor",
+        ) as UserRequest["role"];
 
         await register({
             name,
             email,
-            rol,
+            role,
             id_company: user.company.id,
         });
 
