@@ -28,6 +28,7 @@ public class User {
     private Role role;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @Getter
     private Company company;
 
     @Embedded

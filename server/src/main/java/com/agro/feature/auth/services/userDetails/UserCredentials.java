@@ -16,7 +16,6 @@ public class UserCredentials implements UserDetails {
     @Getter
     private String email;
 
-    @Getter
     private String password;
 
     @Getter

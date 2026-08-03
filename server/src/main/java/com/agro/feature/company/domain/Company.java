@@ -31,4 +31,8 @@ public class Company {
 
     @OneToMany(fetch = FetchType.EAGER,  cascade = CascadeType.ALL)
     private List<User> users;
+
+    public void addUser(User user) {
+        users.add(user);
+    }
 }

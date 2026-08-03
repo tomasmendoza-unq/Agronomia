@@ -22,4 +22,9 @@ public class CompanyServiceImpl implements CompanyService, CompanyDataService {
     public Company getCompanyById(Long idCompany) {
         return dao.findById(idCompany).orElseThrow(() -> new NotFoundEntityException("Entidad no encontrada"));
     }
+
+    @Override
+    public Company save(Company company) {
+        return dao.save(company);
+    }
 }

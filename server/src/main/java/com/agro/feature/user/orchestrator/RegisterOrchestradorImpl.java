@@ -32,6 +32,10 @@ public class RegisterOrchestradorImpl implements RegisterOrchestrator {
 
         user.addCompany(company);
 
-        return userService.save(user);
+        User saved = userService.save(user);
+
+        company.addUser(user);
+
+        return saved;
     }
 }

@@ -18,7 +18,6 @@ public class HealthControllerREST {
     )
     @ApiResponse(
             responseCode = "200",
-            description = "Carreras disponibles obtenidas correctamente.",
             content = @Content(
                     mediaType = "application/json"
             )
