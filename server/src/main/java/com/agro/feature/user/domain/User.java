@@ -3,16 +3,17 @@ package com.agro.feature.user.domain;
 import com.agro.feature.company.domain.Company;
 import com.agro.feature.user.domain.valueObjects.EmailValue;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
+
+import java.util.UUID;
 
 @Entity
 @Table(name = "users")
 @Inheritance(strategy = InheritanceType.JOINED)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Setter(AccessLevel.PRIVATE)
+@SuperBuilder(toBuilder = true)
 public class User {
 
     @Id
@@ -49,5 +50,14 @@ public class User {
 
     public void addEncriptedPassword(String encripted) {
         setPassword(encripted);
+    }
+
+    public void generateTemporalPassword() {
+        String uuid = UUID.randomUUID().toString();
+        setPassword(uuid);
+    }
+
+    public void addCompany(Company company) {
+        setCompany(company);
     }
 }
