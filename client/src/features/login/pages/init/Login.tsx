@@ -6,6 +6,7 @@ import { useAuth } from "../../../auth/hooks/use-auth";
 import schema from "./types/schema";
 
 const Login = () => {
+    
     const { login } = useAuth();
 
     return (

@@ -2,14 +2,14 @@ import type { InputData } from "../../../../../shared/components/credentials-for
 
 const loginInputs: InputData[] = [
     {
-        type: 'email',
+        type: 'text',
         name: 'email',
         title: 'Email',
         placeholder: 'Ingrese su Email',
         id: 0,
     },
     {
-        type: 'password',
+        type: 'text',
         name: 'password',
         title: 'Contraseña',
         placeholder: 'Ingrese su Contraseña',

@@ -1,12 +1,10 @@
-import type { Credentials } from "@/features/auth/types/credentials";
-import { object, string, type ObjectSchema } from "yup";
+import * as z from "zod"; 
 
-const schema: ObjectSchema<Credentials> = object({
-  email: string()
-    .email("Ingrese un correo valido")
-    .required("Email is required"),
-  password: string()
-    .required("Password is required"),
+const schema = z.object({
+  email: z.email("Ingrese un correo valido"),
+  password: z.string("Ingrese una contraseña"),
 });
+
+export type CredentialsSchema = typeof schema;
 
 export default schema;
