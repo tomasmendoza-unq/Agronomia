@@ -1,19 +1,18 @@
-package com.agro.feature.auth.services.validate;
+package com.agro.feature.auth.services.login;
 
 import com.agro.feature.auth.services.userDetails.UserCredentials;
 import com.agro.shared.entities.Credentials;
-import com.agro.shared.entities.UserAuthenticate;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 @Service
-public class AuthServiceImpl implements AuthService {
+public class LoginServiceImpl implements LoginService {
 
     private AuthenticationManager manager;
 
-    public AuthServiceImpl(AuthenticationManager manager) {
+    public LoginServiceImpl(AuthenticationManager manager) {
         this.manager = manager;
     }
 
