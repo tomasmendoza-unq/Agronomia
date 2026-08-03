@@ -5,6 +5,7 @@ import { styles } from "./styles";
 import type { DeepRequired, FieldError, FieldErrorsImpl, Merge, Path, UseFormRegister } from "react-hook-form";
 import type { output } from "zod";
 import type { InferData, Schema } from "../../../types/shema";
+import ErrorMessage from "../components/error-message/ErrorMessage";
 
 interface TextInputProps<T extends Schema> {
     input: TextInputData
@@ -27,7 +28,7 @@ function TextInput<T extends Schema>({input, inputStyles, register, error}: Text
                 placeholder = {input.placeholder}
                 id = {input.name} 
             />
-            {error && <span>{error.message?.toString()}</span>}
+            {error && <ErrorMessage message = {error.message as string} />}
         </div>
     )
 } 

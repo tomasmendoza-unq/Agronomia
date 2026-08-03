@@ -10,7 +10,7 @@ import type { InferData, Schema } from "../../types/shema";
 function InsertForm<T extends Schema>({inputsData, buttonData, schema, onSubmit}: InsertFormProps<T>) {
 
     const {register, handleSubmit, formState: { errors }} = useForm<InferData<T>>({
-        resolver: zodResolver(schema) as any
+        resolver: zodResolver(schema)
     });
 
     const handleForm = (data: InferData<T>) => onSubmit(data);
@@ -19,10 +19,10 @@ function InsertForm<T extends Schema>({inputsData, buttonData, schema, onSubmit}
 
     return (
         <form onSubmit={handleSubmit(handleForm)} className = {css(form)}>
-            {inputsData.map(i => Input(i, input, register, errors[i.name!]))}
+            {inputsData.map(i => Input(i, input, register, errors[i.name]))}
             <button 
                 className = {css(button)}>
-                    {buttonData.text}
+                {buttonData.text}
             </button>
         </form>
     )

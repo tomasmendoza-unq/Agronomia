@@ -4,6 +4,7 @@ import type { SystemStyleObject } from "@styled-system/types";
 import type { InferData, Schema } from "../../../types/shema";
 import type { DeepRequired, FieldError, FieldErrorsImpl, Merge, Path, UseFormRegister } from "react-hook-form";
 import type { output } from "zod";
+import ErrorMessage from "../components/error-message/ErrorMessage";
 
 interface SelectInputProps<T extends Schema> {
     input: SelectInputData
@@ -24,7 +25,7 @@ function SelectInput<T extends Schema>({input, styles, register, error}: SelectI
                 name = {input.name} 
                 id = {input.name} 
             />
-            {error && <span>{error.message?.toString()}</span>}
+            {error && <ErrorMessage message = {error.message as string} />}
         </div>
     )
 } 
