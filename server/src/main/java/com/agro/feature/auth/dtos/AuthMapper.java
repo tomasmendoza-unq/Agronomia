@@ -1,6 +1,7 @@
 package com.agro.feature.auth.dtos;
 
 import com.agro.feature.auth.domain.Auth;
+import com.agro.feature.auth.dtos.response.AuthResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 

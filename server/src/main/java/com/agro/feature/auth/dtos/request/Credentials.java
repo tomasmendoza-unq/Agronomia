@@ -1,4 +1,4 @@
-package com.agro.shared.entities;
+package com.agro.feature.auth.dtos.request;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

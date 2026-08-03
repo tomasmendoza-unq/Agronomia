@@ -4,7 +4,7 @@ import com.agro.feature.auth.domain.Auth;
 import com.agro.feature.auth.services.jwt.JwtService;
 import com.agro.feature.auth.services.userDetails.UserCredentials;
 import com.agro.feature.auth.services.login.LoginService;
-import com.agro.shared.entities.Credentials;
+import com.agro.feature.auth.dtos.request.Credentials;
 import org.springframework.stereotype.Service;
 
 @Service

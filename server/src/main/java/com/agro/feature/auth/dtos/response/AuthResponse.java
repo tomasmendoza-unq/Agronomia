@@ -1,4 +1,4 @@
-package com.agro.feature.auth.dtos;
+package com.agro.feature.auth.dtos.response;
 
 public record AuthResponse(
         String name,

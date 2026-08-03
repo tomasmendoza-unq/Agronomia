@@ -1,7 +1,7 @@
 package com.agro.feature.auth.services.login;
 
 import com.agro.feature.auth.services.userDetails.UserCredentials;
-import com.agro.shared.entities.Credentials;
+import com.agro.feature.auth.dtos.request.Credentials;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
