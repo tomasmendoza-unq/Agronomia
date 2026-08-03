@@ -2,7 +2,7 @@ import * as z from "zod";
 
 const schema = z.object({
   email: z.email("Ingrese un correo valido"),
-  password: z.string("Ingrese una contraseña"),
+  password: z.string().min(1, "Ingrese una contraseña"),
 });
 
 export type CredentialsSchema = typeof schema;
