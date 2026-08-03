@@ -6,9 +6,7 @@ const logger = {
         console.info(
             '[SUCESS]' + ' ' + isField(debug.status), 
             debug.message, 
-            debug.data, 
-            isField(debug.path), 
-            isField(debug.status)
+            {data: debug.data, path: debug.path}
         ),
     error: (error: ErrorType) => 
         console.error(
