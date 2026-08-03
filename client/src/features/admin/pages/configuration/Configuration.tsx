@@ -35,8 +35,7 @@ const Configuration = () => {
             name,
             email,
             rol,
-            // TODO: provide the real company id from auth context when available
-            id_company: 1,
+            id_company: user.company.id,
         });
 
         setIsCreateUserOpen(false);
