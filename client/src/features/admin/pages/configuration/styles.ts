@@ -1,8 +1,8 @@
 import { css } from "@styled-system/css";
 
 export const panel = css({
-    width: "100vw",
-    height: "100vh",
+    width: "100%",
+    height: "100%",
     bg: "surfacePageColor",
 });
 
