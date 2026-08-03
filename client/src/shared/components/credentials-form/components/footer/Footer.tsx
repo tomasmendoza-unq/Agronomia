@@ -1,13 +1,19 @@
 import type { LinkData } from "../../types/link/Link"
 import { Link } from "react-router"
+import { styles } from "./styles";
+import { css } from "@styled-system/css/css";
 
 interface FooterProps {
     links: LinkData[]
 }
 
+
+const { footer, linkContainer, ancla, textQuestion } = styles;
+
 const Footer = ({links}: FooterProps) => {
+
     return (
-        <footer>
+        <footer className = {css(footer)}>
             {links.map(link => <NavegationLink link = {link} key = {link.id} />)}
         </footer>
     )
@@ -19,9 +25,11 @@ interface NavegationLinkProps {
 
 const NavegationLink = ({link}: NavegationLinkProps) => {
     return (
-        <div>
-            <p>{link.question}</p>
-            <Link to = {link.path}>{link.title}</Link>
+        <div className = {css(linkContainer)}>
+            <p className = {css(textQuestion)}>{link.question}</p>
+            <Link to = {link.path} className = {css(ancla)}>
+                {link.title}
+            </Link>
         </div>
     )
 }
