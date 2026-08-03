@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import CompanyDataCard from "@/features/company/components/companyDataCard/CompanyDataCard";
 import { buttonAddUser, h1, panel } from "./styles";
 import { UseAuth } from "@/shared/hooks/use-auth";
-import TableUsers from "@/features/user/components/TableUsers";
-import { UseGetUsers } from "@/features/user/hook/get-users";
 import Modal from "@/shared/components/modal/Modal";
-import CreateUser from "@/features/user/components/form/CreateUser";
 import SectionPanel from "@/shared/components/section-panel/SectionPanel";
+import TableUsers from "./components/TableUsers";
+import CreateUser from "./components/form/CreateUser";
+import { UseGetUsers } from "../../hook/get-users";
 
 const Configuration = () => {
     const { user } = UseAuth();
