@@ -3,22 +3,21 @@ import styles from "./styles";
 import loginButton from "./types/button";
 import loginInputs from "./types/inputs";
 import loginLinks from "./types/links";
-import { useAuth } from "@/shared/auth/hooks/use-auth";
+import { useAuth } from "../../../auth/hooks/use-auth";
 
 const Login = () => {
-
-    const { login } = useAuth()
+    const { login } = useAuth();
 
     return (
-        <section className = {styles}>
-            <CredentialsForm 
-                title = "Bienvenido"
-                inputs = {loginInputs}
-                button = {loginButton(login)}
-                links = {loginLinks}
+        <section className={styles}>
+            <CredentialsForm
+                title="Bienvenido"
+                inputs={loginInputs}
+                button={loginButton(login)}
+                links={loginLinks}
             />
         </section>
-    )
-}
+    );
+};
 
 export default Login;

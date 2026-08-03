@@ -6,26 +6,24 @@ import useFetch from "@/shared/hooks/use-fetch/useFetch.hook";
 import type { User } from "@/shared/domain/user/user";
 
 interface AuthProviderProps {
-    children: React.JSX.Element
+    children: React.JSX.Element;
 }
 
 function AuthProvider({ children }: AuthProviderProps) {
-
     const { data, error, isLoading, execute } = useFetch<User>();
 
     const value = {
-        user: data, 
+        user: data,
         isLoading,
         error,
+        isAuthenticated: !!data,
         login: execute(login),
         logout: execute(logout),
-    }
+    };
 
     return (
-        <AuthContext.Provider value = {value}>
-            {children}
-        </AuthContext.Provider>
-    )
+        <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
+    );
 }
 
 export default AuthProvider;
