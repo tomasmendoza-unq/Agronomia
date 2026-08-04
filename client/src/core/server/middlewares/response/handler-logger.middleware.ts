@@ -10,7 +10,7 @@ function handlerLoggerMiddleware(http: AxiosInstance) {
         },
         (error: unknown) => {
             handlerFailLoggerService(error);
-            return error;
+            return Promise.reject(error);
         }
     )
 }
