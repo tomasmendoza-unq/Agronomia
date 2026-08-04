@@ -1,17 +1,16 @@
 package com.agro.feature.auth.services.jwt;
 
+import com.agro.feature.auth.services.jwt.exceptions.AuthenticationException;
 import com.agro.feature.auth.services.userDetails.UserCredentials;
 import com.agro.shared.entities.UserAuthenticate;
-import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import javax.crypto.SecretKey;
 import java.security.Key;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 public class JwtServiceImpl implements JwtService {
@@ -31,11 +30,6 @@ public class JwtServiceImpl implements JwtService {
                 .compact();
     }
 
-    @Override
-    public UserCredentials validate(String token) {
-        return null;
-    }
-
     private Map<String, Object> claims(UserCredentials credentials) {
         Map<String, Object> claims = new HashMap<>();
         claims.put("sub", credentials.getId().toString());
@@ -45,5 +39,23 @@ public class JwtServiceImpl implements JwtService {
         claims.put("exp", new Date(System.currentTimeMillis() + 30 * 60 * 1000));
         claims.put("jti", UUID.randomUUID().toString());
         return claims;
+    }
+
+    @Override
+    public Long validate(String token) {
+        try {
+            Jws<Claims> claims = getClaims(token);
+            return claims.getPayload().get("sub", Long.class);
+        }
+        catch (JwtException | IllegalArgumentException e) {
+            throw new AuthenticationException("Token invalido");
+        }
+    }
+
+    private Jws<Claims> getClaims(String token) {
+        return Jwts.parser().
+                verifyWith((SecretKey) getKey()).
+                build().
+                parseSignedClaims(token);
     }
 }

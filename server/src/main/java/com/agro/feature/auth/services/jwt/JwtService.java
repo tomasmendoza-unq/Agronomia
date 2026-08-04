@@ -4,5 +4,5 @@ import com.agro.feature.auth.services.userDetails.UserCredentials;
 
 public interface JwtService {
     String generate(UserCredentials credentials);
-    UserCredentials validate(String token);
+    Long validate(String token);
 }

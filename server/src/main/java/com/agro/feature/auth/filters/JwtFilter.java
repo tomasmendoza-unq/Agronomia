@@ -40,8 +40,8 @@ public class JwtFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String token = request.getHeader("Authorization");
-        UserCredentials userCredentials = jwtService.validate(token);
-        authService.authenticate(userCredentials);
+        Long id = jwtService.validate(token);
+        authService.authenticate(id);
         filterChain.doFilter(request, response);
     }
 }
