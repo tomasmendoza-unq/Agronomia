@@ -4,4 +4,5 @@ import com.agro.shared.entities.UserAuthenticate;
 
 public interface UserCredentialsService {
     UserAuthenticate getCredentialsByEmail(String email);
+    UserAuthenticate getCredentialsById(Long id);
 }
