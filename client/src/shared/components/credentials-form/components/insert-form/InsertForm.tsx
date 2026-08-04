@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import type { InsertFormProps } from "./insert-form";
 import Input from "./types/select-input";
 import { styles } from "./styles";

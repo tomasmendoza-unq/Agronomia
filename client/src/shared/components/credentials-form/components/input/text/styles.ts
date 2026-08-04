@@ -1,4 +1,5 @@
 import { sva } from "@styled-system/css";
+import { token } from "@styled-system/tokens";
 
 export const styles = sva({
     slots: ['container', 'label'],
@@ -11,6 +12,7 @@ export const styles = sva({
         },
         label: {
             width: '90%',
+            color: token('colors.textSubtle'),
         }
     }
 }).raw()

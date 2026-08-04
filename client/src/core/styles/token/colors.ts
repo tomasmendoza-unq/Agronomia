@@ -5,6 +5,7 @@ const tokenColors = defineTokens.colors({
     surfacePageColor: { value: "#F9FAFB" },
     surfaceCardColor: { value: "#FFFFFF" },
     danger: { value: "#E11D48" },
+    textSubtle: { value: "#52525B" },
 });
 
 export default tokenColors;

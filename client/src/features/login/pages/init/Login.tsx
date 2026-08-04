@@ -14,7 +14,7 @@ const Login = () => {
             <CredentialsForm
                 title="Bienvenido"
                 inputs={loginInputs}
-                button={{text: "Iniciar Sesion"}}
+                button={{text: "Iniciar sesión"}}
                 schema={schema}
                 onSubmit={login}
                 links={loginLinks}
