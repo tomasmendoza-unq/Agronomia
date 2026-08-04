@@ -20,7 +20,8 @@ const input = css.raw({
     padding: '8px',
     border: '1px solid #A1A1AA',
     boxShadow: '0px 1px 2px rgba(2, 6, 23, 0.05)',
-    borderRadius: '10px'
+    borderRadius: '10px',
+    outline: 'none',
 });
 
 const button = css.raw({
@@ -28,9 +29,9 @@ const button = css.raw({
     width: '90%',
     height: '16%',
     minHeight: '38px',
-    border: '1px solid #3A5313',
     borderRadius: '10px',
-    bg: token("colors.greenColor")
+    color: '#FFF',
+    bg: token("colors.primaryColor"),
 });
 
 export const styles = sva({
