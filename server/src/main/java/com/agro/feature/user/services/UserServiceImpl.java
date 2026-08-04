@@ -3,7 +3,7 @@ package com.agro.feature.user.services;
 import com.agro.feature.user.contracts.UserCredentialsService;
 import com.agro.feature.user.domain.User;
 import com.agro.feature.user.persistence.daos.UserDAO;
-import com.agro.shared.entities.UserAuthenticate;
+import com.agro.shared.entities.userAuthenticate.UserAuthenticate;
 import com.agro.shared.persistence.excepitons.NotFoundEntityException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -23,7 +23,12 @@ public class UserServiceImpl implements UserService, UserCredentialsService {
     @Override
     public UserAuthenticate getCredentialsByEmail(String email) {
         User user = userDao.findByEmail(email).orElseThrow(() -> new NotFoundEntityException("Entidad no encontrada"));
-        return new UserAuthenticate(user.getEmail(), user.getPassword(), user.getRole().toString(), user.getName(), user.getId());
+        return new UserAuthenticate(
+                user.getEmail(),
+                user.getPassword(),
+                user.getRole(),
+                user.getName(),
+                user.getId());
     }
 
     @Override

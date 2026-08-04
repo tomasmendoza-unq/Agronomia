@@ -2,6 +2,7 @@ package com.agro.feature.user.domain;
 
 import com.agro.feature.company.domain.Company;
 import com.agro.feature.user.domain.valueObjects.EmailValue;
+import com.agro.shared.entities.rol.Role;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
