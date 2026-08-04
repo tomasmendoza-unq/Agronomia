@@ -34,7 +34,12 @@ public class UserServiceImpl implements UserService, UserCredentialsService {
     @Override
     public UserAuthenticate getCredentialsById(Long id) {
         User user = userDao.findById(id).orElseThrow(() -> new NotFoundEntityException("Entidad no encontrada"));
-        return new UserAuthenticate(user.getEmail(), user.getPassword(), user.getRole().toString(), user.getName(), user.getId());
+        return new UserAuthenticate(
+                user.getEmail(),
+                user.getPassword(),
+                user.getRole(),
+                user.getName(),
+                user.getId());
     }
 
     @Override
