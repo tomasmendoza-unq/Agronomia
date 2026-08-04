@@ -31,6 +31,11 @@ public class JwtServiceImpl implements JwtService {
                 .compact();
     }
 
+    @Override
+    public UserCredentials validate(String token) {
+        return null;
+    }
+
     private Map<String, Object> claims(UserCredentials credentials) {
         Map<String, Object> claims = new HashMap<>();
         claims.put("sub", credentials.getId().toString());
