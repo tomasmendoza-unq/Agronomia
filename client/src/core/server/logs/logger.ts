@@ -12,10 +12,7 @@ const logger = {
         console.error(
             '[ERROR]' + ' ' + isField(error.status),
             error.message,
-            isField(error.data.id), 
-            isField(error.data.path), 
-            isField(error.data.cause), 
-            isField(error.status),
+            {data: error.data, path: error.data.path},
         ),
     uknow: (status?: number) =>
         console.error(
