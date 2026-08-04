@@ -1,4 +1,3 @@
-import type { ActiveStyleSlot } from "@/shared/styles/active/active-slots";
 import { css, sva } from "@styled-system/css";
 import { token } from "@styled-system/tokens";
 
@@ -28,7 +27,7 @@ const toastSubContainer = css.raw({
     color: '#FFF'
 });
 
-export const toastContainerSlot: ActiveStyleSlot<"container" | "subcontainer"> = {
+export const toastContainerSlot = {
     slots: ["container", "subcontainer"],
     base: {
         container: toastContainer,
