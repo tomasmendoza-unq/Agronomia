@@ -7,6 +7,7 @@ export interface UseAuth {
     isLoading: boolean;
     isAuthenticated: boolean;
     error: HttpError | undefined;
+    refresh: () => void;
     login: (credentials: Credentials) => Promise<void>;
     logout: (credentials: Credentials) => Promise<void>;
 }

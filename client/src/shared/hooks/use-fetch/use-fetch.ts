@@ -4,6 +4,7 @@ export interface UseFetch<D> {
     data: D | undefined 
     error: HttpError | undefined
     isLoading: boolean
+    refresh: () => void
     execute: <Args extends unknown[]>
         (request: (...args: Args) => Promise<D>) => 
             (...args: Args) => Promise<void>

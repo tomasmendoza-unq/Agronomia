@@ -9,7 +9,7 @@ import { ErrorCause } from "@/core/server/types/error-cause";
 
 const Login = () => {
     
-    const { login, error } = useAuth();
+    const { login, refresh, error } = useAuth();
 
     const irError = error?.isCause(ErrorCause.INVALID_CREDENTIALS);
 
@@ -23,7 +23,10 @@ const Login = () => {
                 onSubmit={login}
                 links={loginLinks}
             />
-            {irError && <ErrorToast message = {"Correo o contraseña incorrectos. Verifique sus datos e intente nuevamente"} onClose={() => {}} />}
+            {irError && <ErrorToast 
+                message={"Correo o contraseña incorrectos. Verifique sus datos e intente nuevamente"} 
+                onClose={refresh} 
+            />}
         </section>
     );
 };
