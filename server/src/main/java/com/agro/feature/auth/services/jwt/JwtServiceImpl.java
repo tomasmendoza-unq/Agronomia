@@ -47,8 +47,17 @@ public class JwtServiceImpl implements JwtService {
             Jws<Claims> claims = getClaims(token);
             return claims.getPayload().get("sub", Long.class);
         }
-        catch (JwtException | IllegalArgumentException e) {
-            throw new AuthenticationException("Token invalido");
+        catch(ExpiredJwtException e) {
+            throw new AuthenticationException("El token se encuentra expirado");
+        }
+        catch(MalformedJwtException | IllegalArgumentException e) {
+            throw new AuthenticationException("El token está mal formado");
+        }
+        catch(UnsupportedJwtException e) {
+            throw new AuthenticationException("El formato del token no es soportado");
+        }
+        catch(StringIndexOutOfBoundsException | NullPointerException e) {
+            throw new AuthenticationException("El token se encuentra vacio");
         }
     }
 

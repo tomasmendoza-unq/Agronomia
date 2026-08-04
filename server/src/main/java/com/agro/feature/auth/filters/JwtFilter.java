@@ -2,7 +2,6 @@ package com.agro.feature.auth.filters;
 
 import com.agro.core.api.Api;
 import com.agro.feature.auth.services.jwt.JwtService;
-import com.agro.feature.auth.services.authentication.LoginService;
 import com.agro.feature.auth.services.userDetails.UserDetailsAdapter;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -13,7 +12,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.servlet.util.matcher.PathPatternRequestMatcher;
 import org.springframework.security.web.util.matcher.RequestMatcher;
 import org.springframework.stereotype.Component;
@@ -44,8 +42,8 @@ public class JwtFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        String token = request.getHeader("Authorization");
-        Long id = jwtService.validate(token);
+        String tokenWithoutBearer = request.getHeader("Authorization").substring(7);
+        Long id = jwtService.validate(tokenWithoutBearer);
         UserDetails user = userDetailsService.loadUserById(id);
         Authentication auth = new UsernamePasswordAuthenticationToken(user.getUsername(), null, user.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(auth);
