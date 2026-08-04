@@ -8,11 +8,11 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 @Service
-public class LoginServiceImpl implements LoginService {
+public class AuthServiceImpl implements AuthService {
 
     private AuthenticationManager manager;
 
-    public LoginServiceImpl(AuthenticationManager manager) {
+    public AuthServiceImpl(AuthenticationManager manager) {
         this.manager = manager;
     }
 

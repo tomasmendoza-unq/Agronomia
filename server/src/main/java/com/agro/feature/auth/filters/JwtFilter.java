@@ -2,6 +2,7 @@ package com.agro.feature.auth.filters;
 
 import com.agro.core.api.Api;
 import com.agro.feature.auth.services.jwt.JwtService;
+import com.agro.feature.auth.services.login.AuthService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -20,11 +21,11 @@ import java.util.List;
 public class JwtFilter extends OncePerRequestFilter {
 
     private JwtService jwtService;
-    private UserDetailsService userDetailsService;
+    private AuthService authService;
 
-    public JwtFilter(JwtService jwtService, UserDetailsService userDetailsService) {
+    public JwtFilter(JwtService jwtService, AuthService authService) {
         this.jwtService = jwtService;
-        this.userDetailsService = userDetailsService;
+        this.authService = authService;
     }
 
     private final List<RequestMatcher> PUBLICS = List.of(
