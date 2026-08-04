@@ -6,5 +6,5 @@ import com.agro.feature.auth.dtos.request.Credentials;
 public interface AuthenticateService {
     UserCredentials login(Credentials credentials);
 
-    void authenticate(UserCredentials userCredentials);
+    void authenticate(Long ids);
 }

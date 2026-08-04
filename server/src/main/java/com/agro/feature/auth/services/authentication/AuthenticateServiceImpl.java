@@ -5,6 +5,7 @@ import com.agro.feature.auth.dtos.request.Credentials;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -24,7 +25,9 @@ public class AuthenticateServiceImpl implements AuthenticateService {
     }
 
     @Override
-    public void authenticate(UserCredentials userCredentials) {
-
+    public void authenticate(Long id) {
+        Authentication token = new UsernamePasswordAuthenticationToken(id.toString(), null);
+        Authentication authentication = manager.authenticate(token);
+        SecurityContextHolder.getContext().setAuthentication(authentication);
     }
 }
