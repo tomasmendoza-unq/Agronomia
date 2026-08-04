@@ -7,7 +7,6 @@ import lombok.*;
 @Entity
 @Table(name = "admins")
 @AllArgsConstructor
-@NoArgsConstructor
 @Builder
 @Data
 @EqualsAndHashCode(callSuper = true)

@@ -10,12 +10,13 @@ interface AuthProviderProps {
 }
 
 function AuthProvider({ children }: AuthProviderProps) {
-    const { data, error, isLoading, execute } = useFetch<User>();
+    const { data, error, isLoading, execute, refresh } = useFetch<User>();
 
     const value = {
         user: data,
         isLoading,
         error,
+        refresh,
         isAuthenticated: !!data,
         login: execute(login),
         logout: execute(logout),

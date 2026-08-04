@@ -28,7 +28,12 @@ function useFetch<D>(): UseFetch<D> {
         }
     }
 
-    return { data, isLoading, error, execute }
+    function refresh() {
+        setData(undefined);
+        setError(undefined);
+    }
+
+    return { data, isLoading, error, execute, refresh }
 }
 
 export default useFetch;

@@ -1,5 +1,4 @@
 import type { TablePaginator } from "@/shared/types/table/Table";
-import type { User } from "../types/user";
 import { useState } from "react";
 
 const mockUsers: TablePaginator<User> = {

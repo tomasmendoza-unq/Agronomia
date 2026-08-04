@@ -3,7 +3,6 @@ import { css, sva } from "@styled-system/css";
 const container = css.raw({
     display: 'grid',
     placeItems: 'center',
-    gridTemplateRows: '20% 50% 30%',
     width: '90%',
     maxWidth: '500px',
     minWidth: '40vw',
