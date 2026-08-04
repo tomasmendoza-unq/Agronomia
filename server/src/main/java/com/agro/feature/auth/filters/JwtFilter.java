@@ -2,13 +2,18 @@ package com.agro.feature.auth.filters;
 
 import com.agro.core.api.Api;
 import com.agro.feature.auth.services.jwt.JwtService;
-import com.agro.feature.auth.services.authentication.AuthenticateService;
-import com.agro.feature.auth.services.userDetails.UserCredentials;
+import com.agro.feature.auth.services.authentication.LoginService;
+import com.agro.feature.auth.services.userDetails.UserDetailsAdapter;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.servlet.util.matcher.PathPatternRequestMatcher;
 import org.springframework.security.web.util.matcher.RequestMatcher;
 import org.springframework.stereotype.Component;
@@ -21,11 +26,11 @@ import java.util.List;
 public class JwtFilter extends OncePerRequestFilter {
 
     private JwtService jwtService;
-    private AuthenticateService authService;
+    private UserDetailsAdapter userDetailsService;
 
-    public JwtFilter(JwtService jwtService, AuthenticateService authService) {
+    public JwtFilter(JwtService jwtService, UserDetailsAdapter userDetailsService) {
         this.jwtService = jwtService;
-        this.authService = authService;
+        this.userDetailsService = userDetailsService;
     }
 
     private final List<RequestMatcher> PUBLICS = List.of(
@@ -41,7 +46,9 @@ public class JwtFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String token = request.getHeader("Authorization");
         Long id = jwtService.validate(token);
-        authService.authenticate(id);
+        UserDetails user = userDetailsService.loadUserById(id);
+        Authentication auth = new UsernamePasswordAuthenticationToken(user.getUsername(), null, user.getAuthorities());
+        SecurityContextHolder.getContext().setAuthentication(auth);
         filterChain.doFilter(request, response);
     }
 }
