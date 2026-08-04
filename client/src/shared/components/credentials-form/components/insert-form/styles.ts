@@ -28,9 +28,9 @@ const button = css.raw({
     width: '90%',
     height: '16%',
     minHeight: '38px',
-    border: '1px solid #3A5313',
     borderRadius: '10px',
-    bg: token("colors.greenColor")
+    color: '#FFF',
+    bg: token("colors.primaryColor"),
 });
 
 export const styles = sva({
