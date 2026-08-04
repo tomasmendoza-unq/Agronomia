@@ -6,7 +6,7 @@ type ToastMessageProp = {
 
 const ToastMessage = ({message}: ToastMessageProp) => {
     return (
-        <p className = {css({ color: '#E6E6E6', fontSize: '12px'})}>{message}</p>
+        <p className = {css({ color: '#111', fontSize: '14px'})}>{message}</p>
     )
 }
 

@@ -5,6 +5,7 @@ import ToastMessage from "../components/toast-message/ToastMessage";
 import useActive from "@/shared/hooks/use-active";
 import type { AnclaLink } from "../types/ancla-link";
 import { css } from "@styled-system/css/css";
+import { token } from "@styled-system/tokens";
 
 type ErrorToastProps = {
     link?: AnclaLink
@@ -22,7 +23,7 @@ const ErrorToast = ({message, link, onClose}: ErrorToastProps) => {
     }
 
     return (
-        <ToastContainer bg = {css.raw({ bg: '#FFF1F2'})} isActive = {isActive}>
+        <ToastContainer bg = {css.raw({ bg: token("colors.greenColor")})} isActive = {isActive}>
             <ToastHeader 
                 title = "Error" 
                 icon = {errorIcon} 
