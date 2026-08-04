@@ -2,13 +2,13 @@ package com.agro.feature.auth.filters;
 
 import com.agro.core.api.Api;
 import com.agro.feature.auth.services.jwt.JwtService;
-import com.agro.feature.auth.services.login.AuthService;
+import com.agro.feature.auth.services.authentication.AuthenticateService;
+import com.agro.feature.auth.services.userDetails.UserCredentials;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.HttpMethod;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.servlet.util.matcher.PathPatternRequestMatcher;
 import org.springframework.security.web.util.matcher.RequestMatcher;
 import org.springframework.stereotype.Component;
@@ -21,9 +21,9 @@ import java.util.List;
 public class JwtFilter extends OncePerRequestFilter {
 
     private JwtService jwtService;
-    private AuthService authService;
+    private AuthenticateService authService;
 
-    public JwtFilter(JwtService jwtService, AuthService authService) {
+    public JwtFilter(JwtService jwtService, AuthenticateService authService) {
         this.jwtService = jwtService;
         this.authService = authService;
     }
@@ -39,6 +39,9 @@ public class JwtFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        System.out.println("JwtFilter ejecutado: {} {}" + request.getMethod() + request.getRequestURI());
+        String token = request.getHeader("Authorization");
+        UserCredentials userCredentials = jwtService.validate(token);
+        authService.authenticate(userCredentials);
+        filterChain.doFilter(request, response);
     }
 }
