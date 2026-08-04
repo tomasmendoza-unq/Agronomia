@@ -34,7 +34,7 @@ public class JwtServiceImpl implements JwtService {
         Map<String, Object> claims = new HashMap<>();
         claims.put("sub", credentials.getId().toString());
         claims.put("name", credentials.getName());
-        claims.put("role", credentials.getRole());
+        claims.put("role", credentials.getRole().toString());
         claims.put("iat", new Date());
         claims.put("exp", new Date(System.currentTimeMillis() + 30 * 60 * 1000));
         claims.put("jti", UUID.randomUUID().toString());
