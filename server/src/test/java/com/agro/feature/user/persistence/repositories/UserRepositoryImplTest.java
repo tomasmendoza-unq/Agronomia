@@ -1,7 +1,7 @@
 package com.agro.feature.user.persistence.repositories;
 
 import com.agro.core.ContainerPostgresql;
-import com.agro.feature.user.domain.Role;
+import com.agro.shared.entities.rol.Role;
 import com.agro.feature.user.domain.User;
 import com.agro.feature.user.persistence.daos.UserDAO;
 import com.agro.shared.persistence.excepitons.NotFoundEntityException;

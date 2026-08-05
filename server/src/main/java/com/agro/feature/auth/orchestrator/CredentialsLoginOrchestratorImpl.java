@@ -22,6 +22,11 @@ public class CredentialsLoginOrchestratorImpl implements LoginOrchestrator {
     public Auth login(Credentials credentials) {
         UserCredentials userCredentials = authService.login(credentials);
         String token = jwtService.generate(userCredentials);
-        return new Auth(userCredentials.getName(), userCredentials.getEmail(), token, userCredentials.getId());
+        return new Auth(
+                userCredentials.getName(),
+                userCredentials.getEmail(),
+                userCredentials.getRole(),
+                token,
+                userCredentials.getId());
     }
 }

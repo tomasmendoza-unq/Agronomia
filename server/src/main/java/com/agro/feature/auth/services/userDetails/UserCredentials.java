@@ -1,6 +1,7 @@
 package com.agro.feature.auth.services.userDetails;
 
-import com.agro.shared.entities.UserAuthenticate;
+import com.agro.shared.entities.rol.Role;
+import com.agro.shared.entities.userAuthenticate.UserAuthenticate;
 import lombok.Getter;
 import org.jspecify.annotations.Nullable;
 import org.springframework.security.core.GrantedAuthority;
@@ -20,7 +21,7 @@ public class UserCredentials implements UserDetails {
     private String password;
 
     @Getter
-    private String role;
+    private Role role;
 
     @Getter
     private String name;
@@ -36,7 +37,7 @@ public class UserCredentials implements UserDetails {
         this.role = user.role();
         this.name = user.name();
         this.id = user.id();
-        this.roles.add(new SimpleGrantedAuthority(user.role()));
+        this.roles.add(new SimpleGrantedAuthority(user.role().toString()));
     }
 
     @Override

@@ -1,11 +1,11 @@
 package com.agro.feature.user.services;
 
 import com.agro.core.ContainerPostgresql;
-import com.agro.feature.user.domain.Role;
+import com.agro.shared.entities.rol.Role;
 import com.agro.feature.user.domain.User;
 import com.agro.feature.user.persistence.daos.UserDAO;
 import com.agro.feature.user.persistence.repositories.UserRepository;
-import com.agro.shared.entities.UserAuthenticate;
+import com.agro.shared.entities.userAuthenticate.UserAuthenticate;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
