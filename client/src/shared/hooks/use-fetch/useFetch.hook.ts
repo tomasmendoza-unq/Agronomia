@@ -13,7 +13,9 @@ function useFetch<D>(): UseFetch<D> {
             setIsLoading(true);
 
             try {
-                setData(await request(...args));
+                const data = await request(...args);
+                setData(data);
+                return data;
             } catch(error: unknown) {
                 handleError(error);
             }

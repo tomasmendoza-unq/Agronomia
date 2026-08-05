@@ -7,18 +7,18 @@ import { useNavigate } from "react-router";
 
 const useLogin = () => {
 
-    const { refresh, user, error, login: log } = useAuth();
+    const { refresh, error, login: log } = useAuth();
     const navegation = useNavigate();
     
     const isError = error?.isCause(ErrorCause.INVALID_CREDENTIALS);
 
     async function login(credentials: Credentials) {
-        await log(credentials);
+        const user = await log(credentials);
         if(user) navegate(user);
     }
 
     function navegate(user: User) {
-        switch(user.rol) {
+        switch(user.role) {
             case "ADMIN":
                 navegation(ADMIN_ROUTES.BASE);
         }
