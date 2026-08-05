@@ -2,12 +2,16 @@ package com.agro.feature.auth.filters;
 
 import com.agro.core.api.Api;
 import com.agro.feature.auth.services.jwt.JwtService;
+import com.agro.feature.auth.services.userDetails.UserDetailsAdapter;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.HttpMethod;
-import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.servlet.util.matcher.PathPatternRequestMatcher;
 import org.springframework.security.web.util.matcher.RequestMatcher;
 import org.springframework.stereotype.Component;
@@ -20,9 +24,9 @@ import java.util.List;
 public class JwtFilter extends OncePerRequestFilter {
 
     private JwtService jwtService;
-    private UserDetailsService userDetailsService;
+    private UserDetailsAdapter userDetailsService;
 
-    public JwtFilter(JwtService jwtService, UserDetailsService userDetailsService) {
+    public JwtFilter(JwtService jwtService, UserDetailsAdapter userDetailsService) {
         this.jwtService = jwtService;
         this.userDetailsService = userDetailsService;
     }
@@ -38,6 +42,11 @@ public class JwtFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        System.out.println("JwtFilter ejecutado: {} {}" + request.getMethod() + request.getRequestURI());
+        String tokenWithoutBearer = request.getHeader("Authorization").substring(7);
+        Long id = jwtService.validate(tokenWithoutBearer);
+        UserDetails user = userDetailsService.loadUserById(id);
+        Authentication auth = new UsernamePasswordAuthenticationToken(user.getUsername(), null, user.getAuthorities());
+        SecurityContextHolder.getContext().setAuthentication(auth);
+        filterChain.doFilter(request, response);
     }
 }

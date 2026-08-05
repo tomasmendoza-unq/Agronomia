@@ -3,6 +3,7 @@ package com.agro.feature.auth.services.userDetails;
 import com.agro.feature.user.contracts.UserCredentialsService;
 import com.agro.shared.entities.UserAuthenticate;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +24,7 @@ public class UserDetailsServiceImpl implements UserDetailsAdapter {
 
     @Override
     public UserDetails loadUserById(Long id) {
-        return null;
+        UserAuthenticate userAuthenticate = userCredentialsService.getCredentialsById(id);
+        return new UserCredentials(userAuthenticate);
     }
 }
