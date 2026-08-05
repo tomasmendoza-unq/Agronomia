@@ -2,16 +2,13 @@ import CredentialsForm from "@/shared/components/credentials-form/CredentialsFor
 import styles from "./styles";
 import loginInputs from "./types/inputs";
 import loginLinks from "./types/links";
-import { useAuth } from "../../../auth/hooks/use-auth";
 import schema from "./types/schema";
 import ErrorToast from "@/shared/components/toast/error/ErrorToast";
-import { ErrorCause } from "@/core/server/types/error-cause";
+import useLogin from "../../hooks/use-login";
 
 const Login = () => {
     
-    const { login, refresh, error } = useAuth();
-
-    const irError = error?.isCause(ErrorCause.INVALID_CREDENTIALS);
+    const { isError, login, refresh } = useLogin();
 
     return (
         <section className={styles}>
@@ -23,7 +20,7 @@ const Login = () => {
                 onSubmit={login}
                 links={loginLinks}
             />
-            {irError && <ErrorToast 
+            {isError && <ErrorToast 
                 message={"Correo o contraseña incorrectos. Verifique sus datos e intente nuevamente"} 
                 onClose={refresh} 
             />}
