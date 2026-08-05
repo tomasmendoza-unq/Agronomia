@@ -2,6 +2,7 @@ package com.agro.feature.auth.services.jwt;
 
 import com.agro.feature.auth.services.jwt.exceptions.AuthenticationException;
 import com.agro.feature.auth.services.userDetails.UserCredentials;
+import com.agro.shared.entities.UserAuthenticate;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
