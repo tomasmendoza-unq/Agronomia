@@ -68,6 +68,11 @@ public class UserServiceImpl implements UserService, UserCredentialsService {
         return userDao.existsByEmail(new EmailValue(email));
     }
 
+    @Override
+    public User getUserById(Long id) {
+        return userDao.findById(id).orElseThrow(() -> new NotFoundEntityException("Usuario no encontrada"));
+    }
+
     public void clearAll() {
         userDao.deleteAll();
     }
