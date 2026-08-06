@@ -1,9 +1,7 @@
 package com.agro.feature.auth.services.authentication;
 
 import com.agro.feature.auth.services.userDetails.UserCredentials;
-
-import com.agro.shared.entities.Credentials;
+import com.agro.feature.auth.dtos.request.Credentials;
 
 public interface LoginService {
-    UserCredentials login(com.agro.shared.entities.Credentials credentials);
-}
+    UserCredentials login(Credentials credentials);}

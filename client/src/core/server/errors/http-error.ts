@@ -1,3 +1,4 @@
+import type { ErrorCauseType } from "../types/error-cause";
 import type { ErrorResponse } from "../types/error-response";
 import type { ErrorSide } from "../types/error-side";
 
@@ -31,6 +32,10 @@ export class HttpError extends Error {
 
     get getSideError() {
         return this.side
+    }
+
+    isCause(cause: ErrorCauseType) {
+        return this.data.cause === cause;
     }
 
     private errorSide(status: number) {

@@ -4,8 +4,8 @@ import com.agro.core.api.Api;
 import com.agro.feature.auth.filters.JwtFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -13,7 +13,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 public class JwtConfig {
 
-    private final JwtFilter filter;
+    private JwtFilter filter;
 
     public JwtConfig(JwtFilter filter) {
         this.filter = filter;
@@ -22,10 +22,12 @@ public class JwtConfig {
     @Bean
     public SecurityFilterChain fwtFilter(HttpSecurity http) {
         http
-            .cors(Customizer.withDefaults())
+                .cors(Customizer.withDefaults())
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth ->
-                    auth.anyRequest().permitAll())
+                        auth.
+                                requestMatchers("/" + Api.AUTH + Api.LOGIN).permitAll()
+                                .anyRequest().authenticated())
                 .addFilterAfter(filter, UsernamePasswordAuthenticationFilter.class);
 
         return  http.build();

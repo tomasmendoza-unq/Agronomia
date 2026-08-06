@@ -7,6 +7,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @AllArgsConstructor
@@ -30,7 +31,8 @@ public class Company {
     private String logo;
 
     @OneToMany(fetch = FetchType.EAGER,  cascade = CascadeType.ALL)
-    private List<User> users;
+    @Builder.Default
+    private List<User> users = new ArrayList<>();
 
     public void addUser(User user) {
         users.add(user);

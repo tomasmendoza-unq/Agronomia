@@ -7,20 +7,21 @@ function useFetch<D>(): UseFetch<D> {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<HttpError>();
 
-    function execute<Args extends unknown[]>(
-        request: (...args: Args) => Promise<D>,
-    ) {
+    function execute<Args extends unknown[]>(request: (...args: Args) => Promise<D>) {
+        
         return async (...args: Args) => {
             setIsLoading(true);
 
             try {
-                setData(await request(...args));
-            } catch (error: unknown) {
+                const data = await request(...args);
+                setData(data);
+                return data;
+            } catch(error: unknown) {
                 handleError(error);
             }
 
             setIsLoading(false);
-        };
+        }
     }
 
     function handleError(error: unknown) {
@@ -29,7 +30,12 @@ function useFetch<D>(): UseFetch<D> {
         }
     }
 
-    return { data, isLoading, error, execute };
+    function refresh() {
+        setData(undefined);
+        setError(undefined);
+    }
+
+    return { data, isLoading, error, execute, refresh }
 }
 
 export default useFetch;

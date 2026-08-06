@@ -4,7 +4,7 @@ import com.agro.feature.user.contracts.UserCredentialsService;
 import com.agro.feature.user.domain.User;
 import com.agro.feature.user.domain.valueObjects.EmailValue;
 import com.agro.feature.user.persistence.daos.UserDAO;
-import com.agro.shared.entities.UserAuthenticate;
+import com.agro.shared.entities.userAuthenticate.UserAuthenticate;
 import com.agro.shared.persistence.excepitons.NotFoundEntityException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -26,8 +26,26 @@ public class UserServiceImpl implements UserService, UserCredentialsService {
     @Override
     public UserAuthenticate getCredentialsByEmail(String email) {
         User user = userDao.findByEmail(email).orElseThrow(() -> new NotFoundEntityException("Entidad no encontrada"));
-        return new UserAuthenticate(user.getEmail(), user.getPassword(), user.getRole().toString(), user.getName(), user.getId());
+        return new UserAuthenticate(
+                user.getEmail(),
+                user.getPassword(),
+                user.getRole(),
+                user.getName(),
+                user.getId());
     }
+
+    @Override
+    public UserAuthenticate getCredentialsById(Long id) {
+        User user = userDao.findById(id).orElseThrow(() -> new NotFoundEntityException("Entidad no encontrada"));
+        return new UserAuthenticate(
+                user.getEmail(),
+                user.getPassword(),
+                user.getRole(),
+                user.getName(),
+                user.getId());
+    }
+
+
 
     @Override
     public User save(User user) {

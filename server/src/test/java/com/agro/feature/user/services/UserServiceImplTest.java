@@ -1,15 +1,16 @@
 package com.agro.feature.user.services;
 
 import com.agro.core.ContainerPostgresql;
-import com.agro.feature.user.domain.Role;
+import com.agro.shared.entities.rol.Role;
 import com.agro.feature.user.domain.User;
 import com.agro.feature.user.persistence.daos.UserDAO;
 import com.agro.feature.user.persistence.repositories.UserRepository;
-import com.agro.shared.entities.UserAuthenticate;
+import com.agro.shared.entities.userAuthenticate.UserAuthenticate;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.postgresql.PostgreSQLContainer;
@@ -18,6 +19,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @Testcontainers
+@ActiveProfiles("test")
 class UserServiceImplTest {
     @Container
     private static PostgreSQLContainer postgres = ContainerPostgresql.getContainer();
@@ -50,7 +52,7 @@ class UserServiceImplTest {
         UserAuthenticate addedUser = service.getCredentialsByEmail(user.getEmail());
         assertEquals(user.getEmail(), addedUser.email());
         assertEquals(user.getId(), addedUser.id());
-        assertEquals(user.getRole().toString(), addedUser.role());
+        assertEquals(user.getRole(), addedUser.role());
     }
 
     @BeforeEach

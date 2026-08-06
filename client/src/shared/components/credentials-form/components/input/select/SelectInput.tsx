@@ -1,47 +1,33 @@
 import type { SelectInputData } from "../../../types/input/credentials-input";
 import { css } from "@styled-system/css";
 import type { SystemStyleObject } from "@styled-system/types";
-import { styles as textStyles } from "../text/styles";
+import type { InferData, Schema } from "../../../types/shema";
+import type { DeepRequired, FieldError, FieldErrorsImpl, Merge, Path, UseFormRegister } from "react-hook-form";
+import type { output } from "zod";
+import ErrorMessage from "../components/error-message/ErrorMessage";
 
-interface SelectInputProps {
-    input: SelectInputData;
-    styles: SystemStyleObject;
+interface SelectInputProps<T extends Schema> {
+    input: SelectInputData
+    styles: SystemStyleObject
+    register: UseFormRegister<InferData<T>>, 
+    error: FieldError | undefined | Merge<FieldError, FieldErrorsImpl<DeepRequired<output<T>>>>
 }
 
-const SelectInput = ({ input, styles }: SelectInputProps) => {
+function SelectInput<T extends Schema>({input, styles, register, error}: SelectInputProps<T>) {
     return (
-        <div className={css(textStyles.container)}>
-            <label
-                htmlFor={input.name}
-                className={css(textStyles.label)}
-            >
-                <span>{input.title}</span>
-            </label>
-            <select
-                className={css(styles)}
-                name={input.name}
-                id={input.name}
-                defaultValue=""
-                required
-                style={{ color: "#111", backgroundColor: "transparent" }}
-            >
-                <option
-                    value=""
-                    disabled
-                >
-                    Seleccionar {input.title.toLowerCase()}
-                </option>
-                {input.options.map((opt) => (
-                    <option
-                        key={opt.id}
-                        value={opt.value}
-                    >
-                        {opt.value}
-                    </option>
-                ))}
-            </select>
+        <div>
+            <label htmlFor = {input.name}></label>
+            <span>{input.title}</span>
+            <input 
+                {...register(input.name as Path<output<T>>)}
+                className = {css(styles)}
+                type = {input.type} 
+                name = {input.name} 
+                id = {input.name} 
+            />
+            {error && <ErrorMessage message = {error.message as string} />}
         </div>
-    );
-};
+    )
+} 
 
 export default SelectInput;

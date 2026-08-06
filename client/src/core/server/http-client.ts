@@ -5,8 +5,6 @@ import setRequestMiddlewares from "./middlewares/request/request-middlewares";
 const baseURL =
     (import.meta?.env?.VITE_API_BASE_URL as string) || "http://localhost:8080";
 
-console.log("VITE_API_BASE_URL =>", baseURL);
-
 const http = axios.create({
     baseURL,
 });

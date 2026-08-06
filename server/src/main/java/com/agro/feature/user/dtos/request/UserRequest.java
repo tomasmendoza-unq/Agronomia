@@ -1,8 +1,9 @@
 package com.agro.feature.user.dtos.request;
 
-import com.agro.feature.user.domain.Role;
+
 import com.agro.feature.user.domain.User;
 import com.agro.feature.user.domain.valueObjects.EmailValue;
+import com.agro.shared.entities.rol.Role;
 
 public record UserRequest(
         String name,

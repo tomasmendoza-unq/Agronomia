@@ -3,15 +3,19 @@ package com.agro.feature.user.orchestrador;
 import com.agro.core.ContainerPostgresql;
 import com.agro.feature.company.domain.Company;
 import com.agro.feature.company.service.CompanyService;
-import com.agro.feature.user.domain.Role;
+
 import com.agro.feature.user.domain.User;
 import com.agro.feature.user.domain.exceptions.EmailDuplicatedException;
 import com.agro.feature.user.domain.valueObjects.EmailValue;
 import com.agro.feature.user.orchestrator.RegisterOrchestrator;
+import com.agro.shared.entities.rol.Role;
+import com.agro.shared.service.ResetService;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.postgresql.PostgreSQLContainer;
@@ -20,6 +24,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @Testcontainers
+@ActiveProfiles("test")
 public class RegisterOrchestradorImplTest {
 
     @Container
@@ -30,6 +35,9 @@ public class RegisterOrchestradorImplTest {
 
     @Autowired
     private CompanyService companyService;
+
+    @Autowired
+    private ResetService resetService;
 
     private User user;
 
@@ -72,5 +80,10 @@ public class RegisterOrchestradorImplTest {
                 .build();
 
         assertThrows(EmailDuplicatedException.class,() -> orchestrator.register(userMailDuplicated,company.getId()));
+    }
+
+    @AfterEach
+    public void tearDown() {
+        resetService.resetAll();
     }
 }

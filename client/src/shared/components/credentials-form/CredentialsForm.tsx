@@ -1,30 +1,34 @@
 import Footer from "./components/footer/Footer";
 import InsertForm from "./components/insert-form/InsertForm";
 import type { CredentialsFormProps } from "./credentials-form";
-import { styles, compactContainer } from "./styles";
+import { styles } from "./styles";
+import type { Schema } from "./types/shema";
 
-const CredentialsForm = ({
-    title,
-    inputs,
-    button,
+function CredentialsForm<T extends Schema>({ 
+    title, 
+    inputs, 
+    button, 
     links,
-    compact = false,
-}: CredentialsFormProps) => {
-    const { container, headerTitle } = styles();
-    const containerClass = compact ? compactContainer : container;
+    schema,
+    onSubmit
+}: CredentialsFormProps<T>) {
 
+    const { container, headerTitle } = styles();
+    
     return (
-        <div className={containerClass}>
+        <div className={container}>
             <header>
                 <h1 className={headerTitle}>{title}</h1>
             </header>
-            <InsertForm
-                inputsData={inputs}
-                buttonData={button}
+            <InsertForm 
+                inputsData={inputs} 
+                buttonData={button} 
+                schema={schema}
+                onSubmit={onSubmit}
             />
-            <Footer links={links} />
+            <Footer links = {links} />
         </div>
-    );
-};
+    )
+}
 
 export default CredentialsForm;

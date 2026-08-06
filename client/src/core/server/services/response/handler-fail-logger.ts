@@ -1,17 +1,17 @@
-import { AxiosError } from "axios";
+import axios from "axios";
 import type { ErrorResponse } from "../../types/error-response";
 import logger from "../../logs/logger";
 
 const isDev = import.meta.env.DEV 
 
-function handlerFailLoggerService(uknowError?: unknown, responseError?: AxiosError<ErrorResponse>) {
-    if (isDev && responseError && responseError.response ) {
+function handlerFailLoggerService(error: unknown) {
+    if (isDev && axios.isAxiosError<ErrorResponse>(error) && error.response) {
         logger.error({ 
-            data: responseError.response.data,
+            data: error.response.data,
             message: 'Respuesta fallida'
         });
     }
-    if(uknowError) {
+    else {
         logger.uknow();
     }
 }
