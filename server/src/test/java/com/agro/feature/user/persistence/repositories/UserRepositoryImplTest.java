@@ -5,6 +5,7 @@ import com.agro.shared.entities.rol.Role;
 import com.agro.feature.user.domain.User;
 import com.agro.feature.user.persistence.daos.UserDAO;
 import com.agro.shared.persistence.excepitons.NotFoundEntityException;
+import com.agro.shared.service.ResetService;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -28,6 +29,9 @@ class UserRepositoryImplTest {
     private UserDAO userDao;
 
     @Autowired
+    private ResetService  resetService;
+
+    @Autowired
     private UserRepositoryImpl repository;
 
     private User user;
@@ -47,5 +51,10 @@ class UserRepositoryImplTest {
     @Test
     void testSiElMailNoEstaRegistrado_LanzaExepcion() {
         assertThrows(NotFoundEntityException.class, () -> repository.findByEmail(user.getEmail()));
+    }
+
+    @AfterEach
+    public void tearDown() {
+        resetService.resetAll();
     }
 }

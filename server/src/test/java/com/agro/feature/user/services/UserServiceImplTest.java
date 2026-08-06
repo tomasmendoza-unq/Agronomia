@@ -6,6 +6,7 @@ import com.agro.feature.user.domain.User;
 import com.agro.feature.user.persistence.daos.UserDAO;
 import com.agro.feature.user.persistence.repositories.UserRepository;
 import com.agro.shared.entities.userAuthenticate.UserAuthenticate;
+import com.agro.shared.service.ResetService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,9 @@ class UserServiceImplTest {
 
     @Autowired
     private UserDAO userDao;
+
+    @Autowired
+    private ResetService resetService;
 
     @Autowired
     private UserServiceImpl service;
