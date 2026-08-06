@@ -45,7 +45,7 @@ public class JwtFilter extends OncePerRequestFilter {
         String tokenWithoutBearer = request.getHeader("Authorization").substring(7);
         Long id = jwtService.validate(tokenWithoutBearer);
         UserDetails user = userDetailsService.loadUserById(id);
-        Authentication auth = new UsernamePasswordAuthenticationToken(user.getUsername(), null, user.getAuthorities());
+        Authentication auth = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(auth);
         filterChain.doFilter(request, response);
     }

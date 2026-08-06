@@ -63,6 +63,13 @@ class UserServiceImplTest {
         assertEquals(newUser.getRole(), addedUser.role());
     }
 
+     @Test
+     void testSeRecuperaUnUsuarioPorSuId() {
+        User newUser = service.save(user);
+        User user = service.getUserById(newUser.getId());
+        assertEquals(user.getId(), newUser.getId());
+     }
+
     @BeforeEach
     void tearDown() {
         service.clearAll();
