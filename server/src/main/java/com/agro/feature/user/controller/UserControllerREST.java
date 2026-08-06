@@ -2,8 +2,10 @@ package com.agro.feature.user.controller;
 
 import com.agro.core.api.Api;
 import com.agro.feature.user.domain.User;
+import com.agro.feature.user.dtos.UserMapper;
 import com.agro.feature.user.dtos.request.UserRequest;
 import com.agro.feature.user.dtos.response.UserResponseSimple;
+import com.agro.feature.user.dtos.response.UserWithCompanyLogo;
 import com.agro.feature.user.orchestrator.RegisterOrchestrator;
 import com.agro.feature.user.services.UserService;
 import com.agro.shared.dtos.table.TableResponseDTO;
@@ -16,6 +18,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -87,5 +91,11 @@ public class UserControllerREST {
                 return ResponseEntity.ok(
                                 TableResponseDTO.fromPage(List.of("ID","Nombre", "Email", "Rol"), response, UserResponseSimple::id)
                 );
+    }
+
+    @GetMapping(Api.ME)
+    public ResponseEntity<UserWithCompanyLogo> me(@PathVariable Long id) {
+        User user = userService.getUserById(id);
+        return ResponseEntity.ok(UserMapper.INSTANCE.toUserWidthCompany(user));
     }
 }

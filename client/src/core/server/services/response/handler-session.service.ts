@@ -1,12 +1,12 @@
 import type { AxiosResponse } from "axios";
-import { TOKEN_KEY } from "../../types/token-key";
+import { setToken } from "../jwt/jwt";
 
 function handlerAuthenticateService(response: AxiosResponse) {
     const authorization = response.headers.authorization;
     const token = authorization?.replace(/^Bearer\s+/i, "");
 
     if (token) {
-        localStorage.setItem(TOKEN_KEY, token);
+        setToken(token);
     }
 }
 

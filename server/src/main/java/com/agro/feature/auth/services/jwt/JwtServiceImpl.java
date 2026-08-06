@@ -24,6 +24,9 @@ public class JwtServiceImpl implements JwtService {
     @Override
     public String generate(UserCredentials credentials) {
         return Jwts.builder()
+                .subject(credentials.getId().toString())
+                .issuedAt(new Date())
+                .expiration(new Date(System.currentTimeMillis() + 30 * 60 * 1000))
                 .claims(claims(credentials))
                 .signWith(getKey())
                 .compact();
@@ -31,11 +34,8 @@ public class JwtServiceImpl implements JwtService {
 
     private Map<String, Object> claims(UserCredentials credentials) {
         Map<String, Object> claims = new HashMap<>();
-        claims.put("sub", credentials.getId().toString());
         claims.put("name", credentials.getName());
         claims.put("role", credentials.getRole());
-        claims.put("iat", new Date());
-        claims.put("exp", new Date(System.currentTimeMillis() + 30 * 60 * 1000));
         claims.put("jti", UUID.randomUUID().toString());
         return claims;
     }
@@ -44,7 +44,8 @@ public class JwtServiceImpl implements JwtService {
     public Long validate(String token) {
         try {
             Jws<Claims> claims = getClaims(token);
-            return claims.getPayload().get("sub", Long.class);
+            String sub = claims.getPayload().getSubject();
+            return Long.parseLong(sub);
         }
         catch(ExpiredJwtException e) {
             throw new AuthenticationException("El token se encuentra expirado");

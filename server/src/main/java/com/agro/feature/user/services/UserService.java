@@ -9,4 +9,6 @@ public interface UserService {
     Page<User> findAll(int page, int size);
 
     boolean existsByEmail(String email);
+
+    User getUserById(Long id);
 }
