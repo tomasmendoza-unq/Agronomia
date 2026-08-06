@@ -1,6 +1,7 @@
 package com.agro.feature.user.persistence.daos;
 
 import com.agro.feature.user.domain.User;
+import com.agro.feature.user.domain.valueObjects.EmailValue;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -12,4 +13,6 @@ import java.util.Optional;
 public interface UserDAO extends JpaRepository<User, Long> {
     @Query("SELECT u FROM User u where u.email.value = :email")
     Optional<User> findByEmail(@Param("email") String email);
+
+    boolean existsByEmail(EmailValue email);
 }

@@ -7,4 +7,6 @@ public interface UserService {
     User save(User user);
 
     Page<User> findAll(int page, int size);
+
+    boolean existsByEmail(String email);
 }

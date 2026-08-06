@@ -5,6 +5,7 @@ import com.agro.feature.company.domain.Company;
 import com.agro.feature.company.service.CompanyService;
 import com.agro.feature.user.domain.Role;
 import com.agro.feature.user.domain.User;
+import com.agro.feature.user.domain.exceptions.EmailDuplicatedException;
 import com.agro.feature.user.domain.valueObjects.EmailValue;
 import com.agro.feature.user.orchestrator.RegisterOrchestrator;
 import org.junit.jupiter.api.BeforeEach;
@@ -59,5 +60,17 @@ public class RegisterOrchestradorImplTest {
         assertEquals(user.getName(), saved.getName());
         assertEquals(user.getEmail(), saved.getEmail());
         assertEquals(user.getPassword(), saved.getPassword());
+    }
+
+    @Test
+    public void testRegisterFailedEmailDuplicated(){
+        orchestrator.register(user, company.getId());
+        User userMailDuplicated = User.builder()
+                .name("12312312")
+                .email(new EmailValue("n2n@gmail.com"))
+                .role(Role.ADMIN)
+                .build();
+
+        assertThrows(EmailDuplicatedException.class,() -> orchestrator.register(userMailDuplicated,company.getId()));
     }
 }
