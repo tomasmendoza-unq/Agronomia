@@ -1,4 +1,4 @@
-package com.agro.shared.handler;
+package com.agro.core.handlers;
 
 import com.agro.shared.exceptions.BusinessException;
 import com.agro.shared.exceptions.dto.ErrorResponse;

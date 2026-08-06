@@ -62,4 +62,8 @@ public class User {
     public void addCompany(Company company) {
         setCompany(company);
     }
+
+    public String getLogo() {
+        return getCompany().getLogo();
+    }
 }

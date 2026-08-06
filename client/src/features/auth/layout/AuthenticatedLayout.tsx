@@ -16,7 +16,7 @@ const AuthenticatedLayout = () => {
     return (
         <ProtectedRoute isAuthenticated={isAuthenticated}>
             <NavBar
-                brand={<Brand companyData={user.company} />}
+                brand={<Brand companyLogo={user.companyLogo} />}
                 avatar={<Avatar avatar={user} />}
                 links={links}
             />

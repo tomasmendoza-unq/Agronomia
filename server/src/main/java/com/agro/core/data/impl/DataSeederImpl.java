@@ -1,12 +1,11 @@
-package com.agro.shared.data.impl;
+package com.agro.core.data.impl;
 
 import com.agro.feature.company.domain.Company;
 import com.agro.feature.company.service.CompanyService;
 import com.agro.feature.user.domain.User;
 import com.agro.feature.user.domain.valueObjects.EmailValue;
-import com.agro.feature.user.orchestrator.RegisterOrchestrator;
 import com.agro.feature.user.services.UserService;
-import com.agro.shared.data.DataSeeder;
+import com.agro.core.data.DataSeeder;
 import com.agro.shared.entities.rol.Role;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
