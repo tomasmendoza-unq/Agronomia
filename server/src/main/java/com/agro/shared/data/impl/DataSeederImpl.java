@@ -46,6 +46,6 @@ public class DataSeederImpl implements DataSeeder {
 
         user.addCompany(company);
 
-        companyService.save(company);
+        userService.save(user);
     }
 }
