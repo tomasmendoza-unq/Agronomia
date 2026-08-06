@@ -1,4 +1,4 @@
-package com.agro.shared.data;
+package com.agro.core.data;
 
 import org.springframework.boot.CommandLineRunner;
 

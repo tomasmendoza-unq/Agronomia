@@ -1,4 +1,4 @@
-package com.agro.shared.dto;
+package com.agro.shared.dtos.table;
 
 import org.springframework.data.domain.Page;
 
