@@ -24,6 +24,11 @@ public class CompanyServiceImpl implements CompanyService, CompanyDataService {
     }
 
     @Override
+    public String getCompanyLogoByUser(Long userId) {
+        return dao.findByUser(userId);
+    }
+
+    @Override
     public Company save(Company company) {
         return dao.save(company);
     }

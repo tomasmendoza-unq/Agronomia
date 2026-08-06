@@ -1,7 +1,8 @@
 import type { TablePaginator } from "@/shared/types/table/Table";
-import type { User } from "../types/user";
+
 import { useCallback, useState } from "react";
 import getUsersService from "@/features/user/service/get-users";
+import type { User } from "@/shared/domain/user/user";
 
 export const UseGetUsers = () => {
     const [users, setUsers] = useState<TablePaginator<User> | null>(null);

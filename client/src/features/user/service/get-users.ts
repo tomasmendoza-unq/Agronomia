@@ -1,7 +1,8 @@
 import http from "@/core/server/http-client";
 import type { TablePaginator } from "@/shared/types/table/Table";
-import type { User } from "../types/user";
+
 import { MAIN } from "@/core/server/urls/main";
+import type { User } from "@/shared/domain/user/user";
 
 const USERS_PATH = `${MAIN}/user`;
 
