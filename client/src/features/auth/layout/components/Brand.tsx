@@ -1,11 +1,9 @@
-import type { CompanyData } from "@/features/company/types/CompanyData.t";
 import WrapLogo from "@/shared/components/wrapLogo/WrapLogo";
 
-const Brand = ({ companyData }: { companyData: CompanyData }) => {
+const Brand = ({ companyLogo }: { companyLogo: string }) => {
     return (
         <WrapLogo
-            img={companyData.logo}
-            label={companyData.name}
+            img={companyLogo}
         />
     );
 };
