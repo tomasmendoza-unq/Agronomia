@@ -1,10 +1,11 @@
 package com.agro.shared.handler;
 
+import com.agro.core.api.Api;
+import com.agro.shared.dtos.error.CauseError;
+import com.agro.shared.dtos.error.RestErrorResponse;
 import com.agro.shared.exceptions.BusinessException;
-import com.agro.shared.exceptions.dto.ErrorResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -15,11 +16,17 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class GlobalHandlerException {
 
     @ExceptionHandler(BusinessException.class)
-    public ResponseEntity<ErrorResponse> handleBusinessException(
+    public ResponseEntity<RestErrorResponse> handleBusinessException(
             BusinessException exception,
             HttpServletRequest request
     ) {
         log.warn("Business rule violation - URI: {} | Message: {}", request.getRequestURI(), exception.getMessage());
-        return ErrorResponse.buildResponse(HttpStatus.CONFLICT, exception.getMessage(), request, exception.getMotives());
+        RestErrorResponse error = new RestErrorResponse(
+                "Regla de negocio violada",
+                exception.getMessage(),
+                Api.USER + Api.REGISTER,
+                CauseError.BUSINESS_RULE_VIOLATION
+        );
+        return ResponseEntity.badRequest().body(error);
     }
 }
