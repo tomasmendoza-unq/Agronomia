@@ -1,4 +1,4 @@
-import type { ButtonData } from "@/shared/types/button/credentials-button";
+import type { ButtonData } from "@/shared/components/credentials-form/types/button/credentials-button";
 
 function createUserButton(onCreate: () => void): ButtonData {
     return {

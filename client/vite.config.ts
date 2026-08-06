@@ -14,10 +14,9 @@ export default defineConfig({
     plugins: [react()],
     server: {
         proxy: {
-            // Forward /api requests to backend during development
-                '/api': {
-                target: process.env.VITE_API_BASE_URL || 'http://localhost:8080',
-                    process.env.VITE_API_BASE_URL || "http://localhost:5174",
+            "/api": {
+                target:
+                    process.env.VITE_API_BASE_URL || "http://localhost:8080",
                 changeOrigin: true,
                 secure: false,
                 rewrite: (path) => path.replace(/^\/api/, "/api"),
