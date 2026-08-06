@@ -5,6 +5,7 @@ export const UseAuth = () => {
     const [isAuthenticated, setIsAuthenticated] = useState<boolean>(true);
 
     const companyData: CompanyData = {
+        id: 1,
         name: "AgroTech",
         legalName: "AgroTech S.A.",
         cuit: "30-12345678-9",

@@ -1,4 +1,6 @@
+import { Link } from "react-router";
 import { avatarStyle } from "./style";
+import { ADMIN_ROUTES } from "@/core/routes/admin";
 
 type AvatarUser = { name?: string; surnames?: string; email?: string };
 
@@ -17,13 +19,14 @@ const Avatar = ({ avatar }: { avatar: AvatarUser }) => {
               : (parts[0][0] + parts[1][0]).toUpperCase();
 
     return (
-        <div
+        <Link
+            to={`${ADMIN_ROUTES.CONFIGURATION}`}
             aria-label={`${fullName} avatar`}
             title={fullName}
             style={avatarStyle}
         >
             {initials}
-        </div>
+        </Link>
     );
 };
 

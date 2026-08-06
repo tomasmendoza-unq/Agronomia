@@ -12,4 +12,5 @@ public final class Api {
 
     public static final String REGISTER = "/register";
 
+    public static final String USER = MAIN_NAME + V + "/user";
 }

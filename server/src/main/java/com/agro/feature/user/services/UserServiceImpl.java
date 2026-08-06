@@ -2,9 +2,12 @@ package com.agro.feature.user.services;
 
 import com.agro.feature.user.contracts.UserCredentialsService;
 import com.agro.feature.user.domain.User;
+import com.agro.feature.user.domain.valueObjects.EmailValue;
 import com.agro.feature.user.persistence.daos.UserDAO;
 import com.agro.shared.entities.userAuthenticate.UserAuthenticate;
 import com.agro.shared.persistence.excepitons.NotFoundEntityException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -42,17 +45,23 @@ public class UserServiceImpl implements UserService, UserCredentialsService {
                 user.getId());
     }
 
-    @Override
-    public UserAuthenticate getCredentialsById(Long id) {
-        User user = userDao.findById(id).orElseThrow(() -> new NotFoundEntityException("Entidad no encontrada"));
-        return new UserAuthenticate(user.getEmail(), user.getPassword(), user.getRole().toString(), user.getName(), user.getId());
-    }
+
 
     @Override
     public User save(User user) {
-        String encripted = encoder.encode(user.getPassword());
-        user.addEncriptedPassword(encripted);
+        String encrypted = encoder.encode(user.getPassword());
+        user.addEncriptedPassword(encrypted);
         return userDao.save(user);
+    }
+
+    @Override
+    public Page<User> findAll(int page, int size) {
+        return userDao.findAll(PageRequest.of(page, size));
+    }
+
+    @Override
+    public boolean existsByEmail(String email) {
+        return userDao.existsByEmail(new EmailValue(email));
     }
 
     public void clearAll() {

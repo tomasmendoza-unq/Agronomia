@@ -6,10 +6,10 @@ import Breadcrumb from "@/shared/components/breadcrumb/Breadcrumb";
 import { authLayout } from "./styles";
 import Brand from "./components/Brand";
 import Avatar from "./components/Avatar";
-import { UseAuth } from "@/shared/hooks/use-auth";
+import { useAuth } from "../hooks/use-auth";
 
 const AuthenticatedLayout = () => {
-    const { user, isAuthenticated } = UseAuth();
+    const { user, isAuthenticated } = useAuth();
 
     if (!user) return null;
 

@@ -1,0 +1,18 @@
+package com.agro.feature.company.persistence.daos;
+
+import com.agro.feature.company.domain.Company;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface CompanyDAO extends JpaRepository<Company, Long> {
+
+    @Query("""
+            SELECT c.logo
+            FROM Company c
+            WHERE :userId IN ID(c.users)
+        """)
+    String findByUser(@Param("userId") Long userId);
+}

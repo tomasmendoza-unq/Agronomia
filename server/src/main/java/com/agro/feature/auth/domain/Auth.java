@@ -7,6 +7,7 @@ public record Auth(
         String email,
         Role role,
         String token,
-        Long id
+        Long id,
+        String companyLogo
 ) {
 }
