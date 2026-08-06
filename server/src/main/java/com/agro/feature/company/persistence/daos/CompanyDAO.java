@@ -8,11 +8,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CompanyDAO extends JpaRepository<Company, Long> {
-
-    @Query("""
-            SELECT c.logo
-            FROM Company c
-            WHERE :userId IN ID(c.users)
-        """)
-    String findByUser(@Param("userId") Long userId);
 }

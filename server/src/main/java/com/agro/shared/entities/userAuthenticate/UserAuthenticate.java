@@ -7,6 +7,7 @@ public record UserAuthenticate(
         String password,
         Role role,
         String name,
+        String logo,
         Long id
 ) {
 }
