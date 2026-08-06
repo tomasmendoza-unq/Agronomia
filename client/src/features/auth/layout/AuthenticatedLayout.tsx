@@ -8,14 +8,18 @@ import Avatar from "./components/Avatar";
 import { useAuth } from "../hooks/use-auth";
 
 const AuthenticatedLayout = () => {
-    const { user } = useAuth();
+    const { user, isAuthenticated } = useAuth();
 
-    if (!user) return (
+    if (!isAuthenticated) {
+        return (
             <Navigate
                 to="/login"
                 replace
             />
-        );
+        )
+    }
+
+    else if (!user) return null;
 
     return (
         <main className={authLayout}>
