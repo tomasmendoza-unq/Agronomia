@@ -3,11 +3,11 @@ import type { User } from "@/shared/domain/user/user";
 import type { Credentials } from "../types/credentials";
 
 export interface UseAuth {
-    user: User | undefined;
+    user?: User;
     isLoading: boolean;
     isAuthenticated: boolean;
-    error: HttpError | undefined;
+    error?: HttpError;
     refresh: () => void;
-    login: (credentials: Credentials) => Promise<void>;
-    logout: (credentials: Credentials) => Promise<void>;
+    login: (credentials: Credentials) => Promise<User | undefined>;
+    logout: (credentials: Credentials) => Promise<User | undefined>;
 }
