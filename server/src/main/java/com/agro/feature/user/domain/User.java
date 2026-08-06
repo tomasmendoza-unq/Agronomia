@@ -32,7 +32,7 @@ public class User {
     private Company company;
 
     @Embedded
-    @AttributeOverride(name = "value", column = @Column(name = "email"))
+    @AttributeOverride(name = "value", column = @Column(name = "email", unique = true))
     private EmailValue email;
 
     @Getter

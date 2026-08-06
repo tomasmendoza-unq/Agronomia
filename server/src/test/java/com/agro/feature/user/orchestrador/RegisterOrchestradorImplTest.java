@@ -64,8 +64,13 @@ public class RegisterOrchestradorImplTest {
 
     @Test
     public void testRegisterFailedEmailDuplicated(){
-        User saved = orchestrator.register(user, company.getId());
+        orchestrator.register(user, company.getId());
+        User userMailDuplicated = User.builder()
+                .name("12312312")
+                .email(new EmailValue("n2n@gmail.com"))
+                .role(Role.ADMIN)
+                .build();
 
-        assertThrows(EmailDuplicatedException.class,() -> orchestrator.register(user,company.getId()));
+        assertThrows(EmailDuplicatedException.class,() -> orchestrator.register(userMailDuplicated,company.getId()));
     }
 }

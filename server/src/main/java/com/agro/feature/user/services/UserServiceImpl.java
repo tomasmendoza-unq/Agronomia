@@ -2,6 +2,7 @@ package com.agro.feature.user.services;
 
 import com.agro.feature.user.contracts.UserCredentialsService;
 import com.agro.feature.user.domain.User;
+import com.agro.feature.user.domain.valueObjects.EmailValue;
 import com.agro.feature.user.persistence.daos.UserDAO;
 import com.agro.shared.entities.UserAuthenticate;
 import com.agro.shared.persistence.excepitons.NotFoundEntityException;
@@ -38,6 +39,11 @@ public class UserServiceImpl implements UserService, UserCredentialsService {
     @Override
     public Page<User> findAll(int page, int size) {
         return userDao.findAll(PageRequest.of(page, size));
+    }
+
+    @Override
+    public boolean existsByEmail(String email) {
+        return userDao.existsByEmail(new EmailValue(email));
     }
 
     public void clearAll() {
