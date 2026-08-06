@@ -31,7 +31,9 @@ public class UserServiceImpl implements UserService, UserCredentialsService {
                 user.getPassword(),
                 user.getRole(),
                 user.getName(),
-                user.getId());
+                user.getLogo(),
+                user.getId()
+        );
     }
 
     @Override
@@ -42,7 +44,9 @@ public class UserServiceImpl implements UserService, UserCredentialsService {
                 user.getPassword(),
                 user.getRole(),
                 user.getName(),
-                user.getId());
+                user.getLogo(),
+                user.getId()
+        );
     }
 
 

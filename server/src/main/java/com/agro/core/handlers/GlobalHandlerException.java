@@ -1,4 +1,4 @@
-package com.agro.shared.handler;
+package com.agro.core.handlers;
 
 import com.agro.core.api.Api;
 import com.agro.shared.dtos.error.CauseError;

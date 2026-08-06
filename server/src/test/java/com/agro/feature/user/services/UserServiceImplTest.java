@@ -1,6 +1,7 @@
 package com.agro.feature.user.services;
 
 import com.agro.core.ContainerPostgresql;
+import com.agro.feature.company.domain.Company;
 import com.agro.shared.entities.rol.Role;
 import com.agro.feature.user.domain.User;
 import com.agro.feature.user.persistence.daos.UserDAO;
@@ -52,11 +53,14 @@ class UserServiceImplTest {
 
     @Test
     void testSeBuscaLasCredencialesDeUnUsuarioPorSuMail() {
-        service.save(user);
+        Company company = new Company();
+        company.setLogo("a");
+        user.addCompany(company);
+        User newUser = service.save(user);
         UserAuthenticate addedUser = service.getCredentialsByEmail(user.getEmail());
-        assertEquals(user.getEmail(), addedUser.email());
-        assertEquals(user.getId(), addedUser.id());
-        assertEquals(user.getRole(), addedUser.role());
+        assertEquals(newUser.getEmail(), addedUser.email());
+        assertEquals(newUser.getId(), addedUser.id());
+        assertEquals(newUser.getRole(), addedUser.role());
     }
 
     @BeforeEach

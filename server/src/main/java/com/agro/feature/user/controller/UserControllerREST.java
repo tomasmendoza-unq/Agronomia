@@ -6,7 +6,7 @@ import com.agro.feature.user.dtos.request.UserRequest;
 import com.agro.feature.user.dtos.response.UserResponseSimple;
 import com.agro.feature.user.orchestrator.RegisterOrchestrator;
 import com.agro.feature.user.services.UserService;
-import com.agro.shared.dto.TableResponseDTO;
+import com.agro.shared.dtos.table.TableResponseDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;

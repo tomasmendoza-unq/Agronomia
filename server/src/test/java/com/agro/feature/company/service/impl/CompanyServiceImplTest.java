@@ -62,8 +62,6 @@ class CompanyServiceImplTest {
     public void getLogoByUserId(){
         User saved = orchestrator.register(user, company.getId());
 
-        String logo = companyDataService.getCompanyLogoByUser(saved.getId());
-
-        assertEquals("12312312", logo);
+        assertEquals("12312312", saved.getLogo());
     }
 }

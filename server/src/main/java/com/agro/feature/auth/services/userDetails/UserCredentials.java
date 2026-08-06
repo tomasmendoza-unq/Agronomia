@@ -28,6 +28,9 @@ public class UserCredentials implements UserDetails {
     @Getter
     private Long id;
 
+    @Getter
+    private String logo;
+
     private List<GrantedAuthority> roles = new ArrayList<>();
 
     public UserCredentials(UserAuthenticate user) {
@@ -36,6 +39,7 @@ public class UserCredentials implements UserDetails {
         this.role = user.role();
         this.name = user.name();
         this.id = user.id();
+        this.logo = user.logo();
         this.roles.add(new SimpleGrantedAuthority(user.role().toString()));
     }
 

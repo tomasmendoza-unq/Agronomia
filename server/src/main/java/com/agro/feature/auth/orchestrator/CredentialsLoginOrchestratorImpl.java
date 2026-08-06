@@ -14,18 +14,15 @@ public class CredentialsLoginOrchestratorImpl implements LoginOrchestrator {
 
     private LoginService authService;
     private JwtService jwtService;
-    private final CompanyDataService companyDataService;
 
-    public CredentialsLoginOrchestratorImpl(LoginService authService, JwtService jwtService, CompanyDataService companyDataService) {
+    public CredentialsLoginOrchestratorImpl(LoginService authService, JwtService jwtService) {
         this.authService = authService;
         this.jwtService = jwtService;
-        this.companyDataService = companyDataService;
     }
 
     @Override
     public Auth login(Credentials credentials) {
         UserCredentials userCredentials = authService.login(credentials);
-        String companyLogo = companyDataService.getCompanyLogoByUser(userCredentials.getId());
         String token = jwtService.generate(userCredentials);
         return new Auth(
                 userCredentials.getName(),
@@ -33,6 +30,7 @@ public class CredentialsLoginOrchestratorImpl implements LoginOrchestrator {
                 userCredentials.getRole(),
                 token,
                 userCredentials.getId(),
-                companyLogo);
+                userCredentials.getLogo()
+        );
     }
 }
