@@ -30,8 +30,8 @@ public class UserServiceImpl implements UserService, UserCredentialsService {
 
     @Override
     public User save(User user) {
-        String encripted = encoder.encode(user.getPassword());
-        user.addEncriptedPassword(encripted);
+        String encrypted = encoder.encode(user.getPassword());
+        user.addEncriptedPassword(encrypted);
         return userDao.save(user);
     }
 
