@@ -9,6 +9,7 @@ import com.agro.feature.user.domain.valueObjects.EmailValue;
 import com.agro.feature.user.orchestrator.RegisterOrchestrator;
 import com.agro.shared.entities.rol.Role;
 import com.agro.shared.service.ResetService;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,9 +48,9 @@ class CompanyServiceImplTest {
     void setup(){
         company = companyService.save(Company.builder()
                 .cuit("12312312")
-                .logo("12312312")
-                .name("12312312")
-                .legalName("12312312")
+                .logo("img.jpg")
+                .name("Matilda")
+                .legalName("Matilda SA")
                 .build());
         user = User.builder()
                 .name("12312312")
@@ -59,9 +60,20 @@ class CompanyServiceImplTest {
     }
 
     @Test
-    public void getLogoByUserId(){
+    public void getCompanyByUserId(){
         User saved = orchestrator.register(user, company.getId());
 
-        assertEquals("12312312", saved.getLogo());
+        Company recovered = companyDataService.getCompanyByUserId(saved.getId());
+
+        assertEquals("img.jpg", recovered.getLogo());
+        assertEquals("Matilda", recovered.getName());
+        assertEquals("12312312", recovered.getCuit());
+        assertEquals("Matilda SA", recovered.getLegalName());
+        assertEquals(company.getId(), recovered.getId());
+    }
+
+    @AfterEach
+    public void tearDown(){
+        resetService.resetAll();
     }
 }

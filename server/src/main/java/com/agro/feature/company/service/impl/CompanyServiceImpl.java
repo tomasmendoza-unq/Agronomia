@@ -8,6 +8,9 @@ import com.agro.shared.persistence.excepitons.NotFoundEntityException;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+import java.util.function.Supplier;
+
 @Service
 @Transactional
 public class CompanyServiceImpl implements CompanyService, CompanyDataService {
@@ -20,7 +23,16 @@ public class CompanyServiceImpl implements CompanyService, CompanyDataService {
 
     @Override
     public Company getCompanyById(Long idCompany) {
-        return dao.findById(idCompany).orElseThrow(() -> new NotFoundEntityException("Entidad no encontrada"));
+        return execute(() -> dao.findById(idCompany));
+    }
+
+    @Override
+    public Company getCompanyByUserId(Long idUser) {
+        return execute(() -> dao.findByUsers_Id(idUser));
+    }
+
+    private Company execute(Supplier<Optional<Company>> query){
+        return query.get().orElseThrow(() -> new NotFoundEntityException("Entidad no encontrada"));
     }
 
     @Override
