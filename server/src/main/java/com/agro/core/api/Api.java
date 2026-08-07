@@ -13,5 +13,7 @@ public final class Api {
     public static final String REGISTER = "/register";
 
     public static final String USER = MAIN_NAME + V + "/user";
-    public static final String ME = "/me/{id}";
+    public static final String ME = "/me";
+
+    public static final String COMPANY = MAIN_NAME + V + "/company";
 }

@@ -21,7 +21,7 @@ const Configuration = () => {
     useEffect(() => {
         getUsers();
         getCompany();
-    }, [getUsers]);
+    }, []);
 
     useEffect(() => {
         if (!createdUser) return;

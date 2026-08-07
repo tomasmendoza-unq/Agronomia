@@ -25,9 +25,7 @@ public class JwtConfig {
                 .cors(Customizer.withDefaults())
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth ->
-                        auth.
-                                requestMatchers("/" + Api.AUTH + Api.LOGIN).permitAll()
-                                .anyRequest().authenticated())
+                        auth.anyRequest().permitAll())
                 .addFilterAfter(filter, UsernamePasswordAuthenticationFilter.class);
 
         return  http.build();

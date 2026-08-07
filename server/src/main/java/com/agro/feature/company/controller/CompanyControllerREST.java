@@ -1,5 +1,6 @@
 package com.agro.feature.company.controller;
 
+import com.agro.core.api.Api;
 import com.agro.feature.company.contracts.CompanyDataService;
 
 import com.agro.feature.company.domain.Company;
@@ -16,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @Slf4j
-@RequestMapping("/company")
+@RequestMapping(Api.COMPANY)
 public class CompanyControllerREST {
 
     private final CompanyDataService companyDataService;
