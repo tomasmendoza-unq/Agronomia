@@ -61,7 +61,7 @@ class UserServiceImplTest {
                 .email(new EmailValue("n2n@gmail.com"))
                 .role(Role.DUENIO)
                 .build();
-        
+
         user = orchestrator.register(user, company.getId());
     }
 
