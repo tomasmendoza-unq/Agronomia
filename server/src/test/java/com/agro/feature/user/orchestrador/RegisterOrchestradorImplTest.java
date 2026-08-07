@@ -54,7 +54,7 @@ public class RegisterOrchestradorImplTest {
         user = User.builder()
                 .name("12312312")
                 .email(new EmailValue("n2n@gmail.com"))
-                .role(Role.ADMIN)
+                .role(Role.DUENIO)
                 .build();
     }
 
@@ -76,7 +76,7 @@ public class RegisterOrchestradorImplTest {
         User userMailDuplicated = User.builder()
                 .name("12312312")
                 .email(new EmailValue("n2n@gmail.com"))
-                .role(Role.ADMIN)
+                .role(Role.DUENIO)
                 .build();
 
         assertThrows(EmailDuplicatedException.class,() -> orchestrator.register(userMailDuplicated,company.getId()));

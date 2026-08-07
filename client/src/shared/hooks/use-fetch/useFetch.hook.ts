@@ -4,11 +4,12 @@ import { HttpError } from "@/core/server/errors/http-error";
 
 function useFetch<D>(): UseFetch<D> {
     const [data, setData] = useState<D>();
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<HttpError>();
 
-    function execute<Args extends unknown[]>(request: (...args: Args) => Promise<D>) {
-        
+    function execute<Args extends unknown[]>(
+        request: (...args: Args) => Promise<D>,
+    ) {
         return async (...args: Args) => {
             setIsLoading(true);
 
@@ -16,12 +17,12 @@ function useFetch<D>(): UseFetch<D> {
                 const data = await request(...args);
                 setData(data);
                 return data;
-            } catch(error: unknown) {
+            } catch (error: unknown) {
                 handleError(error);
+            } finally {
+                setIsLoading(false);
             }
-
-            setIsLoading(false);
-        }
+        };
     }
 
     function handleError(error: unknown) {
@@ -35,7 +36,7 @@ function useFetch<D>(): UseFetch<D> {
         setError(undefined);
     }
 
-    return { data, isLoading, error, execute, refresh }
+    return { data, isLoading, error, execute, refresh };
 }
 
 export default useFetch;

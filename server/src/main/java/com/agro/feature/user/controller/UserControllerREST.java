@@ -18,8 +18,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -71,7 +69,7 @@ public class UserControllerREST {
                     content = @Content(mediaType = "application/json")
             )
     })
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('DUENIO')")
     public ResponseEntity<UserResponseSimple> register(@RequestBody UserRequest request) {
         User user = registerOrchestrator.register(request.toModel(), request.id_company());
 
@@ -79,7 +77,7 @@ public class UserControllerREST {
     }
 
     @GetMapping
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('DUENIO')")
         @Operation(summary = "Obtener usuarios paginados", description = "Devuelve los usuarios en formato tabla paginada.")
         public ResponseEntity<TableResponseDTO<UserResponseSimple>> getAll(
                         @RequestParam(defaultValue = "0") int page,
@@ -94,8 +92,8 @@ public class UserControllerREST {
     }
 
     @GetMapping(Api.ME)
-    public ResponseEntity<UserWithCompanyLogo> me(@PathVariable Long id) {
-        User user = userService.getUserById(id);
-        return ResponseEntity.ok(UserMapper.INSTANCE.toUserWidthCompany(user));
+    public ResponseEntity<UserWithCompanyLogo> me(@RequestAttribute("userId") Long  userId) {
+        User user = userService.getUserById(userId);
+        return ResponseEntity.ok(UserWithCompanyLogo.fromModel(user));
     }
 }

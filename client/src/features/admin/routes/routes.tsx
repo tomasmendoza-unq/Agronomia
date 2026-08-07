@@ -3,7 +3,7 @@ import Configuration from "../pages/configuration/Configuration";
 import AuthenticatedLayout from "../../auth/layout/AuthenticatedLayout";
 import { ADMIN_ROUTES } from "@/core/routes/admin";
 
-export const adminRoutes: RouteData[] = [
+export const AdminRoutes: RouteData[] = [
     {
         path: `${ADMIN_ROUTES.BASE}`,
         element: <AuthenticatedLayout />,

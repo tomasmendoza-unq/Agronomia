@@ -15,7 +15,7 @@ public record UserResponseSimple(
         return new UserResponseSimple(
                 user.getId(),
                 user.getName(),
-                user.getRole().toString(),
+                user.getNameRol(),
                 user.getEmail()
         );
     }

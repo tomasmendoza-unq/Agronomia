@@ -1,11 +1,11 @@
 import DataField from "@/shared/components/dataField/DataField";
-import type { CompanyData } from "../../types/CompanyData.t";
 import { editButton } from "./styles";
 import { getCompanyFields } from "./types/fields";
 import SupplierCard from "@/shared/components/supplierCard/SupplierCard";
+import type { Company } from "@/features/admin/types/Company";
 
 interface CompanyDataCardProps {
-    companyData: CompanyData;
+    companyData: Company;
 }
 
 const CompanyDataCard = ({ companyData }: CompanyDataCardProps) => {

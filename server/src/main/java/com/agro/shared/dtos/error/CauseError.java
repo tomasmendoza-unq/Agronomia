@@ -2,7 +2,8 @@ package com.agro.shared.dtos.error;
 
 public enum CauseError {
     INTERNAL_SERVER_ERROR("INTERNAL_SERVER_ERROR"),
-    INVALID_CREDENTIALS("INVALID_CREDENTIALS");
+    INVALID_CREDENTIALS("INVALID_CREDENTIALS"),
+    BUSINESS_RULE_VIOLATION("BUSINESS_RULE_VIOLATION");
 
     private String cause;
 
