@@ -1,11 +1,13 @@
 import z from "zod";
 
+const roles = ["FACTURACION", "VENDEDOR", "ADMINISTRADOR"] as const;
+
 const schema = z.object({
     name: z.string().min(1, "El nombre es requerido"),
     email: z
         .email("El correo electrónico no es válido")
         .min(1, "El correo es requerido"),
-    rol: z.string(),
+    rol: z.enum(roles),
 });
 
 export default schema;

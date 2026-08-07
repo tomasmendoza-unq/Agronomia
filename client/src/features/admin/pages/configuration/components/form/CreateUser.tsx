@@ -2,10 +2,12 @@ import CredentialsForm from "@/shared/components/credentials-form/CredentialsFor
 import createUserInputs from "./types/inputs";
 import createUserLinks from "./types/links";
 import schema from "./types/schema";
-import type { RegisterRequest } from "@/features/admin/api/dto/RegisterRequest";
+import type { z } from "zod";
+
+export type CreateUserFormData = z.infer<typeof schema>;
 
 interface CreateUserProps {
-    onSubmit: (user: RegisterRequest) => void;
+    onSubmit: (user: CreateUserFormData) => void;
 }
 
 export const CreateUser = ({ onSubmit }: CreateUserProps) => (
