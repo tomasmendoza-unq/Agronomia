@@ -80,10 +80,11 @@ public class UserControllerREST {
     @PreAuthorize("hasRole('DUENIO')")
         @Operation(summary = "Obtener usuarios paginados", description = "Devuelve los usuarios en formato tabla paginada.")
         public ResponseEntity<TableResponseDTO<UserResponseSimple>> getAll(
-                        @RequestParam(defaultValue = "0") int page,
-                        @RequestParam(defaultValue = "10") int size
+            @RequestAttribute("userId") Long  adminId,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size
         ) {
-                Page<User> users = userService.findAll(page, size);
+                Page<User> users = userService.findAll(page, size, adminId);
                 Page<UserResponseSimple> response = users.map(UserResponseSimple::fromModel);
 
                 return ResponseEntity.ok(

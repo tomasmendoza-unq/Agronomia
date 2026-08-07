@@ -2,6 +2,9 @@ package com.agro.feature.user.persistence.daos;
 
 import com.agro.feature.user.domain.User;
 import com.agro.feature.user.domain.valueObjects.EmailValue;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -15,4 +18,6 @@ public interface UserDAO extends JpaRepository<User, Long> {
     Optional<User> findByEmail(@Param("email") String email);
 
     boolean existsByEmail(EmailValue email);
+
+    Page<User> findAllByCompany_Id(Long companyId, Pageable pageable);
 }

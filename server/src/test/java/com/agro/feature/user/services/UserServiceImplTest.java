@@ -2,16 +2,21 @@ package com.agro.feature.user.services;
 
 import com.agro.core.ContainerPostgresql;
 import com.agro.feature.company.domain.Company;
+import com.agro.feature.company.service.CompanyService;
+import com.agro.feature.user.domain.valueObjects.EmailValue;
+import com.agro.feature.user.orchestrator.RegisterOrchestrator;
 import com.agro.shared.entities.rol.Role;
 import com.agro.feature.user.domain.User;
 import com.agro.feature.user.persistence.daos.UserDAO;
 import com.agro.feature.user.persistence.repositories.UserRepository;
 import com.agro.shared.entities.userAuthenticate.UserAuthenticate;
 import com.agro.shared.service.ResetService;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
 import org.springframework.test.context.ActiveProfiles;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
@@ -27,10 +32,10 @@ class UserServiceImplTest {
     private static PostgreSQLContainer postgres = ContainerPostgresql.getContainer();
 
     @Autowired
-    private UserRepository userRepository;
+    private RegisterOrchestrator orchestrator;
 
     @Autowired
-    private UserDAO userDao;
+    private CompanyService companyService;
 
     @Autowired
     private ResetService resetService;
@@ -40,38 +45,111 @@ class UserServiceImplTest {
 
     private User user;
 
+    private Company company;
+
     @BeforeEach
     void setUp() {
-        user = new User("Nicolás Fernando Bossi", Role.VISITANT, "n@gmail.com", "aa");
-    }
+        company = companyService.save(Company.builder()
+                .cuit("12312312")
+                .logo("12312312")
+                .name("12312312")
+                .legalName("12312312")
+                .build());
 
-    @Test
-    void testSeAgregaUnUsuario() {
-        User addedUser = service.save(user);
-        assertNotNull(addedUser.getId());
+        user = User.builder()
+                .name("12312312")
+                .email(new EmailValue("n2n@gmail.com"))
+                .role(Role.DUENIO)
+                .build();
+
+        user = orchestrator.register(user, company.getId());
     }
 
     @Test
     void testSeBuscaLasCredencialesDeUnUsuarioPorSuMail() {
-        Company company = new Company();
-        company.setLogo("a");
-        user.addCompany(company);
-        User newUser = service.save(user);
         UserAuthenticate addedUser = service.getCredentialsByEmail(user.getEmail());
-        assertEquals(newUser.getEmail(), addedUser.email());
-        assertEquals(newUser.getId(), addedUser.id());
-        assertEquals(newUser.getRole(), addedUser.role());
+        assertEquals(user.getEmail(), addedUser.email());
+        assertEquals(user.getId(), addedUser.id());
+        assertEquals(user.getRole(), addedUser.role());
     }
 
-     @Test
-     void testSeRecuperaUnUsuarioPorSuId() {
-        User newUser = service.save(user);
-        User user = service.getUserById(newUser.getId());
-        assertEquals(user.getId(), newUser.getId());
-     }
+    @Test
+    void testFindAllFiltraPorEmpresaDelAdmin() {
+        User colega = User.builder()
+                .name("Colega Misma Empresa")
+                .email(new EmailValue("colega@gmail.com"))
+                .role(Role.VENDEDOR)
+                .build();
+        orchestrator.register(colega, company.getId());
 
-    @BeforeEach
+        Company otraCompany = companyService.save(Company.builder()
+                .cuit("99999999")
+                .logo("otro-logo")
+                .name("Otra Empresa")
+                .legalName("Otra Empresa SA")
+                .build());
+
+        User usuarioOtraEmpresa = User.builder()
+                .name("Usuario Otra Empresa")
+                .email(new EmailValue("otro@gmail.com"))
+                .role(Role.VENDEDOR)
+                .build();
+        orchestrator.register(usuarioOtraEmpresa, otraCompany.getId());
+
+        Page<User> result = service.findAll(0, 10, user.getId());
+
+        assertEquals(2, result.getTotalElements());
+        assertTrue(result.getContent().stream()
+                .allMatch(u -> u.getCompany().getId() == company.getId()));
+    }
+
+    @Test
+    void testFindAllRespetaLaPaginacion() {
+        for (int i = 0; i < 5; i++) {
+            User u = User.builder()
+                    .name("User " + i)
+                    .email(new EmailValue("user" + i + "@gmail.com"))
+                    .role(Role.VENDEDOR)
+                    .build();
+            orchestrator.register(u, company.getId());
+        }
+        Page<User> firstPage = service.findAll(0, 3, user.getId());
+
+        assertEquals(3, firstPage.getContent().size());
+        assertEquals(6, firstPage.getTotalElements());
+        assertEquals(2, firstPage.getTotalPages());
+    }
+
+    @Test
+    void testFindAllNoDevuelveUsuariosDeOtraEmpresa() {
+        Company otraCompany = companyService.save(Company.builder()
+                .cuit("55555555")
+                .logo("logo-x")
+                .name("Empresa X")
+                .legalName("Empresa X SA")
+                .build());
+
+        User usuarioOtraEmpresa = User.builder()
+                .name("Ajeno")
+                .email(new EmailValue("ajeno@gmail.com"))
+                .role(Role.VENDEDOR)
+                .build();
+        orchestrator.register(usuarioOtraEmpresa, otraCompany.getId());
+
+        Page<User> result = service.findAll(0, 10, user.getId());
+
+        assertTrue(result.getContent().stream()
+                .noneMatch(u -> u.getEmail().equals("ajeno@gmail.com")));
+    }
+
+    @Test
+    void testSeRecuperaUnUsuarioPorSuId() {
+        User found = service.getUserById(user.getId());
+        assertEquals(user.getId(), found.getId());
+    }
+
+    @AfterEach
     void tearDown() {
-        service.clearAll();
+        resetService.resetAll();
     }
 }

@@ -49,8 +49,6 @@ public class UserServiceImpl implements UserService, UserCredentialsService {
         );
     }
 
-
-
     @Override
     public User save(User user) {
         String encrypted = encoder.encode(user.getPassword());
@@ -59,8 +57,9 @@ public class UserServiceImpl implements UserService, UserCredentialsService {
     }
 
     @Override
-    public Page<User> findAll(int page, int size) {
-        return userDao.findAll(PageRequest.of(page, size));
+    public Page<User> findAll(int page, int size, Long adminId) {
+        User user = getUserById(adminId);
+        return userDao.findAllByCompany_Id(user.getCompany().getId(), PageRequest.of(page, size));
     }
 
     @Override
