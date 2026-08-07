@@ -61,10 +61,7 @@ class UserServiceImplTest {
                 .email(new EmailValue("n2n@gmail.com"))
                 .role(Role.DUENIO)
                 .build();
-
-        // Se registra el usuario para que quede persistido y con id asignado.
-        // Sin esto, user.getId() es null y cualquier test que dependa de
-        // este campo falla con "The given id must not be null".
+        
         user = orchestrator.register(user, company.getId());
     }
 
