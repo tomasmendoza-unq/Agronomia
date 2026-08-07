@@ -12,11 +12,11 @@ import { useGetCompanyData } from "../../hook/get-companyData";
 
 const Configuration = () => {
     const { companyData, getCompany, companyLoading } = useGetCompanyData();
-    const { users, getUsers, addUser } = UseGetUsers();
+    const { users, getUsers, usersLoading } = UseGetUsers();
     const [isCreateUserOpen, setIsCreateUserOpen] = useState(false);
-    const { isLoading, register, user: createdUser } = useRegister();
+    const { register, user: createdUser } = useRegister();
 
-    const isPageLoading = companyLoading; /*|| usersLoading*/
+    const isPageLoading = companyLoading || usersLoading;
 
     useEffect(() => {
         getUsers();
@@ -25,9 +25,7 @@ const Configuration = () => {
 
     useEffect(() => {
         if (!createdUser) return;
-
-        addUser(createdUser);
-    }, [createdUser, addUser]);
+    }, [createdUser]);
 
     const handleCreateUser = async (data: RegisterRequest) => {
         await register(data);
@@ -60,10 +58,7 @@ const Configuration = () => {
                     </button>
                 }
             >
-                <TableUsers
-                    isloading={isLoading}
-                    users={users}
-                />
+                <TableUsers users={users} />
             </SectionPanel>
 
             <Modal
