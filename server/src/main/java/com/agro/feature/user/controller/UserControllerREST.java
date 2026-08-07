@@ -94,6 +94,6 @@ public class UserControllerREST {
     @GetMapping(Api.ME)
     public ResponseEntity<UserWithCompanyLogo> me(@RequestAttribute("userId") Long  userId) {
         User user = userService.getUserById(userId);
-        return ResponseEntity.ok(UserMapper.INSTANCE.toUserWidthCompany(user));
+        return ResponseEntity.ok(UserWithCompanyLogo.fromModel(user));
     }
 }

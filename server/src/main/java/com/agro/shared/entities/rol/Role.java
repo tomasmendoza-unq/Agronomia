@@ -1,9 +1,19 @@
 package com.agro.shared.entities.rol;
 
-public enum Role{
-    DUENIO,
-    FACTURACION,
-    VENDEDOR,
-    ADMINISTRADOR,
-    VISITANT,
+public enum Role {
+    DUENIO("Dueño"),
+    FACTURACION("Facturación"),
+    VENDEDOR("Vendedor"),
+    ADMINISTRADOR("Administrador"),
+    VISITANTE("Visitante");
+
+    private final String nombre;
+
+    Role(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
 }
