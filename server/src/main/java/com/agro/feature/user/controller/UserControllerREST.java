@@ -69,7 +69,7 @@ public class UserControllerREST {
                     content = @Content(mediaType = "application/json")
             )
     })
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('DUENIO')")
     public ResponseEntity<UserResponseSimple> register(@RequestBody UserRequest request) {
         User user = registerOrchestrator.register(request.toModel(), request.id_company());
 
@@ -77,7 +77,7 @@ public class UserControllerREST {
     }
 
     @GetMapping
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('DUENIO')")
         @Operation(summary = "Obtener usuarios paginados", description = "Devuelve los usuarios en formato tabla paginada.")
         public ResponseEntity<TableResponseDTO<UserResponseSimple>> getAll(
                         @RequestParam(defaultValue = "0") int page,

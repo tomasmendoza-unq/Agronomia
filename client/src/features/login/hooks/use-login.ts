@@ -1,9 +1,9 @@
-import { ADMIN_ROUTES } from "@/core/routes/admin";
 import { ErrorCause } from "@/core/server/types/error-cause";
 import { useAuth } from "@/features/auth/hooks/use-auth";
 import type { Credentials } from "../../auth/types/Credentials";
 import type { User } from "@/shared/domain/user/user";
 import { useNavigate } from "react-router";
+import { ADMIN_ROUTES } from "@/core/routes/admin";
 
 const useLogin = () => {
     const { refresh, error, login: log } = useAuth();
@@ -18,7 +18,7 @@ const useLogin = () => {
 
     function navegate(user: User) {
         switch (user.role) {
-            case "ADMIN":
+            case "DUENIO":
                 navegation(ADMIN_ROUTES.BASE);
         }
     }

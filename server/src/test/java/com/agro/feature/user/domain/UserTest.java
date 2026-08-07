@@ -13,7 +13,7 @@ class UserTest {
 
     @BeforeEach
     void setUp() {
-        user = new User("Nicolás Fernando Bossi", Role.ADMIN, "n@gmail.com", "aa");
+        user = new User("Nicolás Fernando Bossi", Role.DUENIO, "n@gmail.com", "aa");
     }
 
     @Test
@@ -25,11 +25,11 @@ class UserTest {
     void testSiElMailNoTieneArroba_HayExcepcion() {
         assertThrows(
                 EmailException.class,
-                () -> new User("Nicolás Fernando Bossi", Role.ADMIN, "n_gmail.com", "aa"));
+                () -> new User("Nicolás Fernando Bossi", Role.DUENIO, "n_gmail.com", "aa"));
     }
 
     @Test
     void testUnUsuarioTieneUnRol() {
-        assertEquals(user.getRole(), Role.ADMIN);
+        assertEquals(user.getRole(), Role.DUENIO);
     }
 }

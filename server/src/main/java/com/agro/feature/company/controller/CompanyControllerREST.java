@@ -27,7 +27,7 @@ public class CompanyControllerREST {
     }
 
     @GetMapping
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('DUENIO')")
     public ResponseEntity<CompanyResponse> getCompany(@RequestAttribute("userId") Long  userId) {
         Company company = companyDataService.getCompanyByUserId(userId);
 

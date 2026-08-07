@@ -55,7 +55,7 @@ class CompanyServiceImplTest {
         user = User.builder()
                 .name("12312312")
                 .email(new EmailValue("n2n@gmail.com"))
-                .role(Role.ADMIN)
+                .role(Role.DUENIO)
                 .build();
     }
 
