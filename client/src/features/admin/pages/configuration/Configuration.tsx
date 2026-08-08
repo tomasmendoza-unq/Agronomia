@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import CompanyDataCard from "@/features/company/components/companyDataCard/CompanyDataCard";
-import { h1, panel } from "./styles";
+import { h1, panel, contentGrid } from "./styles";
 import Modal from "@/shared/components/modal/Modal";
 import SectionPanel from "@/shared/components/section-panel/SectionPanel";
 import TableUsers from "./components/TableUsers";
@@ -8,7 +8,6 @@ import CreateUser, {
     type CreateUserFormData,
 } from "./components/form/CreateUser";
 import type { RegisterRequest } from "../../api/dto/RegisterRequest";
-import type { User } from "@/features/admin/types/User";
 import { useGetCompanyData } from "../../hook/get-companyData";
 import Button from "@/shared/components/button/Button";
 import { token } from "@styled-system/tokens";
@@ -22,7 +21,6 @@ const Configuration = () => {
     const { register, registerError, refresh } = useRegister();
 
     const [isCreateUserOpen, setIsCreateUserOpen] = useState(false);
-    const [editingUser, setEditingUser] = useState<User | null>(null);
 
     useEffect(() => {
         getUsers(0);
@@ -41,11 +39,12 @@ const Configuration = () => {
             id_company: companyData.id,
         };
 
-        await register(userRegister);
-
-        if (!registerError) {
+        try {
+            await register(userRegister);
             await getUsers(users?.page);
             setIsCreateUserOpen(false);
+        } catch (error) {
+            console.error("Error al crear usuario:", error);
         }
     };
 
@@ -65,32 +64,34 @@ const Configuration = () => {
         <section className={panel}>
             <h1 className={h1}>Configuración</h1>
 
-            <SectionPanel title="Datos empresa">
-                <CompanyDataCard companyData={companyData!} />
-            </SectionPanel>
+            <div className={contentGrid}>
+                <SectionPanel title="Datos empresa">
+                    <CompanyDataCard companyData={companyData!} />
+                </SectionPanel>
 
-            <SectionPanel
-                title="Usuarios"
-                actions={
-                    <Button
-                        color="transparent"
-                        hoverColor="transparent"
-                        borderColor={token("colors.primaryColor")}
-                        textColor={token("colors.primaryColorSubtle")}
-                        onClick={() => setIsCreateUserOpen(true)}
-                    >
-                        Crear usuario
-                    </Button>
-                }
-            >
-                <TableUsers
-                    isLoading={usersLoading}
-                    users={users}
-                    onPageChange={handlePageChange}
-                    onEdit={handleEditUser}
-                    onDelete={handleDeleteUser}
-                />
-            </SectionPanel>
+                <SectionPanel
+                    title="Usuarios"
+                    actions={
+                        <Button
+                            color="transparent"
+                            hoverColor="transparent"
+                            borderColor={token("colors.primaryColor")}
+                            textColor={token("colors.primaryColorSubtle")}
+                            onClick={() => setIsCreateUserOpen(true)}
+                        >
+                            Crear usuario
+                        </Button>
+                    }
+                >
+                    <TableUsers
+                        isLoading={usersLoading}
+                        users={users}
+                        onPageChange={handlePageChange}
+                        onEdit={handleEditUser}
+                        onDelete={handleDeleteUser}
+                    />
+                </SectionPanel>
+            </div>
 
             <Modal
                 isOpen={isCreateUserOpen}
@@ -99,14 +100,6 @@ const Configuration = () => {
                 <CreateUser onSubmit={handleCreateUser} />
             </Modal>
 
-            {editingUser && (
-                <Modal
-                    isOpen={Boolean(editingUser)}
-                    onClose={() => setEditingUser(null)}
-                >
-                    <p>Editar usuario: {editingUser.name}</p>
-                </Modal>
-            )}
             {registerError && (
                 <ErrorToast
                     message={registerError.message}

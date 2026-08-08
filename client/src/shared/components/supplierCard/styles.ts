@@ -3,12 +3,12 @@ import { css } from "@styled-system/css";
 export const card = css({
     display: "flex",
     flexDirection: "column",
-    gap: "4",
+    gap: "2",
     padding: "4",
     borderRadius: "lg",
     bg: "surfaceCardColor",
-    boxShadow: "sm",
+    boxShadow: "lg",
     width: "fit-content",
-    minWidth: "220px",
+    minWidth: "320px",
     borderColor: "borderColor",
 });
