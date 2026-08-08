@@ -26,6 +26,9 @@ public class UserCredentials implements UserDetails {
     private String name;
 
     @Getter
+    private String surname;
+
+    @Getter
     private Long id;
 
     @Getter
@@ -38,6 +41,7 @@ public class UserCredentials implements UserDetails {
         this.password = user.password();
         this.role = user.role();
         this.name = user.name();
+        this.surname = user.surname();
         this.id = user.id();
         this.logo = user.logo();
         this.roles.add(new SimpleGrantedAuthority(user.role().toString()));

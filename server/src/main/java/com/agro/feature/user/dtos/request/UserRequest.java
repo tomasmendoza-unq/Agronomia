@@ -10,6 +10,8 @@ public record UserRequest(
         @NotBlank
         String name,
         @NotBlank
+        String surname,
+        @NotBlank
         String rol,
         @NotBlank
         String email,
@@ -19,6 +21,7 @@ public record UserRequest(
     public User toModel() {
         return User.builder()
                 .name(name)
+                .surname(surname)
                 .email(new EmailValue(email))
                 .role(Role.valueOf(rol))
                 .build();

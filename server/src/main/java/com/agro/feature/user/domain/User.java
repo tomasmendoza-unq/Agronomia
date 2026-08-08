@@ -26,6 +26,9 @@ public class User {
     private String name;
 
     @Getter
+    private String surname;
+
+    @Getter
     private Role role;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
@@ -39,7 +42,7 @@ public class User {
     @Getter
     private String password;
 
-    public User(String name, Role role, String email, String password) {
+    public User(String name, Role role, String surname, String email, String password) {
         setName(name);
         setEmail(new EmailValue((email)));
         setRole(role);

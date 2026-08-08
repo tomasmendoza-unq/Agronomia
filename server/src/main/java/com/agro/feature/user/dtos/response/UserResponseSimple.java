@@ -14,7 +14,7 @@ public record UserResponseSimple(
     public static @Nullable UserResponseSimple fromModel(User user) {
         return new UserResponseSimple(
                 user.getId(),
-                user.getName(),
+                user.getName() + " " +  user.getSurname(),
                 user.getNameRol(),
                 user.getEmail()
         );
