@@ -28,7 +28,8 @@ public class DataSeederImpl implements DataSeeder {
     @Override
     public void run(String... args) throws Exception {
         User user = User.builder()
-                .name("12312312")
+                .name("Tomas")
+                .surname("Mendoza")
                 .email(new EmailValue("n2n@gmail.com"))
                 .role(Role.DUENIO)
                 .password("123")
