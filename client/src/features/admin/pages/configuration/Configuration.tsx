@@ -1,71 +1,95 @@
 import { useEffect, useState } from "react";
 import CompanyDataCard from "@/features/company/components/companyDataCard/CompanyDataCard";
-import { buttonAddUser, h1, panel } from "./styles";
+import { h1, panel } from "./styles";
 import Modal from "@/shared/components/modal/Modal";
 import SectionPanel from "@/shared/components/section-panel/SectionPanel";
 import TableUsers from "./components/TableUsers";
 import CreateUser, {
     type CreateUserFormData,
 } from "./components/form/CreateUser";
-import { useRegister } from "@/features/user/hook/use-register";
-import { UseGetUsers } from "@/features/user/hook/use-get-users";
 import type { RegisterRequest } from "../../api/dto/RegisterRequest";
+import type { User } from "@/features/admin/types/User";
 import { useGetCompanyData } from "../../hook/get-companyData";
+import Button from "@/shared/components/button/Button";
+import { token } from "@styled-system/tokens";
+import ErrorToast from "@/shared/components/toast/error/ErrorToast";
+import { useRegister } from "../../hook/use-register";
+import UseGetUsers from "../../hook/use-get-users";
 
 const Configuration = () => {
     const { companyData, getCompany, companyLoading } = useGetCompanyData();
     const { users, getUsers, usersLoading } = UseGetUsers();
-    const [isCreateUserOpen, setIsCreateUserOpen] = useState(false);
-    const { register, user: createdUser } = useRegister();
+    const { register, registerError, refresh } = useRegister();
 
-    const isPageLoading = companyLoading || usersLoading;
+    const [isCreateUserOpen, setIsCreateUserOpen] = useState(false);
+    const [editingUser, setEditingUser] = useState<User | null>(null);
 
     useEffect(() => {
-        getUsers();
+        getUsers(0);
         getCompany();
     }, []);
 
-    useEffect(() => {
-        if (!createdUser) return;
-    }, [createdUser]);
+    const handlePageChange = (page: number) => {
+        getUsers(page);
+    };
 
     const handleCreateUser = async (data: CreateUserFormData) => {
+        if (!companyData?.id) return;
+
         const userRegister: RegisterRequest = {
             ...data,
-            id_company: companyData!.id,
+            id_company: companyData.id,
         };
 
         await register(userRegister);
 
-        setIsCreateUserOpen(false);
+        if (!registerError) {
+            await getUsers(users?.page);
+            setIsCreateUserOpen(false);
+        }
     };
 
-    if (isPageLoading) {
+    const handleEditUser = () => {};
+
+    const handleDeleteUser = async () => {};
+
+    if (companyLoading || (!users && usersLoading)) {
         return (
             <section className={panel}>
-                <p>Cargando...</p>
+                <p>Cargando información...</p>
             </section>
         );
     }
 
     return (
         <section className={panel}>
-            <h1 className={h1}>Configuracion</h1>
+            <h1 className={h1}>Configuración</h1>
+
             <SectionPanel title="Datos empresa">
                 <CompanyDataCard companyData={companyData!} />
             </SectionPanel>
+
             <SectionPanel
                 title="Usuarios"
                 actions={
-                    <button
-                        className={buttonAddUser}
+                    <Button
+                        color="transparent"
+                        hoverColor="transparent"
+                        borderColor={token("colors.primaryColor")}
+                        textColor={token("colors.primaryColorSubtle")}
                         onClick={() => setIsCreateUserOpen(true)}
                     >
                         Crear usuario
-                    </button>
+                    </Button>
                 }
             >
-                <TableUsers users={users} />
+                <TableUsers
+                    isLoading={usersLoading}
+                    users={users}
+                    onPageChange={handlePageChange}
+                    onEdit={handleEditUser}
+                    onDelete={handleDeleteUser}
+                />
             </SectionPanel>
 
             <Modal
@@ -74,6 +98,21 @@ const Configuration = () => {
             >
                 <CreateUser onSubmit={handleCreateUser} />
             </Modal>
+
+            {editingUser && (
+                <Modal
+                    isOpen={Boolean(editingUser)}
+                    onClose={() => setEditingUser(null)}
+                >
+                    <p>Editar usuario: {editingUser.name}</p>
+                </Modal>
+            )}
+            {registerError && (
+                <ErrorToast
+                    message={registerError.message}
+                    onClose={refresh}
+                />
+            )}
         </section>
     );
 };

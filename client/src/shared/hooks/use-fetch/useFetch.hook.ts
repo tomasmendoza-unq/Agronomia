@@ -12,6 +12,7 @@ function useFetch<D>(): UseFetch<D> {
     ) {
         return async (...args: Args) => {
             setIsLoading(true);
+            setError(undefined);
 
             try {
                 const data = await request(...args);

@@ -82,13 +82,20 @@ public class UserControllerREST {
         public ResponseEntity<TableResponseDTO<UserResponseSimple>> getAll(
             @RequestAttribute("userId") Long  adminId,
             @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size
+            @RequestParam(defaultValue = "5") int size
         ) {
                 Page<User> users = userService.findAll(page, size, adminId);
                 Page<UserResponseSimple> response = users.map(UserResponseSimple::fromModel);
 
+                List<TableResponseDTO.ColumnHeader> columns = List.of(
+                        new TableResponseDTO.ColumnHeader("id", "ID"),
+                        new TableResponseDTO.ColumnHeader("name", "Nombre"),
+                        new TableResponseDTO.ColumnHeader("email", "Email"),
+                        new TableResponseDTO.ColumnHeader("role", "Rol")
+                );
+
                 return ResponseEntity.ok(
-                                TableResponseDTO.fromPage(List.of("ID","Nombre", "Email", "Rol"), response, UserResponseSimple::id)
+                        TableResponseDTO.fromPage(columns, response, UserResponseSimple::id)
                 );
     }
 
