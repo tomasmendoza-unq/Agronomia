@@ -6,6 +6,7 @@ const form = css.raw({
     gridTemplateRows: "repeat(auto-fit, 1fr)",
     placeItems: "center",
     width: "100%",
+    gap: "1rem",
     height: "100%",
 });
 

@@ -2,6 +2,13 @@ import type { InputData } from "@/shared/components/credentials-form/types/input
 
 const createUserInputs: InputData[] = [
     {
+        type: "text",
+        name: "name",
+        title: "Nombre",
+        placeholder: "",
+        id: 1,
+    },
+    {
         type: "select",
         name: "rol",
         title: "Rol",
@@ -12,13 +19,6 @@ const createUserInputs: InputData[] = [
             { id: 3, value: "Vendedor" },
             { id: 4, value: "Facturacion" },
         ],
-    },
-    {
-        type: "text",
-        name: "name",
-        title: "Nombre",
-        placeholder: "",
-        id: 1,
     },
     {
         type: "email",

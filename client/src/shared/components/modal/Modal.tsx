@@ -1,5 +1,6 @@
 import { useEffect, type ReactNode } from "react";
-import { overlay, modal, body } from "./styles";
+import { css } from "@styled-system/css";
+import { modalStyles } from "./styles";
 
 interface ModalProps {
     isOpen: boolean;
@@ -26,16 +27,18 @@ const Modal = ({ isOpen, onClose, children }: ModalProps) => {
 
     if (!isOpen) return null;
 
+    const { overlay, modal, body } = modalStyles;
+
     return (
         <div
-            className={overlay}
+            className={css(overlay)}
             onClick={onClose}
         >
             <div
-                className={modal}
+                className={css(modal)}
                 onClick={(e) => e.stopPropagation()}
             >
-                <div className={body}>{children}</div>
+                <div className={css(body)}>{children}</div>
             </div>
         </div>
     );
