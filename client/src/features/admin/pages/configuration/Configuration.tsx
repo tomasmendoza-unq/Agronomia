@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import CompanyDataCard from "@/features/company/components/companyDataCard/CompanyDataCard";
-import { buttonAddUser, h1, panel } from "./styles";
+import { h1, panel } from "./styles";
 import Modal from "@/shared/components/modal/Modal";
 import SectionPanel from "@/shared/components/section-panel/SectionPanel";
 import TableUsers from "./components/TableUsers";
@@ -11,6 +11,8 @@ import { useRegister } from "@/features/user/hook/use-register";
 import { UseGetUsers } from "@/features/user/hook/use-get-users";
 import type { RegisterRequest } from "../../api/dto/RegisterRequest";
 import { useGetCompanyData } from "../../hook/get-companyData";
+import Button from "@/shared/components/button/Button";
+import { token } from "@styled-system/tokens";
 
 const Configuration = () => {
     const { companyData, getCompany, companyLoading } = useGetCompanyData();
@@ -57,12 +59,15 @@ const Configuration = () => {
             <SectionPanel
                 title="Usuarios"
                 actions={
-                    <button
-                        className={buttonAddUser}
+                    <Button
+                        color="transparent"
+                        hoverColor="transparent"
+                        borderColor={token("colors.primaryColor")}
+                        textColor={token("colors.primaryColorSubtle")}
                         onClick={() => setIsCreateUserOpen(true)}
                     >
                         Crear usuario
-                    </button>
+                    </Button>
                 }
             >
                 <TableUsers users={users} />

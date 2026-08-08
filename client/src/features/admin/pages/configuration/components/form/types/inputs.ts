@@ -15,9 +15,9 @@ const createUserInputs: InputData[] = [
         placeholder: "Selecciona rol",
         id: 0,
         options: [
-            { id: 1, value: "Administrador" },
-            { id: 3, value: "Vendedor" },
-            { id: 4, value: "Facturacion" },
+            { id: 1, value: "FACTURACION", label: "Facturación" },
+            { id: 2, value: "VENDEDOR", label: "Vendedor" },
+            { id: 3, value: "ADMINISTRADOR", label: "Administrador" },
         ],
     },
     {

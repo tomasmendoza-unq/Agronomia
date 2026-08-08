@@ -61,7 +61,7 @@ function SelectInput<T extends Schema>({
                             key={option.id}
                             value={option.value}
                         >
-                            {option.value}
+                            {option.label}
                         </option>
                     ))}
                 </select>

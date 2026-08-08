@@ -1,5 +1,4 @@
 import { css, sva } from "@styled-system/css";
-import { token } from "@styled-system/tokens";
 
 const form = css.raw({
     display: "grid",
@@ -25,22 +24,11 @@ const input = css.raw({
     outline: "none",
 });
 
-const button = css.raw({
-    ...elementContainer,
-    width: "90%",
-    height: "16%",
-    minHeight: "38px",
-    borderRadius: "10px",
-    color: "#FFF",
-    bg: token("colors.primaryColor"),
-});
-
 export const styles = sva({
-    slots: ["form", "input", "button", "elementContainer"],
+    slots: ["form", "input", "elementContainer"],
     base: {
         form: form,
         input: input,
-        button: button,
         elementContainer: elementContainer,
     },
 }).raw();
