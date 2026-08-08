@@ -36,7 +36,7 @@ const Breadcrumb = () => {
                                 >
                                     {crumb.handle?.breadcrumb}
                                 </Link>
-                                <span className={separator}>/</span>
+                                <span className={separator}> {">"}</span>
                             </>
                         )}
                     </span>

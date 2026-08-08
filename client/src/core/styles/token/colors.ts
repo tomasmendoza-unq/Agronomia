@@ -6,6 +6,7 @@ const tokenColors = defineTokens.colors({
     surfacePageColor: { value: "#F9FAFB" },
     surfaceCardColor: { value: "#FFFFFF" },
     danger: { value: "#E11D48" },
+    success: { value: "#0C9588" },
     primaryColorSubtle: { value: "#638BAF" },
     textSubtle: { value: "#52525B" },
 });
