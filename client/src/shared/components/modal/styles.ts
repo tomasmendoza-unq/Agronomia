@@ -8,17 +8,22 @@ export const overlay = css({
     alignItems: "center",
     justifyContent: "center",
     zIndex: 50,
+    padding: "1rem",
 });
 
 export const modal = css({
     backgroundColor: "white",
     borderRadius: "lg",
-    padding: "1.5rem",
+    padding: "2rem",
     width: "100%",
-    maxWidth: "480px",
-    maxHeight: "90vh",
-    overflowY: "auto",
+    maxWidth: "640px",
+    minHeight: "400px",
+    maxHeight: "95vh",
+    display: "flex",
+    flexDirection: "column",
     boxShadow: "lg",
+    overflow: "hidden",
+    boxSizing: "border-box",
 });
 
 export const header = css({
@@ -26,6 +31,7 @@ export const header = css({
     alignItems: "center",
     justifyContent: "space-between",
     marginBottom: "1rem",
+    flexShrink: 0,
 });
 
 export const title = css({
@@ -47,5 +53,20 @@ export const closeButton = css({
 export const body = css({
     display: "flex",
     flexDirection: "column",
-    gap: "1rem",
+    gap: "1.25rem",
+    flex: "1 1 auto",
+    minHeight: 0,
+    overflowY: "auto",
+    overflowX: "hidden",
+    paddingRight: "0.5rem",
+    paddingTop: "0.5rem",
+    boxSizing: "border-box",
+    "& input, & select, & textarea, & button": {
+        width: "100%",
+        maxWidth: "100%",
+        boxSizing: "border-box",
+    },
+    "& p:empty, & span:empty": {
+        display: "none", // oculta placeholders de error vacíos que reservan altura
+    },
 });
