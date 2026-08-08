@@ -7,14 +7,14 @@ import TableUsers from "./components/TableUsers";
 import CreateUser, {
     type CreateUserFormData,
 } from "./components/form/CreateUser";
-import { useRegister } from "@/features/user/hook/use-register";
-import { UseGetUsers } from "@/features/user/hook/use-get-users";
 import type { RegisterRequest } from "../../api/dto/RegisterRequest";
 import type { User } from "@/features/admin/types/User";
 import { useGetCompanyData } from "../../hook/get-companyData";
 import Button from "@/shared/components/button/Button";
 import { token } from "@styled-system/tokens";
 import ErrorToast from "@/shared/components/toast/error/ErrorToast";
+import { useRegister } from "../../hook/use-register";
+import UseGetUsers from "../../hook/use-get-users";
 
 const Configuration = () => {
     const { companyData, getCompany, companyLoading } = useGetCompanyData();

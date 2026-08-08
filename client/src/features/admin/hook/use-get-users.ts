@@ -1,5 +1,5 @@
 import type { TablePaginator } from "@/shared/types/table/Table";
-import getUsersService from "@/features/user/service/get-users";
+import getUsersService from "../service/get-users.service";
 import useFetch from "@/shared/hooks/use-fetch/useFetch.hook";
 import type { User } from "@/features/admin/types/User";
 
