@@ -1,15 +1,16 @@
-export interface TableDataContent {
-    headers: string[];
-    rows: Row[];
+export interface ColumnHeader {
+    key: string;
+    header: string;
 }
 
-interface Row {
+export interface DataRow<T> {
     id: number;
-    fields: string[];
+    data: T;
+    actions?: React.ReactNode;
 }
 
 export interface TablePaginator<T> {
-    headers: string[];
+    columns: ColumnHeader[];
     rows: DataRow<T>[];
     page: number;
     size: number;
@@ -18,8 +19,13 @@ export interface TablePaginator<T> {
     last: boolean;
 }
 
-export interface DataRow<T> {
+export interface TableDataContent {
+    columns: ColumnHeader[];
+    rows: SimpleRow[];
+}
+
+interface SimpleRow {
     id: number;
-    data: T;
+    data: Record<string, unknown>;
     actions?: React.ReactNode;
 }

@@ -11,14 +11,16 @@ interface CreateUserProps {
 }
 
 export const CreateUser = ({ onSubmit }: CreateUserProps) => (
-    <CredentialsForm
-        title="Crear nuevo usuario"
-        inputs={createUserInputs}
-        button={{ text: "Crear usuario" }}
-        links={createUserLinks}
-        schema={schema}
-        onSubmit={onSubmit}
-    />
+    <>
+        <CredentialsForm
+            title="Crear nuevo usuario"
+            inputs={createUserInputs}
+            button={{ text: "Crear usuario" }}
+            links={createUserLinks}
+            schema={schema}
+            onSubmit={onSubmit}
+        />
+    </>
 );
 
 export default CreateUser;

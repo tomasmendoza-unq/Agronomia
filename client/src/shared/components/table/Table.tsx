@@ -16,11 +16,11 @@ import {
 
 interface TableProps<T> extends TablePaginator<T> {
     onPageChange?: (page: number) => void;
-    renderCell?: (value: T, key: keyof T) => React.ReactNode;
+    renderCell?: (value: unknown, key: string, data: T) => React.ReactNode;
 }
 
 export const Table = <T extends Record<string, unknown>>({
-    headers = [],
+    columns = [],
     rows = [],
     page = 0,
     totalElements = 0,
@@ -29,20 +29,23 @@ export const Table = <T extends Record<string, unknown>>({
     onPageChange,
     renderCell,
 }: TableProps<T>) => {
+    const hasActions = rows.some((row) => Boolean(row.actions));
+
     return (
         <div className={tableWrapper}>
             <div className={tableCard}>
                 <table className={table}>
                     <thead className={thead}>
                         <tr>
-                            {headers.map((header) => (
+                            {columns.map((col) => (
                                 <th
-                                    key={header}
+                                    key={col.key}
                                     className={th}
                                 >
-                                    {header}
+                                    {col.header}
                                 </th>
                             ))}
+                            {hasActions && <th className={th}>Acciones</th>}
                         </tr>
                     </thead>
                     <tbody className={tbody}>
@@ -51,21 +54,29 @@ export const Table = <T extends Record<string, unknown>>({
                                 key={row.id}
                                 className={tr}
                             >
-                                {Object.keys(row.data).map((key) => (
-                                    <td
-                                        key={key}
-                                        className={td}
-                                    >
-                                        {renderCell
-                                            ? renderCell(
-                                                  row.data,
-                                                  key as keyof T,
-                                              )
-                                            : String(row.data[key as keyof T])}
+                                {columns.map((col) => {
+                                    const cellValue = row.data[col.key];
+
+                                    return (
+                                        <td
+                                            key={col.key}
+                                            className={td}
+                                        >
+                                            {renderCell
+                                                ? renderCell(
+                                                      cellValue,
+                                                      col.key,
+                                                      row.data,
+                                                  )
+                                                : String(cellValue ?? "")}
+                                        </td>
+                                    );
+                                })}
+
+                                {hasActions && (
+                                    <td className={tdActions}>
+                                        {row.actions ?? null}
                                     </td>
-                                ))}
-                                {row.actions && (
-                                    <td className={tdActions}>{row.actions}</td>
                                 )}
                             </tr>
                         ))}
@@ -75,6 +86,10 @@ export const Table = <T extends Record<string, unknown>>({
 
             {onPageChange && (
                 <div className={pagination}>
+                    <span className={footerText}>
+                        Mostrando {rows.length} de {totalElements} elementos
+                    </span>
+
                     <button
                         className={paginationButton}
                         disabled={page === 0}
@@ -82,10 +97,11 @@ export const Table = <T extends Record<string, unknown>>({
                     >
                         Anterior
                     </button>
+
                     <span className={footerText}>
-                        Página {page + 1} de {totalPages} ({totalElements}{" "}
-                        elementos)
+                        Página {page + 1} de {totalPages}
                     </span>
+
                     <button
                         className={paginationButton}
                         disabled={last}
@@ -95,10 +111,6 @@ export const Table = <T extends Record<string, unknown>>({
                     </button>
                 </div>
             )}
-
-            <span className={footerText}>
-                Mostrando {rows.length} de {totalElements} usuarios
-            </span>
         </div>
     );
 };

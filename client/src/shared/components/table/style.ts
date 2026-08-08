@@ -11,10 +11,6 @@ export const tableCard = css({
     width: "100%",
     overflowX: "auto",
     backgroundColor: "white",
-    border: "1px solid",
-    borderColor: "border.subtle",
-    borderRadius: "12px",
-    boxShadow: "0 1px 3px rgba(15, 23, 42, 0.08)",
 });
 
 export const table = css({
@@ -30,16 +26,11 @@ export const th = css({
     textAlign: "left",
     padding: "0.75rem 1rem",
     fontSize: "sm",
-    color: "white",
+    color: "fg.muted",
     fontWeight: "600",
-    backgroundColor: "#8f877f",
-    borderBottom: "1px solid rgba(255, 255, 255, 0.18)",
-    _first: {
-        borderTopLeftRadius: "10px",
-    },
-    _last: {
-        borderTopRightRadius: "10px",
-    },
+    backgroundColor: "transparent",
+    borderBottom: "1px solid",
+    borderColor: "border.subtle",
 });
 
 export const tbody = css({});
@@ -56,17 +47,17 @@ export const tr = css({
 });
 
 export const td = css({
-    padding: "0.8rem 1rem",
+    padding: "0.9rem 1rem",
     fontSize: "sm",
     color: "fg.default",
     verticalAlign: "middle",
 });
 
 export const tdActions = css({
-    padding: "0.8rem 1rem",
+    padding: "0.9rem 1rem",
     display: "flex",
-    justifyContent: "flex-end",
-    gap: "0.5rem",
+    justifyContent: "flex-start",
+    gap: "1.25rem",
     alignItems: "center",
     whiteSpace: "nowrap",
 });

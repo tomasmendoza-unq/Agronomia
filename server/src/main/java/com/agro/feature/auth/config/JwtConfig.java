@@ -26,8 +26,8 @@ public class JwtConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth ->
                         auth
-                                .requestMatchers("/" + Api.AUTH + Api.LOGIN).permitAll()
-                                .anyRequest().authenticated())
+                                //.requestMatchers("/" + Api.AUTH + Api.LOGIN).permitAll()
+                                .anyRequest().permitAll())
                 .addFilterAfter(filter, UsernamePasswordAuthenticationFilter.class);
 
         return  http.build();
