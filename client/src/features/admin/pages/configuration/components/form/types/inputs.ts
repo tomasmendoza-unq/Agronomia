@@ -6,6 +6,13 @@ const createUserInputs: InputData[] = [
         name: "name",
         title: "Nombre",
         placeholder: "",
+        id: 0,
+    },
+    {
+        type: "text",
+        name: "surname",
+        title: "Apellido",
+        placeholder: "",
         id: 1,
     },
     {
@@ -13,7 +20,7 @@ const createUserInputs: InputData[] = [
         name: "rol",
         title: "Rol",
         placeholder: "Selecciona rol",
-        id: 0,
+        id: 2,
         options: [
             { id: 1, value: "FACTURACION", label: "Facturación" },
             { id: 2, value: "VENDEDOR", label: "Vendedor" },
@@ -25,7 +32,7 @@ const createUserInputs: InputData[] = [
         name: "email",
         title: "Correo",
         placeholder: "",
-        id: 2,
+        id: 3,
     },
 ];
 

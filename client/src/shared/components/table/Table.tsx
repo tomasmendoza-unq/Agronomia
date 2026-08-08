@@ -87,7 +87,7 @@ export const Table = <T extends Record<string, unknown>>({
             {onPageChange && (
                 <div className={pagination}>
                     <span className={footerText}>
-                        Mostrando {rows.length} de {totalElements - 1} elementos
+                        Mostrando {rows.length} de {totalElements} elementos
                     </span>
 
                     <button

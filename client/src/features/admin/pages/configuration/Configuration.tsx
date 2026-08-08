@@ -12,6 +12,7 @@ import { useGetCompanyData } from "../../hook/get-companyData";
 import Button from "@/shared/components/button/Button";
 import { token } from "@styled-system/tokens";
 import ErrorToast from "@/shared/components/toast/error/ErrorToast";
+import SuccessToast from "@/shared/components/toast/success/SuccessToast";
 import { useRegister } from "../../hook/use-register";
 import UseGetUsers from "../../hook/use-get-users";
 
@@ -21,6 +22,7 @@ const Configuration = () => {
     const { register, registerError, refresh } = useRegister();
 
     const [isCreateUserOpen, setIsCreateUserOpen] = useState(false);
+    const [showSuccessToast, setShowSuccessToast] = useState(false);
 
     useEffect(() => {
         getUsers(0);
@@ -39,13 +41,11 @@ const Configuration = () => {
             id_company: companyData.id,
         };
 
-        try {
-            await register(userRegister);
-            await getUsers(users?.page);
-            setIsCreateUserOpen(false);
-        } catch (error) {
-            console.error("Error al crear usuario:", error);
-        }
+        await register(userRegister);
+
+        await getUsers(users?.page);
+        setIsCreateUserOpen(false);
+        setShowSuccessToast(true);
     };
 
     const handleEditUser = () => {};
@@ -104,6 +104,13 @@ const Configuration = () => {
                 <ErrorToast
                     message={registerError.message}
                     onClose={refresh}
+                />
+            )}
+
+            {showSuccessToast && !registerError && (
+                <SuccessToast
+                    message="Usuario registrado correctamente"
+                    onClose={() => setShowSuccessToast(false)}
                 />
             )}
         </section>

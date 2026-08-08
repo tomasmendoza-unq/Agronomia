@@ -4,6 +4,7 @@ import com.agro.shared.entities.rol.Role;
 
 public record Auth(
         String name,
+        String surname,
         String email,
         Role role,
         String token,
