@@ -19,7 +19,7 @@ export const modalStyles = sva({
             padding: "2rem",
             width: "50%",
             maxWidth: "100%",
-            minHeight: "500px",
+            minHeight: "600px",
             maxHeight: "50%",
             display: "flex",
             flexDirection: "column",
