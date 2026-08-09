@@ -1,16 +1,21 @@
+// shared/components/avatar/Avatar.tsx
 import { Link } from "react-router";
 import { avatarStyle } from "./style";
-import { ADMIN_ROUTES } from "@/core/routes/admin";
 import type { User } from "@/shared/domain/user/user";
 
-const Avatar = ({ avatar }: { avatar: User }) => {
+interface AvatarProps {
+    avatar: User;
+    to: string;
+}
+
+const Avatar = ({ avatar, to }: AvatarProps) => {
     const fullName = `${avatar.name} ${avatar.surname}`.trim();
     const initials =
         `${avatar.name[0] ?? ""}${avatar.surname[0] ?? ""}`.toUpperCase();
 
     return (
         <Link
-            to={`${ADMIN_ROUTES.CONFIGURATION}`}
+            to={to}
             aria-label={`${fullName} avatar`}
             title={fullName}
             style={avatarStyle}

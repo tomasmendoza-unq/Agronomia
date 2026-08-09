@@ -1,9 +1,11 @@
 import { ErrorCause } from "@/core/server/types/error-cause";
 import { useAuth } from "@/features/auth/hooks/use-auth";
 import type { Credentials } from "../../auth/types/Credentials";
-import type { User } from "@/shared/domain/user/user";
 import { useNavigate } from "react-router";
-import { ADMIN_ROUTES } from "@/core/routes/admin";
+import {
+    DEFAULT_HOME_ROUTE,
+    ROLE_HOME_ROUTES,
+} from "@/core/routes/role-routes";
 
 const useLogin = () => {
     const { refresh, error, login: log } = useAuth();
@@ -13,13 +15,9 @@ const useLogin = () => {
 
     async function login(credentials: Credentials) {
         const user = await log(credentials);
-        if (user) navegate(user);
-    }
-
-    function navegate(user: User) {
-        switch (user.role) {
-            case "DUENIO":
-                navegation(ADMIN_ROUTES.BASE);
+        if (user) {
+            const destino = ROLE_HOME_ROUTES[user.role] ?? DEFAULT_HOME_ROUTE;
+            navegation(destino);
         }
     }
 

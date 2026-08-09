@@ -2,16 +2,13 @@ package com.agro.feature.user.orchestrator;
 
 import com.agro.feature.company.contracts.CompanyDataService;
 import com.agro.feature.company.domain.Company;
-import com.agro.feature.company.service.CompanyService;
+import com.agro.feature.email.contracts.EmailSendRegister;
+import com.agro.feature.email.service.EmailService;
 import com.agro.feature.user.domain.User;
 import com.agro.feature.user.domain.exceptions.EmailDuplicatedException;
 import com.agro.feature.user.services.UserService;
 import jakarta.transaction.Transactional;
-import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.UUID;
 
 @Service
 @Transactional
@@ -21,9 +18,12 @@ public class RegisterOrchestradorImpl implements RegisterOrchestrator {
 
     private final CompanyDataService companyService;
 
-    public RegisterOrchestradorImpl(UserService userService, CompanyDataService companyService) {
+    private final EmailSendRegister emailSendRegister;
+
+    public RegisterOrchestradorImpl(UserService userService, CompanyDataService companyService, EmailSendRegister emailSendRegister) {
         this.userService = userService;
         this.companyService = companyService;
+        this.emailSendRegister = emailSendRegister;
     }
 
     @Override
@@ -32,11 +32,20 @@ public class RegisterOrchestradorImpl implements RegisterOrchestrator {
             throw new EmailDuplicatedException("El email ya existe");
         }
 
-        user.generateTemporalPassword();
+        String rawPassword = user.generateTemporalPassword();
+
         Company company = companyService.getCompanyById(id_company);
         user.addCompany(company);
         User saved = userService.save(user);
         company.addUser(user);
+
+        emailSendRegister.sendRegister(
+                user.getFullName(),
+                user.getEmail(),
+                rawPassword,
+                user.getCompany().getName()
+        );
+
         return saved;
     }
 }
