@@ -1,5 +1,10 @@
 import { createBrowserRouter } from "react-router";
 import { loginRoutes } from "../../features/login/routes/routes";
 import { AdminRoutes } from "@/features/admin/routes/routes";
+import { FacturacionRoutes } from "@/features/facturacion/routes/routes";
 
-export const routes = createBrowserRouter([...loginRoutes, ...AdminRoutes]);
+export const routes = createBrowserRouter([
+    ...loginRoutes,
+    ...AdminRoutes,
+    ...FacturacionRoutes,
+]);
