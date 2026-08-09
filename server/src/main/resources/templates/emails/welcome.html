@@ -1,0 +1,17 @@
+
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="content">
+    <h2 th:text="'¡Te damos la bienvenida a ' + ${nombreEmpresa} + '!'">Bienvenida</h2>
+    <p th:text="${nombre} + ','">Nombre,</p>
+    <p>Usuario: <span th:text="${email}">email</span></p>
+    <p>Contraseña temporal: <span th:text="${password}">password</span></p>
+    <p>Tu cuenta está lista. Gestioná tu trabajo diario.</p>
+
+    <p th:replace="~{emails/layout/components/button :: cta('Comenzar a trabajar', ${loginUrl})}"></p>
+
+    <p>Si necesitás una mano o tenés alguna duda, estamos para
+        <a th:href="${helpUrl}">ayudarte</a></p>
+</div>
+</body>
+</html>

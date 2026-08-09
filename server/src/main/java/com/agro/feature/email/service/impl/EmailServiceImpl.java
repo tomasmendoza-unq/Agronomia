@@ -6,6 +6,7 @@ import com.resend.Resend;
 import com.resend.core.exception.ResendException;
 import com.resend.services.emails.model.CreateEmailOptions;
 import jakarta.transaction.Transactional;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +14,7 @@ import java.util.Map;
 
 @Service
 @Transactional
+@Slf4j
 public class EmailServiceImpl implements EmailService {
     private final Resend resend;
 
@@ -43,6 +45,8 @@ public class EmailServiceImpl implements EmailService {
     }
 
     private void sendHtmlEmail(String to, String subject, String html) {
+        log.info("Intentando enviar email. to='{}', subject='{}'", to, subject);
+
         try {
             CreateEmailOptions params = CreateEmailOptions.builder()
                     .from(from)
@@ -54,6 +58,7 @@ public class EmailServiceImpl implements EmailService {
             resend.emails().send(params);
 
         } catch (ResendException e) {
+            log.warn("Error enviando email", e);
             throw new RuntimeException("Error enviando email", e);
         }
     }

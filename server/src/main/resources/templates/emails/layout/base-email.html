@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body style="margin:0; background-color:#f4f4f4; font-family:Arial,sans-serif;">
+<table width="100%" cellpadding="0" cellspacing="0">
+    <tr><td align="center" style="padding:24px;">
+        <table width="480" cellpadding="0" cellspacing="0"
+               style="background:#ffffff; border-radius:8px; overflow:hidden;">
+
+            <tr th:if="${headerTitle}">
+                <td style="background:#2b2b2b; color:#fff; padding:16px 24px; font-size:14px;">
+                    <span th:text="${headerTitle}">Email - Título</span>
+                </td>
+            </tr>
+
+            <tr>
+                <td style="padding:32px 24px;">
+                    <div th:replace="~{emails/__${templateName}__ :: content}"></div>
+                </td>
+            </tr>
+
+            <tr th:replace="~{emails/layout/components/footer :: footer}"></tr>
+
+        </table>
+    </td></tr>
+</table>
+</body>
+</html>

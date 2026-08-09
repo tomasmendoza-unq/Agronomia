@@ -20,8 +20,9 @@ public class EmailTemplateServiceImpl implements EmailTemplateService {
     public String render(String templateName, Map<String, Object> variables) {
         Context context = new Context();
         context.setVariables(variables);
-        context.setVariable("nombreEmpresa", "Tu Empresa");
         context.setVariable("year", Year.now().getValue());
-        return templateEngine.process("emails/" + templateName, context);
+        context.setVariable("templateName", templateName);
+
+        return templateEngine.process("emails/layout/base-email", context);
     }
 }

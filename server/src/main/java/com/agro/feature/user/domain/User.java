@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
+import java.security.SecureRandom;
 import java.util.UUID;
 
 @Entity
@@ -16,6 +17,10 @@ import java.util.UUID;
 @Setter(AccessLevel.PRIVATE)
 @SuperBuilder(toBuilder = true)
 public class User {
+
+    private static final String PASSWORD_CHARS =
+            "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnpqrstuvwxyz23456789";
+    private static final SecureRandom RANDOM = new SecureRandom();
 
     @Id
     @GeneratedValue
@@ -57,9 +62,15 @@ public class User {
         setPassword(encripted);
     }
 
-    public void generateTemporalPassword() {
-        String uuid = UUID.randomUUID().toString();
-        setPassword(uuid);
+    public String generateTemporalPassword() {
+        int length = 10;
+        StringBuilder sb = new StringBuilder(length);
+        for (int i = 0; i < length; i++) {
+            sb.append(PASSWORD_CHARS.charAt(RANDOM.nextInt(PASSWORD_CHARS.length())));
+        }
+        String rawPassword = sb.toString();
+        setPassword(rawPassword);
+        return rawPassword;
     }
 
     public void addCompany(Company company) {
@@ -72,5 +83,9 @@ public class User {
 
     public String getNameRol() {
         return role.getNombre();
+    }
+
+    public String getFullName() {
+        return getName() + " " + getSurname();
     }
 }
