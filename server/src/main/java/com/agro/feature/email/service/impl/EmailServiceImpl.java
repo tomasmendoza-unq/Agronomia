@@ -1,7 +1,7 @@
 package com.agro.feature.email.service.impl;
 
-import com.agro.feature.email.service.EmailService;
-import com.agro.feature.email.templates.service.service.EmailTemplateService;
+import com.agro.feature.email.contracts.EmailSendRegister;
+import com.agro.feature.email.templates.service.EmailTemplateService;
 import com.resend.Resend;
 import com.resend.core.exception.ResendException;
 import com.resend.services.emails.model.CreateEmailOptions;
@@ -15,7 +15,7 @@ import java.util.Map;
 @Service
 @Transactional
 @Slf4j
-public class EmailServiceImpl implements EmailService {
+public class EmailServiceImpl implements EmailSendRegister {
     private final Resend resend;
 
     @Value("${RESEND_EMAIL}")
@@ -31,7 +31,7 @@ public class EmailServiceImpl implements EmailService {
     }
 
     @Override
-    public void sendAccountTemporalEmail(String nameUser, String email, String password, String nameCompany) {
+    public void sendRegister(String nameUser, String email, String password, String nameCompany) {
         Map<String, Object> variables = Map.of(
                 "nombre", nameUser,
                 "email", email,

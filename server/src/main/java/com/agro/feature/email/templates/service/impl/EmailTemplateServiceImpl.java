@@ -1,6 +1,6 @@
-package com.agro.feature.email.templates.service.service.impl;
+package com.agro.feature.email.templates.service.impl;
 
-import com.agro.feature.email.templates.service.service.EmailTemplateService;
+import com.agro.feature.email.templates.service.EmailTemplateService;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;

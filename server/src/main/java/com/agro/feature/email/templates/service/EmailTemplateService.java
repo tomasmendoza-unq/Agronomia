@@ -1,4 +1,4 @@
-package com.agro.feature.email.templates.service.service;
+package com.agro.feature.email.templates.service;
 
 import java.util.Map;
 
