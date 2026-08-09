@@ -4,8 +4,7 @@ public enum Role {
     DUENIO("Dueño"),
     FACTURACION("Facturación"),
     VENDEDOR("Vendedor"),
-    ADMINISTRADOR("Administrador"),
-    VISITANTE("Visitante");
+    ADMINISTRADOR("Administrador");
 
     private final String nombre;
 
