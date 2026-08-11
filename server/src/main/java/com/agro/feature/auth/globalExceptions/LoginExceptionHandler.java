@@ -4,6 +4,7 @@ import com.agro.core.api.Api;
 import com.agro.shared.dtos.error.CauseError;
 import com.agro.shared.dtos.error.RestErrorResponse;
 import com.agro.shared.persistence.excepitons.NotFoundEntityException;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -20,7 +21,7 @@ public class LoginExceptionHandler {
                 Api.AUTH + Api.LOGIN,
                 CauseError.INVALID_CREDENTIALS
         );
-        return ResponseEntity.badRequest().body(error);
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(error);
     }
 
     @ExceptionHandler(AuthenticationException.class)
@@ -31,6 +32,6 @@ public class LoginExceptionHandler {
                 Api.AUTH + Api.LOGIN,
                 CauseError.INVALID_CREDENTIALS
         );
-        return ResponseEntity.badRequest().body(error);
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(error);
     }
 }

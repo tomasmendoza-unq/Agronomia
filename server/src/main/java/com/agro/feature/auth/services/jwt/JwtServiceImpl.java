@@ -1,6 +1,6 @@
 package com.agro.feature.auth.services.jwt;
 
-import com.agro.feature.auth.services.jwt.exceptions.AuthenticationException;
+import com.agro.feature.auth.services.jwt.exceptions.TokenException;
 import com.agro.feature.auth.services.userDetails.UserCredentials;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
@@ -48,16 +48,16 @@ public class JwtServiceImpl implements JwtService {
             return Long.parseLong(sub);
         }
         catch(ExpiredJwtException e) {
-            throw new AuthenticationException("El token se encuentra expirado");
+            throw new TokenException("El token se encuentra expirado");
         }
         catch(MalformedJwtException | IllegalArgumentException e) {
-            throw new AuthenticationException("El token está mal formado");
+            throw new TokenException("El token está mal formado");
         }
         catch(UnsupportedJwtException e) {
-            throw new AuthenticationException("El formato del token no es soportado");
+            throw new TokenException("El formato del token no es soportado");
         }
         catch(StringIndexOutOfBoundsException | NullPointerException e) {
-            throw new AuthenticationException("El token se encuentra vacio");
+            throw new TokenException("El token se encuentra vacio");
         }
     }
 
