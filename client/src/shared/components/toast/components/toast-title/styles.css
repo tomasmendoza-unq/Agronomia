@@ -25,6 +25,11 @@
     justify-content: flex-end;
 }
 
+.toast-header-container_close figure {
+    display: grid;
+    place-items: center;
+}
+
 .toast-header-container_close figure img{
     cursor: pointer;
 }

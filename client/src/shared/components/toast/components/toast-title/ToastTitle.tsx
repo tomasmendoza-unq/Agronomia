@@ -1,5 +1,5 @@
 import './styles.css';
-import closeIcon from '@/assets/toast/close icon.svg';
+import closeIcon from '@/assets/toast/close-item.svg'
 import { css } from '@styled-system/css';
 import type { SystemStyleObject } from '@styled-system/types';
 
