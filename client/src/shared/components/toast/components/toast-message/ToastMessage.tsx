@@ -1,4 +1,5 @@
 import { css } from "@styled-system/css";
+import { token } from "@styled-system/tokens";
 
 type ToastMessageProp = {
     message: string
@@ -6,7 +7,7 @@ type ToastMessageProp = {
 
 const ToastMessage = ({message}: ToastMessageProp) => {
     return (
-        <p className = {css({ color: '#FFF', fontSize: '14px'})}>{message}</p>
+        <p className = {css({ color: token("colors.textSubtle"), fontSize: '14px'})}>{message}</p>
     )
 }
 

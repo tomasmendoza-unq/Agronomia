@@ -8,7 +8,7 @@ const tokenColors = defineTokens.colors({
     danger: { value: "#E11D48" },
     success: { value: "#0C9588" },
     primaryColorSubtle: { value: "#638BAF" },
-    textSubtle: { value: "#52525B" },
+    textSubtle: { value: "#71717A" },
 });
 
 export default tokenColors;
