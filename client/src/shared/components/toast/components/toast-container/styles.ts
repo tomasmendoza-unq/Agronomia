@@ -15,7 +15,7 @@ const toastContainer = css.raw({
         md: '26%'
     },
     height: '14%',
-    minHeight: '146px',
+    minHeight: '100px',
     borderRadius: '20px',
     animation: `sliceInY ${token("durations.medium")} forwards`
 });
