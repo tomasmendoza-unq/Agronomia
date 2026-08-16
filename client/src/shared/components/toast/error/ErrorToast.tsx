@@ -23,7 +23,7 @@ const ErrorToast = ({message, link, onClose}: ErrorToastProps) => {
     }
 
     return (
-        <ToastContainer bg = {css.raw({ bg: token("colors.primaryColor") })} isActive = {isActive}>
+        <ToastContainer color = {css.raw({ bg: token("colors.danger") })} isActive = {isActive}>
             <ToastHeader 
                 title = "Error" 
                 icon = {errorIcon} 

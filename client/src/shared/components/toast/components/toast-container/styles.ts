@@ -6,6 +6,8 @@ const toastContainer = css.raw({
     bottom: '24px',
     right: '24px',
     display: 'grid',
+    gridTemplateColumns: '2% 98%',
+    bg: '#FFF',
     placeItems: 'center',
     minWidth: '265px',
     width: {
@@ -16,7 +18,12 @@ const toastContainer = css.raw({
     minHeight: '146px',
     borderRadius: '20px',
     animation: `sliceInY ${token("durations.medium")} forwards`
-})
+});
+
+const toastColorContainer = css.raw({
+    width: '100%',
+    height: '100%'
+});
 
 const toastSubContainer = css.raw({
     display: 'flex',
@@ -28,10 +35,11 @@ const toastSubContainer = css.raw({
 });
 
 export const toastContainerSlot = {
-    slots: ["container", "subcontainer"],
+    slots: ["container", "subcontainer", "toastColorContainer"],
     base: {
         container: toastContainer,
-        subcontainer: toastSubContainer
+        subcontainer: toastSubContainer,
+        toastColorContainer: toastColorContainer
     },
     variants: {
         show: {

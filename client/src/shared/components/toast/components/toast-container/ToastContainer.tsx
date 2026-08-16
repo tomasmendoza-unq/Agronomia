@@ -3,19 +3,20 @@ import { styles } from "./styles"
 import type { BackgroundColor } from "@/shared/styles/background-color"
 
 type ToastContainerProps = {
-    bg: BackgroundColor
+    color: BackgroundColor
     isActive: boolean
     children: React.ReactNode
 }
 
-const ToastContainer = ({bg, isActive, children}: ToastContainerProps) => {
+const ToastContainer = ({color, isActive, children}: ToastContainerProps) => {
 
     const slot = styles(isActive);
-    const container = css(slot.container, bg);
+    const container = css(slot.container);
     const subContainer = css(slot.subcontainer);
 
     return (
         <div className = {container}>
+            <div className = {css(slot.toastColorContainer, color)} />
             <div className = {subContainer}>
                 {children}
             </div>

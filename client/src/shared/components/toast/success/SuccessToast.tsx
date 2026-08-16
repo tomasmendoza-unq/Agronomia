@@ -23,7 +23,7 @@ const SuccessToast = ({ message, link, onClose }: SuccessToastProps) => {
 
     return (
         <ToastContainer
-            bg={css.raw({ bg: token("colors.success") })}
+            color={css.raw({ bg: token("colors.success") })}
             isActive={isActive}
         >
             <ToastHeader
