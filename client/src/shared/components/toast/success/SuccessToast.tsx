@@ -30,6 +30,7 @@ const SuccessToast = ({ message, link, onClose }: SuccessToastProps) => {
                 title="Hecho"
                 icon={successIcon}
                 onActive={handleActive}
+                color = {css.raw({ color: token("colors.success")})}
             />
             <ToastMessage message={message} />
             {link && <a href={link.route}>{link.linkDescription}</a>}
