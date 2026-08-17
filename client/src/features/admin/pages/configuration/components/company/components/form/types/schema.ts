@@ -7,8 +7,11 @@ const schema = z.object({
     legalName: z.string().min(1, "La razón social es requerida"),
     cuit: z.string().min(1, "El CUIT es requerido"),
     logo: z
-        .instanceof(File)
-        .refine((file) => ACCEPTED_IMAGE_TYPES.includes(file.type), {
+        .custom<FileList>()
+        .refine((files) => files?.length === 1, {
+            message: "El logo es requerido",
+        })
+        .refine((files) => ACCEPTED_IMAGE_TYPES.includes(files?.[0]?.type), {
             message: "El logo debe ser JPG, PNG o WEBP",
         }),
 });

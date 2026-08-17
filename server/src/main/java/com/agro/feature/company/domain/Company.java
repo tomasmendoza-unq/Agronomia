@@ -41,4 +41,11 @@ public class Company {
     public void addUser(User user) {
         users.add(user);
     }
+
+    public void update(Company model) {
+        this.name = model.getName();
+        this.legalName = model.getLegalName();
+        this.cuit = model.getCuit();
+        this.logo = model.getLogo();
+    }
 }

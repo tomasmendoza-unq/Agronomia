@@ -3,6 +3,7 @@ package com.agro.feature.company.service.impl;
 import com.agro.core.ContainerPostgresql;
 import com.agro.feature.company.contracts.CompanyDataService;
 import com.agro.feature.company.domain.Company;
+import com.agro.feature.company.domain.exceptions.IsNotAOwnerOfCompany;
 import com.agro.feature.company.service.CompanyService;
 import com.agro.feature.user.domain.User;
 import com.agro.feature.user.domain.valueObjects.EmailValue;
@@ -71,6 +72,50 @@ class CompanyServiceImplTest {
         assertEquals("Matilda SA", recovered.getLegalName());
         assertEquals(company.getId(), recovered.getId());
     }
+
+    @Test
+    public void editCompany_whenAdminBelongsToCompany_updatesCompany(){
+        User saved = orchestrator.register(user, company.getId());
+
+        Company model = Company.builder()
+                .cuit("99999999")
+                .logo("newLogo.jpg")
+                .name("Matilda Renovada")
+                .legalName("Matilda Renovada SA")
+                .build();
+
+        Company updated = companyDataService.editCompany(saved.getId(), model, company.getId());
+
+        assertEquals("99999999", updated.getCuit());
+        assertEquals("newLogo.jpg", updated.getLogo());
+        assertEquals("Matilda Renovada", updated.getName());
+        assertEquals("Matilda Renovada SA", updated.getLegalName());
+        assertEquals(company.getId(), updated.getId());
+    }
+
+    @Test
+    public void editCompany_whenAdminDoesNotBelongToCompany_throwsException(){
+        Company otherCompany = companyService.save(Company.builder()
+                .cuit("00000000")
+                .logo("other.jpg")
+                .name("Otra Empresa")
+                .legalName("Otra Empresa SA")
+                .build());
+
+        User saved = orchestrator.register(user, company.getId());
+
+        Company model = Company.builder()
+                .cuit("99999999")
+                .logo("newLogo.jpg")
+                .name("Intento Ajeno")
+                .legalName("Intento Ajeno SA")
+                .build();
+
+        assertThrows(IsNotAOwnerOfCompany.class, () ->
+                companyDataService.editCompany(saved.getId(), model, otherCompany.getId())
+        );
+    }
+
 
     @AfterEach
     public void tearDown(){
