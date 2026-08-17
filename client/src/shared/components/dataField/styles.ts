@@ -9,7 +9,7 @@ export const fieldContainer = css({
 
 export const labelStyle = css({
     fontSize: "12px",
-    fontWeight: "600",
+    fontWeight: "900",
     color: "#9CA3AF",
     lineHeight: "1.2",
 });

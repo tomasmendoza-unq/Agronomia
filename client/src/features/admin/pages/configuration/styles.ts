@@ -14,10 +14,9 @@ export const h1 = css({
 
 export const contentGrid = css({
     display: "grid",
-    // Columna izquierda fija de 320px, columna derecha ocupa el resto (1fr)
     gridTemplateColumns: "320px 1fr",
     gap: "8",
-    alignItems: "start", // Alinea ambas secciones en la parte superior
+    alignItems: "start",
     "@media (max-width: 1024px)": {
         gridTemplateColumns: "1fr",
     },

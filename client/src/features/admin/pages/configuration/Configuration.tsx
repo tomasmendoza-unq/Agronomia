@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import CompanyDataCard from "@/features/company/components/companyDataCard/CompanyDataCard";
+import CompanyDataCard from "./components/company/CompanyDataCard";
 import { h1, panel, contentGrid } from "./styles";
 import Modal from "@/shared/components/modal/Modal";
 import SectionPanel from "@/shared/components/section-panel/SectionPanel";
-import TableUsers from "./components/TableUsers";
+import TableUsers from "./components/table/TableUsers";
 import CreateUser, {
     type CreateUserFormData,
 } from "./components/form/CreateUser";

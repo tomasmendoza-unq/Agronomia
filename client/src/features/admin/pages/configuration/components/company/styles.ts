@@ -7,3 +7,10 @@ export const editButton = css({
     color: "#7AA12B",
     transition: "background-color 0.3s ease",
 });
+
+export const branch = css({
+    display: "flex",
+    flexDirection: "column",
+    gap: "1",
+    marginBottom: "3",
+});
