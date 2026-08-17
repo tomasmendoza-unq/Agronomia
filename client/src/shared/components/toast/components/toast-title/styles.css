@@ -13,7 +13,7 @@
 
 .toast-header-container_title p {
     font-size: 16px;
-    color: #FFF;
+    font-weight: bold;
 }
 
 .toast-header-container_title figure {
@@ -23,6 +23,11 @@
 .toast-header-container_close {
     display: flex;
     justify-content: flex-end;
+}
+
+.toast-header-container_close figure {
+    display: grid;
+    place-items: center;
 }
 
 .toast-header-container_close figure img{

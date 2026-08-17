@@ -23,13 +23,14 @@ const SuccessToast = ({ message, link, onClose }: SuccessToastProps) => {
 
     return (
         <ToastContainer
-            bg={css.raw({ bg: token("colors.success") })}
+            color={css.raw({ bg: token("colors.success") })}
             isActive={isActive}
         >
             <ToastHeader
                 title="Hecho"
                 icon={successIcon}
                 onActive={handleActive}
+                color = {css.raw({ color: token("colors.success")})}
             />
             <ToastMessage message={message} />
             {link && <a href={link.route}>{link.linkDescription}</a>}

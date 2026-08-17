@@ -11,11 +11,12 @@ type ToastContainerProps = {
 const ToastContainer = ({bg, isActive, children}: ToastContainerProps) => {
 
     const slot = styles(isActive);
-    const container = css(slot.container, bg);
+    const container = css(slot.container);
     const subContainer = css(slot.subcontainer);
 
     return (
         <div className = {container}>
+            <div className = {css(slot.toastColorContainer, bg)} />
             <div className = {subContainer}>
                 {children}
             </div>
