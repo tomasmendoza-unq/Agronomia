@@ -1,6 +1,8 @@
 package com.agro.feature.user.services;
 
 import com.agro.core.ContainerPostgresql;
+import com.agro.feature.branch.domain.Branch;
+import com.agro.feature.branch.persistence.BranchDAO;
 import com.agro.feature.company.domain.Company;
 import com.agro.feature.company.service.CompanyService;
 import com.agro.feature.image.domain.Imagen;
@@ -8,8 +10,6 @@ import com.agro.feature.user.domain.valueObjects.EmailValue;
 import com.agro.feature.user.orchestrator.RegisterOrchestrator;
 import com.agro.shared.entities.rol.Role;
 import com.agro.feature.user.domain.User;
-import com.agro.feature.user.persistence.daos.UserDAO;
-import com.agro.feature.user.persistence.repositories.UserRepository;
 import com.agro.shared.entities.userAuthenticate.UserAuthenticate;
 import com.agro.shared.service.ResetService;
 import org.junit.jupiter.api.AfterEach;
@@ -36,6 +36,9 @@ class UserServiceImplTest {
     private RegisterOrchestrator orchestrator;
 
     @Autowired
+    private BranchDAO  branchDAO;
+
+    @Autowired
     private CompanyService companyService;
 
     @Autowired
@@ -48,8 +51,15 @@ class UserServiceImplTest {
 
     private Company company;
 
+    private Branch branch;
+
     @BeforeEach
     void setUp() {
+        branch = branchDAO.save(Branch.builder()
+                .city("Berlin")
+                .direction("street 123")
+                .build());
+
         Imagen imagen = Imagen.builder()
                 .url("https://res.cloudinary.com/dvkvlpq07/image/upload/v1785440325/logo_tfzoil.jpg")
                 .publicId("123123")
@@ -68,7 +78,7 @@ class UserServiceImplTest {
                 .role(Role.DUENIO)
                 .build();
 
-        user = orchestrator.register(user, company.getId());
+        user = orchestrator.register(user, company.getId(), branch.getId());
     }
 
     @Test
@@ -86,7 +96,7 @@ class UserServiceImplTest {
                 .email(new EmailValue("colega@gmail.com"))
                 .role(Role.VENDEDOR)
                 .build();
-        orchestrator.register(colega, company.getId());
+        orchestrator.register(colega, company.getId(), branch.getId());
 
         Imagen imagen = Imagen.builder()
                 .url("otro-logo")
@@ -105,7 +115,7 @@ class UserServiceImplTest {
                 .email(new EmailValue("otro@gmail.com"))
                 .role(Role.VENDEDOR)
                 .build();
-        orchestrator.register(usuarioOtraEmpresa, otraCompany.getId());
+        orchestrator.register(usuarioOtraEmpresa, otraCompany.getId(),  branch.getId());
 
         Page<User> result = service.findAll(0, 10, user.getId());
 
@@ -122,7 +132,7 @@ class UserServiceImplTest {
                     .email(new EmailValue("user" + i + "@gmail.com"))
                     .role(Role.VENDEDOR)
                     .build();
-            orchestrator.register(u, company.getId());
+            orchestrator.register(u, company.getId(),  branch.getId());
         }
         Page<User> firstPage = service.findAll(0, 3, user.getId());
 
@@ -150,7 +160,7 @@ class UserServiceImplTest {
                 .email(new EmailValue("ajeno@gmail.com"))
                 .role(Role.VENDEDOR)
                 .build();
-        orchestrator.register(usuarioOtraEmpresa, otraCompany.getId());
+        orchestrator.register(usuarioOtraEmpresa, otraCompany.getId(),  branch.getId());
 
         Page<User> result = service.findAll(0, 10, user.getId());
 

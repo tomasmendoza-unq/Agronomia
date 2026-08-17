@@ -6,4 +6,5 @@ export type RegisterRequest = {
     rol: Role;
     email: string;
     id_company: number;
+    id_branch: number;
 };

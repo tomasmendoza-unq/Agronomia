@@ -1,6 +1,8 @@
 package com.agro.feature.company.service.impl;
 
 import com.agro.core.ContainerPostgresql;
+import com.agro.feature.branch.domain.Branch;
+import com.agro.feature.branch.persistence.BranchDAO;
 import com.agro.feature.company.contracts.CompanyDataService;
 import com.agro.feature.company.domain.Company;
 import com.agro.feature.company.domain.exceptions.IsNotAOwnerOfCompany;
@@ -34,6 +36,9 @@ class CompanyServiceImplTest {
     private CompanyService companyService;
 
     @Autowired
+    private BranchDAO branchDAO;
+
+    @Autowired
     private CompanyDataService  companyDataService;
 
     @Autowired
@@ -46,8 +51,14 @@ class CompanyServiceImplTest {
 
     private User user;
 
+    private Branch branch;
+
     @BeforeEach
     void setup(){
+        branch = branchDAO.save(Branch.builder()
+                .city("Berlin")
+                .direction("street 123")
+                .build());
 
         Imagen imagen = Imagen.builder()
                 .url("img.jpg")
@@ -69,7 +80,7 @@ class CompanyServiceImplTest {
 
     @Test
     public void getCompanyByUserId(){
-        User saved = orchestrator.register(user, company.getId());
+        User saved = orchestrator.register(user, company.getId(),  branch.getId());
 
         Company recovered = companyDataService.getCompanyByUserId(saved.getId());
 
@@ -82,7 +93,7 @@ class CompanyServiceImplTest {
 
     @Test
     public void editCompany_whenAdminBelongsToCompany_updatesCompany(){
-        User saved = orchestrator.register(user, company.getId());
+        User saved = orchestrator.register(user, company.getId(),  branch.getId());
 
 
         Imagen imagen = Imagen.builder()
@@ -120,7 +131,7 @@ class CompanyServiceImplTest {
                 .legalName("Otra Empresa SA")
                 .build());
 
-        User saved = orchestrator.register(user, company.getId());
+        User saved = orchestrator.register(user, company.getId(),  branch.getId());
 
         Imagen imagen2 = Imagen.builder()
                 .url("newLogo.jpg")

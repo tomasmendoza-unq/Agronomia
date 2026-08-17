@@ -19,27 +19,17 @@ import java.util.List;
 @Profile("dev")
 public class DataSeederImpl implements DataSeeder {
 
-    private final CompanyService companyService;
 
     private final UserService userService;
 
 
-    public DataSeederImpl(CompanyService companyService, UserService userService) {
-        this.companyService = companyService;
+    public DataSeederImpl( UserService userService) {
         this.userService = userService;
 
     }
 
     @Override
     public void run(String... args) throws Exception {
-        User user = User.builder()
-                .name("Tomas")
-                .surname("Mendoza")
-                .email(new EmailValue("n2n@gmail.com"))
-                .role(Role.DUENIO)
-                .password("123")
-                .build();
-
         Branch branch = Branch.builder()
                 .city("Berlin")
                 .direction("street 123")
@@ -49,6 +39,16 @@ public class DataSeederImpl implements DataSeeder {
                 .city("Argentina")
                 .direction("street 123")
                 .build();
+
+        User user = User.builder()
+                .name("Tomas")
+                .surname("Mendoza")
+                .email(new EmailValue("n2n@gmail.com"))
+                .branch(branch)
+                .role(Role.DUENIO)
+                .password("123")
+                .build();
+
 
         Imagen imagen = Imagen.builder()
                 .url("https://res.cloudinary.com/dvkvlpq07/image/upload/v1785440325/logo_tfzoil.jpg")

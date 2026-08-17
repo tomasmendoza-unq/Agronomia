@@ -16,7 +16,9 @@ public record UserRequest(
         @NotBlank
         String email,
         @NotBlank
-        Long id_company
+        Long id_company,
+        @NotBlank
+        Long id_branch
 ) {
     public User toModel() {
         return User.builder()

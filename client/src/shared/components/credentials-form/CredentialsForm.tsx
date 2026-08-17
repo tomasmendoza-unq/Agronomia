@@ -2,7 +2,7 @@ import Footer from "./components/footer/Footer";
 import InsertForm from "../form/InsertForm";
 import type { CredentialsFormProps } from "./credentials-form";
 import { styles } from "./styles";
-import type { Schema } from "../form/types/shema";
+import type { Schema } from "./types/shema";
 
 function CredentialsForm<T extends Schema>({
     title,

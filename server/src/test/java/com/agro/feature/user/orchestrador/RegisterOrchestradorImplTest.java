@@ -1,6 +1,8 @@
 package com.agro.feature.user.orchestrador;
 
 import com.agro.core.ContainerPostgresql;
+import com.agro.feature.branch.domain.Branch;
+import com.agro.feature.branch.persistence.BranchDAO;
 import com.agro.feature.company.domain.Company;
 import com.agro.feature.company.service.CompanyService;
 
@@ -35,6 +37,10 @@ public class RegisterOrchestradorImplTest {
     private RegisterOrchestrator orchestrator;
 
     @Autowired
+    private BranchDAO branchDAO;
+
+
+    @Autowired
     private CompanyService companyService;
 
     @Autowired
@@ -44,8 +50,15 @@ public class RegisterOrchestradorImplTest {
 
     private Company company;
 
+    private Branch branch;
+
     @BeforeEach
     public void setUp() {
+        branch = branchDAO.save(Branch.builder()
+                .city("Berlin")
+                .direction("street 123")
+                .build());
+
         Imagen imagen = Imagen.builder()
                 .url("otro-logo")
                 .publicId("123123")
@@ -65,7 +78,7 @@ public class RegisterOrchestradorImplTest {
 
     @Test
     public void testRegisterUser() {
-        User saved = orchestrator.register(user, company.getId());
+        User saved = orchestrator.register(user, company.getId(), branch.getId());
 
         companyService.getCompanyById(company.getId());
 
@@ -77,14 +90,14 @@ public class RegisterOrchestradorImplTest {
 
     @Test
     public void testRegisterFailedEmailDuplicated(){
-        orchestrator.register(user, company.getId());
+        orchestrator.register(user, company.getId(), branch.getId());
         User userMailDuplicated = User.builder()
                 .name("12312312")
                 .email(new EmailValue("n2n@gmail.com"))
                 .role(Role.DUENIO)
                 .build();
 
-        assertThrows(EmailDuplicatedException.class,() -> orchestrator.register(userMailDuplicated,company.getId()));
+        assertThrows(EmailDuplicatedException.class,() -> orchestrator.register(userMailDuplicated,company.getId(), branch.getId()));
     }
 
     @AfterEach

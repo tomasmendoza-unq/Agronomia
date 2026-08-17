@@ -30,7 +30,7 @@ public class JwtConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth ->
                         auth
-//                                .requestMatchers("/" + Api.AUTH + Api.LOGIN).permitAll()
+                                .requestMatchers("/" + Api.AUTH + Api.LOGIN).permitAll()
                                 .anyRequest().permitAll())
                 .exceptionHandling(ex -> ex.authenticationEntryPoint(entrypoint))
                 .addFilterAfter(filter, UsernamePasswordAuthenticationFilter.class);
