@@ -4,7 +4,7 @@ import { styles } from "./styles";
 import { css } from "@styled-system/css";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import type { InferData, Schema } from "../../types/shema";
+import type { InferData, Schema } from "../credentials-form/types/shema";
 import { token } from "@styled-system/tokens";
 import Button from "@/shared/components/button/Button";
 
@@ -31,7 +31,14 @@ function InsertForm<T extends Schema>({
             onSubmit={handleSubmit(handleForm)}
             className={css(form)}
         >
-            {inputsData.map((i) => Input(i, input, register, errors[i.name]))}
+            {inputsData.map((i) =>
+                Input({
+                    input: i,
+                    styles: input,
+                    register,
+                    error: errors[i.name],
+                }),
+            )}
             <Button
                 type="submit"
                 fullWidth

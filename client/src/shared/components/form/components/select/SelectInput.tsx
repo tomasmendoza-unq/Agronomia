@@ -11,7 +11,7 @@ import type {
     UseFormRegister,
 } from "react-hook-form";
 import type { output } from "zod";
-import ErrorMessage from "../components/error-message/ErrorMessage";
+import ErrorMessage from "../../../../form/components/error/ErrorMessage";
 import { styles } from "./styles";
 
 interface SelectInputProps<T extends Schema> {
