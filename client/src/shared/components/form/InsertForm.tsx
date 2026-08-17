@@ -13,6 +13,7 @@ function InsertForm<T extends Schema>({
     buttonData,
     schema,
     onSubmit,
+    children,
 }: InsertFormProps<T>) {
     const {
         register,
@@ -24,7 +25,7 @@ function InsertForm<T extends Schema>({
 
     const handleForm = (data: InferData<T>) => onSubmit(data);
 
-    const { form, input } = styles;
+    const { form, input, actions } = styles;
 
     return (
         <form
@@ -39,14 +40,17 @@ function InsertForm<T extends Schema>({
                     error: errors[i.name],
                 }),
             )}
-            <Button
-                type="submit"
-                fullWidth
-                color={token("colors.primaryColor")}
-                hoverColor={token("colors.primaryColorHover")}
-            >
-                {buttonData.text}
-            </Button>
+            <div className={css(actions)}>
+                {children}
+                <Button
+                    type="submit"
+                    fullWidth
+                    color={token("colors.primaryColor")}
+                    hoverColor={token("colors.primaryColorHover")}
+                >
+                    {buttonData.text}
+                </Button>
+            </div>
         </form>
     );
 }

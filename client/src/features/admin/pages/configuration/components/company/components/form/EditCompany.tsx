@@ -2,13 +2,23 @@ import InsertForm from "@/shared/components/form/InsertForm";
 import schema from "./types/schema";
 import createUserInputs from "./types/inputs";
 import type { InferData } from "@/shared/components/credentials-form/types/shema";
-import { usePutCompanyData } from "@/features/admin/hook/use-put-company";
 import type { Company } from "@/features/admin/types/Company";
-import type { CompanyEdit } from "../../../../../../api/dto/CompanyEdit";
+import type { CompanyEdit } from "@/features/admin/api/dto/CompanyEdit";
+import Button from "@/shared/components/button/Button";
+import { token } from "@styled-system/tokens";
+import { h1 } from "./styles";
 
-export const EditCompany = ({ company }: { company: Company }) => {
-    const { editCompany } = usePutCompanyData();
+interface EditCompanyProps {
+    company: Company;
+    onSubmit: (companyEdit: CompanyEdit) => Promise<void>;
+    onCancel: () => void;
+}
 
+export const EditCompany = ({
+    company,
+    onSubmit,
+    onCancel,
+}: EditCompanyProps) => {
     const handleSubmit = (data: InferData<typeof schema>) => {
         const companyEdit: CompanyEdit = {
             id: company.id,
@@ -18,15 +28,29 @@ export const EditCompany = ({ company }: { company: Company }) => {
             logo: data.logo[0],
         };
 
-        editCompany(companyEdit);
+        return onSubmit(companyEdit);
     };
 
     return (
-        <InsertForm
-            inputsData={createUserInputs}
-            buttonData={{ text: "Guardar" }}
-            schema={schema}
-            onSubmit={handleSubmit}
-        />
+        <section>
+            <h1 className={h1}>Editar datos de empresa</h1>
+            <InsertForm
+                inputsData={createUserInputs}
+                buttonData={{ text: "Guardar cambios" }}
+                schema={schema}
+                onSubmit={handleSubmit}
+            >
+                <Button
+                    type="button"
+                    color="transparent"
+                    hoverColor="transparent"
+                    borderColor={token("colors.primaryColor")}
+                    textColor={token("colors.primaryColorSubtle")}
+                    onClick={onCancel}
+                >
+                    Cancelar
+                </Button>
+            </InsertForm>
+        </section>
     );
 };

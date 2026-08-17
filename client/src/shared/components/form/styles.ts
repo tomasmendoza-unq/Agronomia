@@ -24,11 +24,20 @@ const input = css.raw({
     outline: "none",
 });
 
+const actions = css.raw({
+    ...elementContainer,
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    gap: "0.75rem",
+});
+
 export const styles = sva({
-    slots: ["form", "input", "elementContainer"],
+    slots: ["form", "input", "elementContainer", "actions"],
     base: {
         form: form,
         input: input,
         elementContainer: elementContainer,
+        actions: actions,
     },
 }).raw();
