@@ -4,9 +4,9 @@ import { styles } from "./styles";
 import { css } from "@styled-system/css";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import type { InferData, Schema } from "../credentials-form/types/shema";
 import { token } from "@styled-system/tokens";
 import Button from "@/shared/components/button/Button";
+import type { InferData, Schema } from "../credentials-form/types/shema";
 
 function InsertForm<T extends Schema>({
     inputsData,

@@ -11,7 +11,7 @@ import type {
     UseFormRegister,
 } from "react-hook-form";
 import type { output } from "zod";
-import type { InferData, Schema } from "../../../credentials-form/types/shema";
+import type { InferData, Schema } from "../../types/shema";
 import ErrorMessage from "../error/ErrorMessage";
 
 interface FileInputProps<T extends Schema> {

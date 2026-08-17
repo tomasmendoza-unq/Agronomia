@@ -1,7 +1,6 @@
-import type { SelectInputData } from "../../../types/input/credentials-input";
 import { css } from "@styled-system/css";
 import type { SystemStyleObject } from "@styled-system/types";
-import type { InferData, Schema } from "../../../types/shema";
+
 import type {
     DeepRequired,
     FieldError,
@@ -11,8 +10,14 @@ import type {
     UseFormRegister,
 } from "react-hook-form";
 import type { output } from "zod";
-import ErrorMessage from "../../../../form/components/error/ErrorMessage";
+
 import { styles } from "./styles";
+import type {
+    InferData,
+    Schema,
+} from "@/shared/components/credentials-form/types/shema";
+import type { SelectInputData } from "@/shared/components/credentials-form/types/input/credentials-input";
+import ErrorMessage from "../error/ErrorMessage";
 
 interface SelectInputProps<T extends Schema> {
     input: SelectInputData;

@@ -5,6 +5,7 @@ import SupplierCard from "@/shared/components/supplierCard/SupplierCard";
 import type { Company } from "@/features/admin/types/Company";
 import { useState } from "react";
 import Modal from "@/shared/components/modal/Modal";
+import { EditCompany } from "./components/form/EditCompany";
 
 interface CompanyDataCardProps {
     companyData: Company;
@@ -37,7 +38,7 @@ const CompanyDataCard = ({ companyData }: CompanyDataCardProps) => {
                 isOpen={isEditing}
                 onClose={() => setIsEditing(false)}
             >
-                <div></div>
+                <EditCompany />
             </Modal>
         </SupplierCard>
     );

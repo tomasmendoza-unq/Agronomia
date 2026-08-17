@@ -1,6 +1,5 @@
 import type { InputData } from "../../credentials-form/types/input/credentials-input";
 import TextInput from "../components/text/TextInput";
-import SelectInput from "../../credentials-form/components/input/select/SelectInput";
 import FileInput from "../components/file/FileInput";
 import type { SystemStyleObject } from "@styled-system/types";
 import type {
@@ -10,8 +9,9 @@ import type {
     Merge,
     UseFormRegister,
 } from "react-hook-form";
-import type { InferData, Schema } from "../../credentials-form/types/shema";
 import type { output } from "zod";
+import type { InferData, Schema } from "../../credentials-form/types/shema";
+import SelectInput from "../components/select/SelectInput";
 
 type FieldErrorType<T extends Schema> =
     | FieldError
