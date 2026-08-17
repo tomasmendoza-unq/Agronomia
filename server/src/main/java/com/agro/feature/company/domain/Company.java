@@ -32,7 +32,7 @@ public class Company {
     private String logo;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Branch> branches;
+    private List<Branch> branches = new ArrayList<>();
 
     @OneToMany(fetch = FetchType.EAGER,  cascade = CascadeType.ALL)
     @Builder.Default
