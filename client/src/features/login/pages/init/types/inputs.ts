@@ -1,20 +1,24 @@
-import type { InputData } from "../../../../../shared/components/credentials-form/types/input/credentials-input";
+import type { InputRow } from "@/shared/components/form/insert-form";
 
-const loginInputs: InputData[] = [
-    {
-        type: "text",
-        name: "email",
-        title: "Email",
-        placeholder: "Ingrese su correo",
-        id: 0,
-    },
-    {
-        type: "text",
-        name: "password",
-        title: "Contraseña",
-        placeholder: "Ingrese su contraseña",
-        id: 1,
-    },
+const loginInputs: InputRow[] = [
+    [
+        {
+            type: "text",
+            name: "email",
+            title: "Email",
+            placeholder: "Ingrese su correo",
+            id: 0,
+        },
+    ],
+    [
+        {
+            type: "text",
+            name: "password",
+            title: "Contraseña",
+            placeholder: "Ingrese su contraseña",
+            id: 1,
+        },
+    ],
 ];
 
 export default loginInputs;

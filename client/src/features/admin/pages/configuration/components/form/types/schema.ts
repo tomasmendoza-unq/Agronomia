@@ -9,6 +9,7 @@ const schema = z.object({
         .email("El correo electrónico no es válido")
         .min(1, "El correo es requerido"),
     rol: z.enum(roles, { message: "Selecciona un rol válido" }),
+    branch: z.string().min(1, "Selecciona una sucursal"),
 });
 
 export default schema;

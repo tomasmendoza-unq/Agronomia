@@ -71,7 +71,7 @@ public class UserControllerREST {
     })
     @PreAuthorize("hasRole('DUENIO')")
     public ResponseEntity<UserResponseSimple> register(@RequestBody UserRequest request) {
-        User user = registerOrchestrator.register(request.toModel(), request.id_company());
+        User user = registerOrchestrator.register(request.toModel(), request.id_company(), request.id_branch());
 
         return ResponseEntity.ok(UserResponseSimple.fromModel(user));
     }

@@ -15,6 +15,18 @@ const elementContainer = css.raw({
     minHeight: "38px",
 });
 
+const row = css.raw({
+    display: "flex",
+    flexDirection: "row",
+    width: "90%",
+    gap: "1rem",
+    "& > *": {
+        flex: 1,
+        minWidth: 0,
+        width: "100%",
+    },
+});
+
 const input = css.raw({
     ...elementContainer,
     padding: "8px",
@@ -33,11 +45,12 @@ const actions = css.raw({
 });
 
 export const styles = sva({
-    slots: ["form", "input", "elementContainer", "actions"],
+    slots: ["form", "input", "elementContainer", "row", "actions"],
     base: {
         form: form,
         input: input,
         elementContainer: elementContainer,
+        row: row,
         actions: actions,
     },
 }).raw();

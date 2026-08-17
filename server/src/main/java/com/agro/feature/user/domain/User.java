@@ -39,7 +39,7 @@ public class User {
     private Role role;
 
     @Getter
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     private Branch branch;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
@@ -98,5 +98,9 @@ public class User {
 
     public String getBranchDirection() {
         return branch.getFullDirection();
+    }
+
+    public void addBranch(Branch branch) {
+        setBranch(branch);
     }
 }

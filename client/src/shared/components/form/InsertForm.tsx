@@ -32,14 +32,21 @@ function InsertForm<T extends Schema>({
             onSubmit={handleSubmit(handleForm)}
             className={css(form)}
         >
-            {inputsData.map((i) =>
-                Input({
-                    input: i,
-                    styles: input,
-                    register,
-                    error: errors[i.name],
-                }),
-            )}
+            {inputsData.map((row, rowIndex) => (
+                <div
+                    key={rowIndex}
+                    className={css(styles.row)}
+                >
+                    {row.map((i) =>
+                        Input({
+                            input: i,
+                            styles: input,
+                            register,
+                            error: errors[i.name],
+                        }),
+                    )}
+                </div>
+            ))}
             <div className={css(actions)}>
                 {children}
                 <Button
