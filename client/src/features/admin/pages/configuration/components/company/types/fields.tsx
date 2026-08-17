@@ -1,22 +1,33 @@
-import type { CompanyData } from "@/features/company/types/CompanyData.t";
+import type { Company } from "@/features/admin/types/Company";
 import WrapLogo from "@/shared/components/wrapLogo/WrapLogo";
 import type { ReactNode } from "react";
+import { branch } from "../styles";
 
 interface CompanyField {
     label: string;
     value: string | ReactNode;
 }
 
-export const getCompanyFields = (companyData: CompanyData): CompanyField[] => {
-    const { name, legalName, cuit, logo } = companyData;
-
+export const getCompanyFields = (company: Company): CompanyField[] => {
     return [
-        { label: "Nombre", value: name },
-        { label: "Razón Social", value: legalName },
-        { label: "CUIT", value: cuit },
+        { label: "Nombre", value: company.name },
+        { label: "Razón Social", value: company.legalName },
+        { label: "CUIT", value: company.cuit },
         {
             label: "Logo",
-            value: <WrapLogo img={logo} />,
+            value: <WrapLogo img={company.logo} />,
+        },
+        {
+            label: "Sucursales",
+            value: (
+                <div className={branch}>
+                    {company.branches.map((branch) => (
+                        <span key={branch.id}>
+                            {branch.city} - {branch.street}
+                        </span>
+                    ))}
+                </div>
+            ),
         },
     ];
 };
