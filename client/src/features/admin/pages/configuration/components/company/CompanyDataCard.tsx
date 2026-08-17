@@ -38,7 +38,7 @@ const CompanyDataCard = ({ companyData }: CompanyDataCardProps) => {
                 isOpen={isEditing}
                 onClose={() => setIsEditing(false)}
             >
-                <EditCompany />
+                <EditCompany company={companyData} />
             </Modal>
         </SupplierCard>
     );

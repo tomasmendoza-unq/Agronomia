@@ -78,7 +78,7 @@ public class User {
     }
 
     public String getLogo() {
-        return getCompany().getLogo();
+        return getCompany().getLogo().getUrl();
     }
 
     public String getNameRol() {

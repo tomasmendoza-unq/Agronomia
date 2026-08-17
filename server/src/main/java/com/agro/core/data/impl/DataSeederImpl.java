@@ -3,6 +3,7 @@ package com.agro.core.data.impl;
 import com.agro.feature.branch.domain.Branch;
 import com.agro.feature.company.domain.Company;
 import com.agro.feature.company.service.CompanyService;
+import com.agro.feature.image.domain.Imagen;
 import com.agro.feature.user.domain.User;
 import com.agro.feature.user.domain.valueObjects.EmailValue;
 import com.agro.feature.user.services.UserService;
@@ -49,13 +50,18 @@ public class DataSeederImpl implements DataSeeder {
                 .direction("street 123")
                 .build();
 
+        Imagen imagen = Imagen.builder()
+                .url("https://res.cloudinary.com/dvkvlpq07/image/upload/v1785440325/logo_tfzoil.jpg")
+                .publicId("123123")
+                .build();
+
         Company company = Company.builder()
                 .name("AgroTech")
                 .legalName("AgroTech S.A.")
                 .cuit("30-12345678-9")
                 .branches(new ArrayList<>(List.of(branch2, branch)))
                 .users(new ArrayList<>(List.of(user)))
-                .logo("https://res.cloudinary.com/dvkvlpq07/image/upload/v1785440325/logo_tfzoil.jpg")
+                .logo(imagen)
                 .build();
 
         user.addCompany(company);

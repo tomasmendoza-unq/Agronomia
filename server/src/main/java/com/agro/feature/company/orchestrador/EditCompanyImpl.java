@@ -4,6 +4,7 @@ import com.agro.feature.company.contracts.CompanyDataService;
 import com.agro.feature.company.domain.Company;
 import com.agro.feature.company.service.CompanyService;
 import com.agro.feature.image.contracts.SaveImageService;
+import com.agro.feature.image.domain.Imagen;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -24,9 +25,9 @@ public class EditCompanyImpl implements EditCompany {
 
     @Override
     public Company execute(Long adminId, Company model, Long id, MultipartFile logo) {
-        String url = saveImageService.saveImage(logo);
+        Imagen imagen = saveImageService.saveImage(logo);
 
-        model.setLogo(url);
+        model.setLogo(imagen);
 
         return companyService.editCompany(adminId, model, id);
     }

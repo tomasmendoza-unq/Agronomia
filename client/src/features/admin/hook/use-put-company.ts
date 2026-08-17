@@ -1,14 +1,14 @@
 import useFetch from "@/shared/hooks/use-fetch/useFetch.hook";
 import type { Company } from "../types/Company";
-import { getCompany } from "../service/getCompany.service";
+import { putCompany } from "../service/put-company.service";
 
-export const useGetCompanyData = () => {
+export const usePutCompanyData = () => {
     const { data, error, isLoading, execute, refresh } = useFetch<Company>();
     return {
         companyData: data,
         error,
         companyLoading: isLoading,
-        editCompany: execute(getCompany),
+        editCompany: execute(putCompany),
         refresh,
     };
 };

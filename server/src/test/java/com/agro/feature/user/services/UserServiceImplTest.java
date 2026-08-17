@@ -3,6 +3,7 @@ package com.agro.feature.user.services;
 import com.agro.core.ContainerPostgresql;
 import com.agro.feature.company.domain.Company;
 import com.agro.feature.company.service.CompanyService;
+import com.agro.feature.image.domain.Imagen;
 import com.agro.feature.user.domain.valueObjects.EmailValue;
 import com.agro.feature.user.orchestrator.RegisterOrchestrator;
 import com.agro.shared.entities.rol.Role;
@@ -49,9 +50,14 @@ class UserServiceImplTest {
 
     @BeforeEach
     void setUp() {
+        Imagen imagen = Imagen.builder()
+                .url("https://res.cloudinary.com/dvkvlpq07/image/upload/v1785440325/logo_tfzoil.jpg")
+                .publicId("123123")
+                .build();
+
         company = companyService.save(Company.builder()
                 .cuit("12312312")
-                .logo("12312312")
+                .logo(imagen)
                 .name("12312312")
                 .legalName("12312312")
                 .build());
@@ -82,9 +88,14 @@ class UserServiceImplTest {
                 .build();
         orchestrator.register(colega, company.getId());
 
+        Imagen imagen = Imagen.builder()
+                .url("otro-logo")
+                .publicId("123123")
+                .build();
+
         Company otraCompany = companyService.save(Company.builder()
                 .cuit("99999999")
-                .logo("otro-logo")
+                .logo(imagen)
                 .name("Otra Empresa")
                 .legalName("Otra Empresa SA")
                 .build());
@@ -122,9 +133,14 @@ class UserServiceImplTest {
 
     @Test
     void testFindAllNoDevuelveUsuariosDeOtraEmpresa() {
+        Imagen imagen = Imagen.builder()
+                .url("logo-x")
+                .publicId("123123")
+                .build();
+
         Company otraCompany = companyService.save(Company.builder()
                 .cuit("55555555")
-                .logo("logo-x")
+                .logo(imagen)
                 .name("Empresa X")
                 .legalName("Empresa X SA")
                 .build());
