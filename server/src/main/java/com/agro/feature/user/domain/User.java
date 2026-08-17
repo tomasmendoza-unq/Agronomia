@@ -1,7 +1,9 @@
 package com.agro.feature.user.domain;
 
+import com.agro.feature.branch.domain.Branch;
 import com.agro.feature.company.domain.Company;
 import com.agro.feature.user.domain.valueObjects.EmailValue;
+import com.agro.feature.user.dtos.response.BranchResponse;
 import com.agro.shared.entities.rol.Role;
 import jakarta.persistence.*;
 import lombok.*;
@@ -35,6 +37,10 @@ public class User {
 
     @Getter
     private Role role;
+
+    @Getter
+    @OneToOne(cascade = CascadeType.ALL)
+    private Branch branch;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @Getter
@@ -87,5 +93,10 @@ public class User {
 
     public String getFullName() {
         return getName() + " " + getSurname();
+    }
+
+
+    public String getBranchDirection() {
+        return branch.getFullDirection();
     }
 }

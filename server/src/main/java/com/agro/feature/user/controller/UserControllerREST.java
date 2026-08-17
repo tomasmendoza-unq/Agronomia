@@ -91,7 +91,8 @@ public class UserControllerREST {
                         new TableResponseDTO.ColumnHeader("id", "ID"),
                         new TableResponseDTO.ColumnHeader("name", "Nombre"),
                         new TableResponseDTO.ColumnHeader("email", "Email"),
-                        new TableResponseDTO.ColumnHeader("role", "Rol")
+                        new TableResponseDTO.ColumnHeader("role", "Rol"),
+                        new TableResponseDTO.ColumnHeader("branchDirection", "Sucursales")
                 );
 
                 return ResponseEntity.ok(

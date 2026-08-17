@@ -23,4 +23,7 @@ public class Branch {
     private String direction;
 
 
+    public String getFullDirection() {
+        return city + " - " + direction;
+    }
 }
