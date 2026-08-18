@@ -23,7 +23,7 @@ const Configuration = () => {
         tableUsersRef.current?.refresh();
     };
 
-    if (companyLoading && !companyData) {
+    if (companyLoading || !companyData) {
         return (
             <section className={panel}>
                 <Spinner
@@ -41,7 +41,7 @@ const Configuration = () => {
             <div className={contentGrid}>
                 <SectionPanel title="Datos empresa">
                     <CompanyDataCard
-                        companyData={companyData!}
+                        companyData={companyData}
                         onCompanyUpdated={getCompany}
                     />
                 </SectionPanel>
@@ -68,12 +68,14 @@ const Configuration = () => {
                 isOpen={isCreateUserOpen}
                 onClose={() => setIsCreateUserOpen(false)}
             >
-                <CreateUser
-                    companyId={companyData!.id}
-                    branches={companyData!.branches}
-                    onUserCreated={handleUserCreated}
-                    onClose={() => setIsCreateUserOpen(false)}
-                />
+                {companyData && (
+                    <CreateUser
+                        companyId={companyData.id}
+                        branches={companyData.branches ?? []}
+                        onUserCreated={handleUserCreated}
+                        onClose={() => setIsCreateUserOpen(false)}
+                    />
+                )}
             </Modal>
         </section>
     );
