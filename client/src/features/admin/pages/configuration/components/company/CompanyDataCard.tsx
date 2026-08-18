@@ -56,11 +56,11 @@ const CompanyDataCard = ({
 
             <Modal
                 isOpen={isEditing}
-                loading={companyLoading}
                 onClose={() => setIsEditing(false)}
             >
                 <EditCompany
                     company={companyData}
+                    isLoading={companyLoading}
                     onSubmit={handleSubmit}
                     onCancel={() => setIsEditing(false)}
                 />

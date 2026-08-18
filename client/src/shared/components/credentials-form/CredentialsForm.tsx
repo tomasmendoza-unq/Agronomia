@@ -6,6 +6,7 @@ import type { Schema } from "./types/shema";
 
 function CredentialsForm<T extends Schema>({
     title,
+    isLoading,
     inputs,
     button,
     links,
@@ -24,6 +25,7 @@ function CredentialsForm<T extends Schema>({
                 buttonData={button}
                 schema={schema}
                 onSubmit={onSubmit}
+                isLoading={isLoading}
             />
             <Footer links={links} />
         </div>

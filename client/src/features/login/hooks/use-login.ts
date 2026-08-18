@@ -8,7 +8,7 @@ import {
 } from "@/core/routes/role-routes";
 
 const useLogin = () => {
-    const { refresh, error, login: log } = useAuth();
+    const { refresh, error, login: log, isLoading } = useAuth();
     const navegation = useNavigate();
 
     const isError = error?.isCause(ErrorCause.INVALID_CREDENTIALS);
@@ -21,7 +21,7 @@ const useLogin = () => {
         }
     }
 
-    return { isError, login, refresh };
+    return { isError, login, refresh, loading: isLoading };
 };
 
 export default useLogin;

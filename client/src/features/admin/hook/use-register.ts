@@ -3,7 +3,7 @@ import type { User } from "@/shared/domain/user/user";
 import register from "../service/register.service";
 
 export const useRegister = () => {
-    const { data, error, isLoading, execute, refresh } = useFetch<User>();
+    const { data, error, isLoading, execute, refresh } = useFetch<User>(false);
 
     return {
         user: data,

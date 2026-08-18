@@ -10,6 +10,7 @@ import { h1 } from "./styles";
 
 interface EditCompanyProps {
     company: Company;
+    isLoading: boolean;
     onSubmit: (companyEdit: CompanyEdit) => Promise<void>;
     onCancel: () => void;
 }
@@ -17,6 +18,7 @@ interface EditCompanyProps {
 export const EditCompany = ({
     company,
     onSubmit,
+    isLoading,
     onCancel,
 }: EditCompanyProps) => {
     const handleSubmit = (data: InferData<typeof schema>) => {
@@ -36,6 +38,7 @@ export const EditCompany = ({
             <h1 className={h1}>Editar datos de empresa</h1>
             <InsertForm
                 inputsData={createUserInputs}
+                isLoading={isLoading}
                 buttonData={{ text: "Guardar cambios" }}
                 schema={schema}
                 onSubmit={handleSubmit}
