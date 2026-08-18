@@ -1,4 +1,5 @@
 import { Navigate } from "react-router";
+import Spinner from "../components/spinner/Spinner";
 
 interface Props {
     isAuthenticated: boolean;
@@ -18,7 +19,12 @@ export const ProtectedRoute = ({
     redirectTo = "/login",
 }: Props) => {
     if (isLoading) {
-        return <div>Cargando...</div>;
+        return (
+            <Spinner
+                size="lg"
+                centered
+            />
+        );
     }
 
     if (!isAuthenticated) {

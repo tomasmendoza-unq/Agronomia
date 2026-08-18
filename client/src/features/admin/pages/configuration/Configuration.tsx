@@ -26,7 +26,10 @@ const Configuration = () => {
     if (companyLoading && !companyData) {
         return (
             <section className={panel}>
-                <Spinner size="lg" />
+                <Spinner
+                    size="lg"
+                    centered
+                />
             </section>
         );
     }
