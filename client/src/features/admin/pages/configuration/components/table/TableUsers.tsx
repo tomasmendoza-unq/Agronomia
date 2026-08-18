@@ -1,43 +1,56 @@
+import { useEffect, forwardRef, useImperativeHandle } from "react";
 import type { User } from "@/features/admin/types/User";
 import Table from "@/shared/components/table/Table";
-import type { TablePaginator } from "@/shared/types/table/Table";
+import UseGetUsers from "@/features/admin/hook/use-get-users";
+import Spinner from "@/shared/components/spinner/Spinner";
 
-interface TableUsersProps {
-    isLoading?: boolean;
-    users?: TablePaginator<User>;
-    onPageChange?: (page: number) => void;
-    onEdit?: (user: User) => void;
-    onDelete?: (id: number) => void;
+export interface TableUsersRef {
+    refresh: () => Promise<void>;
 }
 
-export const TableUsers = ({
-    isLoading = false,
-    users,
-    onPageChange,
-    onEdit,
-    onDelete,
-}: TableUsersProps) => {
-    if (isLoading) {
-        return <div>Cargando usuarios...</div>;
+export const TableUsers = forwardRef<TableUsersRef>((_, ref) => {
+    const { users, getUsers, usersLoading } = UseGetUsers();
+
+    useEffect(() => {
+        getUsers(0);
+    }, []);
+
+    useImperativeHandle(ref, () => ({
+        refresh: async () => {
+            await getUsers(users?.page ?? 0);
+        },
+    }));
+
+    const handlePageChange = (page: number) => {
+        getUsers(page);
+    };
+
+    const handleEditUser = (_user: User) => {
+        // Lógica de edición
+    };
+
+    const handleDeleteUser = async (_id: number) => {
+        // Lógica de eliminación
+    };
+
+    if (usersLoading && !users) {
+        return <Spinner size="lg" />;
     }
+
     if (!users) {
         return <div>No hay usuarios disponibles.</div>;
     }
+
     const formattedRows = users.rows.map((row) => ({
         ...row,
-        actions:
-            onEdit || onDelete ? (
-                <div style={{ display: "flex", gap: "8px" }}>
-                    {onEdit && (
-                        <button onClick={() => onEdit(row.data)}>Editar</button>
-                    )}
-                    {onDelete && (
-                        <button onClick={() => onDelete(row.id)}>
-                            Eliminar
-                        </button>
-                    )}
-                </div>
-            ) : undefined,
+        actions: (
+            <div style={{ display: "flex", gap: "8px" }}>
+                <button onClick={() => handleEditUser(row.data)}>Editar</button>
+                <button onClick={() => handleDeleteUser(row.id)}>
+                    Eliminar
+                </button>
+            </div>
+        ),
     }));
 
     return (
@@ -49,9 +62,11 @@ export const TableUsers = ({
             totalElements={users.totalElements}
             totalPages={users.totalPages}
             last={users.last}
-            onPageChange={onPageChange}
+            onPageChange={handlePageChange}
         />
     );
-};
+});
+
+TableUsers.displayName = "TableUsers";
 
 export default TableUsers;
