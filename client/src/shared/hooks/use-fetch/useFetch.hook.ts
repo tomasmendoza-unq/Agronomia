@@ -2,9 +2,9 @@ import { useState } from "react";
 import type { UseFetch } from "./use-fetch";
 import { HttpError } from "@/core/server/errors/http-error";
 
-function useFetch<D>(initialLoading = true): UseFetch<D> {
+function useFetch<D>(): UseFetch<D> {
     const [data, setData] = useState<D>();
-    const [isLoading, setIsLoading] = useState(initialLoading);
+    const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<HttpError>();
 
     function execute<Args extends unknown[]>(
