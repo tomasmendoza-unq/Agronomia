@@ -12,7 +12,7 @@ const loginInputs: InputRow[] = [
     ],
     [
         {
-            type: "text",
+            type: "password",
             name: "password",
             title: "Contraseña",
             placeholder: "Ingrese su contraseña",

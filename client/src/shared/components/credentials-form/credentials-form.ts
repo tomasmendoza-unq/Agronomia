@@ -5,6 +5,7 @@ import type { InferData, Schema } from "./types/shema";
 
 export interface CredentialsFormProps<T extends Schema> {
     title: string;
+    isLoading: boolean;
     inputs: InputRow[];
     button: ButtonData;
     links: LinkData[];

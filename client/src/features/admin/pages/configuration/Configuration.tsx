@@ -1,64 +1,32 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import CompanyDataCard from "./components/company/CompanyDataCard";
 import { h1, panel, contentGrid } from "./styles";
 import Modal from "@/shared/components/modal/Modal";
 import SectionPanel from "@/shared/components/section-panel/SectionPanel";
-import TableUsers from "./components/table/TableUsers";
-import CreateUser, {
-    type CreateUserFormData,
-} from "./components/form/CreateUser";
-import type { RegisterRequest } from "../../api/dto/RegisterRequest";
+import TableUsers, { type TableUsersRef } from "./components/table/TableUsers";
+import CreateUser from "./components/form/CreateUser";
 import { useGetCompanyData } from "../../hook/get-companyData";
 import Button from "@/shared/components/button/Button";
 import { token } from "@styled-system/tokens";
-import ErrorToast from "@/shared/components/toast/error/ErrorToast";
-import SuccessToast from "@/shared/components/toast/success/SuccessToast";
-import { useRegister } from "../../hook/use-register";
-import UseGetUsers from "../../hook/use-get-users";
+import Spinner from "@/shared/components/spinner/Spinner";
 
 const Configuration = () => {
     const { companyData, getCompany, companyLoading } = useGetCompanyData();
-    const { users, getUsers, usersLoading } = UseGetUsers();
-    const { register, registerError, refresh } = useRegister();
-
     const [isCreateUserOpen, setIsCreateUserOpen] = useState(false);
-    const [showSuccessToast, setShowSuccessToast] = useState(false);
+    const tableUsersRef = useRef<TableUsersRef>(null);
 
     useEffect(() => {
-        getUsers(0);
         getCompany();
     }, []);
 
-    const handlePageChange = (page: number) => {
-        getUsers(page);
+    const handleUserCreated = () => {
+        tableUsersRef.current?.refresh();
     };
 
-    const handleCreateUser = async (data: CreateUserFormData) => {
-        if (!companyData?.id) return;
-
-        console.log(data);
-
-        const userRegister: RegisterRequest = {
-            ...data,
-            id_branch: Number(data.branch),
-            id_company: companyData.id,
-        };
-
-        await register(userRegister);
-
-        await getUsers(users?.page);
-        setIsCreateUserOpen(false);
-        setShowSuccessToast(true);
-    };
-
-    const handleEditUser = () => {};
-
-    const handleDeleteUser = async () => {};
-
-    if ((companyLoading && !companyData) || (!users && usersLoading)) {
+    if (companyLoading && !companyData) {
         return (
             <section className={panel}>
-                <p>Cargando información...</p>
+                <Spinner size="lg" />
             </section>
         );
     }
@@ -89,13 +57,7 @@ const Configuration = () => {
                         </Button>
                     }
                 >
-                    <TableUsers
-                        isLoading={usersLoading}
-                        users={users}
-                        onPageChange={handlePageChange}
-                        onEdit={handleEditUser}
-                        onDelete={handleDeleteUser}
-                    />
+                    <TableUsers ref={tableUsersRef} />
                 </SectionPanel>
             </div>
 
@@ -104,24 +66,12 @@ const Configuration = () => {
                 onClose={() => setIsCreateUserOpen(false)}
             >
                 <CreateUser
-                    onSubmit={handleCreateUser}
+                    companyId={companyData!.id}
                     branches={companyData!.branches}
+                    onUserCreated={handleUserCreated}
+                    onClose={() => setIsCreateUserOpen(false)}
                 />
             </Modal>
-
-            {registerError && (
-                <ErrorToast
-                    message={registerError.message}
-                    onClose={refresh}
-                />
-            )}
-
-            {showSuccessToast && !registerError && (
-                <SuccessToast
-                    message="Usuario registrado correctamente"
-                    onClose={() => setShowSuccessToast(false)}
-                />
-            )}
         </section>
     );
 };

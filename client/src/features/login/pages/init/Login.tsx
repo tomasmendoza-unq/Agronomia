@@ -7,13 +7,14 @@ import ErrorToast from "@/shared/components/toast/error/ErrorToast";
 import useLogin from "../../hooks/use-login";
 
 const Login = () => {
-    const { isError, login, refresh } = useLogin();
+    const { isError, login, refresh, loading } = useLogin();
 
     return (
         <section className={pageWrapper}>
             <div className={card}>
                 <CredentialsForm
                     title="Bienvenido"
+                    isLoading={loading}
                     inputs={loginInputs}
                     button={{ text: "Iniciar sesión" }}
                     schema={schema}

@@ -6,6 +6,7 @@ export type InputRow = InputData[];
 
 export interface InsertFormProps<T extends Schema> {
     inputsData: InputRow[];
+    isLoading: boolean;
     buttonData: ButtonData;
     schema: T;
     onSubmit: (data: InferData<T>) => void;

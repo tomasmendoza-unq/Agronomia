@@ -12,6 +12,7 @@ const tokenBorder = defineTokens.borders({
     },
     borderColor: {
         primary: { value: "#E2E2E2" },
+        subtle: { value: "#A1A1AA" },
     },
 });
 
