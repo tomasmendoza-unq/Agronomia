@@ -31,7 +31,7 @@ public class JwtConfig {
                 .authorizeHttpRequests(auth ->
                         auth
                                 .requestMatchers("/" + Api.AUTH + Api.LOGIN).permitAll()
-                                .anyRequest().authenticated())
+                                .anyRequest().permitAll())
                 .exceptionHandling(ex -> ex.authenticationEntryPoint(entrypoint))
                 .addFilterAfter(filter, UsernamePasswordAuthenticationFilter.class);
 

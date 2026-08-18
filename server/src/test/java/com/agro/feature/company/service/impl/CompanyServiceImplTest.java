@@ -1,9 +1,13 @@
 package com.agro.feature.company.service.impl;
 
 import com.agro.core.ContainerPostgresql;
+import com.agro.feature.branch.domain.Branch;
+import com.agro.feature.branch.persistence.BranchDAO;
 import com.agro.feature.company.contracts.CompanyDataService;
 import com.agro.feature.company.domain.Company;
+import com.agro.feature.company.domain.exceptions.IsNotAOwnerOfCompany;
 import com.agro.feature.company.service.CompanyService;
+import com.agro.feature.image.domain.Imagen;
 import com.agro.feature.user.domain.User;
 import com.agro.feature.user.domain.valueObjects.EmailValue;
 import com.agro.feature.user.orchestrator.RegisterOrchestrator;
@@ -32,6 +36,9 @@ class CompanyServiceImplTest {
     private CompanyService companyService;
 
     @Autowired
+    private BranchDAO branchDAO;
+
+    @Autowired
     private CompanyDataService  companyDataService;
 
     @Autowired
@@ -44,11 +51,23 @@ class CompanyServiceImplTest {
 
     private User user;
 
+    private Branch branch;
+
     @BeforeEach
     void setup(){
+        branch = branchDAO.save(Branch.builder()
+                .city("Berlin")
+                .direction("street 123")
+                .build());
+
+        Imagen imagen = Imagen.builder()
+                .url("img.jpg")
+                .publicId("123123")
+                .build();
+
         company = companyService.save(Company.builder()
                 .cuit("12312312")
-                .logo("img.jpg")
+                .logo(imagen)
                 .name("Matilda")
                 .legalName("Matilda SA")
                 .build());
@@ -61,7 +80,7 @@ class CompanyServiceImplTest {
 
     @Test
     public void getCompanyByUserId(){
-        User saved = orchestrator.register(user, company.getId());
+        User saved = orchestrator.register(user, company.getId(),  branch.getId());
 
         Company recovered = companyDataService.getCompanyByUserId(saved.getId());
 
@@ -71,6 +90,66 @@ class CompanyServiceImplTest {
         assertEquals("Matilda SA", recovered.getLegalName());
         assertEquals(company.getId(), recovered.getId());
     }
+
+    @Test
+    public void editCompany_whenAdminBelongsToCompany_updatesCompany(){
+        User saved = orchestrator.register(user, company.getId(),  branch.getId());
+
+
+        Imagen imagen = Imagen.builder()
+                .url("newLogo.jpg")
+                .publicId("123123")
+                .build();
+
+        Company model = Company.builder()
+                .cuit("99999999")
+                .logo(imagen)
+                .name("Matilda Renovada")
+                .legalName("Matilda Renovada SA")
+                .build();
+
+        Company updated = companyDataService.editCompany(saved.getId(), model, company.getId());
+
+        assertEquals("99999999", updated.getCuit());
+        assertEquals("newLogo.jpg", updated.getLogo().getUrl());
+        assertEquals("Matilda Renovada", updated.getName());
+        assertEquals("Matilda Renovada SA", updated.getLegalName());
+        assertEquals(company.getId(), updated.getId());
+    }
+
+    @Test
+    public void editCompany_whenAdminDoesNotBelongToCompany_throwsException(){
+        Imagen imagen = Imagen.builder()
+                .url("other.jpg")
+                .publicId("123123")
+                .build();
+
+        Company otherCompany = companyService.save(Company.builder()
+                .cuit("00000000")
+                .logo(imagen)
+                .name("Otra Empresa")
+                .legalName("Otra Empresa SA")
+                .build());
+
+        User saved = orchestrator.register(user, company.getId(),  branch.getId());
+
+        Imagen imagen2 = Imagen.builder()
+                .url("newLogo.jpg")
+                .publicId("123123")
+                .build();
+
+        Company model = Company.builder()
+                .cuit("99999999")
+                .logo(imagen)
+                .name("Intento Ajeno")
+                .legalName("Intento Ajeno SA")
+                .build();
+
+        assertThrows(IsNotAOwnerOfCompany.class, () ->
+                companyDataService.editCompany(saved.getId(), model, otherCompany.getId())
+        );
+    }
+
 
     @AfterEach
     public void tearDown(){

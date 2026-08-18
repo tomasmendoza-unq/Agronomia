@@ -36,8 +36,11 @@ const Configuration = () => {
     const handleCreateUser = async (data: CreateUserFormData) => {
         if (!companyData?.id) return;
 
+        console.log(data);
+
         const userRegister: RegisterRequest = {
             ...data,
+            id_branch: Number(data.branch),
             id_company: companyData.id,
         };
 
@@ -52,7 +55,7 @@ const Configuration = () => {
 
     const handleDeleteUser = async () => {};
 
-    if (companyLoading || (!users && usersLoading)) {
+    if ((companyLoading && !companyData) || (!users && usersLoading)) {
         return (
             <section className={panel}>
                 <p>Cargando información...</p>
@@ -66,7 +69,10 @@ const Configuration = () => {
 
             <div className={contentGrid}>
                 <SectionPanel title="Datos empresa">
-                    <CompanyDataCard companyData={companyData!} />
+                    <CompanyDataCard
+                        companyData={companyData!}
+                        onCompanyUpdated={getCompany}
+                    />
                 </SectionPanel>
 
                 <SectionPanel
@@ -97,7 +103,10 @@ const Configuration = () => {
                 isOpen={isCreateUserOpen}
                 onClose={() => setIsCreateUserOpen(false)}
             >
-                <CreateUser onSubmit={handleCreateUser} />
+                <CreateUser
+                    onSubmit={handleCreateUser}
+                    branches={companyData!.branches}
+                />
             </Modal>
 
             {registerError && (

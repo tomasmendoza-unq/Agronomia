@@ -1,6 +1,7 @@
 package com.agro.feature.company.domain;
 
 import com.agro.feature.branch.domain.Branch;
+import com.agro.feature.image.domain.Imagen;
 import com.agro.feature.user.domain.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -29,7 +30,8 @@ public class Company {
 
     private String cuit;
 
-    private String logo;
+    @OneToOne(cascade = CascadeType.ALL)
+    private Imagen logo;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Branch> branches = new ArrayList<>();
@@ -40,5 +42,12 @@ public class Company {
 
     public void addUser(User user) {
         users.add(user);
+    }
+
+    public void update(Company model) {
+        this.name = model.getName();
+        this.legalName = model.getLegalName();
+        this.cuit = model.getCuit();
+        this.logo = model.getLogo();
     }
 }

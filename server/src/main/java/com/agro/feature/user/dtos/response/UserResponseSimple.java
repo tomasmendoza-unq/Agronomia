@@ -7,8 +7,8 @@ public record UserResponseSimple(
         Long id,
         String email,
         String role,
-        String name
-
+        String name,
+        String branchDirection
 
 ) {
     public static @Nullable UserResponseSimple fromModel(User user) {
@@ -16,7 +16,8 @@ public record UserResponseSimple(
                 user.getId(),
                 user.getName() + " " +  user.getSurname(),
                 user.getNameRol(),
-                user.getEmail()
+                user.getEmail(),
+                user.getBranchDirection()
         );
     }
 }

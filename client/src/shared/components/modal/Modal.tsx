@@ -6,9 +6,10 @@ interface ModalProps {
     isOpen: boolean;
     onClose: () => void;
     children: ReactNode;
+    loading?: boolean;
 }
 
-const Modal = ({ isOpen, onClose, children }: ModalProps) => {
+const Modal = ({ isOpen, onClose, children, loading }: ModalProps) => {
     useEffect(() => {
         if (!isOpen) return;
 
@@ -38,7 +39,11 @@ const Modal = ({ isOpen, onClose, children }: ModalProps) => {
                 className={css(modal)}
                 onClick={(e) => e.stopPropagation()}
             >
-                <div className={css(body)}>{children}</div>
+                {loading ? (
+                    <p>Cargando...</p>
+                ) : (
+                    <div className={css(body)}>{children}</div>
+                )}
             </div>
         </div>
     );

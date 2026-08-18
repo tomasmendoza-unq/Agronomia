@@ -71,7 +71,7 @@ public class UserControllerREST {
     })
     @PreAuthorize("hasRole('DUENIO')")
     public ResponseEntity<UserResponseSimple> register(@RequestBody UserRequest request) {
-        User user = registerOrchestrator.register(request.toModel(), request.id_company());
+        User user = registerOrchestrator.register(request.toModel(), request.id_company(), request.id_branch());
 
         return ResponseEntity.ok(UserResponseSimple.fromModel(user));
     }
@@ -91,7 +91,8 @@ public class UserControllerREST {
                         new TableResponseDTO.ColumnHeader("id", "ID"),
                         new TableResponseDTO.ColumnHeader("name", "Nombre"),
                         new TableResponseDTO.ColumnHeader("email", "Email"),
-                        new TableResponseDTO.ColumnHeader("role", "Rol")
+                        new TableResponseDTO.ColumnHeader("role", "Rol"),
+                        new TableResponseDTO.ColumnHeader("branchDirection", "Sucursales")
                 );
 
                 return ResponseEntity.ok(
