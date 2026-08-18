@@ -52,25 +52,8 @@ const hiddenInput = css.raw({
 });
 
 export const styles = sva({
-    slots: [
-        "container",
-        "label",
-        "wrapper",
-        "fileName",
-        "button",
-        "hiddenInput",
-    ],
+    slots: ["wrapper", "fileName", "button", "hiddenInput"],
     base: {
-        container: {
-            display: "grid",
-            placeItems: "center",
-            gap: "8px",
-            width: "100%",
-        },
-        label: {
-            width: "90%",
-            color: token("colors.textSubtle"),
-        },
         wrapper: wrapper,
         fileName: fileName,
         button: button,

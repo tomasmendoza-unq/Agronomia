@@ -29,6 +29,7 @@ const row = css.raw({
 
 const input = css.raw({
     ...elementContainer,
+    width: "100%",
     padding: "8px",
     border: "1px solid #A1A1AA",
     boxShadow: "0px 1px 2px rgba(2, 6, 23, 0.05)",

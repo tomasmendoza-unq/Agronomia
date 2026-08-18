@@ -11,13 +11,13 @@ import type {
 } from "react-hook-form";
 import type { output } from "zod";
 
-import { styles } from "./styles";
 import type {
     InferData,
     Schema,
 } from "@/shared/components/credentials-form/types/shema";
 import type { SelectInputData } from "@/shared/components/credentials-form/types/input/credentials-input";
 import ErrorMessage from "../error/ErrorMessage";
+import { fieldStyles } from "../styles";
 
 interface SelectInputProps<T extends Schema> {
     input: SelectInputData;
@@ -37,7 +37,7 @@ function SelectInput<T extends Schema>({
 }: SelectInputProps<T>) {
     const className = css(inputStyles);
     const isSelect = input.type === "select";
-    const { container, label } = styles;
+    const { container, label } = fieldStyles;
 
     return (
         <div className={css(container)}>

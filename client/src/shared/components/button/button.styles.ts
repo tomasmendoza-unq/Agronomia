@@ -25,5 +25,5 @@ export const buttonShape = css.raw({
 });
 
 export const fullWidth = css.raw({
-    width: "90%",
+    width: "100%",
 });

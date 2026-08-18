@@ -1,7 +1,6 @@
 import type { TextInputData } from "../../../credentials-form/types/input/credentials-input";
 import { css } from "@styled-system/css";
 import type { SystemStyleObject } from "@styled-system/types";
-import { styles } from "./styles";
 import type {
     DeepRequired,
     FieldError,
@@ -11,8 +10,13 @@ import type {
     UseFormRegister,
 } from "react-hook-form";
 import type { output } from "zod";
-import type { InferData, Schema } from "../../types/shema";
+
 import ErrorMessage from "../error/ErrorMessage";
+import type {
+    InferData,
+    Schema,
+} from "@/shared/components/credentials-form/types/shema";
+import { fieldStyles } from "../styles";
 
 interface TextInputProps<T extends Schema> {
     input: TextInputData;
@@ -31,10 +35,10 @@ function TextInput<T extends Schema>({
     error,
 }: TextInputProps<T>) {
     return (
-        <div className={css(styles.container)}>
+        <div className={css(fieldStyles.container)}>
             <label
                 htmlFor={input.name}
-                className={css(styles.label)}
+                className={css(fieldStyles.label)}
             >
                 <span>{input.title}</span>
             </label>

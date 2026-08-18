@@ -2,6 +2,7 @@ import type { TextInputData } from "../../../credentials-form/types/input/creden
 import { css } from "@styled-system/css";
 import type { SystemStyleObject } from "@styled-system/types";
 import { styles } from "./styles";
+import { fieldStyles } from "../styles";
 import type {
     DeepRequired,
     FieldError,
@@ -49,10 +50,10 @@ function FileInput<T extends Schema>({
     };
 
     return (
-        <div className={css(styles.container)}>
+        <div className={css(fieldStyles.container)}>
             <label
                 htmlFor={input.name}
-                className={css(styles.label)}
+                className={css(fieldStyles.label)}
             >
                 <span>{input.title}</span>
             </label>
