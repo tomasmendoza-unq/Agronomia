@@ -16,4 +16,6 @@ export const branch = css({
     flexDirection: "column",
     gap: "1",
     marginBottom: "3",
+    maxHeight: "70px",
+    overflowX: "auto",
 });
