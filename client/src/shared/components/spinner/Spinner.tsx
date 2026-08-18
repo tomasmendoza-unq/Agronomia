@@ -3,13 +3,18 @@ import { spinner } from "./style";
 
 interface SpinnerProps {
     size?: "sm" | "md" | "lg";
+    centered?: boolean;
     className?: string;
 }
 
-const Spinner = ({ size = "md", className }: SpinnerProps) => {
+const Spinner = ({
+    size = "md",
+    centered = false,
+    className,
+}: SpinnerProps) => {
     return (
         <div
-            className={cx(spinner({ size }), className)}
+            className={cx(spinner({ size, centered }), className)}
             role="status"
             aria-label="Cargando"
         />

@@ -16,8 +16,19 @@ export const spinner = cva({
             md: { width: "24px", height: "24px", borderWidth: "3px" },
             lg: { width: "40px", height: "40px", borderWidth: "4px" },
         },
+        centered: {
+            true: {
+                display: "block",
+                margin: "auto",
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+            },
+        },
     },
     defaultVariants: {
         size: "md",
+        centered: false,
     },
 });
