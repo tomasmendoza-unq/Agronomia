@@ -45,8 +45,6 @@ public class EmailServiceImpl implements EmailSendRegister {
     }
 
     private void sendHtmlEmail(String to, String subject, String html) {
-        log.info("Intentando enviar email. to='{}', subject='{}'", to, subject);
-
         try {
             CreateEmailOptions params = CreateEmailOptions.builder()
                     .from(from)
@@ -59,7 +57,7 @@ public class EmailServiceImpl implements EmailSendRegister {
 
         } catch (ResendException e) {
             log.warn("Error enviando email", e);
-            throw new RuntimeException("Error enviando email", e);
+            throw new RuntimeException("Error enviando email");
         }
     }
 }
