@@ -53,6 +53,8 @@ class CompanyServiceImplTest {
 
     private Branch branch;
 
+    private Imagen imagen;
+
     @BeforeEach
     void setup(){
         branch = branchDAO.save(Branch.builder()
@@ -60,7 +62,7 @@ class CompanyServiceImplTest {
                 .direction("street 123")
                 .build());
 
-        Imagen imagen = Imagen.builder()
+        imagen = Imagen.builder()
                 .url("img.jpg")
                 .publicId("123123")
                 .build();
@@ -84,7 +86,7 @@ class CompanyServiceImplTest {
 
         Company recovered = companyDataService.getCompanyByUserId(saved.getId());
 
-        assertEquals("img.jpg", recovered.getLogo());
+        assertEquals(imagen, recovered.getLogo());
         assertEquals("Matilda", recovered.getName());
         assertEquals("12312312", recovered.getCuit());
         assertEquals("Matilda SA", recovered.getLegalName());
