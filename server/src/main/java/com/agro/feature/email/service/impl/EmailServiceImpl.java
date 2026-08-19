@@ -41,7 +41,7 @@ public class EmailServiceImpl implements EmailSendRegister {
 
         String html = emailTemplateService.render("welcome", variables);
 
-        sendHtmlEmail(email, "Cuenta temporal", html);
+        sendHtmlEmail(email, "¡Bienvenido!", html);
     }
 
     private void sendHtmlEmail(String to, String subject, String html) {
