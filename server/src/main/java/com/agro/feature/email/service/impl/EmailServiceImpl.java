@@ -8,12 +8,15 @@ import com.resend.services.emails.model.CreateEmailOptions;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
 
 @Service
 @Transactional
+@Profile({"dev", "prod"})
 @Slf4j
 public class EmailServiceImpl implements EmailSendRegister {
     private final Resend resend;
