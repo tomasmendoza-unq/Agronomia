@@ -11,11 +11,9 @@
     "prepare": "panda codegen"
   },
   "dependencies": {
-    "@ark-ui/react": "^5.38.2",
     "@hookform/resolvers": "^5.7.1",
     "axios": "^1.18.1",
     "jwt-decode": "^4.0.0",
-    "lucide-react": "^1.32.0",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
     "react-hook-form": "^7.83.0",
