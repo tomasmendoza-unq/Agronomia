@@ -5,7 +5,7 @@ export const navBar = css({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    backgroundColor: "#f0f0f0",
+    backgroundColor: "#FFF",
     padding: "1rem 2rem",
     width: "100%",
 });
