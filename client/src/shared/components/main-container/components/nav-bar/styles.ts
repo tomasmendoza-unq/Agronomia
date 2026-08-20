@@ -28,3 +28,7 @@ export const wrapLogo = css({
 export const item = css({
     color: token("colors.textSubtle")
 })
+
+export const selectedItem = css({
+    color: "#09090B"
+})
