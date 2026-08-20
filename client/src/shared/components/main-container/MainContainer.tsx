@@ -1,7 +1,7 @@
 import type { User } from "@/shared/domain/user/user"
 import { Outlet } from "react-router"
 import type { linkNavbar } from "../navbar/types/link";
-import { authLayout } from "./styles";
+import { authLayout, bodyWrapper } from "./styles";
 import NavBar from "../navbar/Navbar";
 import Brand from "../brand/Brand";
 import Avatar from "./components/avatar/Avatar";
@@ -26,8 +26,10 @@ const MainContainer = ({links, user, avatarTo}: MainContainerProps) => {
                 }
                 links={links}
             />
-            <Breadcrumb />
-            <Outlet />
+            <div className={bodyWrapper}>
+                <Breadcrumb />
+                <Outlet />
+            </div>
         </main>
     )
 }
