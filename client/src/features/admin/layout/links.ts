@@ -1,5 +1,5 @@
 import { ADMIN_ROUTES } from "@/core/routes/admin";
-import type { linkNavbar } from "@/shared/components/navbar/types/link";
+import type { linkNavbar } from "../../../shared/routes/link";
 
 export const links: linkNavbar[] = [
     { name: "Inicio", path: ADMIN_ROUTES.BASE },

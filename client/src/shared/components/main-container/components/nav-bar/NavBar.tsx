@@ -1,4 +1,4 @@
-import type { linkNavbar } from "@/shared/components/navbar/types/link";
+import type { linkNavbar } from "../../../../routes/link";
 import { item, navBar, navBarList, wrapLogo } from "./styles";
 import { Link } from "react-router";
 

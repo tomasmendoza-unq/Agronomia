@@ -7,8 +7,9 @@ export const navBar = css({
     alignItems: "center",
     justifyContent: "space-between",
     backgroundColor: "#FFF",
-    padding: "1rem 2rem",
-    height: "9vh"
+    width: "100%",
+    height: "9vh",
+    padding: "14px"
 });
 
 export const navBarList = css({
