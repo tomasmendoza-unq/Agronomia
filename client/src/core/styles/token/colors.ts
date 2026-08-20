@@ -9,6 +9,7 @@ const tokenColors = defineTokens.colors({
     success: { value: "#0C9588" },
     primaryColorSubtle: { value: "#638BAF" },
     textSubtle: { value: "#71717A" },
+    textMuted: {value: '#A1A1AA'}
 });
 
 export default tokenColors;

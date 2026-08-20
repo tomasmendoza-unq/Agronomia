@@ -1,4 +1,5 @@
 import { css } from "@styled-system/css";
+import { token } from "@styled-system/tokens";
 
 export const navBar = css({
     display: "flex",
@@ -7,13 +8,11 @@ export const navBar = css({
     justifyContent: "space-between",
     backgroundColor: "#FFF",
     padding: "1rem 2rem",
-    width: "100%",
+    height: "9vh"
 });
 
 export const navBarList = css({
     listStyleType: "none",
-    padding: 0,
-    margin: 0,
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
@@ -24,3 +23,7 @@ export const wrapLogo = css({
     display: "flex",
     alignItems: "center",
 });
+
+export const item = css({
+    color: token("colors.textMuted")
+})
