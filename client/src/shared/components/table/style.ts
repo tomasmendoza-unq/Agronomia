@@ -41,12 +41,8 @@ export const th = css({
 
 export const tbody = css({});
 
-export const tr = css({
-    transition: "background-color 0.2s ease",
-    _hover: {
-        backgroundColor: "#FFF",
-    },
-});
+export const tr = (index: number) => 
+    index % 2 === 0 ? css({bg: "#FFF"}) : css({bg: "#FBFCFE"})
 
 export const td = css({
     padding: "1rem",
@@ -57,14 +53,8 @@ export const td = css({
 
 export const tdActions = css({
     padding: "1rem",
-    display: "flex",
-    justifyContent: "flex-end",
-    gap: "1.25rem",
-    alignItems: "center",
-    whiteSpace: "nowrap",
-    borderBottom: "1px solid",
     borderColor: "#E5E7EB",
-});
+}, borderCell);
 
 export const pagination = css({
     display: "flex",

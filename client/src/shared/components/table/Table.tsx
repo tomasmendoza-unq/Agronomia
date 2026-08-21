@@ -52,7 +52,7 @@ export const Table = <T extends Record<string, unknown>>({
                         {rows.map((row) => (
                             <tr
                                 key={row.id}
-                                className={tr}
+                                className={tr(rows.indexOf(row))}
                             >
                                 {columns.map((col) => {
                                     const cellValue = row.data[col.key];
