@@ -1,19 +1,19 @@
 import { css } from "@styled-system/css";
+import { token } from "@styled-system/tokens";
 
 export const navBar = css({
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    backgroundColor: "#f0f0f0",
-    padding: "1rem 2rem",
+    backgroundColor: "#FFF",
     width: "100%",
+    height: "9vh",
+    padding: "14px"
 });
 
 export const navBarList = css({
     listStyleType: "none",
-    padding: 0,
-    margin: 0,
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
@@ -24,3 +24,11 @@ export const wrapLogo = css({
     display: "flex",
     alignItems: "center",
 });
+
+export const item = css({
+    color: token("colors.textSubtle")
+})
+
+export const selectedItem = css({
+    color: "#09090B"
+})

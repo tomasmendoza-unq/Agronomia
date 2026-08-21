@@ -10,5 +10,6 @@ export const card = css({
     boxShadow: "lg",
     width: "fit-content",
     minWidth: "320px",
+    height: "420px",
     borderColor: "borderColor",
 });

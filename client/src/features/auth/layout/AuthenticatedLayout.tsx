@@ -1,12 +1,7 @@
-import { Outlet } from "react-router";
-import NavBar from "@/shared/components/navbar/Navbar";
-import Breadcrumb from "@/shared/components/breadcrumb/Breadcrumb";
 import { ProtectedRoute } from "@/shared/routes/ProtectedRoute";
 import { useAuth } from "@/features/auth/hooks/use-auth";
-import { authLayout } from "./styles";
-import type { linkNavbar } from "@/shared/components/navbar/types/link";
-import Brand from "./components/Brand";
-import Avatar from "./components/Avatar";
+import MainContainer from "@/shared/components/main-container/MainContainer";
+import type { linkNavbar } from "@/shared/routes/link";
 
 interface AuthenticatedLayoutProps {
     links: linkNavbar[];
@@ -28,22 +23,7 @@ const AuthenticatedLayout = ({
             userRole={user?.role}
             allowedRoles={allowedRoles}
         >
-            {user && (
-                <main className={authLayout}>
-                    <NavBar
-                        brand={<Brand companyLogo={user.companyLogo} />}
-                        avatar={
-                            <Avatar
-                                avatar={user}
-                                to={avatarTo}
-                            />
-                        }
-                        links={links}
-                    />
-                    <Breadcrumb />
-                    <Outlet />
-                </main>
-            )}
+            {user && <MainContainer user={user} links={links} avatarTo={avatarTo}/>}
         </ProtectedRoute>
     );
 };
