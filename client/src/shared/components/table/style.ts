@@ -1,29 +1,35 @@
 import { css } from "@styled-system/css";
 
+const borderCell = css.raw({
+    borderBottom: "1px solid #CECECE",
+})
+
+const colorCell = css.raw({
+    backgroundColor: "#F9F9F9", 
+})
+
 export const tableWrapper = css({
     display: "flex",
     flexDirection: "column",
     gap: "0.75rem",
     boxShadow: "sm",
+    borderRadius: "md",
     width: "100%",
+    overflow: "hidden",
+    border: "1px solid #CECECE",
 });
 
 export const tableCard = css({
     width: "100%",
-    overflowX: "auto",
     backgroundColor: "white",
-    borderRadius: "md",
 });
 
 export const table = css({
     width: "100%",
-    borderCollapse: "collapse", // Se cambia a collapse para manejar bordes limpios en las celdas
     minWidth: "760px",
-});
+}, colorCell);
 
-export const thead = css({
-    backgroundColor: "#F9FAFB", // Un gris muy tenue para la cabecera similar al prototipo
-});
+export const thead = css(borderCell, colorCell);
 
 export const th = css({
     textAlign: "left",
@@ -31,16 +37,14 @@ export const th = css({
     fontSize: "sm",
     color: "#6B7280",
     fontWeight: "600",
-    borderBottom: "1px solid",
-    borderColor: "#E5E7EB",
-});
+}, borderCell);
 
 export const tbody = css({});
 
 export const tr = css({
     transition: "background-color 0.2s ease",
     _hover: {
-        backgroundColor: "#F9FAFB",
+        backgroundColor: "#FFF",
     },
 });
 
@@ -49,9 +53,7 @@ export const td = css({
     fontSize: "sm",
     color: "#374151",
     verticalAlign: "middle",
-    borderBottom: "1px solid",
-    borderColor: "#E5E7EB",
-});
+}, borderCell);
 
 export const tdActions = css({
     padding: "1rem",
