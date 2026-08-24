@@ -4,6 +4,7 @@ export const panel = css({
     display: "flex",
     flexDirection: "column",
     gap: "1rem",
+    minWidth: 0,
 });
 
 export const header = css({
@@ -22,4 +23,5 @@ export const title = css({
 export const body = css({
     display: "flex",
     flexDirection: "column",
+    minWidth: 0,
 });

@@ -1,15 +1,16 @@
 import { useEffect, type ReactNode } from "react";
 import { css } from "@styled-system/css";
-import { modalStyles } from "./styles";
+import { compactModal, modalStyles } from "./styles";
 
 interface ModalProps {
     isOpen: boolean;
     onClose: () => void;
     children: ReactNode;
     loading?: boolean;
+    compact?: boolean;
 }
 
-const Modal = ({ isOpen, onClose, children, loading }: ModalProps) => {
+const Modal = ({ isOpen, onClose, children, loading, compact = false }: ModalProps) => {
     useEffect(() => {
         if (!isOpen) return;
 
@@ -36,7 +37,7 @@ const Modal = ({ isOpen, onClose, children, loading }: ModalProps) => {
             onClick={onClose}
         >
             <div
-                className={css(modal)}
+                className={compact ? css(modal, compactModal) : css(modal)}
                 onClick={(e) => e.stopPropagation()}
             >
                 {loading ? (

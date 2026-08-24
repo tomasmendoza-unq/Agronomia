@@ -15,12 +15,16 @@ export const tableWrapper = css({
     boxShadow: "sm",
     borderRadius: "md",
     width: "100%",
+    minWidth: 0,
     overflow: "hidden",
     border: "1px solid #CECECE",
 });
 
 export const tableCard = css({
     width: "100%",
+    maxWidth: "100%",
+    overflowX: "auto",
+    overscrollBehaviorX: "contain",
     backgroundColor: "white",
 });
 
@@ -60,6 +64,7 @@ export const pagination = css({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+    flexWrap: "wrap",
     gap: "1rem",
     padding: "0.5rem",
 });

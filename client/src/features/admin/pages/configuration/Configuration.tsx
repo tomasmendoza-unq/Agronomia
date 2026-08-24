@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import CompanyDataCard from "./components/company/CompanyDataCard";
-import { h1, panel, contentGrid } from "./styles";
+import { h1, panel, contentGrid, successContent, successMessage, successTitle } from "./styles";
 import Modal from "@/shared/components/modal/Modal";
 import SectionPanel from "@/shared/components/section-panel/SectionPanel";
 import TableUsers, { type TableUsersRef } from "./components/table/TableUsers";
@@ -13,14 +13,17 @@ import Spinner from "@/shared/components/spinner/Spinner";
 const Configuration = () => {
     const { companyData, getCompany, companyLoading } = useGetCompanyData();
     const [isCreateUserOpen, setIsCreateUserOpen] = useState(false);
+    const [createdUserEmail, setCreatedUserEmail] = useState<string>();
     const tableUsersRef = useRef<TableUsersRef>(null);
 
     useEffect(() => {
         getCompany();
     }, []);
 
-    const handleUserCreated = () => {
+    const handleUserCreated = (email: string) => {
         tableUsersRef.current?.refresh();
+        setIsCreateUserOpen(false);
+        setCreatedUserEmail(email);
     };
 
     if (companyLoading || !companyData) {
@@ -73,9 +76,28 @@ const Configuration = () => {
                         companyId={companyData.id}
                         branches={companyData.branches ?? []}
                         onUserCreated={handleUserCreated}
-                        onClose={() => setIsCreateUserOpen(false)}
                     />
                 )}
+            </Modal>
+
+            <Modal
+                isOpen={Boolean(createdUserEmail)}
+                onClose={() => setCreatedUserEmail(undefined)}
+                compact
+            >
+                <div className={successContent}>
+                    <h2 className={successTitle}>Usuario creado</h2>
+                    <p className={successMessage}>
+                        Usuario creado con exito, se a enviado el mail a {createdUserEmail}
+                    </p>
+                    <Button
+                        color={token("colors.primaryColor")}
+                        hoverColor={token("colors.primaryColorHover")}
+                        onClick={() => setCreatedUserEmail(undefined)}
+                    >
+                        Cerrar
+                    </Button>
+                </div>
             </Modal>
         </section>
     );
