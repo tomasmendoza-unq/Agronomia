@@ -85,7 +85,6 @@ const NavBar = ({
                     />
                     <aside id="mobile-navigation" className={drawer} aria-label="Menú de navegación">
                         <div className={drawerContent}>
-                            <div className={wrapLogo}>{brand}</div>
                             <ul className={drawerList}>
                                 {links.map((link) => (
                                     <li key={link.name}>
