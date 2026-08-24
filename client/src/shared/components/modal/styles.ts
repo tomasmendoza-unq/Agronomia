@@ -13,7 +13,7 @@ export const modalStyles = sva({
             display: "flex",
             alignItems: "flex-start",
             justifyContent: "center",
-            zIndex: 90,
+            zIndex: 70,
             padding: "24px 1rem",
             overflowY: "auto",
         },
