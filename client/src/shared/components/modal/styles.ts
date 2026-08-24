@@ -1,4 +1,9 @@
-import { sva } from "@styled-system/css";
+import { css, sva } from "@styled-system/css";
+
+export const compactModal = css.raw({
+    width: { base: "100%", md: "420px" },
+    minHeight: 0,
+});
 
 export const modalStyles = sva({
     slots: ["overlay", "modal", "header", "title", "closeButton", "body"],
