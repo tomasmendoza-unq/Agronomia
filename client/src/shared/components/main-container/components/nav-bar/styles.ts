@@ -15,6 +15,8 @@ export const navBar = css({
     right: 0,
     left: 0,
     zIndex: 100,
+    borderBottomWidth: "1px",
+    borderBottomColor: "#E5E7EB",
 });
 
 export const navBarList = css({
