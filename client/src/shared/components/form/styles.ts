@@ -6,7 +6,6 @@ const form = css.raw({
     placeItems: "center",
     width: "100%",
     gap: "1rem",
-    height: "100%",
 });
 
 const elementContainer = css.raw({

@@ -16,6 +16,7 @@ export const bodyWrapper = css({
     maxWidth: "1440px",
     minWidth: 0,
     marginTop: "64px",
+    paddingTop: "24px",
     paddingBottom: "24px",
 });
 
