@@ -1,8 +1,8 @@
 import { useEffect, forwardRef, useImperativeHandle } from "react";
-import type { User } from "@/features/admin/types/User";
 import Table from "@/shared/components/table/Table";
-import UseGetUsers from "@/features/admin/hook/use-get-users";
 import Spinner from "@/shared/components/spinner/Spinner";
+import UseGetUsers from "@/features/add-user/hooks/use-get-users";
+import type { User } from "@/features/add-user/types/User";
 
 export interface TableUsersRef {
     refresh: () => Promise<void>;

@@ -1,7 +1,7 @@
 import type { TablePaginator } from "@/shared/types/table/Table";
-import getUsersService from "../service/get-users.service";
 import useFetch from "@/shared/hooks/use-fetch/useFetch.hook";
-import type { User } from "@/features/admin/types/User";
+import type { User } from "../types/User";
+import getUsersService from "../services/get-users.service";
 
 export const UseGetUsers = () => {
     const { data, execute, isLoading, error } =

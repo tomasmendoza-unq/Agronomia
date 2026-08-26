@@ -2,13 +2,13 @@ import createUserInputs from "./types/inputs";
 import createUserLinks from "./types/links";
 import schema from "./types/schema";
 import type { z } from "zod";
-import type { Branch } from "@/features/admin/types/Branch";
 import { useMemo } from "react";
 
 import ErrorToast from "@/shared/components/toast/error/ErrorToast";
-import { useRegister } from "@/features/admin/hook/use-register";
-import type { RegisterRequest } from "@/features/admin/api/dto/RegisterRequest";
 import CredentialsForm from "@/shared/components/credentials-form/CredentialsForm";
+import type { RegisterRequest } from "@/features/add-user/api/dto/RegisterRequest";
+import { useRegister } from "@/features/add-user/hooks/use-register";
+import type { Branch } from "@/features/add-user/types/Branch";
 
 export type CreateUserFormData = z.infer<typeof schema>;
 

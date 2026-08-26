@@ -2,14 +2,14 @@ import DataField from "@/shared/components/dataField/DataField";
 import { editButton } from "./styles";
 import { getCompanyFields } from "./types/fieldsCard";
 import SupplierCard from "@/shared/components/supplierCard/SupplierCard";
-import type { Company } from "@/features/admin/types/Company";
 import { useState } from "react";
 import Modal from "@/shared/components/modal/Modal";
 import { EditCompany } from "./components/form/EditCompany";
 import SuccessToast from "@/shared/components/toast/success/SuccessToast";
 import ErrorToast from "@/shared/components/toast/error/ErrorToast";
-import { usePutCompanyData } from "@/features/admin/hook/use-put-company";
-import type { CompanyEdit } from "@/features/admin/api/dto/CompanyEdit";
+import type { Company } from "@/features/add-user/types/Company";
+import { usePutCompanyData } from "@/features/add-user/hooks/use-put-company";
+import type { CompanyEdit } from "@/features/add-user/api/dto/CompanyEdit";
 
 interface CompanyDataCardProps {
     companyData: Company;

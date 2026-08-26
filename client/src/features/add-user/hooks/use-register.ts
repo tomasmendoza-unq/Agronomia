@@ -1,6 +1,6 @@
 import useFetch from "@/shared/hooks/use-fetch/useFetch.hook";
 import type { User } from "@/shared/domain/user/user";
-import register from "../service/register.service";
+import register from "../services/register.service";
 
 export const useRegister = () => {
     const { data, error, isLoading, execute, refresh } = useFetch<User>();

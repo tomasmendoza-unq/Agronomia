@@ -1,4 +1,4 @@
-import AuthenticatedLayout from "@/features/auth/layout/AuthenticatedLayout";
+import AuthenticatedLayout from "../../AuthenticatedLayout";
 import { links } from "./links";
 
 const FacturacionLayout = () => {
