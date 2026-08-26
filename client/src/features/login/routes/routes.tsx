@@ -1,6 +1,6 @@
 import Login from "../pages/init/Login";
 import type { RouteData } from "../../../core/routes/route-data";
-import { ACCOUNT_LOCKED, INIT_LOGIN } from "@/core/routes/login";
+import { ACCOUNT_LOCKED, INIT_LOGIN } from "../../../core/routes/login/paths";
 
 export const loginRoutes: RouteData[] = [
     {

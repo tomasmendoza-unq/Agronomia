@@ -1,6 +1,6 @@
 import type { RouteData } from "@/core/routes/route-data";
-import FacturacionLayout from "../layout/FacturacionLayout";
-import { FACTURACION_ROUTES } from "@/core/routes/facturacion";
+import { FACTURACION_ROUTES } from "./paths";
+import FacturacionLayout from "@/core/auth/layout/facturacion/FacturacionLayout";
 
 export const FacturacionRoutes: RouteData[] = [
     {

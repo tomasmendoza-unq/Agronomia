@@ -1,6 +1,6 @@
-import { ADMIN_ROUTES } from "../../../core/routes/admin/paths";
-import AuthenticatedLayout from "@/features/auth/layout/AuthenticatedLayout";
+import { ADMIN_ROUTES } from "../../../routes/admin/paths";
 import { links } from "./links";
+import AuthenticatedLayout from "../AuthenticatedLayout";
 
 const AdminLayout = () => {
     return (
