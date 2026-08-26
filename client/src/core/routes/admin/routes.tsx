@@ -1,7 +1,7 @@
 import type { RouteData } from "@/core/routes/route-data";
-import Configuration from "../../../features/admin/pages/configuration/Configuration";
 import { ADMIN_ROUTES } from "./paths";
-import AdminLayout from "../../../features/admin/layout/AdminLayout";
+import AdminLayout from "../../auth/layout/roles/admin/AdminLayout";
+import Configuration from "@/features/admin/pages/configuration/Configuration";
 
 export const AdminRoutes: RouteData[] = [
     {

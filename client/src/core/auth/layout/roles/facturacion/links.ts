@@ -1,4 +1,4 @@
-import type { linkNavbar } from "../../../../shared/routes/link";
+import type { linkNavbar } from "../../components/protected-routes/link";
 
 export const links: linkNavbar[] = [
     { name: "Inicio", path: "" },

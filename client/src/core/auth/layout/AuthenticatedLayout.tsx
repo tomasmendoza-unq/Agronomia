@@ -1,7 +1,7 @@
-import { ProtectedRoute } from "@/shared/routes/ProtectedRoute";
 import MainContainer from "@/shared/components/main-container/MainContainer";
-import type { linkNavbar } from "@/shared/routes/link";
+import type { linkNavbar } from "./components/protected-routes/link";
 import { useAuth } from "../hooks/use-auth";
+import { ProtectedRoute } from "./components/protected-routes/ProtectedRoute";
 
 interface AuthenticatedLayoutProps {
     links: linkNavbar[];

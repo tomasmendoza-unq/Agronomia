@@ -1,6 +1,6 @@
 import type { User } from "@/shared/domain/user/user"
 import { Outlet } from "react-router"
-import type { linkNavbar } from "../../routes/link";
+import type { linkNavbar } from "../../../core/auth/layout/components/protected-routes/link";
 import { authLayout, bodyWrapper } from "./styles";
 import Brand from "../brand/Brand";
 import Avatar from "./components/avatar/Avatar";

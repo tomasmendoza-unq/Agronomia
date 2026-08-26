@@ -1,5 +1,5 @@
+import Spinner from "@/shared/components/spinner/Spinner";
 import { Navigate } from "react-router";
-import Spinner from "../components/spinner/Spinner";
 
 interface Props {
     isAuthenticated: boolean;

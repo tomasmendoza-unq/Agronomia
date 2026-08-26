@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import useSelect from "@/shared/hooks/use-selected-active";
-import type { linkNavbar } from "../../../../routes/link";
+import type { linkNavbar } from "../../../../../core/auth/layout/components/protected-routes/link";
 import {
     drawer,
     drawerAvatar,
