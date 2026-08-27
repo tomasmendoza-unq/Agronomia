@@ -3,6 +3,8 @@ import InsertForm from "../form/InsertForm";
 import type { CredentialsFormProps } from "./credentials-form";
 import { styles } from "./styles";
 import type { Schema } from "./types/shema";
+import Button from "../button/Button";
+import { token } from "@styled-system/tokens";
 
 function CredentialsForm<T extends Schema>({
     title,
@@ -22,11 +24,18 @@ function CredentialsForm<T extends Schema>({
             </header>
             <InsertForm
                 inputsData={inputs}
-                buttonData={button}
                 schema={schema}
                 onSubmit={onSubmit}
-                isLoading={isLoading}
-            />
+                isLoading={isLoading}>
+                <Button
+                    type="submit"
+                    fullWidth
+                    color={token("colors.primaryColor")}
+                    hoverColor={token("colors.primaryColorHover")}
+                >
+                    {button.text}
+                </Button>
+            </InsertForm>
             <Footer links={links} />
         </div>
     );

@@ -1,4 +1,3 @@
-import type { InputData } from "../../credentials-form/types/input/credentials-input";
 import TextInput from "../components/text/TextInput";
 import FileInput from "../components/file/FileInput";
 import type { SystemStyleObject } from "@styled-system/types";
@@ -12,6 +11,7 @@ import type {
 import type { output } from "zod";
 import type { InferData, Schema } from "../../credentials-form/types/shema";
 import SelectInput from "../components/select/SelectInput";
+import type { InputData } from "@/shared/types/input/input";
 
 type FieldErrorType<T extends Schema> =
     | FieldError

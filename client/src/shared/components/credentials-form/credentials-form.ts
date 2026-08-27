@@ -1,4 +1,4 @@
-import type { InputRow } from "../form/insert-form";
+import type { InputRow } from "@/shared/types/input/input";
 import type { ButtonData } from "./types/button/credentials-button";
 import type { LinkData } from "./types/link/Link";
 import type { InferData, Schema } from "./types/shema";

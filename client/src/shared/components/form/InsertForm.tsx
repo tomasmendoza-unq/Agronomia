@@ -4,15 +4,12 @@ import { styles } from "./styles";
 import { css } from "@styled-system/css";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { token } from "@styled-system/tokens";
-import Button from "@/shared/components/button/Button";
 import type { InferData, Schema } from "../credentials-form/types/shema";
 import Spinner from "../spinner/Spinner";
 
 function InsertForm<T extends Schema>({
     inputsData,
     isLoading,
-    buttonData,
     schema,
     onSubmit,
     children,
@@ -63,14 +60,6 @@ function InsertForm<T extends Schema>({
                     ))}
                     <div className={css(actions)}>
                         {children}
-                        <Button
-                            type="submit"
-                            fullWidth
-                            color={token("colors.primaryColor")}
-                            hoverColor={token("colors.primaryColorHover")}
-                        >
-                            {buttonData.text}
-                        </Button>
                     </div>
                 </>
             )}

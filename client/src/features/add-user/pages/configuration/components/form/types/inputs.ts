@@ -1,5 +1,6 @@
-import type { InputRow } from "@/shared/components/form/insert-form";
-import type { Branch } from "@/features/admin/types/Branch";
+import type { Branch } from "@/features/add-user/types/Branch";
+import type { InputRow } from "@/shared/types/input/input";
+
 
 const createUserInputs = (branches: Branch[]): InputRow[] => [
     [
