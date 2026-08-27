@@ -35,3 +35,5 @@ export type Option = {
     label: string;
     id: number;
 };
+
+export type InputRow = InputData[];

@@ -1,4 +1,3 @@
-import type { TextInputData } from "../../../credentials-form/types/input/credentials-input";
 import { css } from "@styled-system/css";
 import type { SystemStyleObject } from "@styled-system/types";
 import type {
@@ -17,6 +16,7 @@ import type {
     Schema,
 } from "@/shared/components/credentials-form/types/shema";
 import { fieldStyles } from "../styles";
+import type { TextInputData } from "@/shared/types/input/input";
 
 interface TextInputProps<T extends Schema> {
     input: TextInputData;

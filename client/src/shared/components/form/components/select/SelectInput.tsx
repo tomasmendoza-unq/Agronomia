@@ -15,9 +15,9 @@ import type {
     InferData,
     Schema,
 } from "@/shared/components/credentials-form/types/shema";
-import type { SelectInputData } from "@/shared/components/credentials-form/types/input/credentials-input";
 import ErrorMessage from "../error/ErrorMessage";
 import { fieldStyles } from "../styles";
+import type { SelectInputData } from "@/shared/types/input/input";
 
 interface SelectInputProps<T extends Schema> {
     input: SelectInputData;
