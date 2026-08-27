@@ -1,8 +1,6 @@
-import type { InputData } from "@/shared/types/input/input";
+import type { InputRow } from "@/shared/types/input/input";
 import type { ButtonData } from "../credentials-form/types/button/credentials-button";
 import type { InferData, Schema } from "../credentials-form/types/shema";
-
-export type InputRow = InputData[];
 
 export interface InsertFormProps<T extends Schema> {
     inputsData: InputRow[];

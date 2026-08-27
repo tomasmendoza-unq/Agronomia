@@ -2,6 +2,7 @@ import type { SubFormProps } from "./types/sub-form";
 
 interface FormContainerProps {
     subForms: React.ReactElement<SubFormProps>[];
+    buttonTitle: string
 }
 
 const FormContainer = ({subForms}: FormContainerProps) => {
