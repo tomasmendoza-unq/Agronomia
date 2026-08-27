@@ -1,16 +1,16 @@
-import Button from "../../button/Button";
+import ButtonsContainer from "../components/buttons-container/ButtonsContainer";
 import type { Schema } from "../validation-form/shema";
 import ValidationForm from "../validation-form/ValidationForm";
 import Footer from "./components/footer/Footer";
-import type { CredentialsFormProps } from "./credentials-form";
+import type { CredentialsFormProps } from "./simple-form";
 import { styles } from "./styles";
-import { token } from "@styled-system/tokens";
 
-function CredentialsForm<T extends Schema>({
+function SimpleForm<T extends Schema>({
     title,
     isLoading,
     inputs,
-    button,
+    buttonData,
+    haveCancelOption,
     links,
     schema,
     onSubmit,
@@ -27,18 +27,11 @@ function CredentialsForm<T extends Schema>({
                 schema={schema}
                 onSubmit={onSubmit}
                 isLoading={isLoading}>
-                <Button
-                    type="submit"
-                    fullWidth
-                    color={token("colors.primaryColor")}
-                    hoverColor={token("colors.primaryColorHover")}
-                >
-                    {button.text}
-                </Button>
             </ValidationForm>
-            <Footer links={links} />
+            <ButtonsContainer buttonData={buttonData} haveCancelOption={haveCancelOption} /> 
+            {links && <Footer links={links} />}
         </div>
     );
 }
 
-export default CredentialsForm;
+export default SimpleForm;

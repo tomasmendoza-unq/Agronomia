@@ -5,10 +5,10 @@ import type { z } from "zod";
 import { useMemo } from "react";
 
 import ErrorToast from "@/shared/components/toast/error/ErrorToast";
-import CredentialsForm from "@/shared/components/credentials-form/CredentialsForm";
 import type { RegisterRequest } from "@/features/add-user/api/dto/RegisterRequest";
 import { useRegister } from "@/features/add-user/hooks/use-register";
 import type { Branch } from "@/features/add-user/types/Branch";
+import SimpleForm from "@/shared/components/forms/simple-form/SimpleForm";
 
 export type CreateUserFormData = z.infer<typeof schema>;
 
@@ -43,11 +43,12 @@ export const CreateUser = ({
 
     return (
         <>
-            <CredentialsForm
+            <SimpleForm
                 title="Crear nuevo usuario"
                 isLoading={isLoading}
                 inputs={inputs}
-                button={{ text: "Crear usuario" }}
+                buttonData={{ text: "Crear usuario" }}
+                haveCancelOption={false}
                 links={createUserLinks}
                 schema={schema}
                 onSubmit={handleCreateUser}

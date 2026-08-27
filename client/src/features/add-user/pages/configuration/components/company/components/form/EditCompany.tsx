@@ -1,12 +1,10 @@
-import InsertForm from "@/shared/components/form/InsertForm";
 import schema from "./types/schema";
 import createUserInputs from "./types/inputs";
 import type { InferData } from "@/shared/components/credentials-form/types/shema";
-import type { Company } from "@/features/admin/types/Company";
-import type { CompanyEdit } from "@/features/admin/api/dto/CompanyEdit";
-import Button from "@/shared/components/button/Button";
-import { token } from "@styled-system/tokens";
 import { h1 } from "./styles";
+import type { Company } from "@/features/add-user/types/Company";
+import type { CompanyEdit } from "@/features/add-user/api/dto/CompanyEdit";
+import SimpleForm from "@/shared/components/forms/simple-form/SimpleForm";
 
 interface EditCompanyProps {
     company: Company;
@@ -36,24 +34,16 @@ export const EditCompany = ({
     return (
         <section>
             <h1 className={h1}>Editar datos de empresa</h1>
-            <InsertForm
-                inputsData={createUserInputs}
+            <SimpleForm
+                haveCancelOption={true}
+                title="Editar datos de empresa"
+                inputs={createUserInputs}
                 isLoading={isLoading}
                 buttonData={{ text: "Guardar cambios" }}
                 schema={schema}
                 onSubmit={handleSubmit}
             >
-                <Button
-                    type="button"
-                    color="transparent"
-                    hoverColor="transparent"
-                    borderColor={token("colors.primaryColor")}
-                    textColor={token("colors.primaryColorSubtle")}
-                    onClick={onCancel}
-                >
-                    Cancelar
-                </Button>
-            </InsertForm>
+            </SimpleForm>
         </section>
     );
 };

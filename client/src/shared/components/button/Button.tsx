@@ -2,7 +2,7 @@ import type { ButtonHTMLAttributes, CSSProperties } from "react";
 import { css, cx } from "@styled-system/css";
 import { buttonShape, fullWidth } from "./button.styles";
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     color: string;
     hoverColor: string;
     borderColor?: string;

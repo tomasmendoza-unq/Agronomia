@@ -29,6 +29,7 @@ function ValidationForm<T extends Schema>({
         <form
             onSubmit={handleSubmit(handleForm)}
             className={css(form)}
+            id={"validation-form"}
         >
         {inputsData.map((row, rowIndex) => (
             <div
