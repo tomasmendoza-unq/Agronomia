@@ -1,0 +1,22 @@
+import type { TablePaginator } from "@/shared/types/table/Table";
+import useFetch from "@/shared/hooks/use-fetch/useFetch.hook";
+import type { User } from "../types/User";
+import getUsersService from "../services/get-users.service";
+
+export const UseGetUsers = () => {
+    const { data, execute, isLoading, error } =
+        useFetch<TablePaginator<User>>();
+
+    const getUsers = (page: number = 0, size: number = 5) => {
+        return execute(() => getUsersService(page, size))();
+    };
+
+    return {
+        users: data,
+        usersLoading: isLoading,
+        getUsers,
+        error,
+    };
+};
+
+export default UseGetUsers;

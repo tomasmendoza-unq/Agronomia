@@ -1,11 +1,11 @@
 import { ErrorCause } from "@/core/server/types/error-cause";
-import { useAuth } from "@/features/auth/hooks/use-auth";
-import type { Credentials } from "../../auth/types/Credentials";
 import { useNavigate } from "react-router";
 import {
     DEFAULT_HOME_ROUTE,
     ROLE_HOME_ROUTES,
 } from "@/core/routes/role-routes";
+import { useAuth } from "@/core/auth/hooks/use-auth";
+import type { Credentials } from "@/core/auth/types/Credentials";
 
 const useLogin = () => {
     const { refresh, error, login: log, isLoading } = useAuth();
