@@ -17,7 +17,6 @@ const Login = () => {
                     isLoading={loading}
                     inputs={loginInputs}
                     buttonData={{ text: "Iniciar sesión" }}
-                    haveCancelOption={false}
                     schema={schema}
                     onSubmit={login}
                     links={loginLinks}
