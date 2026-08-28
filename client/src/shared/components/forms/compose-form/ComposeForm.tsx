@@ -1,4 +1,4 @@
-import type { SubFormProps } from "./types/sub-form";
+import type { SubFormProps } from "../validation-form/components/subforms/sub-form";
 
 interface FormContainerProps {
     subForms: React.ReactElement<SubFormProps>[];

@@ -7,7 +7,6 @@ import { styles } from "./styles";
 
 function SimpleForm<T extends Schema>({
     title,
-    isLoading,
     inputs,
     buttonData,
     cancelOption,
@@ -15,6 +14,7 @@ function SimpleForm<T extends Schema>({
     schema,
     onSubmit,
 }: CredentialsFormProps<T>) {
+    
     const { container, headerTitle } = styles();
 
     return (
@@ -23,10 +23,9 @@ function SimpleForm<T extends Schema>({
                 <h1 className={headerTitle}>{title}</h1>
             </header>
             <ValidationForm
-                inputsData={inputs}
+                subForms={[ { inputs: inputs, id: 1 } ]}
                 schema={schema}
-                onSubmit={onSubmit}
-                isLoading={isLoading}>
+                onSubmit={onSubmit}>
             </ValidationForm>
             <ButtonsContainer buttonData={buttonData} cancelOption={cancelOption} /> 
             {links && <Footer links={links} />}

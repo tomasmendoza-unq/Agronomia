@@ -1,14 +1,13 @@
 import { useForm } from "react-hook-form";
-import type { InferData } from "../../credentials-form/types/shema";
 import type { InsertFormProps } from "./validation-form";
-import type { Schema } from "./shema";
+import type { InferData, Schema } from "./shema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { styles } from "./styles";
 import { css } from "@styled-system/css";
-import Input from "./inputs/factory";
+import SubForm from "./components/subforms/SubForm";
 
 function ValidationForm<T extends Schema>({
-    inputsData,
+    subForms,
     schema,
     onSubmit,
 }: InsertFormProps<T>) {
@@ -22,7 +21,7 @@ function ValidationForm<T extends Schema>({
 
     const handleForm = (data: InferData<T>) => onSubmit(data);
 
-    const { form, input } = styles;
+    const { form, input, row } = styles;
 
     return (
         <form
@@ -30,21 +29,17 @@ function ValidationForm<T extends Schema>({
             className={css(form)}
             id={"validation-form"}
         >
-        {inputsData.map((row, rowIndex) => (
-            <div
-                key={rowIndex}
-                className={css(styles.row)}
-            >
-            {row.map(i =>
-                Input({
-                    input: i,
-                    styles: input,
-                    register,
-                    error: errors[i.name],
-                }),
-            )}
-            </div>
-            ))}
+        {subForms.map(subForm => 
+            <SubForm 
+                key={subForm.id}
+                title={subForm.title} 
+                inputs={subForm.inputs} 
+                register={register}
+                rowStyles={row}
+                inputStyles={input}
+                formStyles={form}
+                errors={errors}
+            />)}
         </form>
     );
 }

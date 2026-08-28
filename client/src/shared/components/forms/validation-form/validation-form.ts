@@ -1,9 +1,8 @@
-import type { InputRow } from "@/shared/types/input/input";
 import type { InferData, Schema } from "./shema";
+import type { SubForm } from "../types/sub-form";
 
 export interface InsertFormProps<T extends Schema> {
-    inputsData: InputRow[];
-    isLoading: boolean;
+    subForms: SubForm[]
     schema: T;
     onSubmit: (data: InferData<T>) => void;
 }

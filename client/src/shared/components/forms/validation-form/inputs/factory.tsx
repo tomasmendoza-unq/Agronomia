@@ -7,7 +7,7 @@ import FileInput from "./file/FileInput";
 import TextInput from "./text/TextInput";
 import type { SystemStyleObject } from "@styled-system/types";
 
-type FieldErrorType<T extends Schema> =
+export type FieldErrorType<T extends Schema> =
     | FieldError
     | undefined
     | Merge<FieldError, FieldErrorsImpl<DeepRequired<output<T>>>>;
