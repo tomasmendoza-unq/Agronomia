@@ -1,5 +1,6 @@
 package com.agro.feature.provider.domain;
 
+import com.agro.feature.company.domain.Company;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -29,6 +30,9 @@ public class Provider {
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Traveler traveler;
+
+    @Column(name = "company_id", nullable = false)
+    private Long companyId;
 
     private List<Integer> listPrices;
 }

@@ -17,7 +17,9 @@ public class Traveler {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String fullName;
 
+    @Column(nullable = false)
     private String phoneNumber;
 }

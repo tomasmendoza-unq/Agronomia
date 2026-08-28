@@ -2,8 +2,10 @@ package com.agro.core.data.impl;
 
 import com.agro.feature.branch.domain.Branch;
 import com.agro.feature.company.domain.Company;
-import com.agro.feature.company.service.CompanyService;
 import com.agro.feature.image.domain.Imagen;
+import com.agro.feature.provider.domain.Provider;
+import com.agro.feature.provider.domain.Traveler;
+import com.agro.feature.provider.service.ProviderService;
 import com.agro.feature.user.domain.User;
 import com.agro.feature.user.domain.valueObjects.EmailValue;
 import com.agro.feature.user.services.UserService;
@@ -19,13 +21,12 @@ import java.util.List;
 @Profile("dev")
 public class DataSeederImpl implements DataSeeder {
 
-
     private final UserService userService;
+    private final ProviderService providerService;
 
-
-    public DataSeederImpl( UserService userService) {
+    public DataSeederImpl(UserService userService, ProviderService providerService) {
         this.userService = userService;
-
+        this.providerService = providerService;
     }
 
     @Override
@@ -59,7 +60,6 @@ public class DataSeederImpl implements DataSeeder {
                 .password("123")
                 .build();
 
-
         Imagen imagen = Imagen.builder()
                 .url("https://res.cloudinary.com/dvkvlpq07/image/upload/v1785440325/logo_tfzoil.jpg")
                 .publicId("123123")
@@ -77,5 +77,38 @@ public class DataSeederImpl implements DataSeeder {
         user.addCompany(company);
 
         userService.save(user);
+
+        Traveler traveler1 = Traveler.builder()
+                .fullName("Carlos Gomez")
+                .phoneNumber("11-2233-4455")
+                .build();
+
+        Provider provider1 = Provider.builder()
+                .tradeName("Agroinsumos del Sur")
+                .legalName("Agroinsumos del Sur S.R.L.")
+                .cuit("30-87654321-0")
+                .phoneNumber("11-4444-5555")
+                .companyId(company.getId())
+                .traveler(traveler1)
+                .listPrices(new ArrayList<>(List.of(1500, 2300, 3100)))
+                .build();
+
+        Traveler traveler2 = Traveler.builder()
+                .fullName("Carlos Gomez")
+                .phoneNumber("11-5566-7788")
+                .build();
+
+        Provider provider2 = Provider.builder()
+                .tradeName("Insumos Pampa")
+                .legalName("Insumos Pampa S.A.")
+                .cuit("30-11223344-5")
+                .phoneNumber("11-9999-8888")
+                .companyId(company.getId())
+                .traveler(traveler2)
+                .listPrices(new ArrayList<>(List.of(800, 950)))
+                .build();
+
+        providerService.save(provider1);
+        providerService.save(provider2);
     }
 }
