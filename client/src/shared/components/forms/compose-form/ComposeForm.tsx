@@ -5,7 +5,7 @@ interface FormContainerProps {
     buttonTitle: string
 }
 
-const FormContainer = ({subForms}: FormContainerProps) => {
+const ComposeForm = ({subForms}: FormContainerProps) => {
     return (
         <section>
             {subForms.map(subForm => subForm)}
@@ -13,4 +13,4 @@ const FormContainer = ({subForms}: FormContainerProps) => {
     )
 }
 
-export default FormContainer;
+export default ComposeForm;

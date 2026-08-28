@@ -2,6 +2,7 @@ import type { RouteData } from "@/core/routes/route-data";
 import { ADMIN_ROUTES } from "./paths";
 import AdminLayout from "../../auth/layout/roles/admin/AdminLayout";
 import Configuration from "@/features/add-user/pages/configuration/Configuration";
+import ClientPanel from "@/views/client/ClientPanel";
 
 export const AdminRoutes: RouteData[] = [
     {
@@ -14,6 +15,11 @@ export const AdminRoutes: RouteData[] = [
                 element: <Configuration />,
                 handle: { breadcrumb: "Configuración" },
             },
+            {
+                path: `${ADMIN_ROUTES.CLIENTES}`,
+                element: <ClientPanel />,
+                handle: { breadcrumb: "Cliente" },
+            }
         ],
     },
 ];
