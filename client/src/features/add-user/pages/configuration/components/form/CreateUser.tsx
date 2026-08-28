@@ -48,7 +48,6 @@ export const CreateUser = ({
                 isLoading={isLoading}
                 inputs={inputs}
                 buttonData={{ text: "Crear usuario" }}
-                haveCancelOption={false}
                 links={createUserLinks}
                 schema={schema}
                 onSubmit={handleCreateUser}

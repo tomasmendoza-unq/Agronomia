@@ -9,7 +9,7 @@ export interface CredentialsFormProps<T extends Schema> {
     isLoading: boolean;
     inputs: InputRow[];
     buttonData: ButtonData;
-    cancelOption: CancelButton
+    cancelOption?: CancelButton
     links?: LinkData[];
     schema: T;
     onSubmit: (data: InferData<T>) => void;
