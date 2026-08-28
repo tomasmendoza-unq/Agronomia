@@ -1,7 +1,6 @@
 import schema from "./types/schema";
 import createUserInputs from "./types/inputs";
 import type { InferData } from "@/shared/components/credentials-form/types/shema";
-import { h1 } from "./styles";
 import type { Company } from "@/features/add-user/types/Company";
 import type { CompanyEdit } from "@/features/add-user/api/dto/CompanyEdit";
 import SimpleForm from "@/shared/components/forms/simple-form/SimpleForm";
@@ -33,9 +32,8 @@ export const EditCompany = ({
 
     return (
         <section>
-            <h1 className={h1}>Editar datos de empresa</h1>
             <SimpleForm
-                haveCancelOption={true}
+                cancelOption={{onSubmit: onCancel}}
                 title="Editar datos de empresa"
                 inputs={createUserInputs}
                 isLoading={isLoading}

@@ -6,5 +6,4 @@ export interface InsertFormProps<T extends Schema> {
     isLoading: boolean;
     schema: T;
     onSubmit: (data: InferData<T>) => void;
-    children?: React.ReactNode;
 }

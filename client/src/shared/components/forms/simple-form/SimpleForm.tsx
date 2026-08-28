@@ -10,7 +10,7 @@ function SimpleForm<T extends Schema>({
     isLoading,
     inputs,
     buttonData,
-    haveCancelOption,
+    cancelOption,
     links,
     schema,
     onSubmit,
@@ -28,7 +28,7 @@ function SimpleForm<T extends Schema>({
                 onSubmit={onSubmit}
                 isLoading={isLoading}>
             </ValidationForm>
-            <ButtonsContainer buttonData={buttonData} haveCancelOption={haveCancelOption} /> 
+            <ButtonsContainer buttonData={buttonData} cancelOption={cancelOption} /> 
             {links && <Footer links={links} />}
         </div>
     );

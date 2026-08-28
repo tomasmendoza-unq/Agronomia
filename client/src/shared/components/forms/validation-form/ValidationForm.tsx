@@ -11,7 +11,6 @@ function ValidationForm<T extends Schema>({
     inputsData,
     schema,
     onSubmit,
-    children,
 }: InsertFormProps<T>) {
     const {
         register,
@@ -23,7 +22,7 @@ function ValidationForm<T extends Schema>({
 
     const handleForm = (data: InferData<T>) => onSubmit(data);
 
-    const { form, input, actions } = styles;
+    const { form, input } = styles;
 
     return (
         <form
@@ -46,9 +45,6 @@ function ValidationForm<T extends Schema>({
             )}
             </div>
             ))}
-            <div className={css(actions)}>
-                {children}
-            </div>
         </form>
     );
 }
