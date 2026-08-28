@@ -6,7 +6,7 @@ const FacturacionLayout = () => {
         <AuthenticatedLayout
             links={links}
             avatarTo={"/facturacion"}
-            allowedRoles={["FACTURACION"]}
+            allowedRoles={["FACTURACION", "DUENIO"]}
         />
     );
 };
