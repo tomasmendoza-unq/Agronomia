@@ -3,6 +3,7 @@ import type { ButtonData } from "../simple-form/types/button/credentials-button"
 import type { SubForm } from "../types/sub-form";
 import type { InferData, Schema } from "../validation-form/shema";
 import ValidationForm from "../validation-form/ValidationForm";
+import { container } from "./styles";
 
 interface FormContainerProps<T> {
     subForms: SubForm[];
@@ -14,7 +15,7 @@ interface FormContainerProps<T> {
 
 function ComposeForm<T extends Schema>({subForms, schema, buttonData, onSubmit, onCancel}: FormContainerProps<T>) {
     return (
-        <section>
+        <section className={container}>
             <ValidationForm 
                 subForms={subForms}
                 schema={schema}

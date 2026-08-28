@@ -37,7 +37,6 @@ function ValidationForm<T extends Schema>({
                 register={register}
                 rowStyles={row}
                 inputStyles={input}
-                formStyles={form}
                 errors={errors}
             />)}
         </form>

@@ -1,11 +1,17 @@
-import styles from "./styles";
+import ComposeForm from "@/shared/components/forms/compose-form/ComposeForm";
+import { subForms } from "./types/subforms";
+import naturalPersonSchema from "./types/schema";
 
 const AddClient = () => {
     
     return (
-        <section className={styles}>
-            <p>AA</p>
-        </section>
+        <ComposeForm 
+            subForms={subForms}
+            schema={naturalPersonSchema}
+            buttonData={{text: "Crear cliente"}}
+            onSubmit={() => console.log("aa")}
+            onCancel={() => console.log("aa")}
+        />
     )
 }
 

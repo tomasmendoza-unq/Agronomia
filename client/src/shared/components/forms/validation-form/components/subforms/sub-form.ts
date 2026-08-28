@@ -9,6 +9,5 @@ export interface SubFormProps<T extends Schema> {
     register: UseFormRegister<InferData<T>>;
     rowStyles: SystemStyleObject
     inputStyles: SystemStyleObject
-    formStyles: SystemStyleObject
     errors: FieldErrors<InferData<T>>;
 }

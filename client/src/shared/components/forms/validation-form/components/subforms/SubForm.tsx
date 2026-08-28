@@ -2,12 +2,15 @@ import { css } from "@styled-system/css";
 import type { SubFormProps } from "./sub-form";
 import Input from "../../inputs/factory";
 import type { Schema } from "../../shema";
+import styles from "./styles";
 
-function SubForm<T extends Schema>({inputs, title, register, rowStyles, inputStyles, formStyles, errors}: SubFormProps<T>) {
-        
+function SubForm<T extends Schema>({inputs, title, register, rowStyles, inputStyles, errors}: SubFormProps<T>) {
+    
+    const {container, title: t} = styles();
+    
     return (
-        <div className={css(formStyles)}>
-            {title && <p>{title}</p>}
+        <div className={container}>
+            {title && <p className={t}>{title}</p>}
             {inputs.map((row, rowIndex) => (
                 <div key={rowIndex} className={css(rowStyles)}>
                     {row.map(i =>
