@@ -15,7 +15,7 @@ export type SelectInputData = {
     type: SelectInputType;
     name: string;
     title: string;
-    placeholder: string;
+    placeholder?: string;
     id: number;
     options: Option[];
 };

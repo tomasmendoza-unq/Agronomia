@@ -55,16 +55,15 @@ export const subForms: SubForm[] = [
             [
                 {
                     type: "text",
-                    name: "location",
+                    name: "place",
                     title: "Localidad",
                     placeholder: "Ingrese la localidad",
                     id: 6,
                 },
                 {
                     type: "select",
-                    name: "address",
-                    title: "Dirección",
-                    placeholder: "Ingrese la dirección",
+                    name: "provice",
+                    title: "Provincia",
                     id: 7,
                     options: []
                 },
