@@ -1,7 +1,6 @@
 export type Traveler = {
     id: number;
-    name: string;
-    surname: string;
+    fullName: string;
     phoneNumber: string;
 };
 

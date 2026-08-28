@@ -1,3 +1,3 @@
-import { ProvidersGrid } from "@/features/get-providers/components/ProvidersGrid";
+import { ProvidersGrid } from "../../features/get-providers/components/grid/ProvidersGrid";
 
 export const ListProvider = () => <ProvidersGrid />;
