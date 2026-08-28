@@ -11,12 +11,9 @@ import type {
 import type { output } from "zod";
 
 import ErrorMessage from "../error/ErrorMessage";
-import type {
-    InferData,
-    Schema,
-} from "@/shared/components/credentials-form/types/shema";
 import type { TextInputData } from "@/shared/types/input/input";
 import { fieldStyles } from "../styles";
+import type { InferData, Schema } from "../../shema";
 
 interface TextInputProps<T extends Schema> {
     input: TextInputData;

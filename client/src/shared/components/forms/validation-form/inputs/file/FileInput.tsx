@@ -11,13 +11,10 @@ import type {
 } from "react-hook-form";
 import type { output } from "zod";
 import ErrorMessage from "../error/ErrorMessage";
-import type {
-    InferData,
-    Schema,
-} from "@/shared/components/credentials-form/types/shema";
 import { useRef, useState } from "react";
 import type { TextInputData } from "@/shared/types/input/input";
 import { fieldStyles } from "../styles";
+import type { InferData, Schema } from "../../shema";
 
 interface FileInputProps<T extends Schema> {
     input: TextInputData;

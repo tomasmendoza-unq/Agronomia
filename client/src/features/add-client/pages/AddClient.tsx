@@ -1,15 +1,20 @@
-import ComposeForm from "@/shared/components/forms/compose-form/ComposeForm";
 import { subForms } from "./types/subforms";
 import naturalPersonSchema from "./types/schema";
+import PolimorficForm from "@/shared/components/forms/polimorfic-form/PolimorficForm";
 
 const AddClient = () => {
     
     return (
-        <ComposeForm 
-            subForms={subForms}
-            schema={naturalPersonSchema}
-            buttonData={{text: "Crear cliente"}}
-            onSubmit={() => console.log("aa")}
+        <PolimorficForm 
+            options={[
+                {
+                    subType: "persona natural",
+                    subforms: subForms,
+                    schema: naturalPersonSchema,
+                    onSubmit: () => console.log("aa")
+                }
+            ]}
+            buttonData={{text: "Agregar cliente"}}
             onCancel={() => console.log("aa")}
         />
     )
