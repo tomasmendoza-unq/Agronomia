@@ -1,18 +1,19 @@
 import SearchEngineClient from "@/features/list-client/components/SearchEngineClient";
-import { Link } from "react-router";
+import { Link, Outlet } from "react-router";
 import styles from "./styles";
 
 const ClientPanel = () => {
 
-    const {title, container, optionsContainer} = styles()
+    const {title, container, optionsContainer} = styles();
 
     return (
         <section className={container}>
             <h1 className={title}>Cliente</h1>
             <div className={optionsContainer}>
                 <SearchEngineClient />
-                <Link to={""}>+ Añadir cliente</Link>
+                <Link to={"nuevo-cliente"}>+ Añadir cliente</Link>
             </div>
+            <Outlet />
         </section>
     )
 }
