@@ -1,8 +1,15 @@
 import { useEffect, useState, useRef } from "react";
 import CompanyDataCard from "./components/company/CompanyDataCard";
-import { h1, panel, contentGrid, successContent, successMessage, successTitle } from "./styles";
+import {
+    h1,
+    panel,
+    contentGrid,
+    successContent,
+    successMessage,
+    successTitle,
+} from "./styles";
 import Modal from "@/shared/components/modal/Modal";
-import SectionPanel from "@/shared/components/section-panel/SectionPanel";
+import SectionPanel from "../../../../shared/components/section/components/section-panel/SectionPanel";
 import TableUsers, { type TableUsersRef } from "./components/table/TableUsers";
 import CreateUser from "./components/form/CreateUser";
 import Button from "@/shared/components/button/Button";
@@ -88,7 +95,8 @@ const Configuration = () => {
                 <div className={successContent}>
                     <h2 className={successTitle}>Usuario creado</h2>
                     <p className={successMessage}>
-                        Usuario creado con exito, se a enviado el mail a {createdUserEmail}
+                        Usuario creado con exito, se a enviado el mail a{" "}
+                        {createdUserEmail}
                     </p>
                     <Button
                         color={token("colors.primaryColor")}
