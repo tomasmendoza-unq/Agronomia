@@ -1,19 +1,5 @@
 import { css, sva } from "@styled-system/css";
 
-const iconGroup = css.raw({
-    display: "flex",
-    flexDirection: "column",
-    gap: "5px",
-});
-
-const sectionTitle = css.raw({
-    margin: 0,
-    color: "#666666",
-    fontSize: "12px",
-    fontWeight: "bold",
-    lineHeight: "1.2",
-});
-
 const iconDetail = css.raw({
     display: "flex",
     alignItems: "center",
@@ -31,10 +17,8 @@ const icon = css.raw({
 });
 
 export const styles = sva({
-    slots: ["iconGroup", "sectionTitle", "iconDetail", "icon"],
+    slots: ["iconDetail", "icon"],
     base: {
-        iconGroup,
-        sectionTitle,
         iconDetail,
         icon,
     },

@@ -1,4 +1,4 @@
-import type { IconProps } from "../../icon/types/IconProps";
+import type { IconProps } from "../../../types/IconProps";
 
 export interface IconListProps {
     title: string;

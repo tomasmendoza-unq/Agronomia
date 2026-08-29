@@ -1,7 +1,7 @@
 import type { Provider } from "@/features/get-providers/types/Provider";
 import { PhoneIcon } from "../../../../../shared/components/icon/components/icons/Phone";
 import { UserIcon } from "../../../../../shared/components/icon/components/icons/User";
-import type { IconListProps } from "@/shared/components/iconList/types/iconList.t";
+import type { IconListProps } from "@/shared/components/icon/components/iconList/types/iconList.t";
 
 const contactsSections = (provider: Provider): IconListProps[] => [
     {
