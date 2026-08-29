@@ -1,4 +1,5 @@
 import type { SubForm } from "@/shared/components/forms/types/sub-form";
+import { formatCuit } from "@/shared/domain/cuit-cuil/format";
 
 export const subForms: SubForm[] = [
     {
@@ -22,10 +23,11 @@ export const subForms: SubForm[] = [
             ],
             [
                 {
-                    type: "text",
+                    type: "dynamic",
                     name: "cuit",
                     title: "CUIT/CUIL",
                     placeholder: "Ingrese el CUIT/CUIL",
+                    format: formatCuit,
                     id: 2,
                 },
                 {

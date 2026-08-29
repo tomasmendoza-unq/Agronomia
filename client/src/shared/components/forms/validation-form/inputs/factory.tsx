@@ -6,6 +6,7 @@ import SelectInput from "./select/SelectInput";
 import FileInput from "./file/FileInput";
 import TextInput from "./text/TextInput";
 import type { SystemStyleObject } from "@styled-system/types";
+import DynamicInput from "./dynamic/DynamicInput";
 
 export type FieldErrorType<T extends Schema> =
     | FieldError
@@ -46,6 +47,16 @@ function Input<T extends Schema>({
                     register={register}
                 />
             );
+        case "dynamic":
+            return (
+                <DynamicInput 
+                    key={input.id}
+                    input={input}
+                    inputStyles={styles}
+                    error={error}
+                    register={register}
+                />
+            )
         case "text":
         case "email":
         case "password":

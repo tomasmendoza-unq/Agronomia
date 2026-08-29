@@ -5,7 +5,7 @@ const naturalPersonSchema = z.object({
     cuit: z
         .string()
         .nonempty({message: "El CUIT/CUIL es obligatorio"})
-        .length(11, {message: "El CUIT/CUIL debe tener 11 números"})
+        .length(13, {message: "El CUIT/CUIL debe tener 11 números"})
         .transform(value => adapterCuit(value)),
     name: z
         .string()
