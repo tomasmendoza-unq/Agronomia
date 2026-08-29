@@ -1,5 +1,5 @@
+import { ExternalLinkIcon } from "../../../../shared/components/icon/components/icons/ExternalLink";
 import * as styles from "./styles";
-import { ExternalLinkIcon } from "./Icon";
 
 type PaymentSectionProps = {
     pricesCount: number;

@@ -2,8 +2,9 @@ import type { Provider } from "../../types/Provider";
 import * as styles from "./styles";
 import { ProviderHeader } from "./ProviderHeader";
 import { CompanyData } from "./CompanyData";
-import { ContactsSection } from "./ContactsSection";
 import { PaymentSection } from "./PaymentSection";
+import { IconList } from "@/shared/components/iconList/IconList";
+import contactsSections from "./types/contact";
 
 export const ProviderCard = ({ provider }: { provider: Provider }) => {
     const providerName = provider.tradeName || provider.legalName;
@@ -20,11 +21,12 @@ export const ProviderCard = ({ provider }: { provider: Provider }) => {
 
             <hr className={styles.divider} />
 
-            <ContactsSection
-                phoneNumber={provider.phoneNumber}
-                travelerName={provider.traveler?.fullName}
-                travelerPhoneNumber={provider.traveler?.phoneNumber}
-            />
+            {contactsSections(provider).map((section) => (
+                <IconList
+                    key={section.title}
+                    {...section}
+                />
+            ))}
 
             <PaymentSection pricesCount={pricesCount} />
         </article>
