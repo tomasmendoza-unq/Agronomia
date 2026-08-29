@@ -108,7 +108,19 @@ public class DataSeederImpl implements DataSeeder {
                 .listPrices(new ArrayList<>(List.of(800, 950)))
                 .build();
 
+
+        Provider provider3 = Provider.builder()
+                .tradeName("Insumos Pampa 2")
+                .legalName("Insumos Pampa S.A. 2")
+                .cuit("30-11223344-5")
+                .phoneNumber("11-9999-8888")
+                .companyId(company.getId())
+                .listPrices(new ArrayList<>(List.of(800, 950)))
+                .build();
+
+
         providerService.save(provider1);
         providerService.save(provider2);
+        providerService.save(provider3);
     }
 }
