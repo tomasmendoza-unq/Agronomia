@@ -3,6 +3,7 @@ package com.agro.core.data.impl;
 import com.agro.feature.branch.domain.Branch;
 import com.agro.feature.company.domain.Company;
 import com.agro.feature.image.domain.Imagen;
+import com.agro.feature.provider.domain.PaymentMethod;
 import com.agro.feature.provider.domain.Provider;
 import com.agro.feature.provider.domain.Traveler;
 import com.agro.feature.provider.service.ProviderService;
@@ -90,6 +91,7 @@ public class DataSeederImpl implements DataSeeder {
                 .phoneNumber("11-4444-5555")
                 .companyId(company.getId())
                 .traveler(traveler1)
+                .paymentMethods(new ArrayList<>(List.of(PaymentMethod.MERCADO_PAGO, PaymentMethod.EFECTIVO)))
                 .listPrices(new ArrayList<>(List.of(1500, 2300, 3100)))
                 .build();
 
@@ -98,16 +100,18 @@ public class DataSeederImpl implements DataSeeder {
                 .phoneNumber("11-5566-7788")
                 .build();
 
+        providerService.save(provider1);
+
         Provider provider2 = Provider.builder()
                 .tradeName("Insumos Pampa")
                 .legalName("Insumos Pampa S.A.")
                 .cuit("30-11223344-5")
                 .phoneNumber("11-9999-8888")
+                .paymentMethods(new ArrayList<>(List.of(PaymentMethod.MERCADO_PAGO, PaymentMethod.EFECTIVO)))
                 .companyId(company.getId())
                 .traveler(traveler2)
                 .listPrices(new ArrayList<>(List.of(800, 950)))
                 .build();
-
 
         Provider provider3 = Provider.builder()
                 .tradeName("Insumos Pampa 2")
@@ -115,11 +119,9 @@ public class DataSeederImpl implements DataSeeder {
                 .cuit("30-11223344-5")
                 .phoneNumber("11-9999-8888")
                 .companyId(company.getId())
-                .listPrices(new ArrayList<>(List.of(800, 950)))
+
                 .build();
 
-
-        providerService.save(provider1);
         providerService.save(provider2);
         providerService.save(provider3);
     }
