@@ -1,6 +1,7 @@
-import { subForms } from "./types/subforms";
-import naturalPersonSchema from "./types/schema";
+import { naturalPersonsubForms, socialMotiveSubform } from "./types/subforms";
+import naturalPersonSchema from "./types/natural-person-schema";
 import PolimorficForm from "@/shared/components/forms/polimorfic-form/PolimorficForm";
+import socialMotiveSchema from "./types/social-motive-schema";
 
 const AddClient = () => {
     
@@ -8,8 +9,14 @@ const AddClient = () => {
         <PolimorficForm 
             options={[
                 {
+                    subType: "razón social",
+                    subforms: socialMotiveSubform,
+                    schema: socialMotiveSchema,
+                    onSubmit: () => console.log("aa")
+                },
+                {
                     subType: "persona natural",
-                    subforms: subForms,
+                    subforms: naturalPersonsubForms,
                     schema: naturalPersonSchema,
                     onSubmit: () => console.log("aa")
                 }

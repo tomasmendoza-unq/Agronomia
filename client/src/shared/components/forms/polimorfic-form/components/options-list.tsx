@@ -8,8 +8,12 @@ interface OptionListProps {
 
 const styles = css({
     display: "flex",
-    justifyContent: "space-around",
-    width: "100%"
+    justifyContent: {
+        base: "center",
+        md: "start"
+    },
+    gap: "6%",
+    width: "90%"
 })
 
 const OptionList = ({options, onOption}: OptionListProps) => {
