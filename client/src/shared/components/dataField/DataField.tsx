@@ -4,12 +4,19 @@ import { fieldContainer, labelStyle, valueStyle } from "./styles";
 interface DataFieldProps {
     label: string;
     value: ReactNode;
+    labelClassName?: string;
+    valueClassName?: string;
 }
 
-const DataField = ({ label, value }: DataFieldProps) => (
+const DataField = ({
+    label,
+    value,
+    labelClassName = labelStyle,
+    valueClassName = valueStyle,
+}: DataFieldProps) => (
     <div className={fieldContainer}>
-        <dt className={labelStyle}>{label}</dt>
-        <dd className={valueStyle}>{value}</dd>
+        <dt className={labelClassName}>{label}</dt>
+        <dd className={valueClassName}>{value}</dd>
     </div>
 );
 

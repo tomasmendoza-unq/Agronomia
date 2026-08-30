@@ -9,20 +9,6 @@ export const avatarStyle = css({
     textDecoration: "none",
 });
 
-export const avatarInitials = css({
-    flexShrink: 0,
-    width: "40px",
-    height: "40px",
-    borderRadius: "full",
-    background: "#EAF2FA",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    fontWeight: 700,
-    color: "#111",
-    boxShadow: "inset 0 0 0 1px rgba(0,0,0,0.03)",
-});
-
 export const avatarText = css({
     display: "flex",
     flexDirection: "column",
