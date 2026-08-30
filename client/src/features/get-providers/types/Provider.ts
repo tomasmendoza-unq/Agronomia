@@ -12,5 +12,6 @@ export type Provider = {
     phoneNumber: string;
     traveler: Traveler;
     companyId: number;
+    payments: string[];
     listPrices: number[];
 };

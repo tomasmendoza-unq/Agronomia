@@ -15,6 +15,20 @@ export const card = css({
     boxShadow: "0 1px 2px rgba(0, 0, 0, 0.02)",
 });
 
+export const editLink = css({
+    display: "inline-flex",
+    alignSelf: "flex-end",
+    alignItems: "center",
+    border: 0,
+    background: "transparent",
+    color: "#555555",
+    fontSize: "12px",
+    cursor: "pointer",
+    _hover: { color: "primaryColor" },
+});
+
+export const editIcon = css({ width: "12px", height: "12px" });
+
 export const header = css({
     display: "flex",
     alignItems: "center",
