@@ -1,9 +1,11 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useGetProviders } from "../../hooks/use-get-providers";
 import Spinner from "@/shared/components/spinner/Spinner";
 import { ProviderCard } from "../card/ProviderCard";
+
 import { styles } from "./style";
 import { useSearchParams } from "react-router";
+import { Pagination } from "@/shared/components/pagination/Pagination";
 
 export const ProvidersGrid = () => {
     const { data, loading, getProviders } = useGetProviders();
@@ -11,9 +13,17 @@ export const ProvidersGrid = () => {
     const [searchParams] = useSearchParams();
     const search = searchParams.get("search") ?? "";
 
+    const [page, setPage] = useState(0);
+    const [prevSearch, setPrevSearch] = useState(search);
+
+    if (search !== prevSearch) {
+        setPrevSearch(search);
+        setPage(0);
+    }
+
     useEffect(() => {
-        getProviders(0, 5, search);
-    }, [search]);
+        getProviders(page, search);
+    }, [page, search]);
 
     return (
         <div className={container}>
@@ -36,6 +46,14 @@ export const ProvidersGrid = () => {
 
             {data && data.content.length === 0 && !loading && (
                 <p className={emptyState}>No hay proveedores para mostrar.</p>
+            )}
+
+            {data && data.totalPages > 1 && (
+                <Pagination
+                    currentPage={page + 1}
+                    totalPages={data.totalPages}
+                    onPageChange={(newPage) => setPage(newPage - 1)}
+                />
             )}
         </div>
     );

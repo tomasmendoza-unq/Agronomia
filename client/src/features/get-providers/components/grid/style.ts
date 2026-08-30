@@ -12,6 +12,7 @@ export const styles = sva({
                 md: "repeat(3, 1fr)",
                 lg: "repeat(4, 1fr)",
             },
+            justifyItems: "center",
             gap: "4",
         },
         spinnerWrapper: {

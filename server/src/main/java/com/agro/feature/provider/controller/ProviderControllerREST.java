@@ -32,7 +32,7 @@ public class ProviderControllerREST {
     public PageResponseDTO<ProviderResponseDTO> getProviders(
             @RequestAttribute("userId") Long  userId,
             @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "5") int size,
+            @RequestParam(defaultValue = "8") int size,
             @RequestParam(defaultValue = "") String name
     ) {
         return PageResponseDTO.from(

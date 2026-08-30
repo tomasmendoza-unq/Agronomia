@@ -4,7 +4,7 @@ const wrapper = css.raw({
     display: "flex",
     alignItems: "center",
     gap: "8px",
-    width: "20%",
+    width: { base: "100%", md: "40%", lg: "20%" },
     padding: "10px 14px",
     border: "1px solid #E4E4E4",
     borderRadius: "10px",
@@ -20,6 +20,7 @@ const icon = css.raw({
 
 const input = css.raw({
     flex: 1,
+    minWidth: 0,
     border: 0,
     outline: "none",
     fontSize: "14px",
