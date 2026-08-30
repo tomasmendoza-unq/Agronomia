@@ -18,6 +18,7 @@ class ClientTest {
                 "Bossi",
                 "11-11111111-1",
                 "1162870692",
+                "n@gmail.com",
                 "Lavalle 123",
                 "Florencio Varela",
                 Province.CORDOBA
@@ -39,6 +40,7 @@ class ClientTest {
                 "Bossi",
                 "a1-11111111-1",
                 "1162870692",
+                "n@gmail.com",
                 "Lavalle 123",
                 "Florencio Varela",
                 Province.CORDOBA
@@ -52,6 +54,7 @@ class ClientTest {
                 "Bossi",
                 "11111111111",
                 "1162870692",
+                "n@gmail.com",
                 "Lavalle 123",
                 "Florencio Varela",
                 Province.CORDOBA
@@ -65,6 +68,7 @@ class ClientTest {
                 "Bossi",
                 "1111111111133",
                 "1162870692",
+                "n@gmail.com",
                 "Lavalle 123",
                 "Florencio Varela",
                 Province.CORDOBA
