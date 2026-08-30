@@ -16,4 +16,7 @@ public final class Api {
     public static final String ME = "/me";
 
     public static final String COMPANY = MAIN_NAME + V + "/company";
+
+    public static final String PROVIDER = MAIN_NAME + V + "/provider";
+
 }

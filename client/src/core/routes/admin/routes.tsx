@@ -17,6 +17,14 @@ export const AdminRoutes: RouteData[] = [
                 handle: { breadcrumb: "Configuración" },
             },
             {
+<<<<<<< HEAD
+=======
+                path: `${ADMIN_ROUTES.PROVEEDORES}`,
+                element: <ListProvider />,
+                handle: { breadcrumb: "Proveedores" },
+            },
+            {
+>>>>>>> dev
                 path: `${ADMIN_ROUTES.CLIENTES}`,
                 element: <ClientPanel />,
                 handle: { breadcrumb: "Cliente" },

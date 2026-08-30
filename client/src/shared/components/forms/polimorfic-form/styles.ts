@@ -1,6 +1,7 @@
 import { css } from "@styled-system/css";
 
 export const container = css({
+<<<<<<< HEAD
     placeSelf: {
         base: "center",
         md: "start"
@@ -9,6 +10,12 @@ export const container = css({
     placeItems: "center",
     gap: "5vh",
     width: "90%",
+=======
+    display: "grid",
+    placeItems: "center",
+    gap: "5vh",
+    width: "100%",
+>>>>>>> dev
     maxWidth: "640px",
     paddingTop: "24px",
     paddingBottom: "24px",

@@ -1,6 +1,7 @@
 package com.agro.feature.user.services;
 
 import com.agro.feature.user.contracts.UserCredentialsService;
+import com.agro.feature.user.contracts.UserDataService;
 import com.agro.feature.user.domain.User;
 import com.agro.feature.user.domain.valueObjects.EmailValue;
 import com.agro.feature.user.persistence.daos.UserDAO;
@@ -14,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional
-public class UserServiceImpl implements UserService, UserCredentialsService {
+public class UserServiceImpl implements UserService, UserCredentialsService, UserDataService {
     private UserDAO userDao;
     private PasswordEncoder encoder;
 
