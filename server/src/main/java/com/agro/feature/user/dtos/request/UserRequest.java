@@ -2,7 +2,7 @@ package com.agro.feature.user.dtos.request;
 
 
 import com.agro.feature.user.domain.User;
-import com.agro.feature.user.domain.valueObjects.EmailValue;
+import com.agro.shared.valueObjects.email.EmailValue;
 import com.agro.shared.entities.rol.Role;
 import jakarta.validation.constraints.NotBlank;
 

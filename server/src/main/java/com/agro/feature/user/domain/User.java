@@ -2,15 +2,13 @@ package com.agro.feature.user.domain;
 
 import com.agro.feature.branch.domain.Branch;
 import com.agro.feature.company.domain.Company;
-import com.agro.feature.user.domain.valueObjects.EmailValue;
-import com.agro.feature.user.dtos.response.BranchResponse;
+import com.agro.shared.valueObjects.email.EmailValue;
 import com.agro.shared.entities.rol.Role;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import java.security.SecureRandom;
-import java.util.UUID;
 
 @Entity
 @Table(name = "users")
