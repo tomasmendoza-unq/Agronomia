@@ -15,7 +15,6 @@ const fieldStyles = sva({
             justifyContent: "center",
             gap: "6px",
             width: "36%",
-            minWidth: "160px",
             minHeight: "38px",
             height: "50%",
             padding: "8px",

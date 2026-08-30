@@ -9,15 +9,15 @@ const AddClient = () => {
         <PolimorficForm 
             options={[
                 {
-                    subType: "persona natural",
-                    subforms: naturalPersonsubForms,
-                    schema: naturalPersonSchema,
-                    onSubmit: () => console.log("aa")
-                },
-                {
                     subType: "razón social",
                     subforms: socialMotiveSubform,
                     schema: socialMotiveSchema,
+                    onSubmit: () => console.log("aa")
+                },
+                {
+                    subType: "persona natural",
+                    subforms: naturalPersonsubForms,
+                    schema: naturalPersonSchema,
                     onSubmit: () => console.log("aa")
                 }
             ]}

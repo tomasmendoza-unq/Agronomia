@@ -77,6 +77,54 @@ export const naturalPersonsubForms: SubForm[] = [
 
 export const socialMotiveSubform: SubForm[] = [
         {
+            title: "Datos cliente",
+            inputs: [
+            [
+                {
+                    type: "text",
+                    name: "name",
+                    title: "Nombre/Razón Social",
+                    placeholder: "Ingrese el nombre",
+                    id: 0,
+                },
+                {
+                    type: "dynamic",
+                    name: "cuit",
+                    title: "CUIT/CUIL",
+                    placeholder: "Ingrese el CUIT/CUIL",
+                    format: formatCuit,
+                    id: 2,
+                },
+            ],
+            [
+                {
+                    type: "text",
+                    name: "address",
+                    title: "Dirección",
+                    placeholder: "Ingrese la dirección",
+                    id: 5,
+                },
+            ],
+            [
+                {
+                    type: "text",
+                    name: "place",
+                    title: "Localidad",
+                    placeholder: "Ingrese la localidad",
+                    id: 6,
+                },
+                {
+                    type: "select",
+                    name: "provice",
+                    title: "Provincia",
+                    id: 7,
+                    options: []
+                },
+            ],
+        ],
+        id: 0,
+        },
+        {
         title: "Razón social",
         inputs: [
             [
