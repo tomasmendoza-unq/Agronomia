@@ -4,6 +4,7 @@ import AdminLayout from "../../auth/layout/roles/admin/AdminLayout";
 import Configuration from "@/features/add-user/pages/configuration/Configuration";
 import ClientPanel from "@/views/client/ClientPanel";
 import AddClient from "@/features/add-client/pages/AddClient";
+import { ListProvider } from "@/views/listProvider/ListProvider";
 
 export const AdminRoutes: RouteData[] = [
     {
@@ -17,14 +18,11 @@ export const AdminRoutes: RouteData[] = [
                 handle: { breadcrumb: "Configuración" },
             },
             {
-<<<<<<< HEAD
-=======
                 path: `${ADMIN_ROUTES.PROVEEDORES}`,
                 element: <ListProvider />,
                 handle: { breadcrumb: "Proveedores" },
             },
             {
->>>>>>> dev
                 path: `${ADMIN_ROUTES.CLIENTES}`,
                 element: <ClientPanel />,
                 handle: { breadcrumb: "Cliente" },
