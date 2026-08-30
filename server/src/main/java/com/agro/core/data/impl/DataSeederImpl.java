@@ -7,7 +7,7 @@ import com.agro.feature.provider.domain.Provider;
 import com.agro.feature.provider.domain.Traveler;
 import com.agro.feature.provider.service.ProviderService;
 import com.agro.feature.user.domain.User;
-import com.agro.feature.user.domain.valueObjects.EmailValue;
+import com.agro.shared.valueObjects.email.EmailValue;
 import com.agro.feature.user.services.UserService;
 import com.agro.core.data.DataSeeder;
 import com.agro.shared.entities.rol.Role;

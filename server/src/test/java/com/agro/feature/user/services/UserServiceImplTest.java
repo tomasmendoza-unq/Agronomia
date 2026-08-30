@@ -6,7 +6,7 @@ import com.agro.feature.branch.persistence.BranchDAO;
 import com.agro.feature.company.domain.Company;
 import com.agro.feature.company.service.CompanyService;
 import com.agro.feature.image.domain.Imagen;
-import com.agro.feature.user.domain.valueObjects.EmailValue;
+import com.agro.shared.valueObjects.email.EmailValue;
 import com.agro.feature.user.orchestrator.RegisterOrchestrator;
 import com.agro.shared.entities.rol.Role;
 import com.agro.feature.user.domain.User;

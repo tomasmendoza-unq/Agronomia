@@ -1,7 +1,6 @@
-package com.agro.feature.user.domain.valueObjects;
+package com.agro.shared.valueObjects.email;
 
 
-import com.agro.feature.user.domain.exceptions.EmailException;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 
