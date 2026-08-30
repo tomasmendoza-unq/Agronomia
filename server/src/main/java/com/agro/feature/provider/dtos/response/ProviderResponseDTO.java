@@ -12,6 +12,7 @@ public record ProviderResponseDTO(
         String phoneNumber,
         Long companyId,
         TravelerResponseDTO traveler,
+        List<String> payments,
         List<Integer> listPrices
 ){
     public static ProviderResponseDTO fromModel(Provider provider) {
@@ -23,6 +24,7 @@ public record ProviderResponseDTO(
                 provider.getPhoneNumber(),
                 provider.getCompanyId(),
                 TravelerResponseDTO.fromModel(provider.getTraveler()),
+                provider.getPaymentMethods(),
                 provider.getListPrices()
         );
     }

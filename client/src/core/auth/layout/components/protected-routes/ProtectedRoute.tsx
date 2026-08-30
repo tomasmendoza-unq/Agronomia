@@ -10,6 +10,11 @@ interface Props {
     redirectTo?: string;
 }
 
+const hasRequiredRole = (userRole?: string, allowedRoles?: string[]) => {
+    if (!allowedRoles || allowedRoles.length === 0) return true;
+    return !!userRole && allowedRoles.includes(userRole);
+};
+
 export const ProtectedRoute = ({
     isAuthenticated,
     isLoading = false,
@@ -18,34 +23,27 @@ export const ProtectedRoute = ({
     allowedRoles,
     redirectTo = "/login",
 }: Props) => {
-    if (isLoading) {
+    if (isLoading)
         return (
             <Spinner
                 size="lg"
                 centered
             />
         );
-    }
-
-    if (!isAuthenticated) {
+    if (!isAuthenticated)
         return (
             <Navigate
                 to={redirectTo}
                 replace
             />
         );
-    }
-
-    if (allowedRoles && allowedRoles.length > 0) {
-        if (!userRole || !allowedRoles.includes(userRole)) {
-            return (
-                <Navigate
-                    to="/unauthorized"
-                    replace
-                />
-            );
-        }
-    }
+    if (!hasRequiredRole(userRole, allowedRoles))
+        return (
+            <Navigate
+                to="/unauthorized"
+                replace
+            />
+        );
 
     return <>{children}</>;
 };
