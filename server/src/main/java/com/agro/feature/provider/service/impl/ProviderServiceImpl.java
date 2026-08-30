@@ -11,8 +11,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 @Transactional
 public class ProviderServiceImpl implements ProviderService, ProviderDataService {
@@ -27,9 +25,9 @@ public class ProviderServiceImpl implements ProviderService, ProviderDataService
     }
 
     @Override
-    public Page<Provider> getProviders(int page, int size, Long userId) {
+    public Page<Provider> getProviders(int page, int size, Long userId, String name) {
         User user = userDataService.getUserById(userId);
-        return providerDAO.findAllByCompanyId(user.getCompany().getId(), PageRequest.of(page, size));
+        return providerDAO.searchByCompanyId(user.getCompany().getId(),name, PageRequest.of(page, size));
     }
 
     @Override

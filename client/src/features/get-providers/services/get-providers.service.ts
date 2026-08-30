@@ -14,9 +14,10 @@ export type PageResponseDTO<T> = {
 async function getProvidersService(
     page = 0,
     size = 5,
+    name = "",
 ): Promise<PageResponseDTO<Provider>> {
     const response = await http.get<PageResponseDTO<Provider>>(PROVIDER_PATH, {
-        params: { page, size },
+        params: { page, size, name },
     });
     return response.data;
 }

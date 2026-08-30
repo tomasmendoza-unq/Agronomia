@@ -32,11 +32,13 @@ public class ProviderControllerREST {
     public PageResponseDTO<ProviderResponseDTO> getProviders(
             @RequestAttribute("userId") Long  userId,
             @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "5") int size
+            @RequestParam(defaultValue = "5") int size,
+            @RequestParam(defaultValue = "") String name
     ) {
         return PageResponseDTO.from(
-                providerDataService.getProviders(page, size, userId)
+                providerDataService.getProviders(page, size, userId, name)
                         .map(ProviderResponseDTO::fromModel)
         );
     }
+
 }
