@@ -2,6 +2,7 @@ package com.agro.feature.client.domain;
 
 import com.agro.shared.entities.province.Province;
 import com.agro.shared.valueObjects.email.EmailValue;
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import lombok.Getter;
 
@@ -17,6 +18,7 @@ public class NaturalPerson extends Client {
     @Getter
     private String phone;
 
+    @Embedded
     private EmailValue email;
 
     public NaturalPerson(

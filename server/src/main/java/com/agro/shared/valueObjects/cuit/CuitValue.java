@@ -6,8 +6,8 @@ import jakarta.persistence.Embeddable;
 @Embeddable
 public class CuitValue
 {
-    @Column(name = "value", unique = true)
-    private String value;
+    @Column(name = "cuit", unique = true)
+    private String cuit;
 
     protected CuitValue() {}
 
@@ -19,10 +19,10 @@ public class CuitValue
         if(!isOnlyNumber(value)) {
             throw new CuitException("El Cuit debe tener solo números");
         }
-        if(!isValidLength(value)) {
+        else if(!isValidLength(value)) {
             throw new CuitException("El Cuit debe tener 11 números");
         }
-        this.value = value;
+        this.cuit = value;
     }
 
     private Boolean isValidLength(String value) {
@@ -34,6 +34,6 @@ public class CuitValue
     }
 
     public String get() {
-        return value;
+        return cuit;
     }
 }

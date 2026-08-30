@@ -7,8 +7,8 @@ import jakarta.persistence.Embeddable;
 @Embeddable
 public class EmailValue {
 
-    @Column(name = "value", unique = true)
-    private String value;
+    @Column(name = "email", unique = true)
+    private String email;
 
     protected EmailValue() {}
 
@@ -20,7 +20,7 @@ public class EmailValue {
         if(isNotArroba(email)) {
             throw new EmailException();
         }
-        this.value = email;
+        this.email = email;
     }
 
     private Boolean isNotArroba(String email) {
@@ -28,6 +28,6 @@ public class EmailValue {
     }
 
     public String get() {
-        return value;
+        return email;
     }
 }

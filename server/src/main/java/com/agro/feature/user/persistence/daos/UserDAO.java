@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @Repository
 public interface UserDAO extends JpaRepository<User, Long> {
-    @Query("SELECT u FROM User u where u.email.value = :email")
+    @Query("SELECT u FROM User u where u.email.email = :email")
     Optional<User> findByEmail(@Param("email") String email);
 
     boolean existsByEmail(EmailValue email);

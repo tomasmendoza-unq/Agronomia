@@ -2,15 +2,19 @@ package com.agro.feature.client.domain;
 
 import com.agro.shared.entities.province.Province;
 import com.agro.shared.valueObjects.cuit.CuitValue;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Inheritance;
-import jakarta.persistence.InheritanceType;
+import jakarta.persistence.*;
 import lombok.Getter;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Client {
 
+    @Id
+    @GeneratedValue
+    @Getter
+    private Long id;
+
+    @Embedded
     private CuitValue cuit;
 
     @Getter
