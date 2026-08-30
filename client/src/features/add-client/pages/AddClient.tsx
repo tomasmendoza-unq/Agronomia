@@ -1,5 +1,5 @@
 import { subForms } from "./types/subforms";
-import naturalPersonSchema from "./types/schema";
+import naturalPersonSchema from "./types/natural-person-schema";
 import PolimorficForm from "@/shared/components/forms/polimorfic-form/PolimorficForm";
 
 const AddClient = () => {

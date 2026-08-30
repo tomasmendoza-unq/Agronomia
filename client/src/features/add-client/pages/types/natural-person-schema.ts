@@ -26,6 +26,6 @@ const naturalPersonSchema = z.object({
         .nonempty({message: "Seleccione una provincia"}),
 });
 
-export type CredentialsSchema = typeof naturalPersonSchema;
+export type NaturalPersonSchema = typeof naturalPersonSchema;
 
 export default naturalPersonSchema;
