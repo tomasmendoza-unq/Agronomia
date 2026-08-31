@@ -1,4 +1,7 @@
 package com.agro.core.handlers;
 
-public record ErrorResponse() {
+public record ErrorResponse(
+        String field,
+        String message
+) {
 }

@@ -1,7 +1,6 @@
 package com.agro.feature.client.domain;
 
 import com.agro.shared.entities.province.Province;
-import com.agro.shared.valueObjects.cuit.CuitException;
 import com.agro.shared.valueObjects.email.EmailException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,7 +21,7 @@ class NaturalPersonTest {
                 "n@gmail.com",
                 "Lavalle 123",
                 "Florencio Varela",
-                Province.CORDOBA
+                Province.Cordoba
         );
     }
 
@@ -44,7 +43,7 @@ class NaturalPersonTest {
                 "ns",
                 "Lavalle 123",
                 "Florencio Varela",
-                Province.CORDOBA
+                Province.Cordoba
         ));
     }
 }
