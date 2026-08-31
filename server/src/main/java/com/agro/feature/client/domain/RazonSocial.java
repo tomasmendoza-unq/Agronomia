@@ -42,22 +42,6 @@ public class RazonSocial extends Client{
         this.associateEmail = new EmailValue(associateEmail);
     }
 
-    public RazonSocial(
-            String razon,
-            String associateName,
-            String associateSurname,
-            String associatePhone,
-            String cuit,
-            String address,
-            String location,
-            Province province) {
-        super(cuit, address, location, province);
-        this.razonSocial = razon;
-        this.associateName = associateName;
-        this.associateSurname = associateSurname;
-        this.associatePhone = associatePhone;
-    }
-
     public String getEmail() {
         return associateEmail.get();
     }
