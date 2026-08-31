@@ -1,22 +1,15 @@
 import http from "@/core/server/http-client";
 import type { Provider } from "../types/Provider";
 import { PROVIDER_PATH } from "@/core/server/urls/provider";
-
-export type PageResponseDTO<T> = {
-    content: T[];
-    page: number;
-    size: number;
-    totalElements: number;
-    totalPages: number;
-    last: boolean;
-};
+import type { Page } from "@/shared/types/page/Page";
 
 async function getProvidersService(
     page = 0,
-    size = 5,
-): Promise<PageResponseDTO<Provider>> {
-    const response = await http.get<PageResponseDTO<Provider>>(PROVIDER_PATH, {
-        params: { page, size },
+
+    name = "",
+): Promise<Page<Provider>> {
+    const response = await http.get<Page<Provider>>(PROVIDER_PATH, {
+        params: { page, name },
     });
     return response.data;
 }

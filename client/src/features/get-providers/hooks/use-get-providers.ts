@@ -1,12 +1,11 @@
 import useFetch from "@/shared/hooks/use-fetch/useFetch.hook";
 import type { Provider } from "../types/Provider";
-import getProvidersService, {
-    type PageResponseDTO,
-} from "../services/get-providers.service";
+import getProvidersService from "../services/get-providers.service";
+import type { Page } from "@/shared/types/page/Page";
 
 export const useGetProviders = () => {
     const { data, error, isLoading, execute, refresh } =
-        useFetch<PageResponseDTO<Provider>>();
+        useFetch<Page<Provider>>();
     return {
         data,
         error,

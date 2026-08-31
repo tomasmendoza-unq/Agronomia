@@ -1,7 +1,7 @@
 import { sva } from "@styled-system/css";
 
 export const styles = sva({
-    slots: ["container", "grid", "spinnerWrapper", "emptyState"],
+    slots: ["container", "grid", "spinnerWrapper"],
     base: {
         container: { width: "100%", padding: "4" },
         grid: {
@@ -12,6 +12,7 @@ export const styles = sva({
                 md: "repeat(3, 1fr)",
                 lg: "repeat(4, 1fr)",
             },
+            justifyItems: "center",
             gap: "4",
         },
         spinnerWrapper: {
@@ -20,6 +21,5 @@ export const styles = sva({
             alignItems: "center",
             padding: "8",
         },
-        emptyState: { textAlign: "center", color: "gray.500", padding: "8" },
     },
 });

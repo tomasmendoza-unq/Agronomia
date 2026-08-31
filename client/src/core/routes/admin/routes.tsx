@@ -4,7 +4,8 @@ import AdminLayout from "../../auth/layout/roles/admin/AdminLayout";
 import Configuration from "@/features/add-user/pages/configuration/Configuration";
 import ClientPanel from "@/views/client/ClientPanel";
 import AddClient from "@/features/add-client/pages/AddClient";
-import { ListProvider } from "@/views/listProvider/ListProvider";
+import { ProviderPanel } from "@/views/provider/ProviderPanel";
+import { ProvidersList } from "@/views/provider/components/ProviderList";
 
 export const AdminRoutes: RouteData[] = [
     {
@@ -19,8 +20,19 @@ export const AdminRoutes: RouteData[] = [
             },
             {
                 path: `${ADMIN_ROUTES.PROVEEDORES}`,
-                element: <ListProvider />,
+                element: <ProviderPanel />,
                 handle: { breadcrumb: "Proveedores" },
+                children: [
+                    {
+                        index: true,
+                        element: <ProvidersList />,
+                    },
+                    {
+                        path: `nuevo-proveedor`,
+                        element: <></>,
+                        handle: { breadcrumb: "Nuevo Proveedor" },
+                    },
+                ],
             },
             {
                 path: `${ADMIN_ROUTES.CLIENTES}`,
@@ -31,9 +43,9 @@ export const AdminRoutes: RouteData[] = [
                         path: `nuevo-cliente`,
                         element: <AddClient />,
                         handle: { breadcrumb: "Nuevo Cliente" },
-                    }
-                ]
-            }
+                    },
+                ],
+            },
         ],
     },
 ];

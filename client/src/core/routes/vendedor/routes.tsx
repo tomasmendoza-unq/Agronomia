@@ -1,7 +1,8 @@
 import type { RouteData } from "@/core/routes/route-data";
 import { VENDEDOR_ROUTES } from "./paths";
 import VendedorLayout from "@/core/auth/layout/roles/vendedor/VendedorLayout";
-import { ListProvider } from "@/views/listProvider/ListProvider";
+import { ProviderPanel } from "@/views/provider/ProviderPanel";
+import { ProvidersList } from "@/views/provider/components/ProviderList";
 
 export const VendedorRoutes: RouteData[] = [
     {
@@ -10,9 +11,15 @@ export const VendedorRoutes: RouteData[] = [
         handle: { breadcrumb: "Inicio" },
         children: [
             {
-                path: `${VENDEDOR_ROUTES.PROVIDERS}`,
-                element: <ListProvider />,
+                path: `${VENDEDOR_ROUTES.PROVEEDORES}`,
+                element: <ProviderPanel />,
                 handle: { breadcrumb: "Proveedores" },
+                children: [
+                    {
+                        index: true,
+                        element: <ProvidersList />,
+                    },
+                ],
             },
         ],
     },
