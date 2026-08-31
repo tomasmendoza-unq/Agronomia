@@ -1,12 +1,12 @@
 package com.agro.feature.provider.domain;
 
-import com.agro.feature.company.domain.Company;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @AllArgsConstructor
@@ -34,5 +34,13 @@ public class Provider {
     @Column(name = "company_id", nullable = false)
     private Long companyId;
 
-    private List<Integer> listPrices;
+    @Builder.Default
+    private List<PaymentMethod> paymentMethods = new ArrayList<>();
+
+    @Builder.Default
+    private List<Integer> listPrices  = new ArrayList<>();
+
+    public List<String> getPaymentMethods() {
+        return paymentMethods.stream().map(PaymentMethod::getValue).toList();
+    }
 }

@@ -3,14 +3,16 @@ package com.agro.core.data.impl;
 import com.agro.feature.branch.domain.Branch;
 import com.agro.feature.company.domain.Company;
 import com.agro.feature.image.domain.Imagen;
+import com.agro.feature.provider.domain.PaymentMethod;
 import com.agro.feature.provider.domain.Provider;
 import com.agro.feature.provider.domain.Traveler;
 import com.agro.feature.provider.service.ProviderService;
 import com.agro.feature.user.domain.User;
-import com.agro.feature.user.domain.valueObjects.EmailValue;
+
 import com.agro.feature.user.services.UserService;
 import com.agro.core.data.DataSeeder;
 import com.agro.shared.entities.rol.Role;
+import com.agro.shared.valueObjects.email.EmailValue;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
@@ -89,6 +91,7 @@ public class DataSeederImpl implements DataSeeder {
                         .cuit("30-87654321-0")
                         .phoneNumber("11-4444-5555")
                         .companyId(companyId)
+                        .paymentMethods(new ArrayList<>(List.of(PaymentMethod.MERCADO_PAGO, PaymentMethod.EFECTIVO)))
                         .traveler(Traveler.builder()
                                 .fullName("Carlos Gomez")
                                 .phoneNumber("11-2233-4455")
@@ -102,6 +105,7 @@ public class DataSeederImpl implements DataSeeder {
                         .cuit("30-11223344-5")
                         .phoneNumber("11-9999-8888")
                         .companyId(companyId)
+                        .paymentMethods(new ArrayList<>(List.of(PaymentMethod.MERCADO_PAGO, PaymentMethod.EFECTIVO)))
                         .traveler(Traveler.builder()
                                 .fullName("Carlos Gomez")
                                 .phoneNumber("11-5566-7788")
@@ -114,6 +118,7 @@ public class DataSeederImpl implements DataSeeder {
                         .legalName("Insumos Pampa S.A. 2")
                         .cuit("30-11223344-5")
                         .phoneNumber("11-9999-8888")
+                        .paymentMethods(new ArrayList<>(List.of(PaymentMethod.MERCADO_PAGO)))
                         .companyId(companyId)
                         .listPrices(new ArrayList<>(List.of(800, 950)))
                         .build(),
@@ -137,6 +142,7 @@ public class DataSeederImpl implements DataSeeder {
                         .cuit("30-54892371-6")
                         .phoneNumber("351-4567-890")
                         .companyId(companyId)
+                        .paymentMethods(new ArrayList<>(List.of(PaymentMethod.MERCADO_PAGO, PaymentMethod.EFECTIVO)))
                         .traveler(Traveler.builder()
                                 .fullName("Lucía Fernández")
                                 .phoneNumber("351-6789-012")
@@ -158,6 +164,7 @@ public class DataSeederImpl implements DataSeeder {
                         .cuit("30-53821046-9")
                         .phoneNumber("341-762-3344")
                         .companyId(companyId)
+                        .paymentMethods(new ArrayList<>(List.of(PaymentMethod.MERCADO_PAGO, PaymentMethod.EFECTIVO)))
                         .traveler(Traveler.builder()
                                 .fullName("Martín Suárez")
                                 .phoneNumber("341-889-5566")
@@ -169,6 +176,7 @@ public class DataSeederImpl implements DataSeeder {
                         .tradeName("Metalfor")
                         .legalName("Metalfor S.A.")
                         .cuit("30-61234789-2")
+                        .paymentMethods(new ArrayList<>(List.of(PaymentMethod.MERCADO_PAGO, PaymentMethod.EFECTIVO)))
                         .phoneNumber("358-421-7788")
                         .companyId(companyId)
                         .build(),
@@ -179,6 +187,7 @@ public class DataSeederImpl implements DataSeeder {
                         .cuit("30-68974512-1")
                         .phoneNumber("341-556-9900")
                         .companyId(companyId)
+                        .paymentMethods(new ArrayList<>(List.of(PaymentMethod.MERCADO_PAGO, PaymentMethod.EFECTIVO)))
                         .traveler(Traveler.builder()
                                 .fullName("Sofía Ramírez")
                                 .phoneNumber("341-334-1122")
@@ -190,6 +199,7 @@ public class DataSeederImpl implements DataSeeder {
                         .tradeName("Don Mario Semillas")
                         .legalName("Don Mario Semillas S.A.")
                         .cuit("30-59873421-8")
+                        .paymentMethods(new ArrayList<>(List.of(PaymentMethod.MERCADO_PAGO, PaymentMethod.EFECTIVO)))
                         .phoneNumber("3401-445-6677")
                         .companyId(companyId)
                         .build()

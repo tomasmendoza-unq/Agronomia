@@ -1,4 +1,4 @@
-package com.agro.feature.user.domain.exceptions;
+package com.agro.shared.valueObjects.email;
 
 import com.agro.shared.exceptions.BusinessException;
 

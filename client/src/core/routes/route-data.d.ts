@@ -1,11 +1,21 @@
 import type React from "react";
 
-export type RouteData = {
+type Handle = {
+    breadcrumb?: string;
+};
+
+type IndexRouteData = {
+    index: true;
+    element: React.JSX.Element;
+    handle?: Handle;
+};
+
+type NonIndexRouteData = {
+    index?: false;
     path?: string;
-    index?: boolean;
     element: React.JSX.Element;
     children?: RouteData[];
-    handle?: {
-        breadcrumb?: string;
-    };
+    handle?: Handle;
 };
+
+export type RouteData = IndexRouteData | NonIndexRouteData;

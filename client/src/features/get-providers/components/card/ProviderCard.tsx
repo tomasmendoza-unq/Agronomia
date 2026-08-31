@@ -5,14 +5,14 @@ import contactsSections from "./types/contact";
 import { IconList } from "@/shared/components/icon/components/iconList/IconList";
 import { InitialsName } from "@/shared/components/avatar/components/initialsName/InitialsName";
 import DataField from "@/shared/components/dataField/DataField";
-import SubSection from "@/shared/components/section/components/subSection/SubSection";
-import { ExternalLinkIcon } from "@/shared/components/icon/components/icons/ExternalLink";
-import Button from "@/shared/components/button/Button";
-import { token } from "@styled-system/tokens";
+import { RoleGuard } from "@/core/auth/components/RoleGuard";
+import { EditIcon } from "@/shared/components/icon/components/icons/EditIcon";
+import { PricesButton } from "./PriceButton";
+import { PaymentsMethods } from "./PaymentsMethods";
 
 export const ProviderCard = ({ provider }: { provider: Provider }) => {
     const providerName = provider.tradeName || provider.legalName;
-    const pricesCount = provider.listPrices?.length ?? 0;
+    const hasPrices = (provider.listPrices?.length ?? 0) > 0;
 
     return (
         <article className={styles.card}>
@@ -35,6 +35,17 @@ export const ProviderCard = ({ provider }: { provider: Provider }) => {
                     labelClassName={styles.label}
                 />
             </div>
+
+            <RoleGuard allowedRoles={["DUENIO"]}>
+                <button
+                    type="button"
+                    className={styles.editLink}
+                >
+                    Editar
+                    <EditIcon className={styles.editIcon} />
+                </button>
+            </RoleGuard>
+
             <hr className={styles.divider} />
             <div className={styles.cardBody}>
                 {contactsSections(provider).map((section) => (
@@ -43,35 +54,10 @@ export const ProviderCard = ({ provider }: { provider: Provider }) => {
                         {...section}
                     />
                 ))}
-                <SubSection
-                    title="Formas de pago"
-                    items={[pricesCount]}
-                    renderItem={(count) => (
-                        <div className={styles.paymentRow}>
-                            <span className={styles.paymentText}>
-                                {count} formas de pago
-                            </span>
-                            <button
-                                type="button"
-                                className={styles.pricesLink}
-                            >
-                                Ver
-                                <ExternalLinkIcon
-                                    className={styles.pricesLinkIcon}
-                                />
-                            </button>
-                        </div>
-                    )}
-                />
+                <PaymentsMethods payments={provider.payments} />
             </div>
-            <Button
-                color={token("colors.primaryColor")}
-                hoverColor={token("colors.primaryColorHover")}
-                textColor="white"
-                className={styles.priceListButton}
-            >
-                Lista de precios
-            </Button>
+
+            <PricesButton hasPrices={hasPrices} />
         </article>
     );
 };

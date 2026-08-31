@@ -1,9 +1,9 @@
 import schema from "./types/schema";
 import createUserInputs from "./types/inputs";
-import type { InferData } from "@/shared/components/credentials-form/types/shema";
 import type { Company } from "@/features/add-user/types/Company";
 import type { CompanyEdit } from "@/features/add-user/api/dto/CompanyEdit";
 import SimpleForm from "@/shared/components/forms/simple-form/SimpleForm";
+import type { InferData } from "@/shared/components/forms/validation-form/shema";
 
 interface EditCompanyProps {
     company: Company;
@@ -33,15 +33,14 @@ export const EditCompany = ({
     return (
         <section>
             <SimpleForm
-                cancelOption={{onSubmit: onCancel}}
+                cancelOption={{ onSubmit: onCancel }}
                 title="Editar datos de empresa"
                 inputs={createUserInputs}
                 isLoading={isLoading}
                 buttonData={{ text: "Guardar cambios" }}
                 schema={schema}
                 onSubmit={handleSubmit}
-            >
-            </SimpleForm>
+            ></SimpleForm>
         </section>
     );
 };

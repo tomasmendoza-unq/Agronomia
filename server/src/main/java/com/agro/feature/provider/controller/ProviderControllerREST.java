@@ -27,7 +27,7 @@ public class ProviderControllerREST {
     }
 
     @GetMapping
-    @PreAuthorize("hasAnyRole('DUENIO', 'VENDEDOR')")
+    @PreAuthorize("hasAnyRole('DUENIO', 'VENDEDOR', 'FACTURACION')")
     @Operation(summary = "Obtener los proveedores de forma paginada", description = "Devuelve los proveedores paginados.")
     public PageResponseDTO<ProviderResponseDTO> getProviders(
             @RequestAttribute("userId") Long  userId,

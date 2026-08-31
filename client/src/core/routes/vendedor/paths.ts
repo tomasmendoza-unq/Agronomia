@@ -1,4 +1,8 @@
 export const VENDEDOR_ROUTES = {
     BASE: "/vendedor",
-    PROVIDERS: `providers`,
+    CONFIGURATION: `configuration`,
+    PROVEEDORES: `proveedores`,
+    CLIENTES: `clientes`,
+    PRODUCTOS: `productos`,
+    VENTAS: `ventas`,
 };

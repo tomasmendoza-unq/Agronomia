@@ -3,7 +3,7 @@ package com.agro.feature.user.services;
 import com.agro.feature.user.contracts.UserCredentialsService;
 import com.agro.feature.user.contracts.UserDataService;
 import com.agro.feature.user.domain.User;
-import com.agro.feature.user.domain.valueObjects.EmailValue;
+import com.agro.shared.valueObjects.email.EmailValue;
 import com.agro.feature.user.persistence.daos.UserDAO;
 import com.agro.shared.entities.userAuthenticate.UserAuthenticate;
 import com.agro.shared.persistence.excepitons.NotFoundEntityException;

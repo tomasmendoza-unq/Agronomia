@@ -1,6 +1,6 @@
 package com.agro.feature.user.domain;
 
-import com.agro.feature.user.domain.exceptions.EmailException;
+import com.agro.shared.valueObjects.email.EmailException;
 import com.agro.shared.entities.rol.Role;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
