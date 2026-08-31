@@ -116,7 +116,7 @@ public class DataSeederImpl implements DataSeeder {
                 Provider.builder()
                         .tradeName("Insumos Pampa 2")
                         .legalName("Insumos Pampa S.A. 2")
-                        .cuit("30-11223344-5")
+                        .cuit("30-11223344-6")
                         .phoneNumber("11-9999-8888")
                         .paymentMethods(new ArrayList<>(List.of(PaymentMethod.MERCADO_PAGO)))
                         .companyId(companyId)

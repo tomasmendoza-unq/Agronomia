@@ -31,6 +31,13 @@ public class ProviderServiceImpl implements ProviderService, ProviderDataService
     }
 
     @Override
+    public Provider addProvider(Long userId, Provider model) {
+        User user = userDataService.getUserById(userId);
+        model.setCompanyId(user.getCompany().getId());
+        return this.save(model);
+    }
+
+    @Override
     public Provider save(Provider provider) {
         return providerDAO.save(provider);
     }

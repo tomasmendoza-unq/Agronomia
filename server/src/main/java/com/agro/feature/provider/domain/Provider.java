@@ -24,6 +24,7 @@ public class Provider {
 
     private String legalName;
 
+    @Column(unique = true)
     private String cuit;
 
     private String phoneNumber;
