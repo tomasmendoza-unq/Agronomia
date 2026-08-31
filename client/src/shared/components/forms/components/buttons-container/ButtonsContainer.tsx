@@ -1,4 +1,3 @@
-
 import { css } from "@styled-system/css";
 import type { ButtonData } from "../../simple-form/types/button/credentials-button";
 import { token } from "@styled-system/tokens";
@@ -15,39 +14,44 @@ const actions = css({
 });
 
 export interface CancelButton {
-    onSubmit: () => void
+    onSubmit: () => void;
 }
 
 interface ButtonsContainerProps {
-    buttonData: ButtonData
-    cancelOption?: CancelButton
+    buttonData: ButtonData;
+    cancelOption?: CancelButton;
 }
 
-const ButtonsContainer = ({buttonData, cancelOption}: ButtonsContainerProps) => {
+const ButtonsContainer = ({
+    buttonData,
+    cancelOption,
+}: ButtonsContainerProps) => {
     return (
         <div className={actions}>
-        <Button
-            type="submit"
-            fullWidth
-            color={token("colors.primaryColor")}
-            hoverColor={token("colors.primaryColorHover")}
-            form="validation-form"
-        >
-            {buttonData.text}
-        </Button>
-        {cancelOption && 
+            {cancelOption && (
+                <Button
+                    form="validation-form"
+                    fullWidth
+                    color="white"
+                    hoverColor={token("colors.primaryColorHover") + "20"}
+                    borderColor={token("colors.primaryColor")}
+                    textColor={token("colors.primaryColor")}
+                    onClick={cancelOption.onSubmit}
+                >
+                    Cancelar
+                </Button>
+            )}
             <Button
-                form="validation-form"
+                type="submit"
                 fullWidth
                 color={token("colors.primaryColor")}
                 hoverColor={token("colors.primaryColorHover")}
-                onClick={cancelOption.onSubmit}
+                form="validation-form"
             >
-                    Cancelar
+                {buttonData.text}
             </Button>
-        }
         </div>
-    )
-}
+    );
+};
 
 export default ButtonsContainer;
