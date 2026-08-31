@@ -20,3 +20,8 @@ export const bodyWrapper = css({
     paddingBottom: "24px",
 });
 
+export const h1 = css({
+    fontSize: "32px",
+    fontWeight: "bold",
+    marginBottom: "4",
+});

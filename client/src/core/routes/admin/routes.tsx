@@ -5,7 +5,7 @@ import Configuration from "@/features/add-user/pages/configuration/Configuration
 import ClientPanel from "@/views/client/ClientPanel";
 import AddClient from "@/features/add-client/pages/AddClient";
 import { ProviderPanel } from "@/views/provider/ProviderPanel";
-import { ProvidersList } from "@/views/provider/components/ProviderList";
+import { ProvidersList } from "@/views/provider/pages/ProviderList";
 
 export const AdminRoutes: RouteData[] = [
     {

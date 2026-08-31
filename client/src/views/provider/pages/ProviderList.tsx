@@ -3,7 +3,7 @@ import Button from "@/shared/components/button/Button";
 import { SearchProvider } from "@/features/search-providers/components/SearchProvider";
 
 import { token } from "@styled-system/tokens";
-import { styles } from "../styles";
+import { styles } from "./styles";
 import { ProvidersGrid } from "@/features/get-providers/components/grid/ProvidersGrid";
 
 export const ProvidersList = () => {
