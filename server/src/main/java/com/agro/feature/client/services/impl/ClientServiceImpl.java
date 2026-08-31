@@ -24,7 +24,7 @@ public class ClientServiceImpl implements ClientService {
             return dao.saveAndFlush(client);
         }
         catch(DataIntegrityViolationException e) {
-            throw new CuitException("El cuit " + client.getCuit() + "ya se encuentra registrado");
+            throw new CuitException("El cuit " + client.getCuit() + " ya se encuentra registrado");
         }
     }
 }

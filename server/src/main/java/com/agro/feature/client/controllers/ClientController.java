@@ -2,8 +2,7 @@ package com.agro.feature.client.controllers;
 
 import com.agro.core.api.Api;
 import com.agro.feature.client.domain.Client;
-import com.agro.feature.client.dtos.ClientMapper;
-import com.agro.feature.client.dtos.request.ClientFactory;
+import com.agro.feature.client.dtos.ClientFactory;
 import com.agro.feature.client.dtos.request.ClientRequest;
 import com.agro.feature.client.dtos.response.ClientResponse;
 import com.agro.feature.client.services.ClientService;

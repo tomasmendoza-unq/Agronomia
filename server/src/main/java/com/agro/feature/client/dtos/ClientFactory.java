@@ -1,9 +1,11 @@
-package com.agro.feature.client.dtos.request;
+package com.agro.feature.client.dtos;
 
 import com.agro.feature.client.domain.Client;
 import com.agro.feature.client.domain.NaturalPerson;
 import com.agro.feature.client.domain.RazonSocial;
-import com.agro.feature.client.dtos.ClientMapper;
+import com.agro.feature.client.dtos.request.ClientRequest;
+import com.agro.feature.client.dtos.request.NaturalPersonRequest;
+import com.agro.feature.client.dtos.request.RazonSocialRequest;
 import com.agro.feature.client.dtos.response.ClientResponse;
 import org.springframework.stereotype.Component;
 
