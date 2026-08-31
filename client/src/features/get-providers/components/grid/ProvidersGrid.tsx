@@ -4,15 +4,19 @@ import Spinner from "@/shared/components/spinner/Spinner";
 import { ProviderCard } from "../card/ProviderCard";
 
 import { styles } from "./style";
-import { useSearchParams } from "react-router";
+import { useNavigate, useSearchParams } from "react-router";
 import { Pagination } from "@/shared/components/pagination/Pagination";
+import { EmptyState } from "./emptyState/EmptyState";
+import { TractorIcon } from "@/shared/components/icon/components/icons/Tractor";
+import Button from "@/shared/components/button/Button";
+import { token } from "@styled-system/tokens";
 
 export const ProvidersGrid = () => {
     const { data, loading, getProviders } = useGetProviders();
-    const { container, grid, spinnerWrapper, emptyState } = styles();
+    const { container, grid, spinnerWrapper } = styles();
     const [searchParams] = useSearchParams();
     const search = searchParams.get("search") ?? "";
-
+    const navigate = useNavigate();
     const [page, setPage] = useState(0);
     const [prevSearch, setPrevSearch] = useState(search);
 
@@ -45,7 +49,21 @@ export const ProvidersGrid = () => {
             )}
 
             {data && data.content.length === 0 && !loading && (
-                <p className={emptyState}>No hay proveedores para mostrar.</p>
+                <EmptyState
+                    icon={<TractorIcon />}
+                    title="Todavía no cargaste ningún proveedor"
+                    description="Agregá tus proveedores para poder asociar productos y armar cotizaciones."
+                    action={
+                        <Button
+                            color={token("colors.primaryColor")}
+                            hoverColor={token("colors.primaryColorHover")}
+                            textColor="white"
+                            onClick={() => navigate("nuevo-proveedor")}
+                        >
+                            + Añadir proveedor
+                        </Button>
+                    }
+                />
             )}
 
             {data && data.totalPages > 1 && (

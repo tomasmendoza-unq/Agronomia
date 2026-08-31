@@ -1,7 +1,8 @@
 import type React from "react";
 
 export type RouteData = {
-    path: string;
+    path?: string;
+    index?: boolean;
     element: React.JSX.Element;
     children?: RouteData[];
     handle?: {
