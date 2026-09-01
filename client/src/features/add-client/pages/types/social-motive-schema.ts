@@ -22,7 +22,7 @@ const socialMotiveSchema = z.object({
     surname: z
         .string()
         .nonempty({message: "El apellido es obligatorio"}),
-    phone: z.number({message: "El teléfono es obligatorio"}),
+    phone: z.string({message: "El teléfono es obligatorio"}),
     email: z.email({message: "El correo no es valido"}),
 });
 

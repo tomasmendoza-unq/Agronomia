@@ -64,10 +64,16 @@ export const naturalPersonsubForms: SubForm[] = [
                 },
                 {
                     type: "select",
-                    name: "provice",
+                    name: "province",
                     title: "Provincia",
                     id: 7,
-                    options: []
+                    options: [
+                        {
+                            value: "Cordoba",
+                            label: "Córdoba",
+                            id: 0
+                        }
+                    ]
                 },
             ],
         ],
@@ -115,10 +121,16 @@ export const socialMotiveSubform: SubForm[] = [
                 },
                 {
                     type: "select",
-                    name: "provice",
+                    name: "province",
                     title: "Provincia",
                     id: 7,
-                    options: []
+                    options: [
+                        {
+                            value: "Cordoba",
+                            label: "Córdoba",
+                            id: 0
+                        }
+                    ]
                 },
             ],
         ],
