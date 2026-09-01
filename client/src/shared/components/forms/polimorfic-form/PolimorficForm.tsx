@@ -2,7 +2,7 @@ import { useState } from "react";
 import ButtonsContainer from "../components/buttons-container/ButtonsContainer";
 import type { ButtonData } from "../simple-form/types/button/credentials-button";
 import type { OptionForm } from "../types/step";
-import type { Schema } from "../validation-form/shema";
+import type { InferData, Schema } from "../validation-form/shema";
 import OptionList from "./components/options-list";
 import ValidationForm from "../validation-form/ValidationForm";
 import { container } from "./styles";
@@ -36,12 +36,13 @@ interface SubFormFactoryProps<T extends Schema> {
 
 function SubFormFactory<T extends Schema>({subType, options}: SubFormFactoryProps<T>) {
     const option = options.find(option => option.subType === subType)!;
+    const handleSubmit = (data: InferData<T>) => option.onSubmit(data, subType);
 
     return (
         <ValidationForm 
             schema={option.schema}
             subForms={option.subforms}
-            onSubmit={option.onSubmit}
+            onSubmit={handleSubmit}
         />
     )
 }
