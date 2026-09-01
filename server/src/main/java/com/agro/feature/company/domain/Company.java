@@ -33,15 +33,16 @@ public class Company {
     @OneToOne(cascade = CascadeType.ALL)
     private Imagen logo;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Branch> branches = new ArrayList<>();
 
-    @OneToMany(fetch = FetchType.EAGER,  cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "company", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @Builder.Default
     private List<User> users = new ArrayList<>();
 
     public void addUser(User user) {
         users.add(user);
+        user.addCompany(this);
     }
 
     public void update(Company model) {
