@@ -14,8 +14,7 @@ const naturalPersonSchema = z.object({
     phone: z.number({message: "El teléfono es obligatorio"}),
     email: z.email({message: "El correo no es valido"}),
     address: z
-        .string()
-        .transform((value) => value.trim().toLowerCase()),
+        .string(),
     location: z
         .string()
         .nonempty({message: "Seleccione una localidad"}),

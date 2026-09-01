@@ -9,8 +9,7 @@ const socialMotiveSchema = z.object({
         .nonempty({message: "El CUIT/CUIL es obligatorio"})
         .length(13, {message: "El CUIT/CUIL debe tener 11 números"}),
     address: z
-        .string()
-        .transform((value) => value.trim().toLowerCase()),
+        .string(),
     location: z
         .string()
         .nonempty({message: "La localidad es obligatoria"}),
