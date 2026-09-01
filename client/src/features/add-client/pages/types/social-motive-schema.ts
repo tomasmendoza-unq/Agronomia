@@ -1,19 +1,17 @@
 import * as z from "zod"; 
-import adapterCuit from "../../adapter/cuit";
 
 const socialMotiveSchema = z.object({
-    socialMotive: z
+    razonSocial: z
         .string()
         .nonempty({message: "La razón social es obligatoria"}),
     cuit: z
         .string()
         .nonempty({message: "El CUIT/CUIL es obligatorio"})
-        .length(13, {message: "El CUIT/CUIL debe tener 11 números"})
-        .transform(value => adapterCuit(value)),
+        .length(13, {message: "El CUIT/CUIL debe tener 11 números"}),
     address: z
         .string()
         .transform((value) => value.trim().toLowerCase()),
-    place: z
+    location: z
         .string()
         .nonempty({message: "La localidad es obligatoria"}),
     province: z

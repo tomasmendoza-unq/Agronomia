@@ -57,7 +57,7 @@ export const naturalPersonsubForms: SubForm[] = [
             [
                 {
                     type: "text",
-                    name: "place",
+                    name: "location",
                     title: "Localidad",
                     placeholder: "Ingrese la localidad",
                     id: 6,
@@ -82,9 +82,9 @@ export const socialMotiveSubform: SubForm[] = [
             [
                 {
                     type: "text",
-                    name: "name",
+                    name: "razonSocial",
                     title: "Nombre/Razón Social",
-                    placeholder: "Ingrese el nombre",
+                    placeholder: "Ingrese la razón social",
                     id: 0,
                 },
                 {
@@ -108,7 +108,7 @@ export const socialMotiveSubform: SubForm[] = [
             [
                 {
                     type: "text",
-                    name: "place",
+                    name: "location",
                     title: "Localidad",
                     placeholder: "Ingrese la localidad",
                     id: 6,

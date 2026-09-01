@@ -1,12 +1,10 @@
 import * as z from "zod"; 
-import adapterCuit from "../../adapter/cuit";
 
 const naturalPersonSchema = z.object({
     cuit: z
         .string()
         .nonempty({message: "El CUIT/CUIL es obligatorio"})
-        .length(13, {message: "El CUIT/CUIL debe tener 11 números"})
-        .transform(value => adapterCuit(value)),
+        .length(13, {message: "El CUIT/CUIL debe tener 11 números"}),
     name: z
         .string()
         .nonempty({message: "El nombre es obligatorio"}),
@@ -18,7 +16,7 @@ const naturalPersonSchema = z.object({
     address: z
         .string()
         .transform((value) => value.trim().toLowerCase()),
-    place: z
+    location: z
         .string()
         .nonempty({message: "Seleccione una localidad"}),
     province: z
