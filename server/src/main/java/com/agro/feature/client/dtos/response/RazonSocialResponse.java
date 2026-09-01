@@ -8,7 +8,7 @@ public record RazonSocialResponse(
         String associateName,
         String associateSurname,
         String associatePhone,
-        String associateEmail,
+        String email,
         String cuit,
         String address,
         String location,
