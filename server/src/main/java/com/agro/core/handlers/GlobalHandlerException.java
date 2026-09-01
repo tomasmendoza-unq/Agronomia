@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestControllerAdvice
 @Slf4j
@@ -30,21 +31,35 @@ public class GlobalHandlerException {
         RestErrorResponse error = new RestErrorResponse(
                 "Regla de negocio violada",
                 exception.getMessage(),
-                Api.USER + Api.REGISTER,
+                request.getServletPath(),
                 CauseError.BUSINESS_RULE_VIOLATION
         );
         return ResponseEntity.badRequest().body(error);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<List<ErrorResponse>> bodyError(MethodArgumentNotValidException exeption, BindingResult errorResult) {
+    public ResponseEntity<RestErrorResponse> bodyError(MethodArgumentNotValidException exception, BindingResult errorResult, HttpServletRequest request) {
         List<ErrorResponse> errors =  errorResult.getFieldErrors().stream().map(error -> new ErrorResponse(error.getField(), error.getDefaultMessage())).toList();
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors);
+        RestErrorResponse response = new RestErrorResponse(
+                errors.stream()
+                        .map(ErrorResponse::message)
+                        .collect(Collectors.joining(", ")),
+                "Error en el cuerpo de la petición",
+                request.getServletPath(),
+                CauseError.BODY_SCHEMA_ERROR
+        );
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
     }
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
-    public ResponseEntity<ErrorResponse> parseJsonError(HttpMessageNotReadableException exeption) {
-        ErrorResponse error = new ErrorResponse(exeption.getCause().getMessage(), exeption.getMessage());
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+    public ResponseEntity<RestErrorResponse> parseJsonError(HttpMessageNotReadableException exception, HttpServletRequest request) {
+        ErrorResponse error = new ErrorResponse(exception.getCause().getMessage(), exception.getMessage());
+        RestErrorResponse response = new RestErrorResponse(
+                error.message(),
+                "Error en el cuerpo de la petición",
+                request.getServletPath(),
+                CauseError.BODY_SCHEMA_ERROR
+        );
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
     }
 }
