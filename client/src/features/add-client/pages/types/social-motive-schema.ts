@@ -27,6 +27,6 @@ const socialMotiveSchema = z.object({
     email: z.email({message: "El correo no es valido"}),
 });
 
-export type SocialMotiveSchema = typeof socialMotiveSchema;
+export type SocialMotiveSchema = z.infer<typeof socialMotiveSchema>;
 
 export default socialMotiveSchema;
