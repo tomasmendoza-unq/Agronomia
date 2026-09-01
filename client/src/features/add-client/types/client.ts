@@ -3,4 +3,4 @@ export const ClientOption = {
     RAZON_SOCIAL: 'RAZON_SOCIAL',
 } as const;
 
-export type PaymentLapse = (typeof ClientOption)[keyof typeof ClientOption];
+export type ClientOption = (typeof ClientOption)[keyof typeof ClientOption];

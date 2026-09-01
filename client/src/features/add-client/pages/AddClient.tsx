@@ -2,24 +2,23 @@ import { naturalPersonsubForms, socialMotiveSubform } from "./types/subforms";
 import naturalPersonSchema from "./types/natural-person-schema";
 import PolimorficForm from "@/shared/components/forms/polimorfic-form/PolimorficForm";
 import socialMotiveSchema from "./types/social-motive-schema";
-import { ClientOption } from "../types/client";
+import addClient from "../services/add-client";
 
 const AddClient = () => {
-    
     return (
         <PolimorficForm 
             options={[
                 {
-                    subType: ClientOption.RAZON_SOCIAL,
+                    subType: "razon social",
                     subforms: socialMotiveSubform,
                     schema: socialMotiveSchema,
-                    onSubmit: () => console.log("aa")
+                    onSubmit: addClient
                 },
                 {
-                    subType: ClientOption.NATURAL_PERSON,
+                    subType: "persona natural",
                     subforms: naturalPersonsubForms,
                     schema: naturalPersonSchema,
-                    onSubmit: () => console.log("aa")
+                    onSubmit: addClient
                 }
             ]}
             buttonData={{text: "Agregar cliente"}}
