@@ -1,5 +1,5 @@
 export interface Client {
-    id?: number
+    id: number
     cuit: string,
     address?: string
     location: string
