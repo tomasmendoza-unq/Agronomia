@@ -2,11 +2,12 @@ import type { RouteData } from "@/core/routes/route-data";
 import { ADMIN_ROUTES } from "./paths";
 import AdminLayout from "../../auth/layout/roles/admin/AdminLayout";
 import Configuration from "@/features/add-user/pages/configuration/Configuration";
-import ClientPanel from "@/views/client/ClientPanel";
+import ClientPanel from "@/views/client/pages/ClientPanel";
 import AddClient from "@/features/add-client/pages/AddClient";
 import { ProviderPanel } from "@/views/provider/ProviderPanel";
 import { ProvidersList } from "@/views/provider/pages/ProviderList";
 import AddProvider from "@/features/add-provider/pages/AddProvider";
+import { Client } from "@/views/client/Client";
 
 export const AdminRoutes: RouteData[] = [
     {
@@ -37,9 +38,13 @@ export const AdminRoutes: RouteData[] = [
             },
             {
                 path: `${ADMIN_ROUTES.CLIENTES}`,
-                element: <ClientPanel />,
-                handle: { breadcrumb: "Cliente" },
+                element: <Client />,
+                handle: { breadcrumb: "Clientes" },
                 children: [
+                    {
+                        index: true,
+                        element: <ClientPanel />,
+                    },
                     {
                         path: `nuevo-cliente`,
                         element: <AddClient />,
