@@ -37,7 +37,7 @@ const ButtonsContainer = ({buttonData, cancelOption}: ButtonsContainerProps) => 
         </Button>
         {cancelOption && 
             <Button
-                type="button"  
+                form="validation-form"
                 fullWidth
                 color={token("colors.primaryColor")}
                 hoverColor={token("colors.primaryColorHover")}

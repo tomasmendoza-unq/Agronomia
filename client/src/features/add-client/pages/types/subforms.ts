@@ -57,23 +57,17 @@ export const naturalPersonsubForms: SubForm[] = [
             [
                 {
                     type: "text",
-                    name: "location",
+                    name: "place",
                     title: "Localidad",
                     placeholder: "Ingrese la localidad",
                     id: 6,
                 },
                 {
                     type: "select",
-                    name: "province",
+                    name: "provice",
                     title: "Provincia",
                     id: 7,
-                    options: [
-                        {
-                            value: "Cordoba",
-                            label: "Córdoba",
-                            id: 0
-                        }
-                    ]
+                    options: []
                 },
             ],
         ],
@@ -88,9 +82,9 @@ export const socialMotiveSubform: SubForm[] = [
             [
                 {
                     type: "text",
-                    name: "razonSocial",
+                    name: "name",
                     title: "Nombre/Razón Social",
-                    placeholder: "Ingrese la razón social",
+                    placeholder: "Ingrese el nombre",
                     id: 0,
                 },
                 {
@@ -114,23 +108,17 @@ export const socialMotiveSubform: SubForm[] = [
             [
                 {
                     type: "text",
-                    name: "location",
+                    name: "place",
                     title: "Localidad",
                     placeholder: "Ingrese la localidad",
                     id: 6,
                 },
                 {
                     type: "select",
-                    name: "province",
+                    name: "provice",
                     title: "Provincia",
                     id: 7,
-                    options: [
-                        {
-                            value: "Cordoba",
-                            label: "Córdoba",
-                            id: 0
-                        }
-                    ]
+                    options: []
                 },
             ],
         ],
