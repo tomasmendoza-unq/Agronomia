@@ -20,7 +20,7 @@ public record ProviderResponseDTO(
                 provider.getId(),
                 provider.getTradeName(),
                 provider.getLegalName(),
-                provider.getCuit(),
+                provider.getCuit().get(),
                 provider.getPhoneNumber(),
                 provider.getCompanyId(),
                 TravelerResponseDTO.fromModel(provider.getTraveler()),

@@ -1,4 +1,3 @@
-import adapterCuit from "@/features/add-client/adapter/cuit";
 import * as z from "zod";
 
 const providerSchema = z.object({
@@ -7,9 +6,8 @@ const providerSchema = z.object({
         .nonempty({ message: "La razón social es obligatoria" }),
     cuit: z
         .string()
-        .nonempty({ message: "El CUIT es obligatorio" })
-        .length(13, { message: "El CUIT debe tener 11 números" })
-        .transform((value) => adapterCuit(value)),
+        .nonempty({ message: "El CUIT/CUIL es obligatorio" })
+        .length(13, { message: "El CUIT/CUIL debe tener 11 números" }),
     tradeName: z
         .string()
         .nonempty({ message: "El nombre comercial es obligatorio" }),

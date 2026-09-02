@@ -17,8 +17,8 @@ export const providerSubForms: SubForm[] = [
                 {
                     type: "dynamic",
                     name: "cuit",
-                    title: "CUIT *",
-                    placeholder: "Ingrese solo números",
+                    title: "CUIT/CUIL",
+                    placeholder: "Ingrese el CUIT/CUIL",
                     format: formatCuit,
                     id: 1,
                 },
