@@ -32,6 +32,7 @@ const ButtonsContainer = ({
                 <Button
                     form="validation-form"
                     fullWidth
+                    type="button"
                     color="white"
                     hoverColor={token("colors.primaryColorHover") + "20"}
                     borderColor={token("colors.primaryColor")}
