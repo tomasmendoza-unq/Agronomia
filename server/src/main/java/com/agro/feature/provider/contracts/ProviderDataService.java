@@ -11,4 +11,7 @@ public interface ProviderDataService {
     Provider addProvider(Long userId, Provider model);
 
     Provider editProvider(Long userId, Provider request);
+
+    Provider getProviderById(Long providerId);
+
 }

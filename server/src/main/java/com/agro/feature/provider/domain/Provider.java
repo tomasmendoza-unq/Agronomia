@@ -2,6 +2,7 @@ package com.agro.feature.provider.domain;
 
 import com.agro.shared.valueObjects.cuit.CuitValue;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @NoArgsConstructor
+@AllArgsConstructor
 @Data
 @Entity
 @Table(name = "providers")
@@ -49,6 +51,11 @@ public class Provider {
         this.companyId = companyId;
         this.paymentMethods = (paymentMethods != null) ? paymentMethods : new ArrayList<>();
         this.listPrices = (listPrices != null) ? listPrices : new ArrayList<>();
+    }
+
+    public Provider(String phoneNumber, Traveler traveler) {
+        this.phoneNumber = phoneNumber;
+        this.traveler = traveler;
     }
 
     public List<String> getPaymentMethods() {

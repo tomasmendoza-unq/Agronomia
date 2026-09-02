@@ -25,4 +25,6 @@ public interface ProviderDAO extends JpaRepository<Provider, Long> {
     );
 
     boolean existsByCuit_Cuit(String cuitCuit);
+
+    boolean existsByCuit_CuitAndCompanyId(String cuitCuit, Long companyId);
 }

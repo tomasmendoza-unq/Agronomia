@@ -36,19 +36,26 @@ public class ProviderServiceImpl implements ProviderService, ProviderDataService
 
     @Override
     public Provider addProvider(Long userId, Provider model) {
-        if (providerDAO.existsByCuit_Cuit(model.getCuit().get())){
+        User user = userDataService.getUserById(userId);
+
+        if (providerDAO.existsByCuit_CuitAndCompanyId(model.getCuit().get(), user.getCompany().getId())){
             throw new CUITDuplicatedException("El CUIT ya existe en el sistema.");
         }
-        User user = userDataService.getUserById(userId);
+
         model.setCompanyId(user.getCompany().getId());
         return this.save(model);
     }
 
     @Override
     public Provider editProvider(Long userId, Provider provider) {
-        Provider recovered = providerDAO.findById(provider.getId()).orElseThrow(() -> new EntityNotFoundException("No se encontro el proveedor"));
+        Provider recovered = getProviderById(provider.getId());
         recovered.update(provider);
         return recovered;
+    }
+
+    @Override
+    public Provider getProviderById(Long providerId) {
+        return providerDAO.findById(providerId).orElseThrow(() -> new EntityNotFoundException("No se encontro el proveedor"));
     }
 
     @Override
