@@ -44,7 +44,7 @@ jobs:
               run: pnpm install --frozen-lockfile
 
             - name: Lint frontend
-              run: pnpm exec eslint . --quiet
+              run: pnpm exec eslint . --max-warnings=0
 
             - name: Validate frontend
               run: pnpm run build
@@ -73,7 +73,7 @@ jobs:
         steps:
             - name: Ping API
               run: |
-                  STATUS=$(curl -s -o /dev/null -w "%{http_code}" "https://nc-uvmg.onrender.com/api/v1/system/health")
+                  STATUS=$(curl -s -o /dev/null -w "%{http_code}" "https://agronomia-i30s.onrender.com/api/v1/system/health")
                   echo "HTTP status: $STATUS"
                   if [ "$STATUS" -lt 200 ] || [ "$STATUS" -ge 400 ]; then
                     echo "Error: API returned $STATUS"
