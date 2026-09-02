@@ -9,9 +9,8 @@ export const UseGetUsers = () => {
         useFetch<TablePaginator<User>>();
 
     const getUsers = useCallback(
-        (page: number = 0, size: number = 5) => {
-            return execute(() => getUsersService(page, size))();
-        },
+        (page: number = 0, size: number = 5) =>
+            execute(getUsersService)(page, size),
         [execute],
     );
 
