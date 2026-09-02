@@ -3,8 +3,8 @@ import { styles } from "./style";
 
 type EmptyStateProps = {
     icon: ReactNode;
-    title: string;
-    description: string;
+    title: ReactNode;
+    description: ReactNode;
     action?: ReactNode;
 };
 

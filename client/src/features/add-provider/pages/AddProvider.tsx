@@ -11,6 +11,14 @@ import { useState } from "react";
 import type { ProviderRequest } from "../types/ProviderRequest";
 import { ModalCreateProvider } from "./components/ModalCreateProvider";
 import { ConfirmModal } from "@/shared/components/modal/variants/ConfirmModalProps";
+import { css } from "@styled-system/css";
+
+const backButtonContainer = css({
+    display: "flex",
+    justifyContent: "flex-start",
+    width: "100%",
+    marginBottom: "24px",
+});
 
 const AddProvider = () => {
     const navigate = useNavigate();
@@ -38,15 +46,17 @@ const AddProvider = () => {
 
     return (
         <>
-            <Button
-                color="white"
-                hoverColor={token("colors.primaryColorHover") + "20"}
-                borderColor={token("colors.primaryColor")}
-                textColor={token("colors.primaryColor")}
-                onClick={backToProviders}
-            >
-                Regresar
-            </Button>
+            <div className={backButtonContainer}>
+                <Button
+                    color="white"
+                    hoverColor={token("colors.primaryColorHover") + "20"}
+                    borderColor={token("colors.primaryColor")}
+                    textColor={token("colors.primaryColor")}
+                    onClick={backToProviders}
+                >
+                    ← Regresar
+                </Button>
+            </div>
             {loading ? (
                 <Spinner />
             ) : (
