@@ -14,6 +14,7 @@ public final class Api {
 
     public static final String USER = MAIN_NAME + V + "/user";
     public static final String ME = "/me";
+    public static final String HEALTH = "/health";
 
     public static final String COMPANY = MAIN_NAME + V + "/company";
 

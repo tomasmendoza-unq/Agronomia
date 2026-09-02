@@ -34,6 +34,7 @@ public class JwtFilter extends OncePerRequestFilter {
     private final List<RequestMatcher> PUBLICS = List.of(
             PathPatternRequestMatcher.withDefaults().matcher(HttpMethod.POST, "/" + Api.AUTH + Api.LOGIN),
             PathPatternRequestMatcher.withDefaults().matcher(HttpMethod.GET, "/"),
+            PathPatternRequestMatcher.withDefaults().matcher(HttpMethod.GET, Api.HEALTH),
             PathPatternRequestMatcher.withDefaults().matcher(HttpMethod.HEAD, "/"),
             PathPatternRequestMatcher.withDefaults().matcher("/error")
     );
