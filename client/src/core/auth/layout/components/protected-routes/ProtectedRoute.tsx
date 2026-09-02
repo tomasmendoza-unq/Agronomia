@@ -23,7 +23,13 @@ export const ProtectedRoute = ({
     allowedRoles,
     redirectTo = "/login",
 }: Props) => {
-    if (isLoading)
+    const isRoleCheckPending =
+        isAuthenticated &&
+        !!allowedRoles &&
+        allowedRoles.length > 0 &&
+        !userRole;
+
+    if (isLoading || isRoleCheckPending)
         return (
             <Spinner
                 size="lg"
