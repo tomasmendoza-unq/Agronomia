@@ -21,7 +21,7 @@ class RazonSocialTest {
                 "11-11111111-1",
                 "Lavalle 123",
                 "Florencio Varela",
-                Province.Cordoba
+                Province.CORDOBA
         );
     }
 

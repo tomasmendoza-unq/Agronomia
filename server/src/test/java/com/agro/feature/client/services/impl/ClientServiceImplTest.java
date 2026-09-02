@@ -4,9 +4,9 @@ import com.agro.core.ContainerPostgresql;
 import com.agro.feature.client.domain.Client;
 import com.agro.feature.client.domain.NaturalPerson;
 import com.agro.feature.client.persistence.daos.ClientDAO;
+import com.agro.feature.client.services.exceptions.RepeatCuitException;
 import com.agro.shared.entities.province.Province;
 import com.agro.shared.service.ResetService;
-import com.agro.shared.valueObjects.cuit.CuitException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -48,7 +48,7 @@ class ClientServiceImplTest {
                 "n@gmail.com",
                 "Lavalle 123",
                 "Florencio Varela",
-                Province.Cordoba
+                Province.CORDOBA
         );
     }
 
@@ -68,10 +68,10 @@ class ClientServiceImplTest {
                 "n@gmail.com",
                 "Lavalle 123",
                 "Florencio Varela",
-                Province.Cordoba
+                Province.CORDOBA
         );
         service.save(client);
-        assertThrows(CuitException.class, () -> service.save(client1));
+        assertThrows(RepeatCuitException.class, () -> service.save(client1));
     }
 
     @AfterEach

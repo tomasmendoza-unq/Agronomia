@@ -37,6 +37,20 @@ public class NaturalPerson extends Client {
         this.email = new EmailValue(email);
     }
 
+    public NaturalPerson(
+            String name,
+            String surname,
+            String cuit,
+            String phone,
+            String address,
+            String location,
+            Province province) {
+        super(cuit, address, location, province);
+        this.name = name;
+        this.surname = surname;
+        this.phone = phone;
+    }
+
     public String getEmail() {
         return email.get();
     }

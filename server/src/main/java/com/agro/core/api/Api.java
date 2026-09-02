@@ -19,6 +19,4 @@ public final class Api {
 
     public static final String PROVIDER = MAIN_NAME + V + "/provider";
 
-    public static final String CLIENT = MAIN_NAME + V + "/client";
-
 }

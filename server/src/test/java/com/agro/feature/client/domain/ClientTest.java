@@ -21,7 +21,7 @@ class ClientTest {
                 "n@gmail.com",
                 "Lavalle 123",
                 "Florencio Varela",
-                Province.Cordoba
+                Province.CORDOBA
         );
     }
 
@@ -30,7 +30,7 @@ class ClientTest {
         assertEquals("Florencio Varela", person.getLocation());
         assertEquals("11-11111111-1", person.getCuit());
         assertEquals("Lavalle 123", person.getAddress());
-        assertEquals(Province.Cordoba, person.getProvince());
+        assertEquals(Province.CORDOBA, person.getProvince());
     }
 
     @Test
@@ -43,7 +43,7 @@ class ClientTest {
                 "n@gmail.com",
                 "Lavalle 123",
                 "Florencio Varela",
-                Province.Cordoba
+                Province.CORDOBA
         ));
     }
 
@@ -57,7 +57,7 @@ class ClientTest {
                 "n@gmail.com",
                 "Lavalle 123",
                 "Florencio Varela",
-                Province.Cordoba
+                Province.CORDOBA
         ));
     }
 
@@ -71,7 +71,7 @@ class ClientTest {
                 "n@gmail.com",
                 "Lavalle 123",
                 "Florencio Varela",
-                Province.Cordoba
+                Province.CORDOBA
         ));
     }
 }
