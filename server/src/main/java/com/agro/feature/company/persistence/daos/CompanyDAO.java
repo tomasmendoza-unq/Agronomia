@@ -12,6 +12,8 @@ import java.util.Optional;
 
 @Repository
 public interface CompanyDAO extends JpaRepository<Company, Long> {
+    Optional<Company> findFirstByCuit(String cuit);
+
     Optional<Company> findByUsers_Id(Long idUser);
 
 
