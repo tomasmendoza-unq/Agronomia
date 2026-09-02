@@ -3,7 +3,7 @@ import type { NaturalPerson } from "../../domain/natural-person";
 import type { RazonSocial } from "../../domain/razon-social";
 import type { NaturalPersonSchema } from "../../pages/types/natural-person-schema";
 import type { SocialMotiveSchema } from "../../pages/types/social-motive-schema";
-import { ClientOption } from "../../types/client";
+import { ClientOption } from "../../../../shared/domain/client/client";
 
 type RazonSocialResponse = SocialMotiveSchema & {
      type: typeof ClientOption.RAZON_SOCIAL;
