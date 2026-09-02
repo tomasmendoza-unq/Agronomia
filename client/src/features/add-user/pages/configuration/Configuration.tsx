@@ -1,7 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import CompanyDataCard from "./components/company/CompanyDataCard";
 import {
-    h1,
     panel,
     contentGrid,
     successContent,
@@ -25,7 +24,7 @@ const Configuration = () => {
 
     useEffect(() => {
         getCompany();
-    }, []);
+    }, [getCompany]);
 
     const handleUserCreated = (email: string) => {
         tableUsersRef.current?.refresh();
@@ -46,8 +45,6 @@ const Configuration = () => {
 
     return (
         <section className={panel}>
-            <h1 className={h1}>Configuración</h1>
-
             <div className={contentGrid}>
                 <SectionPanel title="Datos empresa">
                     <CompanyDataCard

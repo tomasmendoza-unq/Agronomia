@@ -41,10 +41,10 @@ public class GlobalHandlerException {
     public ResponseEntity<RestErrorResponse> bodyError(MethodArgumentNotValidException exception, BindingResult errorResult, HttpServletRequest request) {
         List<ErrorResponse> errors =  errorResult.getFieldErrors().stream().map(error -> new ErrorResponse(error.getField(), error.getDefaultMessage())).toList();
         RestErrorResponse response = new RestErrorResponse(
+                "Error en el cuerpo de la petición",
                 errors.stream()
                         .map(ErrorResponse::message)
                         .collect(Collectors.joining(", ")),
-                "Error en el cuerpo de la petición",
                 request.getServletPath(),
                 CauseError.BODY_SCHEMA_ERROR
         );
@@ -55,8 +55,8 @@ public class GlobalHandlerException {
     public ResponseEntity<RestErrorResponse> parseJsonError(HttpMessageNotReadableException exception, HttpServletRequest request) {
         ErrorResponse error = new ErrorResponse(exception.getCause().getMessage(), exception.getMessage());
         RestErrorResponse response = new RestErrorResponse(
-                error.message(),
                 "Error en el cuerpo de la petición",
+                error.message(),
                 request.getServletPath(),
                 CauseError.BODY_SCHEMA_ERROR
         );

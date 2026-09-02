@@ -34,6 +34,7 @@ public class Company {
     private Imagen logo;
 
     @OneToMany(mappedBy = "company", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @Builder.Default
     private List<Branch> branches = new ArrayList<>();
 
     @OneToMany(mappedBy = "company", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -43,6 +44,11 @@ public class Company {
     public void addUser(User user) {
         users.add(user);
         user.addCompany(this);
+    }
+
+    public void addBranches(List<Branch> branches) {
+        this.branches.addAll(branches);
+        branches.forEach(branch -> branch.setCompany(this));
     }
 
     public void update(Company model) {

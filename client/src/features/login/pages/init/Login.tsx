@@ -5,6 +5,7 @@ import schema from "./types/schema";
 import ErrorToast from "@/shared/components/toast/error/ErrorToast";
 import useLogin from "../../hooks/use-login";
 import SimpleForm from "@/shared/components/forms/simple-form/SimpleForm";
+import Spinner from "@/shared/components/spinner/Spinner";
 
 const Login = () => {
     const { isError, login, refresh, loading } = useLogin();
@@ -12,15 +13,22 @@ const Login = () => {
     return (
         <section className={pageWrapper}>
             <div className={card}>
-                <SimpleForm
-                    title="Bienvenido"
-                    isLoading={loading}
-                    inputs={loginInputs}
-                    buttonData={{ text: "Iniciar sesión" }}
-                    schema={schema}
-                    onSubmit={login}
-                    links={loginLinks}
-                />
+                {loading ? (
+                    <Spinner
+                        size="lg"
+                        centered
+                    />
+                ) : (
+                    <SimpleForm
+                        title="Bienvenido"
+                        isLoading={loading}
+                        inputs={loginInputs}
+                        buttonData={{ text: "Iniciar sesión" }}
+                        schema={schema}
+                        onSubmit={login}
+                        links={loginLinks}
+                    />
+                )}
             </div>
             {isError && (
                 <ErrorToast

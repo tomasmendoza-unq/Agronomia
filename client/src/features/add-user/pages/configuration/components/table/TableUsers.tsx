@@ -13,7 +13,7 @@ export const TableUsers = forwardRef<TableUsersRef>((_, ref) => {
 
     useEffect(() => {
         getUsers(0);
-    }, []);
+    }, [getUsers]);
 
     useImperativeHandle(ref, () => ({
         refresh: async () => {
@@ -25,11 +25,13 @@ export const TableUsers = forwardRef<TableUsersRef>((_, ref) => {
         getUsers(page);
     };
 
-    const handleEditUser = (_user: User) => {
+    const handleEditUser = (user: User) => {
+        void user;
         // Lógica de edición
     };
 
-    const handleDeleteUser = async (_id: number) => {
+    const handleDeleteUser = async (id: number) => {
+        void id;
         // Lógica de eliminación
     };
 

@@ -17,10 +17,10 @@ function AuthProvider({ children }: AuthProviderProps) {
 
     useEffect(() => {
         function fn() {
-            if(isAuthenticate()) execute(authenticateUser)()
+            if (isAuthenticate()) execute(authenticateUser)();
         }
-        fn()
-    }, []);
+        fn();
+    }, [execute]);
 
     const value = {
         user: data,

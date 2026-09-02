@@ -71,10 +71,11 @@ public class DataSeederImpl implements DataSeeder {
                 .name("AgroTech")
                 .legalName("AgroTech S.A.")
                 .cuit("30-12345678-9")
-                .branches(new ArrayList<>(List.of(branch2, branch, branch3, branch4)))
                 .users(new ArrayList<>(List.of(user)))
                 .logo(imagen)
                 .build();
+
+        company.addBranches(new ArrayList<>(List.of(branch2, branch, branch3, branch4)));
 
         user.addCompany(company);
 
@@ -116,7 +117,7 @@ public class DataSeederImpl implements DataSeeder {
                 Provider.builder()
                         .tradeName("Insumos Pampa 2")
                         .legalName("Insumos Pampa S.A. 2")
-                        .cuit("30-11223344-5")
+                        .cuit("30-11223344-6")
                         .phoneNumber("11-9999-8888")
                         .paymentMethods(new ArrayList<>(List.of(PaymentMethod.MERCADO_PAGO)))
                         .companyId(companyId)

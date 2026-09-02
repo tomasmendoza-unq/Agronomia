@@ -6,6 +6,7 @@ import ClientPanel from "@/views/client/ClientPanel";
 import AddClient from "@/features/add-client/pages/AddClient";
 import { ProviderPanel } from "@/views/provider/ProviderPanel";
 import { ProvidersList } from "@/views/provider/pages/ProviderList";
+import AddProvider from "@/features/add-provider/pages/AddProvider";
 
 export const AdminRoutes: RouteData[] = [
     {
@@ -29,7 +30,7 @@ export const AdminRoutes: RouteData[] = [
                     },
                     {
                         path: `nuevo-proveedor`,
-                        element: <></>,
+                        element: <AddProvider />,
                         handle: { breadcrumb: "Nuevo Proveedor" },
                     },
                 ],

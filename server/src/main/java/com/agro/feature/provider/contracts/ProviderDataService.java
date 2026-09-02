@@ -5,4 +5,6 @@ import org.springframework.data.domain.Page;
 
 public interface ProviderDataService {
     Page<Provider> getProviders(int page, int size, Long userId, String name);
+
+    Provider addProvider(Long userId, Provider model);
 }

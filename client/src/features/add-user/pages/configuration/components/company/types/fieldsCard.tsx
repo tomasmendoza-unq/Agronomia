@@ -1,7 +1,7 @@
-import type { Company } from "@/features/admin/types/Company";
 import WrapLogo from "@/shared/components/wrapLogo/WrapLogo";
 import type { ReactNode } from "react";
 import { branch } from "../styles";
+import type { Company } from "@/features/add-user/types/Company";
 
 interface CompanyField {
     label: string;
