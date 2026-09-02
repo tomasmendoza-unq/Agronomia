@@ -1,0 +1,103 @@
+name: CI/CD
+
+on:
+    push:
+        branches:
+            - main
+            - preview
+            - dev
+    pull_request:
+        branches:
+            - main
+            - preview
+            - dev
+    workflow_dispatch:
+    schedule:
+        - cron: "*/10 * * * *"
+
+jobs:
+    frontend-check:
+        name: Frontend validation
+        runs-on: ubuntu-latest
+        defaults:
+            run:
+                working-directory: client
+
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 20
+                  cache: "pnpm"
+                  cache-dependency-path: client/pnpm-lock.yaml
+
+            - name: Setup pnpm
+              uses: pnpm/action-setup@v4
+              with:
+                  version: 9
+                  run_install: false
+
+            - name: Install dependencies
+              run: pnpm install --frozen-lockfile
+
+            - name: Lint frontend
+              run: pnpm exec eslint . --max-warnings=0
+
+            - name: Type check frontend
+              run: pnpm exec tsc --noEmit
+
+    backend-check:
+        name: Backend validation
+        runs-on: ubuntu-latest
+        defaults:
+            run:
+                working-directory: server
+
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+
+            - name: Setup Java 21
+              uses: actions/setup-java@v4
+              with:
+                  distribution: temurin
+                  java-version: "21"
+                  cache: maven
+                  cache-dependency-path: server/pom.xml
+
+            - name: Compile backend
+              run: ./mvnw -q -DskipTests compile
+
+    api-health-check:
+        name: API health check
+        runs-on: ubuntu-latest
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' || github.ref == 'refs/heads/main'
+
+        steps:
+            - name: Ping API
+              env:
+                  API_URL: ${{ secrets.API_URL || 'https://nc-uvmg.onrender.com' }}
+              run: |
+                  STATUS=$(curl -s -o /dev/null -w "%{http_code}" "$API_URL/api/v1/system/health")
+                  echo "HTTP status: $STATUS"
+                  if [ "$STATUS" -lt 200 ] || [ "$STATUS" -ge 400 ]; then
+                    echo "Error: API returned $STATUS"
+                    exit 1
+                  fi
+
+    deploy:
+        name: Deploy to Render
+        needs:
+            - frontend-check
+            - backend-check
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Trigger Render deploy hook
+              if: ${{ secrets.RENDER_DEPLOY_HOOK_URL != '' }}
+              run: |
+                  curl -fsS -X POST "${{ secrets.RENDER_DEPLOY_HOOK_URL }}"
