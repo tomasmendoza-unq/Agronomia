@@ -54,4 +54,9 @@ public class Provider {
     public List<String> getPaymentMethods() {
         return paymentMethods.stream().map(PaymentMethod::getValue).toList();
     }
+
+    public void update(Provider provider) {
+        this.phoneNumber = provider.getPhoneNumber();
+        this.traveler = provider.getTraveler();
+    }
 }

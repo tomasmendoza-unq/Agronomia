@@ -4,6 +4,7 @@ import com.agro.core.api.Api;
 import com.agro.feature.auth.dtos.request.Credentials;
 import com.agro.feature.provider.contracts.ProviderDataService;
 import com.agro.feature.provider.domain.Provider;
+import com.agro.feature.provider.dtos.request.ProviderEditRequestDTO;
 import com.agro.feature.provider.dtos.request.ProviderRequestDTO;
 import com.agro.feature.provider.dtos.response.ProviderResponseDTO;
 import com.agro.shared.dtos.table.PageResponseDTO;
@@ -59,4 +60,17 @@ public class ProviderControllerREST {
         return ResponseEntity.ok(response);
     }
 
+    @PutMapping
+    @PreAuthorize("hasAnyRole('DUENIO')")
+    @Operation(summary = "Editar un proveedor de una compañia")
+    public ResponseEntity<ProviderResponseDTO> editProvider(
+            @RequestAttribute("userId") Long  userId,
+            @RequestBody @Valid ProviderEditRequestDTO request
+    ) {
+        Provider provider = providerDataService.editProvider(userId, request.toModel());
+
+        ProviderResponseDTO response = ProviderResponseDTO.fromModel(provider);
+
+        return ResponseEntity.ok(response);
+    }
 }

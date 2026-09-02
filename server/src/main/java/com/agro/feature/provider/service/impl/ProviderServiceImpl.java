@@ -3,11 +3,13 @@ package com.agro.feature.provider.service.impl;
 import com.agro.feature.provider.contracts.ProviderDataService;
 import com.agro.feature.provider.domain.CUITDuplicatedException;
 import com.agro.feature.provider.domain.Provider;
+import com.agro.feature.provider.dtos.request.ProviderEditRequestDTO;
 import com.agro.feature.provider.persistence.ProviderDAO;
 import com.agro.feature.provider.service.ProviderService;
 import com.agro.feature.user.contracts.UserDataService;
 import com.agro.feature.user.domain.User;
 import com.agro.feature.user.domain.exceptions.EmailDuplicatedException;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -40,6 +42,13 @@ public class ProviderServiceImpl implements ProviderService, ProviderDataService
         User user = userDataService.getUserById(userId);
         model.setCompanyId(user.getCompany().getId());
         return this.save(model);
+    }
+
+    @Override
+    public Provider editProvider(Long userId, Provider provider) {
+        Provider recovered = providerDAO.findById(provider.getId()).orElseThrow(() -> new EntityNotFoundException("No se encontro el proveedor"));
+        recovered.update(provider);
+        return recovered;
     }
 
     @Override
