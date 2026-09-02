@@ -1,4 +1,10 @@
-export type InputType = "text" | "select" | "email" | "password" | "file" | "dynamic";
+export type InputType =
+    | "text"
+    | "select"
+    | "email"
+    | "password"
+    | "file"
+    | "dynamic";
 
 export type TextInputType = Exclude<InputType, "select">;
 export type SelectInputType = Extract<InputType, "select">;
@@ -9,6 +15,7 @@ export type TextInputData = {
     title: string;
     placeholder: string;
     id: number;
+    required?: boolean;
 };
 
 export type SelectInputData = {
@@ -18,6 +25,7 @@ export type SelectInputData = {
     placeholder?: string;
     id: number;
     options: Option[];
+    required?: boolean;
 };
 
 export type FileInputData = {
@@ -26,6 +34,7 @@ export type FileInputData = {
     title: string;
     placeholder: string;
     id: number;
+    required?: boolean;
 };
 
 export type DynamicInputData = {
@@ -34,10 +43,15 @@ export type DynamicInputData = {
     title: string;
     placeholder: string;
     id: number;
-    format: (data: string) => string
+    format: (data: string) => string;
+    required?: boolean;
 };
 
-export type InputData = TextInputData | SelectInputData | FileInputData | DynamicInputData;
+export type InputData =
+    | TextInputData
+    | SelectInputData
+    | FileInputData
+    | DynamicInputData;
 
 export type Option = {
     value: string;

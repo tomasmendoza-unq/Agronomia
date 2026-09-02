@@ -1,8 +1,10 @@
 import { css, sva } from "@styled-system/css";
 
 export const compactModal = css.raw({
-    width: { base: "100%", md: "420px" },
+    width: "min(420px, calc(100vw - 32px))",
+    maxWidth: "100%",
     minHeight: 0,
+    padding: "24px 24px 20px",
 });
 
 export const modalStyles = sva({
@@ -10,19 +12,18 @@ export const modalStyles = sva({
     base: {
         overlay: {
             position: "fixed",
-            top: "64px",
-            right: 0,
-            bottom: 0,
-            left: 0,
-            backgroundColor: "#27272AE5",
+            inset: 0,
+            backgroundColor: "rgba(24, 24, 27, 0.7)",
             display: "flex",
-            alignItems: "flex-start",
+            alignItems: "center",
             justifyContent: "center",
-            zIndex: 70,
-            padding: "24px 1rem",
+            zIndex: 200,
+            padding: "24px 16px",
             overflowY: "auto",
         },
         modal: {
+            position: "relative",
+            zIndex: 201,
             backgroundColor: "white",
             borderRadius: "lg",
             padding: "2rem",

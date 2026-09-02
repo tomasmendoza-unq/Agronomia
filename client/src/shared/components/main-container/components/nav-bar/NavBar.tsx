@@ -26,7 +26,7 @@ const NavBar = ({
     brand: React.ReactNode;
     links: linkNavbar[];
 }) => {
-    const {isActive, onActive} = useSelect();
+    const { isActive, onActive } = useSelect();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     useEffect(() => {
@@ -43,34 +43,57 @@ const NavBar = ({
         setIsMenuOpen(false);
     };
 
+    const clearActiveLink = () => {
+        onActive("");
+    };
+
     return (
         <>
-            <nav className={navBar} aria-label="Navegación principal">
+            <nav
+                className={navBar}
+                aria-label="Navegación principal"
+            >
                 <div className={wrapLogo}>{brand}</div>
                 <ul className={navBarList}>
                     {links.map((link) => (
                         <li key={link.name}>
                             <Link
                                 to={link.path}
-                                className={isActive(link.name) ? selectedItem : item}
+                                className={
+                                    isActive(link.name) ? selectedItem : item
+                                }
                                 onClick={() => onActive(link.name)}
                             >
                                 {link.name}
                             </Link>
                         </li>
                     ))}
-                    <li>{avatar}</li>
+                    <li onClick={clearActiveLink}>{avatar}</li>
                 </ul>
                 <button
                     type="button"
                     className={menuButton}
-                    aria-label={isMenuOpen ? "Cerrar menú de navegación" : "Abrir menú de navegación"}
+                    aria-label={
+                        isMenuOpen
+                            ? "Cerrar menú de navegación"
+                            : "Abrir menú de navegación"
+                    }
                     aria-expanded={isMenuOpen}
                     aria-controls="mobile-navigation"
                     onClick={() => setIsMenuOpen((open) => !open)}
                 >
-                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                        <path d={isMenuOpen ? "M6 6l12 12M18 6L6 18" : "M4 7h16M4 12h16M4 17h16"} />
+                    <svg
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                        focusable="false"
+                    >
+                        <path
+                            d={
+                                isMenuOpen
+                                    ? "M6 6l12 12M18 6L6 18"
+                                    : "M4 7h16M4 12h16M4 17h16"
+                            }
+                        />
                     </svg>
                 </button>
             </nav>
@@ -83,22 +106,37 @@ const NavBar = ({
                         aria-label="Cerrar menú de navegación"
                         onClick={() => setIsMenuOpen(false)}
                     />
-                    <aside id="mobile-navigation" className={drawer} aria-label="Menú de navegación">
+                    <aside
+                        id="mobile-navigation"
+                        className={drawer}
+                        aria-label="Menú de navegación"
+                    >
                         <div className={drawerContent}>
                             <ul className={drawerList}>
                                 {links.map((link) => (
                                     <li key={link.name}>
                                         <Link
                                             to={link.path}
-                                            className={isActive(link.name) ? selectedItem : item}
-                                            onClick={() => selectLink(link.name)}
+                                            className={
+                                                isActive(link.name)
+                                                    ? selectedItem
+                                                    : item
+                                            }
+                                            onClick={() =>
+                                                selectLink(link.name)
+                                            }
                                         >
                                             {link.name}
                                         </Link>
                                     </li>
                                 ))}
                             </ul>
-                            <div className={drawerAvatar}>{avatar}</div>
+                            <div
+                                className={drawerAvatar}
+                                onClick={clearActiveLink}
+                            >
+                                {avatar}
+                            </div>
                         </div>
                     </aside>
                 </div>
