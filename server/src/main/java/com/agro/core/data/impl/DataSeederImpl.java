@@ -71,10 +71,11 @@ public class DataSeederImpl implements DataSeeder {
                 .name("AgroTech")
                 .legalName("AgroTech S.A.")
                 .cuit("30-12345678-9")
-                .branches(new ArrayList<>(List.of(branch2, branch, branch3, branch4)))
                 .users(new ArrayList<>(List.of(user)))
                 .logo(imagen)
                 .build();
+
+        company.addBranches(new ArrayList<>(List.of(branch2, branch, branch3, branch4)));
 
         user.addCompany(company);
 
