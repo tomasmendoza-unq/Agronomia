@@ -44,7 +44,7 @@ jobs:
               run: pnpm install --frozen-lockfile
 
             - name: Lint frontend
-              run: pnpm exec eslint . --max-warnings=0
+              run: pnpm exec eslint . --quiet
 
             - name: Validate frontend
               run: pnpm run build

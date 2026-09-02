@@ -27,7 +27,7 @@ export const ProvidersGrid = () => {
 
     useEffect(() => {
         getProviders(page, search);
-    }, [page, search]);
+    }, [getProviders, page, search]);
 
     return (
         <div className={container}>
