@@ -22,14 +22,14 @@ public class RazonSocial extends Client{
     private String associatePhone;
 
     @Embedded
-    private EmailValue associateEmail;
+    private EmailValue email;
 
     public RazonSocial(
             String razon,
             String associateName,
             String associateSurname,
             String associatePhone,
-            String associateEmail,
+            String email,
             String cuit,
             String address,
             String location,
@@ -39,26 +39,10 @@ public class RazonSocial extends Client{
         this.associateName = associateName;
         this.associateSurname = associateSurname;
         this.associatePhone = associatePhone;
-        this.associateEmail = new EmailValue(associateEmail);
-    }
-
-    public RazonSocial(
-            String razon,
-            String associateName,
-            String associateSurname,
-            String associatePhone,
-            String cuit,
-            String address,
-            String location,
-            Province province) {
-        super(cuit, address, location, province);
-        this.razonSocial = razon;
-        this.associateName = associateName;
-        this.associateSurname = associateSurname;
-        this.associatePhone = associatePhone;
+        this.email = new EmailValue(email);
     }
 
     public String getEmail() {
-        return associateEmail.get();
+        return email.get();
     }
 }

@@ -23,6 +23,7 @@ const OptionList = ({options, onOption}: OptionListProps) => {
                 <CheckInput 
                     onSubmit={onOption}
                     value={option}
+                    key={option}
                 />
             )}
         </div>
