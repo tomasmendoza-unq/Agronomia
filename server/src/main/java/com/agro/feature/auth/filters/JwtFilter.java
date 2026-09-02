@@ -32,7 +32,10 @@ public class JwtFilter extends OncePerRequestFilter {
     }
 
     private final List<RequestMatcher> PUBLICS = List.of(
-            PathPatternRequestMatcher.withDefaults().matcher(HttpMethod.POST, "/" + Api.AUTH + Api.LOGIN)
+            PathPatternRequestMatcher.withDefaults().matcher(HttpMethod.POST, "/" + Api.AUTH + Api.LOGIN),
+            PathPatternRequestMatcher.withDefaults().matcher(HttpMethod.GET, "/"),
+            PathPatternRequestMatcher.withDefaults().matcher(HttpMethod.HEAD, "/"),
+            PathPatternRequestMatcher.withDefaults().matcher("/error")
     );
 
     @Override
@@ -42,7 +45,14 @@ public class JwtFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        String tokenWithoutBearer = request.getHeader("Authorization").substring(7);
+        String authHeader = request.getHeader("Authorization");
+
+        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+            filterChain.doFilter(request, response);
+            return;
+        }
+
+        String tokenWithoutBearer = authHeader.substring(7);
         Long id = jwtService.validate(tokenWithoutBearer);
         UserDetails user = userDetailsService.loadUserById(id);
         request.setAttribute("userId", id);

@@ -1,5 +1,6 @@
 package com.agro.feature.branch.domain;
 
+import com.agro.feature.company.domain.Company;
 import com.agro.feature.user.domain.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -25,8 +26,12 @@ public class Branch {
 
     private String direction;
 
-    @OneToMany(fetch = FetchType.EAGER,  cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "branch", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<User> employees;
+
+    @ManyToOne
+    @JoinColumn(name = "company_id")
+    private Company company;
 
     public String getFullDirection() {
         return city + " - " + direction;

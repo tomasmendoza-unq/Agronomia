@@ -93,7 +93,6 @@ public class User {
         return getName() + " " + getSurname();
     }
 
-
     public String getBranchDirection() {
         return branch.getFullDirection();
     }
