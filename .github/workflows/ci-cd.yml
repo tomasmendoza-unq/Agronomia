@@ -68,12 +68,12 @@ jobs:
     api-health-check:
         name: API health check
         runs-on: ubuntu-latest
-        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' || github.ref == 'refs/heads/main'
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' || github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/preview' || github.ref == 'refs/heads/main' || (github.event_name == 'pull_request' && (github.base_ref == 'dev' || github.base_ref == 'preview' || github.base_ref == 'main'))
 
         steps:
             - name: Ping API
               run: |
-                  STATUS=$(curl -s -o /dev/null -w "%{http_code}" "https://agronomia-i30s.onrender.com/api/v1/system/health")
+                  STATUS=$(curl -s -o /dev/null -w "%{http_code}" "https://agronomia-i30s.onrender.com/health")
                   echo "HTTP status: $STATUS"
                   if [ "$STATUS" -lt 200 ] || [ "$STATUS" -ge 400 ]; then
                     echo "Error: API returned $STATUS"
