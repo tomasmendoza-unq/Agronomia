@@ -23,4 +23,6 @@ public interface ProviderDAO extends JpaRepository<Provider, Long> {
             @Param("search") String search,
             Pageable pageable
     );
+
+    boolean existsByCuit_Cuit(String cuitCuit);
 }

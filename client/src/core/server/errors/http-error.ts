@@ -3,7 +3,7 @@ import type { ErrorResponse } from "../types/error-response";
 import type { ErrorSide } from "../types/error-side";
 
 export class HttpError extends Error {
-    private data: ErrorResponse
+    private data: ErrorResponse;
     private status: number;
     private side: ErrorSide;
 
@@ -15,23 +15,23 @@ export class HttpError extends Error {
     }
 
     get getCause() {
-        return this.data.cause
+        return this.data.cause;
     }
 
     get getTitle() {
-        return this.data.title
+        return this.data.title;
     }
 
     get getMessage() {
-        return this.data.message
+        return this.data.message;
     }
 
     get getStatus() {
-        return this.status
+        return this.status;
     }
 
     get getSideError() {
-        return this.side
+        return this.side;
     }
 
     isCause(cause: ErrorCauseType) {
@@ -39,8 +39,8 @@ export class HttpError extends Error {
     }
 
     private errorSide(status: number) {
-        if      (status >= 500) return 'Server';
-        else if (status >= 400) return 'Client';
-        else                    return 'Uknow';
+        if (status >= 500) return "Server";
+        else if (status >= 400) return "Client";
+        else return "Uknow";
     }
 }

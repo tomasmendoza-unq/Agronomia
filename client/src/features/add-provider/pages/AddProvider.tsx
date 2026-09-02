@@ -19,10 +19,21 @@ const AddProvider = () => {
         useState(false);
     const { error, loading, addProvider } = useAddProviders();
 
-    const onSubmit = (data: ProviderRequest) => {
-        addProvider(data).then(() => {
+    const onSubmit = async (data: ProviderRequest) => {
+        const created = await addProvider(data);
+
+        if (created) {
             setIsCreateProviderOpen(true);
-        });
+        }
+    };
+
+    const onCloseCreateProviderModal = () => {
+        setIsCreateProviderOpen(false);
+        navigate(-1);
+    };
+
+    const backToProviders = () => {
+        navigate(-1);
     };
 
     return (
@@ -32,7 +43,7 @@ const AddProvider = () => {
                 hoverColor={token("colors.primaryColorHover") + "20"}
                 borderColor={token("colors.primaryColor")}
                 textColor={token("colors.primaryColor")}
-                onClick={() => navigate(-1)}
+                onClick={backToProviders}
             >
                 Regresar
             </Button>
@@ -61,13 +72,13 @@ const AddProvider = () => {
                 confirmText="Abandonar"
                 cancelText="Continuar editando"
                 danger
-                onConfirm={() => setIsCancelOpen(false)}
+                onConfirm={backToProviders}
                 onCancel={() => setIsCancelOpen(false)}
             />
 
             <ModalCreateProvider
                 isOpen={isCreateProviderModalOpen}
-                onClose={() => setIsCreateProviderOpen(false)}
+                onClose={onCloseCreateProviderModal}
                 title="Proveedor agregado"
                 message="El proveedor ha sido agregado correctamente."
             />

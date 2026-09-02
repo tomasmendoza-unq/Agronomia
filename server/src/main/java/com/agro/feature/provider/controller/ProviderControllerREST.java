@@ -9,6 +9,7 @@ import com.agro.feature.provider.dtos.response.ProviderResponseDTO;
 import com.agro.shared.dtos.table.PageResponseDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -49,7 +50,7 @@ public class ProviderControllerREST {
     @Operation(summary = "Añadir un proveedor a una compañia")
     public ResponseEntity<ProviderResponseDTO> addProvider(
             @RequestAttribute("userId") Long  userId,
-            @RequestBody ProviderRequestDTO request
+            @RequestBody @Valid  ProviderRequestDTO request
     ) {
         Provider provider = providerDataService.addProvider(userId, request.toModel());
 
