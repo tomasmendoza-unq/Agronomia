@@ -4,11 +4,11 @@ import com.agro.feature.client.dtos.ClientType;
 
 public record RazonSocialResponse(
         Long id,
-        String razon,
+        String razonSocial,
         String associateName,
         String associateSurname,
         String associatePhone,
-        String associateEmail,
+        String email,
         String cuit,
         String address,
         String location,

@@ -5,10 +5,10 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 public record RazonSocialRequest(
-        @NotBlank String businessName,
+        @NotBlank String razonSocial,
         @NotBlank String cuit,
         String address,
-        @NotBlank String locality,
+        @NotBlank String location,
         @NotBlank String province,
         @NotBlank @NotNull String associateName,
         @NotBlank @NotNull String associateSurname,
