@@ -10,9 +10,10 @@ export const providerSubForms: SubForm[] = [
                 {
                     type: "text",
                     name: "legalName",
-                    title: "Razón social *",
+                    title: "Razón social",
                     placeholder: "Ingrese la razón social",
                     id: 0,
+                    required: true,
                 },
                 {
                     type: "dynamic",
@@ -21,15 +22,17 @@ export const providerSubForms: SubForm[] = [
                     placeholder: "Ingrese el CUIT/CUIL",
                     format: formatCuit,
                     id: 1,
+                    required: true,
                 },
             ],
             [
                 {
                     type: "text",
                     name: "tradeName",
-                    title: "Nombre comercial *",
+                    title: "Nombre comercial",
                     placeholder: "Ingrese el nombre comercial",
                     id: 2,
+                    required: true,
                 },
             ],
         ],
@@ -42,9 +45,10 @@ export const providerSubForms: SubForm[] = [
                 {
                     type: "text",
                     name: "phoneNumber",
-                    title: "Teléfono fábrica *",
+                    title: "Teléfono fábrica",
                     placeholder: "Ingrese el teléfono",
                     id: 3,
+                    required: true,
                 },
             ],
             [

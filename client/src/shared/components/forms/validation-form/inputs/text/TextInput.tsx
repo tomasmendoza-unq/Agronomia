@@ -38,6 +38,14 @@ function TextInput<T extends Schema>({
                 className={css(fieldStyles.label)}
             >
                 <span>{input.title}</span>
+                {input.required && (
+                    <span
+                        className={css(fieldStyles.required)}
+                        aria-hidden="true"
+                    >
+                        *
+                    </span>
+                )}
             </label>
             <input
                 {...register(input.name as Path<output<T>>)}

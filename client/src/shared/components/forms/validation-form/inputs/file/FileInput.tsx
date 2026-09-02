@@ -53,6 +53,14 @@ function FileInput<T extends Schema>({
                 className={css(fieldStyles.label)}
             >
                 <span>{input.title}</span>
+                {input.required && (
+                    <span
+                        className={css(fieldStyles.required)}
+                        aria-hidden="true"
+                    >
+                        *
+                    </span>
+                )}
             </label>
 
             <div

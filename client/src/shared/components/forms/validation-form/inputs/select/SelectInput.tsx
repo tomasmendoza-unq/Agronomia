@@ -41,7 +41,15 @@ function SelectInput<T extends Schema>({
                 htmlFor={input.name}
                 className={css(label)}
             >
-                {input.title}
+                <span>{input.title}</span>
+                {input.required && (
+                    <span
+                        className={css(fieldStyles.required)}
+                        aria-hidden="true"
+                    >
+                        *
+                    </span>
+                )}
             </label>
             {isSelect ? (
                 <select

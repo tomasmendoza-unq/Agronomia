@@ -32,12 +32,11 @@ function DynamicInput<T extends Schema>({
     register,
     error,
 }: DynamicInputProps<T>) {
-
     const [value, setValue] = useState("");
 
     const handleValue = (value: string) => {
         setValue(input.format(value));
-    }
+    };
 
     return (
         <div className={css(fieldStyles.container)}>
@@ -46,6 +45,14 @@ function DynamicInput<T extends Schema>({
                 className={css(fieldStyles.label)}
             >
                 <span>{input.title}</span>
+                {input.required && (
+                    <span
+                        className={css(fieldStyles.required)}
+                        aria-hidden="true"
+                    >
+                        *
+                    </span>
+                )}
             </label>
             <input
                 {...register(input.name as Path<output<T>>)}
