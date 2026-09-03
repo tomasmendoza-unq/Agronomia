@@ -1,11 +1,12 @@
 import type { Ubication } from "../types/ubication";
-import type { Client } from "./client";
 
-export interface RazonSocial extends Client {
+export type RazonSocial = {
+    id: number;
+    cuit: string;
+    ubication: Ubication;
     razonSocial: string;
-    associateName: string;
-    associateSurname: string;
+    name: string;
+    surname: string;
     associatePhone: string;
     email?: string;
-    ubication: Ubication;
 }

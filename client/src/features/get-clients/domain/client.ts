@@ -1,7 +1,4 @@
-import type { ClientOption } from "@/shared/domain/client/client";
+import type { NaturalPerson } from "./natural-person";
+import type { RazonSocial } from "./razon-social";
 
-export interface Client {
-    id: number;
-    cuit: string;
-    type: ClientOption;
-};
+export type Client = NaturalPerson | RazonSocial;
