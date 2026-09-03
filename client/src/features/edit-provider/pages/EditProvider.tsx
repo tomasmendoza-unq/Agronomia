@@ -11,6 +11,7 @@ import { ConfirmModal } from "@/shared/components/modal/variants/ConfirmModalPro
 import Button from "@/shared/components/button/Button";
 import { token } from "@styled-system/tokens";
 import { css } from "@styled-system/css";
+import ErrorToast from "@/shared/components/toast/error/ErrorToast";
 
 const backButtonContainer = css({
     display: "flex",
@@ -43,17 +44,11 @@ export const EditProvider = () => {
         navigate(-1);
     };
 
-    if (isLoadingProvider || data === undefined) {
-        return null;
-    }
-
-    if (error || errorProvider) {
-        return null;
-    }
-
-    const generatedSubForm = generateSubForm(data);
+    const generatedSubForm = data ? generateSubForm(data) : [];
 
     const onSubmit = async (formData: Omit<ProviderEdit, "id">) => {
+        if (!data) return;
+
         const updatedProvider = await editProvider({
             id: data.id,
             ...formData,
@@ -73,6 +68,16 @@ export const EditProvider = () => {
 
     return (
         <>
+            {(error || errorProvider) && (
+                <ErrorToast
+                    message={
+                        error?.getMessage ??
+                        errorProvider?.getMessage ??
+                        "No se pudo editar el proveedor"
+                    }
+                    onClose={() => {}}
+                />
+            )}
             <div className={backButtonContainer}>
                 <Button
                     color="white"
@@ -84,12 +89,12 @@ export const EditProvider = () => {
                     ← Regresar
                 </Button>
             </div>
-            {isLoading ? (
+            {isLoading || isLoadingProvider ? (
                 <Spinner
                     size="lg"
                     centered
                 />
-            ) : (
+            ) : data ? (
                 <ComposeForm
                     subForms={generatedSubForm}
                     schema={providerSchema}
@@ -97,7 +102,7 @@ export const EditProvider = () => {
                     onSubmit={onSubmit}
                     onCancel={() => setIsCancelOpen(true)}
                 />
-            )}
+            ) : null}
             <ConfirmModal
                 isOpen={isCancelOpen}
                 title="¿Seguro deseas cancelar?"
