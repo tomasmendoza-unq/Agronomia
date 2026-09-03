@@ -8,6 +8,7 @@ import { ProviderPanel } from "@/views/provider/ProviderPanel";
 import { ProvidersList } from "@/views/provider/pages/ProviderList";
 import AddProvider from "@/features/add-provider/pages/AddProvider";
 import { EditProvider } from "@/features/edit-provider/pages/EditProvider";
+import { Client } from "@/views/client/Client";
 
 export const AdminRoutes: RouteData[] = [
     {
