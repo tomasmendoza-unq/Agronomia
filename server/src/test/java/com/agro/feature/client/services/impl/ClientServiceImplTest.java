@@ -1,12 +1,20 @@
 package com.agro.feature.client.services.impl;
 
 import com.agro.core.ContainerPostgresql;
+import com.agro.feature.branch.domain.Branch;
+import com.agro.feature.branch.persistence.BranchDAO;
 import com.agro.feature.client.domain.Client;
 import com.agro.feature.client.domain.NaturalPerson;
 import com.agro.feature.client.persistence.daos.ClientDAO;
+import com.agro.feature.company.domain.Company;
+import com.agro.feature.company.service.CompanyService;
+import com.agro.feature.user.domain.User;
+import com.agro.feature.user.orchestrator.RegisterOrchestrator;
 import com.agro.shared.entities.province.Province;
+import com.agro.shared.entities.rol.Role;
 import com.agro.shared.service.ResetService;
 import com.agro.shared.valueObjects.cuit.CuitException;
+import com.agro.shared.valueObjects.email.EmailValue;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -38,6 +46,43 @@ class ClientServiceImplTest {
 
     private Client client;
 
+    @Autowired
+    private CompanyService companyService;
+
+    @Autowired
+    private BranchDAO branchDAO;
+
+    @Autowired
+    private RegisterOrchestrator orchestrator;
+
+    private Company company;
+
+    private User user;
+
+    private Branch branch;
+
+    @BeforeEach
+    void setup() {
+        branch = branchDAO.save(Branch.builder()
+                .city("Berlin")
+                .direction("street 123")
+                .build());
+
+        company = companyService.save(Company.builder()
+                .cuit("12312312")
+                .name("Matilda")
+                .legalName("Matilda SA")
+                .build());
+
+        User newUser = User.builder()
+                .name("Tomas")
+                .email(new EmailValue("n2n@gmail.com"))
+                .role(Role.DUENIO)
+                .build();
+
+        user = orchestrator.register(newUser, company.getId(), branch.getId());
+    }
+
     @BeforeEach
     void setUp() {
         client = new NaturalPerson(
@@ -54,7 +99,7 @@ class ClientServiceImplTest {
 
     @Test
     void testSePersisteUnClient() {
-        Client addedClient = service.save(client);
+        Client addedClient = service.save(client, user.getId());
         assertNotNull(addedClient.getId());
     }
 
@@ -70,8 +115,8 @@ class ClientServiceImplTest {
                 "Florencio Varela",
                 Province.Cordoba
         );
-        service.save(client);
-        assertThrows(CuitException.class, () -> service.save(client1));
+        service.save(client, user.getId());
+        assertThrows(CuitException.class, () -> service.save(client1, user.getId()));
     }
 
     @AfterEach

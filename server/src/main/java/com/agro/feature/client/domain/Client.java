@@ -4,6 +4,7 @@ import com.agro.shared.entities.province.Province;
 import com.agro.shared.valueObjects.cuit.CuitValue;
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
@@ -26,6 +27,10 @@ public abstract class Client {
     @Getter
     private Province province;
 
+    @Setter
+    @Column(name = "company_id", nullable = false)
+    private Long companyId;
+
     public Client(String cuit, String address, String location, Province province) {
         this.cuit = new CuitValue(cuit);
         this.address = address;
@@ -36,4 +41,5 @@ public abstract class Client {
     public String getCuit() {
         return cuit.get();
     }
+
 }
