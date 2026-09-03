@@ -8,5 +8,5 @@ export interface IconListProps {
 interface IconItem {
     icon: React.ComponentType<IconProps>;
     value: string;
-    fallback: string;
+    fallback?: string;
 }
