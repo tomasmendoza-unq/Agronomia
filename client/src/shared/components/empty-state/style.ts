@@ -1,4 +1,3 @@
-// shared/components/emptyState/styles.ts
 import { css, sva } from "@styled-system/css";
 
 const container = css.raw({
@@ -23,6 +22,10 @@ const iconWrapper = css.raw({
     height: "64px",
     marginBottom: "8px",
     color: "#B8ADA4",
+    "& svg": {
+        width: "56px",
+        height: "56px",
+    },
 });
 
 const title = css.raw({
@@ -30,6 +33,9 @@ const title = css.raw({
     fontSize: "15px",
     fontWeight: "bold",
     color: "#333333",
+    "& strong": {
+        color: "primaryColor",
+    },
 });
 
 const description = css.raw({

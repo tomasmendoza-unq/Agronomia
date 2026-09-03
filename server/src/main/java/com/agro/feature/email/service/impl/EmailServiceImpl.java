@@ -16,7 +16,7 @@ import java.util.Map;
 
 @Service
 @Transactional
-@Profile({"dev", "prod"})
+@Profile({"dev", "prod", "seed"})
 @Slf4j
 public class EmailServiceImpl implements EmailSendRegister {
     private final Resend resend;

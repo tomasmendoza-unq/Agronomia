@@ -26,7 +26,10 @@ public class ResetServiceImpl implements ResetService {
         List<String> tablasExistentes = List.of(
                 "users",
                 "razon_social",
-                "natural_person"
+                "natural_person",
+                "providers",
+                "companys",
+                "branches"
         );
 
         String sql = "TRUNCATE TABLE " +

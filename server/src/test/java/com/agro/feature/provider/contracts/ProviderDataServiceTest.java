@@ -7,6 +7,7 @@ import com.agro.feature.company.domain.Company;
 import com.agro.feature.company.service.CompanyService;
 import com.agro.feature.provider.contracts.ProviderDataService;
 import com.agro.feature.provider.domain.Provider;
+import com.agro.feature.provider.domain.Traveler;
 import com.agro.feature.provider.persistence.ProviderDAO;
 import com.agro.feature.provider.service.ProviderService;
 import com.agro.feature.user.domain.User;
@@ -38,14 +39,10 @@ class ProviderDataServiceTest {
     @Container
     private static PostgreSQLContainer postgres = ContainerPostgresql.getContainer();
 
-    @Autowired
-    private ProviderService providerService;
 
     @Autowired
     private ProviderDataService  providerDataService;
 
-    @Autowired
-    private ProviderDAO providerDAO;
 
     @Autowired
     private CompanyService companyService;
@@ -63,7 +60,11 @@ class ProviderDataServiceTest {
 
     private User user;
 
+    private User userOtherCompany;
+
     private Branch branch;
+
+    private Provider provider;
 
     @BeforeEach
     void setup() {
@@ -78,18 +79,44 @@ class ProviderDataServiceTest {
                 .legalName("Matilda SA")
                 .build());
 
+
+
+        Company otherCompany = companyService.save(Company.builder()
+                .cuit("00000000")
+                .name("Otra Empresa")
+                .legalName("Otra Empresa SA")
+                .build());
+
         User newUser = User.builder()
                 .name("Tomas")
                 .email(new EmailValue("n2n@gmail.com"))
                 .role(Role.DUENIO)
                 .build();
 
+        User newUser2 = User.builder()
+                .name("Tomas")
+                .email(new EmailValue("n2123123n@gmail.com"))
+                .role(Role.DUENIO)
+                .build();
+
         user = orchestrator.register(newUser, company.getId(), branch.getId());
+
+        userOtherCompany = orchestrator.register(newUser2, otherCompany.getId(), branch.getId());
+
+        provider = providerDataService.addProvider(userOtherCompany.getId(),Provider.builder()
+                .tradeName("ww")
+                .legalName("www")
+                .cuit("30-98621321-0")
+                .phoneNumber("11-4444-5555")
+                .companyId(company.getId())
+                .listPrices(new ArrayList<>(List.of(1500, 2300)))
+                .build());
+
     }
 
     @Test
     public void getProviders_returnsOnlyProvidersFromUserCompany() {
-        providerDAO.save(Provider.builder()
+        providerDataService.addProvider(user.getId(),Provider.builder()
                 .tradeName("Agroinsumos del Sur")
                 .legalName("Agroinsumos del Sur S.R.L.")
                 .cuit("30-87654321-0")
@@ -98,7 +125,7 @@ class ProviderDataServiceTest {
                 .listPrices(new ArrayList<>(List.of(1500, 2300)))
                 .build());
 
-        providerDAO.save(Provider.builder()
+        providerDataService.addProvider(user.getId(),Provider.builder()
                 .tradeName("Insumos Pampa")
                 .legalName("Insumos Pampa S.A.")
                 .cuit("30-11223344-5")
@@ -107,18 +134,12 @@ class ProviderDataServiceTest {
                 .listPrices(new ArrayList<>(List.of(800, 950)))
                 .build());
 
-        Company otherCompany = companyService.save(Company.builder()
-                .cuit("00000000")
-                .name("Otra Empresa")
-                .legalName("Otra Empresa SA")
-                .build());
 
-        providerDAO.save(Provider.builder()
+        providerDataService.addProvider(userOtherCompany.getId(),Provider.builder()
                 .tradeName("Proveedor Ajeno")
                 .legalName("Proveedor Ajeno S.A.")
                 .cuit("30-00000000-0")
                 .phoneNumber("11-0000-0000")
-                .companyId(otherCompany.getId())
                 .listPrices(new ArrayList<>())
                 .build());
 
@@ -131,7 +152,7 @@ class ProviderDataServiceTest {
 
     @Test
     public void getProviders_filtersByTradeNameOrLegalName() {
-        providerDAO.save(Provider.builder()
+        providerDataService.addProvider(user.getId(), Provider.builder()
                 .tradeName("Agroinsumos del Sur")
                 .legalName("Agroinsumos del Sur S.R.L.")
                 .cuit("30-87654321-0")
@@ -140,7 +161,7 @@ class ProviderDataServiceTest {
                 .listPrices(new ArrayList<>())
                 .build());
 
-        providerDAO.save(Provider.builder()
+        providerDataService.addProvider(user.getId(),Provider.builder()
                 .tradeName("Insumos Pampa")
                 .legalName("Insumos Pampa S.A.")
                 .cuit("30-11223344-5")
@@ -163,8 +184,23 @@ class ProviderDataServiceTest {
         assertEquals(0, result.getTotalElements());
     }
 
+    @Test
+    public void editProvider(){
+        Provider editProvider = new Provider("541162707458", new Traveler(null, "Robert", "541162707458"));
+
+        editProvider.setId(provider.getId());
+
+        providerDataService.editProvider(userOtherCompany.getId(), editProvider);
+
+        Provider recovered = providerDataService.getProviderById(provider.getId());
+
+        assertEquals(editProvider.getPhoneNumber(), recovered.getPhoneNumber());
+        assertEquals(editProvider.getTraveler().getFullName(), recovered.getTraveler().getFullName());
+        assertEquals(editProvider.getTraveler().getPhoneNumber(), recovered.getTraveler().getPhoneNumber());
+    }
+
     @AfterEach
-    public void tearDown() {
+    void tearDown() {
         resetService.resetAll();
     }
 }

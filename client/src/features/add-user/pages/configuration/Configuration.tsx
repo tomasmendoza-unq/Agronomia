@@ -24,7 +24,7 @@ const Configuration = () => {
 
     useEffect(() => {
         getCompany();
-    }, []);
+    }, [getCompany]);
 
     const handleUserCreated = (email: string) => {
         tableUsersRef.current?.refresh();

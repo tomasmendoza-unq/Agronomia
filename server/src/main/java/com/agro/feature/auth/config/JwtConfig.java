@@ -31,6 +31,7 @@ public class JwtConfig {
                 .authorizeHttpRequests(auth ->
                         auth
                                 .requestMatchers("/").permitAll()
+                                .requestMatchers(Api.HEALTH).permitAll()
                                 .requestMatchers("/error").permitAll()
                                 .requestMatchers("/" + Api.AUTH + Api.LOGIN).permitAll()
                                 .anyRequest().authenticated())

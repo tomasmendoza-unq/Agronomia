@@ -32,7 +32,7 @@ function DynamicInput<T extends Schema>({
     register,
     error,
 }: DynamicInputProps<T>) {
-    const [value, setValue] = useState("");
+    const [value, setValue] = useState(input.defaultValue ?? "");
 
     const handleValue = (value: string) => {
         setValue(input.format(value));
@@ -61,6 +61,7 @@ function DynamicInput<T extends Schema>({
                 name={input.name}
                 placeholder={input.placeholder}
                 id={input.name}
+                disabled={input.disabled}
                 value={value}
                 onChange={(event) => handleValue(event.target.value)}
             />
