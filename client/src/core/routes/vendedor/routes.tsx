@@ -3,6 +3,9 @@ import { VENDEDOR_ROUTES } from "./paths";
 import VendedorLayout from "@/core/auth/layout/roles/vendedor/VendedorLayout";
 import { ProviderPanel } from "@/views/provider/ProviderPanel";
 import { ProvidersList } from "@/views/provider/pages/ProviderList";
+import { Client } from "@/views/client/Client";
+import ClientPanel from "@/views/client/pages/ClientPanel";
+import AddClient from "@/features/add-client/pages/AddClient";
 
 export const VendedorRoutes: RouteData[] = [
     {
@@ -18,6 +21,22 @@ export const VendedorRoutes: RouteData[] = [
                     {
                         index: true,
                         element: <ProvidersList />,
+                    },
+                ],
+            },
+            {
+                path: `${VENDEDOR_ROUTES.CLIENTES}`,
+                element: <Client />,
+                handle: { breadcrumb: "Clientes" },
+                children: [
+                    {
+                        index: true,
+                        element: <ClientPanel />,
+                    },
+                    {
+                        path: `nuevo-cliente`,
+                        element: <AddClient />,
+                        handle: { breadcrumb: "Nuevo Cliente" },
                     },
                 ],
             },
