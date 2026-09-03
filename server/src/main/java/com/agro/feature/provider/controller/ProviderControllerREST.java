@@ -46,6 +46,19 @@ public class ProviderControllerREST {
         ));
     }
 
+
+    @GetMapping("/{providerId}")
+    @PreAuthorize("hasAnyRole('DUENIO')")
+    @Operation(summary = "Obtener un proveedor por un id")
+    public ResponseEntity<ProviderResponseDTO> getProviderById(
+            @PathVariable Long providerId
+    ) {
+
+        Provider provider = providerDataService.getProviderById(providerId);
+
+        return ResponseEntity.ok(ProviderResponseDTO.fromModel(provider));
+    }
+
     @PostMapping
     @PreAuthorize("hasAnyRole('DUENIO')")
     @Operation(summary = "Añadir un proveedor a una compañia")

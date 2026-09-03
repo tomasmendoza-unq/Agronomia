@@ -5,4 +5,8 @@ export const ADMIN_ROUTES = {
     CLIENTES: `clientes`,
     PRODUCTOS: `productos`,
     VENTAS: `ventas`,
+    ADD_PROVIDER: `nuevo-proveedor`,
+    EDIT_PROVIDER: `editar-proveedor/:providerId`,
+    EDIT_PROVIDER_PATH: (providerId: number) =>
+        `editar-proveedor/${providerId}`,
 };

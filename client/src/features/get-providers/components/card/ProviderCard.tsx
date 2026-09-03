@@ -9,6 +9,8 @@ import { RoleGuard } from "@/core/auth/components/RoleGuard";
 import { EditIcon } from "@/shared/components/icon/components/icons/EditIcon";
 import { PricesButton } from "./PriceButton";
 import { PaymentsMethods } from "./PaymentsMethods";
+import { Link } from "react-router";
+import { ADMIN_ROUTES } from "@/core/routes/admin/paths";
 
 export const ProviderCard = ({ provider }: { provider: Provider }) => {
     const providerName = provider.tradeName || provider.legalName;
@@ -41,7 +43,9 @@ export const ProviderCard = ({ provider }: { provider: Provider }) => {
                     type="button"
                     className={styles.editLink}
                 >
-                    Editar
+                    <Link to={ADMIN_ROUTES.EDIT_PROVIDER_PATH(provider.id)}>
+                        Editar
+                    </Link>
                     <EditIcon className={styles.editIcon} />
                 </button>
             </RoleGuard>

@@ -1,4 +1,6 @@
 import { MAIN } from "./main";
 
 export const PROVIDER_PATH = `${MAIN}/provider`;
-export const PUT_PROVIDER_PATH = `${PROVIDER_PATH}/provider`;
+export const PUT_PROVIDER_PATH = `${PROVIDER_PATH}`;
+export const PROVIDER_PATH_BY_ID = (providerId: number) =>
+    `${PROVIDER_PATH}/${providerId}`;

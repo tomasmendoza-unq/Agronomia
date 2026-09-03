@@ -7,6 +7,7 @@ import AddClient from "@/features/add-client/pages/AddClient";
 import { ProviderPanel } from "@/views/provider/ProviderPanel";
 import { ProvidersList } from "@/views/provider/pages/ProviderList";
 import AddProvider from "@/features/add-provider/pages/AddProvider";
+import { EditProvider } from "@/features/edit-provider/pages/EditProvider";
 
 export const AdminRoutes: RouteData[] = [
     {
@@ -29,9 +30,14 @@ export const AdminRoutes: RouteData[] = [
                         element: <ProvidersList />,
                     },
                     {
-                        path: `nuevo-proveedor`,
+                        path: `${ADMIN_ROUTES.ADD_PROVIDER}`,
                         element: <AddProvider />,
                         handle: { breadcrumb: "Nuevo Proveedor" },
+                    },
+                    {
+                        path: ADMIN_ROUTES.EDIT_PROVIDER,
+                        element: <EditProvider />,
+                        handle: { breadcrumb: "Editar Proveedor" },
                     },
                 ],
             },

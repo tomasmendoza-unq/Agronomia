@@ -53,6 +53,7 @@ function TextInput<T extends Schema>({
                 type={input.type}
                 name={input.name}
                 placeholder={input.placeholder}
+                defaultValue={input.defaultValue}
                 id={input.name}
             />
             {error && <ErrorMessage message={error.message as string} />}

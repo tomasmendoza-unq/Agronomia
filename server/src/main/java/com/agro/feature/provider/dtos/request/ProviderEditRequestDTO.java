@@ -5,10 +5,11 @@ import com.agro.feature.provider.domain.Traveler;
 import com.agro.shared.annotations.constraints.ValidPhone;
 import jakarta.validation.constraints.AssertTrue;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 public record ProviderEditRequestDTO(
-        @NotBlank
-        Long idProvider,
+        @NotNull
+        Long id,
 
         @NotBlank
         @ValidPhone
@@ -39,9 +40,10 @@ public record ProviderEditRequestDTO(
                 .build()
                 : null;
 
-        return Provider.builder()
-                .phoneNumber(phoneNumber)
-                .traveler(traveler)
-                .build();
+        Provider model = new Provider (phoneNumber, traveler);
+
+        model.setId(id);
+
+        return model;
     }
 }
