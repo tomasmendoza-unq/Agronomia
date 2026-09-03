@@ -25,8 +25,7 @@ public class ResetServiceImpl implements ResetService {
 
         List<String> tablasExistentes = List.of(
                 "users",
-                "razon_social",
-                "natural_person",
+                "clients",
                 "providers",
                 "companys",
                 "branches"

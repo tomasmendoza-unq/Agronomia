@@ -3,11 +3,16 @@ package com.agro.feature.client.domain;
 import com.agro.shared.entities.province.Province;
 import com.agro.shared.valueObjects.cuit.CuitValue;
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Table(name = "clients")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "client_type", discriminatorType = DiscriminatorType.STRING)
 public abstract class Client {
 
     @Id
@@ -31,6 +36,18 @@ public abstract class Client {
     @Column(name = "company_id", nullable = false)
     private Long companyId;
 
+    @Column(name = "sort_key", nullable = false)
+    private String sortKey;
+
+    @Column(name = "search_text", nullable = false)
+    private String searchText;
+
+    @PrePersist @PreUpdate
+    protected void onSave() {
+        this.sortKey = computeSortKey();
+        this.searchText = computeSearchKey();
+    }
+
     public Client(String cuit, String address, String location, Province province) {
         this.cuit = new CuitValue(cuit);
         this.address = address;
@@ -42,4 +59,6 @@ public abstract class Client {
         return cuit.get();
     }
 
+    protected abstract String computeSortKey();
+    protected abstract String computeSearchKey();
 }
