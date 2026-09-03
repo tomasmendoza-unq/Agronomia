@@ -10,7 +10,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @DiscriminatorValue("NATURAL_PERSON")
 public class NaturalPerson extends Client {
 
@@ -25,6 +24,8 @@ public class NaturalPerson extends Client {
 
     @Embedded
     private EmailValue email;
+
+    protected NaturalPerson() {}
 
     public NaturalPerson(
             String name,

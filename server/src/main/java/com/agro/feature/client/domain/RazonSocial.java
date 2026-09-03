@@ -10,7 +10,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @DiscriminatorValue("RAZON_SOCIAL")
 public class RazonSocial extends Client{
 
@@ -29,8 +28,10 @@ public class RazonSocial extends Client{
     @Embedded
     private EmailValue email;
 
+    protected RazonSocial() {}
+
     public RazonSocial(
-            String razon,
+            String razonSocial,
             String associateName,
             String associateSurname,
             String associatePhone,
@@ -40,7 +41,7 @@ public class RazonSocial extends Client{
             String location,
             Province province) {
         super(cuit, address, location, province);
-        this.razonSocial = razon;
+        this.razonSocial = razonSocial;
         this.associateName = associateName;
         this.associateSurname = associateSurname;
         this.associatePhone = associatePhone;
