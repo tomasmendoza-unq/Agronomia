@@ -5,6 +5,7 @@ import com.agro.feature.client.persistence.daos.ClientDAO;
 import com.agro.feature.client.services.ClientService;
 import com.agro.feature.user.contracts.UserDataService;
 import com.agro.feature.user.domain.User;
+import com.agro.shared.persistence.excepitons.NormaliceText;
 import com.agro.shared.valueObjects.cuit.CuitException;
 import jakarta.transaction.Transactional;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -39,6 +40,7 @@ public class ClientServiceImpl implements ClientService {
     @Override
     public Page<Client> getClients(int page, int size, Long userId, String name) {
         User user = userDataService.getUserById(userId);
-        return dao.searchClientByCompanyId(user.getCompany().getId(),name, PageRequest.of(page, size));
+        String normaliceSearch = NormaliceText.normalize(name);
+        return dao.searchClientByCompanyId(user.getCompany().getId(), normaliceSearch, PageRequest.of(page, size));
     }
 }

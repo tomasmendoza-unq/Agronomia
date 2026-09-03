@@ -13,7 +13,7 @@ public interface ClientDAO extends JpaRepository<Client, Long> {
     @Query("""
         SELECT c FROM Client c
         WHERE c.companyId = :companyId
-        AND (:search IS NULL OR c.searchText LIKE %:search%)
+        AND (:search IS NULL OR c.searchText LIKE CONCAT('%', :search, '%'))
         ORDER BY c.sortKey ASC
     """)
     Page<Client> searchClientByCompanyId(

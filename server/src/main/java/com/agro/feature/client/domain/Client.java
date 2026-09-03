@@ -1,6 +1,7 @@
 package com.agro.feature.client.domain;
 
 import com.agro.shared.entities.province.Province;
+import com.agro.shared.persistence.excepitons.NormaliceText;
 import com.agro.shared.valueObjects.cuit.CuitValue;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -44,8 +45,8 @@ public abstract class Client {
 
     @PrePersist @PreUpdate
     protected void onSave() {
-        this.sortKey = computeSortKey();
-        this.searchText = computeSearchKey();
+        this.sortKey = NormaliceText.normalize(computeSortKey());
+        this.searchText = NormaliceText.normalize(computeSearchKey());
     }
 
     public Client(String cuit, String address, String location, Province province) {
