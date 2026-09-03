@@ -81,7 +81,7 @@ public class DataSeederImpl implements DataSeeder {
 
         userService.save(user);
 
-        createProviders(company.getId());
+       // createProviders(company.getId());
     }
 
     private void createProviders(Long companyId) {

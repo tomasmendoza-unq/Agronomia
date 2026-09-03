@@ -2,7 +2,7 @@ import { useNavigate } from "react-router";
 import { token } from "@styled-system/tokens";
 import Button from "@/shared/components/button/Button";
 import { TractorIcon } from "@/shared/components/icon/components/icons/Tractor";
-import { EmptyState } from "./EmptyState";
+import { EmptyState } from "@/shared/components/empty-state/EmptyState";
 
 export const NoProviders = () => {
     const navigate = useNavigate();

@@ -12,6 +12,8 @@ import Button from "@/shared/components/button/Button";
 import { token } from "@styled-system/tokens";
 import { css } from "@styled-system/css";
 import ErrorToast from "@/shared/components/toast/error/ErrorToast";
+import { EmptyState } from "@/shared/components/empty-state/EmptyState";
+import { SearchIcon } from "@/shared/components/icon/components/icons/Search";
 
 const backButtonContainer = css({
     display: "flex",
@@ -102,7 +104,13 @@ export const EditProvider = () => {
                     onSubmit={onSubmit}
                     onCancel={() => setIsCancelOpen(true)}
                 />
-            ) : null}
+            ) : (
+                <EmptyState
+                    icon={<SearchIcon />}
+                    title="Proveedor no encontrado"
+                    description="No se encontró el proveedor solicitado."
+                />
+            )}
             <ConfirmModal
                 isOpen={isCancelOpen}
                 title="¿Seguro deseas cancelar?"
