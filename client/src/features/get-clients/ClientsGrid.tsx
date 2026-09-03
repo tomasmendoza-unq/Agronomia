@@ -41,6 +41,7 @@ export const ClientsGrid = () => {
                     {data.content.map((client) => (
                         <ClientCard
                             key={client.id}
+                            client={client}
                         />
                     ))}
                 </div>
