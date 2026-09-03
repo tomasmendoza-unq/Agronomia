@@ -53,12 +53,17 @@ export const EditProvider = () => {
 
     const generatedSubForm = generateSubForm(data);
 
-    const onSubmit = (formData: Omit<ProviderEdit, "id">) => {
-        console.log("formData", formData);
-        editProvider({
+    const onSubmit = async (formData: Omit<ProviderEdit, "id">) => {
+        const updatedProvider = await editProvider({
             id: data.id,
             ...formData,
         });
+
+        if (updatedProvider) {
+            navigate("/admin/proveedores", {
+                state: { providerUpdated: true },
+            });
+        }
     };
 
     const cancelEdit = () => {
