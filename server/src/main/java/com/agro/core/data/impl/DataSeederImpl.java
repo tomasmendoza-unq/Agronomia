@@ -1,6 +1,10 @@
 package com.agro.core.data.impl;
 
 import com.agro.feature.branch.domain.Branch;
+import com.agro.feature.client.domain.Client;
+import com.agro.feature.client.domain.NaturalPerson;
+import com.agro.feature.client.domain.RazonSocial;
+import com.agro.feature.client.services.ClientService;
 import com.agro.feature.company.domain.Company;
 import com.agro.feature.image.domain.Imagen;
 import com.agro.feature.provider.domain.PaymentMethod;
@@ -11,6 +15,7 @@ import com.agro.feature.user.domain.User;
 
 import com.agro.feature.user.services.UserService;
 import com.agro.core.data.DataSeeder;
+import com.agro.shared.entities.province.Province;
 import com.agro.shared.entities.rol.Role;
 import com.agro.shared.valueObjects.email.EmailValue;
 import org.springframework.context.annotation.Profile;
@@ -25,10 +30,12 @@ public class DataSeederImpl implements DataSeeder {
 
     private final UserService userService;
     private final ProviderService providerService;
+    private final ClientService clientService;
 
-    public DataSeederImpl(UserService userService, ProviderService providerService) {
+    public DataSeederImpl(UserService userService, ProviderService providerService, ClientService clientService) {
         this.userService = userService;
         this.providerService = providerService;
+        this.clientService = clientService;
     }
 
     @Override
@@ -81,7 +88,8 @@ public class DataSeederImpl implements DataSeeder {
 
         userService.save(user);
 
-       // createProviders(company.getId());
+       createProviders(company.getId());
+       createClients(user.getId(), company.getId());
     }
 
     private void createProviders(Long companyId) {
@@ -207,5 +215,107 @@ public class DataSeederImpl implements DataSeeder {
         );
 
         providers.forEach(providerService::save);
+    }
+
+    private void createClients(Long companyId, Long userId) {
+        List<Client> clients = List.of(
+
+                new NaturalPerson(
+                        "Carlos",
+                        "Pérez",
+                        "20-12345678-9",
+                        "11-4455-6677",
+                        "carlos.perez@gmail.com",
+                        "Av. Rivadavia 1234",
+                        "Buenos Aires",
+                        Province.BuenosAires
+                ),
+
+                new NaturalPerson(
+                        "María",
+                        "González",
+                        "27-23456789-3",
+                        "351-778-8990",
+                        "maria.gonzalez@gmail.com",
+                        "Calle San Martín 456",
+                        "Córdoba",
+                        Province.Cordoba
+                ),
+
+                new NaturalPerson(
+                        "Jorge",
+                        "Ramírez",
+                        "20-34567891-2",
+                        "341-223-4455",
+                        "jorge.ramirez@hotmail.com",
+                        "Bv. Oroño 789",
+                        "Rosario",
+                        Province.SantaFe
+                ),
+
+                new RazonSocial(
+                        "AgroSur S.A.",
+                        "Federico",
+                        "Álvarez",
+                        "3492-51-2290",
+                        "contacto@agrosur.com.ar",
+                        "30-70928156-3",
+                        "Ruta 9 Km 456",
+                        "Marcos Juárez",
+                        Province.Cordoba
+                ),
+
+                new RazonSocial(
+                        "La Pampa Cereales S.R.L.",
+                        "Lucía",
+                        "Fernández",
+                        "351-6789-012",
+                        "info@lapampacereales.com.ar",
+                        "30-54892371-6",
+                        "Av. Colón 2345",
+                        "Córdoba",
+                        Province.Cordoba
+                ),
+
+                new RazonSocial(
+                        "Vassalli Distribuidora S.A.",
+                        "Martín",
+                        "Suárez",
+                        "341-889-5566",
+                        "ventas@vassallidist.com.ar",
+                        "30-53821046-9",
+                        "Zona Industrial s/n",
+                        "Firmat",
+                        Province.SantaFe
+                ),
+
+                new NaturalPerson(
+                        "Sofía",
+                        "Ramírez",
+                        "27-45678912-0",
+                        "341-334-1122",
+                        "sofia.ramirez@yahoo.com.ar",
+                        "Calle Mitre 321",
+                        "Casilda",
+                        Province.SantaFe
+                ),
+
+                new RazonSocial(
+                        "Don Mario Agro S.A.",
+                        "Ezequiel",
+                        "Torres",
+                        "3401-778-2233",
+                        "eze.torres@donmarioagro.com.ar",
+                        "30-59873421-8",
+                        "Parque Industrial",
+                        "Chacabuco",
+                        Province.BuenosAires
+                )
+        );
+
+        clients.forEach(client -> {
+            client.setCompanyId(companyId);
+            clientService.save(client, userId);
+        });
     }
 }
