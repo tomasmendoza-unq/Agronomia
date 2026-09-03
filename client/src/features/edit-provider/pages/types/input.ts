@@ -15,7 +15,7 @@ export const generateSubForm = (data: Provider): SubForm[] => {
                         placeholder: data.legalName,
                         defaultValue: data.legalName,
                         id: 0,
-                        required: true,
+                        disabled: true,
                     },
                     {
                         type: "dynamic",
@@ -25,7 +25,8 @@ export const generateSubForm = (data: Provider): SubForm[] => {
                         defaultValue: data.cuit,
                         format: formatCuit,
                         id: 1,
-                        required: true,
+
+                        disabled: true,
                     },
                 ],
                 [
@@ -36,7 +37,7 @@ export const generateSubForm = (data: Provider): SubForm[] => {
                         placeholder: data.tradeName,
                         defaultValue: data.tradeName,
                         id: 2,
-                        required: true,
+                        disabled: true,
                     },
                 ],
             ],
@@ -61,16 +62,22 @@ export const generateSubForm = (data: Provider): SubForm[] => {
                         type: "text",
                         name: "travelerName",
                         title: "Nombre viajante",
-                        placeholder: data.traveler?.fullName ?? "",
-                        defaultValue: data.traveler?.fullName ?? "",
+                        placeholder: "Ingrese el nombre del viajante",
+                        defaultValue:
+                            data.traveler?.fullName === "No indicado"
+                                ? ""
+                                : (data.traveler?.fullName ?? ""),
                         id: 4,
                     },
                     {
                         type: "text",
                         name: "travelerPhoneNumber",
                         title: "Teléfono viajante",
-                        placeholder: data.traveler?.phoneNumber ?? "",
-                        defaultValue: data.traveler?.phoneNumber ?? "",
+                        placeholder: "Ingrese el teléfono del viajante",
+                        defaultValue:
+                            data.traveler?.phoneNumber === "No indicado"
+                                ? ""
+                                : (data.traveler?.phoneNumber ?? ""),
                         id: 5,
                     },
                 ],

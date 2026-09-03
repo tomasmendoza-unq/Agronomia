@@ -55,6 +55,7 @@ function TextInput<T extends Schema>({
                 placeholder={input.placeholder}
                 defaultValue={input.defaultValue}
                 id={input.name}
+                disabled={input.disabled}
             />
             {error && <ErrorMessage message={error.message as string} />}
         </div>
