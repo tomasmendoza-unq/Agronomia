@@ -1,4 +1,3 @@
-// shared/components/emptyState/styles.ts
 import { css, sva } from "@styled-system/css";
 
 const container = css.raw({

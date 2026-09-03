@@ -14,8 +14,10 @@ export type TextInputData = {
     name: string;
     title: string;
     placeholder: string;
+    defaultValue?: string;
     id: number;
     required?: boolean;
+    disabled?: boolean;
 };
 
 export type SelectInputData = {
@@ -23,9 +25,11 @@ export type SelectInputData = {
     name: string;
     title: string;
     placeholder?: string;
+    defaultValue?: string;
     id: number;
     options: Option[];
     required?: boolean;
+    disabled?: boolean;
 };
 
 export type FileInputData = {
@@ -33,8 +37,10 @@ export type FileInputData = {
     name: string;
     title: string;
     placeholder: string;
+    defaultValue?: string;
     id: number;
     required?: boolean;
+    disabled?: boolean;
 };
 
 export type DynamicInputData = {
@@ -42,9 +48,11 @@ export type DynamicInputData = {
     name: string;
     title: string;
     placeholder: string;
+    defaultValue?: string;
     id: number;
     format: (data: string) => string;
     required?: boolean;
+    disabled?: boolean;
 };
 
 export type InputData =

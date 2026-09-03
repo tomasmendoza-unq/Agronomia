@@ -34,6 +34,11 @@ const input = css.raw({
     boxShadow: "0px 1px 2px rgba(2, 6, 23, 0.05)",
     borderRadius: "10px",
     outline: "none",
+    "&:disabled": {
+        color: "#71717A",
+        backgroundColor: "#F4F4F5",
+        cursor: "not-allowed",
+    },
 });
 
 const actions = css.raw({

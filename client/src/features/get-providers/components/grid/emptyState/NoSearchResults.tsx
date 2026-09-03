@@ -1,5 +1,5 @@
 import { SearchIcon } from "@/shared/components/icon/components/icons/Search";
-import { EmptyState } from "./EmptyState";
+import { EmptyState } from "@/shared/components/empty-state/EmptyState";
 
 type NoSearchResultsProps = {
     search: string;
