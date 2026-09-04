@@ -1,11 +1,9 @@
 import { useLocation, useNavigate } from "react-router";
-import Button from "@/shared/components/button/Button";
 import { SearchProvider } from "@/features/search-providers/components/SearchProvider";
 import SuccessToast from "@/shared/components/toast/success/SuccessToast";
-
-import { token } from "@styled-system/tokens";
 import { styles } from "./styles";
 import { ProvidersGrid } from "@/features/get-providers/components/grid/ProvidersGrid";
+import { AddProviderButton } from "@/features/add-provider/components/AddProviderButton";
 
 export const ProvidersList = () => {
     const { optionsRow } = styles();
@@ -28,15 +26,7 @@ export const ProvidersList = () => {
             )}
             <div className={optionsRow}>
                 <SearchProvider />
-                <Button
-                    color="white"
-                    hoverColor={token("colors.primaryColorHover") + "20"}
-                    borderColor={token("colors.primaryColor")}
-                    textColor={token("colors.primaryColor")}
-                    onClick={() => navigate("nuevo-proveedor")}
-                >
-                    + Añadir proveedor
-                </Button>
+                <AddProviderButton />
             </div>
             <ProvidersGrid />
         </>
