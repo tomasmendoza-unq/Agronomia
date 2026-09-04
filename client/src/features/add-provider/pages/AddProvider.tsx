@@ -25,9 +25,11 @@ const AddProvider = () => {
     const [isCancelOpen, setIsCancelOpen] = useState(false);
     const [isCreateProviderModalOpen, setIsCreateProviderOpen] =
         useState(false);
-    const { error, loading, addProvider } = useAddProviders();
+    const { error, loading, addProvider, refresh } = useAddProviders();
+    const [cuit, setCuit] = useState<string>();
 
     const onSubmit = async (data: ProviderRequest) => {
+        setCuit(data.cuit);
         const created = await addProvider(data);
 
         if (created) {
@@ -70,8 +72,8 @@ const AddProvider = () => {
             )}
             {error && (
                 <ErrorToast
-                    message={error.message}
-                    onClose={() => {}}
+                    message={`El cuit ${cuit} ya está registrado`} 
+                    onClose={refresh}
                 />
             )}
 
