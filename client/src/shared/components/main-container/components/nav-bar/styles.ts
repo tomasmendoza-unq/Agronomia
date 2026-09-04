@@ -33,12 +33,22 @@ export const wrapLogo = css({
 });
 
 export const item = css({
-    color: token("colors.textSubtle")
-})
+    color: token("colors.textSubtle"),
+    textDecoration: "none",
+    _hover: {
+        color: token("colors.primaryColor"),
+    },
+});
 
 export const selectedItem = css({
-    color: "#09090B",
+    color: token("colors.primaryColor"),
     fontWeight: "semibold",
+    textDecoration: "underline",
+    textDecorationThickness: "3px",
+    textUnderlineOffset: "10px",
+    _hover: {
+        color: token("colors.primaryColorHover"),
+    },
 });
 
 export const menuButton = css({
