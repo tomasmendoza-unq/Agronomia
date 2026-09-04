@@ -20,6 +20,7 @@ export const editLink = css({
     alignSelf: "flex-end",
     alignItems: "center",
     border: 0,
+    paddingBottom: "10px",
     background: "transparent",
     color: "#555555",
     fontSize: "12px",
@@ -62,7 +63,6 @@ export const label = css({
 export const divider = css({
     width: "100%",
     height: "1px",
-    marginTop: "54px",
     marginBottom: "19px",
     border: 0,
     backgroundColor: "#D4D4D4",
@@ -102,5 +102,4 @@ export const cardBody = css({
 });
 export const priceListButton = css({
     alignSelf: "flex-start",
-    marginTop: "auto",
 });
