@@ -14,6 +14,7 @@ import { css } from "@styled-system/css";
 import ErrorToast from "@/shared/components/toast/error/ErrorToast";
 import { EmptyState } from "@/shared/components/empty-state/EmptyState";
 import { SearchIcon } from "@/shared/components/icon/components/icons/Search";
+import { ADMIN_ROUTES } from "@/core/routes/admin/paths";
 
 const backButtonContainer = css({
     display: "flex",
@@ -43,7 +44,7 @@ export const EditProvider = () => {
     }, [getProviderById, providerId]);
 
     const backToProviders = () => {
-        navigate(-1);
+        navigate(`${ADMIN_ROUTES.BASE}/${ADMIN_ROUTES.PROVEEDORES}`);
     };
 
     const generatedSubForm = data ? generateSubForm(data) : [];
@@ -57,15 +58,10 @@ export const EditProvider = () => {
         });
 
         if (updatedProvider) {
-            navigate("/admin/proveedores", {
+            navigate(`${ADMIN_ROUTES.BASE}/${ADMIN_ROUTES.PROVEEDORES}`, {
                 state: { providerUpdated: true },
             });
         }
-    };
-
-    const cancelEdit = () => {
-        setIsCancelOpen(false);
-        navigate(-1);
     };
 
     return (
@@ -91,7 +87,7 @@ export const EditProvider = () => {
                     ← Regresar
                 </Button>
             </div>
-            {isLoading || isLoadingProvider ? (
+            {isLoadingProvider ? (
                 <Spinner
                     size="lg"
                     centered
@@ -111,6 +107,12 @@ export const EditProvider = () => {
                     description="No se encontró el proveedor solicitado."
                 />
             )}
+            {isLoading && (
+                <Spinner
+                    size="lg"
+                    centered
+                />
+            )}
             <ConfirmModal
                 isOpen={isCancelOpen}
                 title="¿Seguro deseas cancelar?"
@@ -119,7 +121,7 @@ export const EditProvider = () => {
                 cancelText="Continuar editando"
                 danger
                 onConfirm={backToProviders}
-                onCancel={() => cancelEdit()}
+                onCancel={() => setIsCancelOpen(false)}
             />
         </>
     );

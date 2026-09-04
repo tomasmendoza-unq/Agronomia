@@ -28,10 +28,9 @@ const Avatar = ({ avatar, to }: AvatarProps) => {
             <InitialsName
                 fullName={fullName}
                 size="md"
+                nameClassName={avatarText}
             />
-            <span className={avatarText}>
-                <span className={avatarRole}>[{role}]</span>
-            </span>
+            <span className={avatarRole}>[{role}]</span>
         </Link>
     );
 };
