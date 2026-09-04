@@ -2,11 +2,15 @@ package com.agro.feature.client.domain;
 
 import com.agro.shared.entities.province.Province;
 import com.agro.shared.valueObjects.email.EmailValue;
+import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
+@DiscriminatorValue("NATURAL_PERSON")
 public class NaturalPerson extends Client {
 
     @Getter
@@ -20,6 +24,8 @@ public class NaturalPerson extends Client {
 
     @Embedded
     private EmailValue email;
+
+    protected NaturalPerson() {}
 
     public NaturalPerson(
             String name,
@@ -39,5 +45,15 @@ public class NaturalPerson extends Client {
 
     public String getEmail() {
         return email.get();
+    }
+
+    @Override
+    protected String computeSortKey() {
+        return surname + " " + name;
+    }
+
+    @Override
+    protected String computeSearchKey() {
+        return surname + " " + name;
     }
 }

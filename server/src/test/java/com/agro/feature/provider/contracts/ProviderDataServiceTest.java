@@ -1,4 +1,4 @@
-package com.agro.feature.provider.service.impl;
+package com.agro.feature.provider.contracts;
 
 import com.agro.core.ContainerPostgresql;
 import com.agro.feature.branch.domain.Branch;

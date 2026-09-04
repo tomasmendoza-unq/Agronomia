@@ -1,12 +1,19 @@
 package com.agro.feature.client.domain;
 
 import com.agro.shared.entities.province.Province;
+import com.agro.shared.persistence.excepitons.NormaliceText;
 import com.agro.shared.valueObjects.cuit.CuitValue;
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Table(name = "clients")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "client_type", discriminatorType = DiscriminatorType.STRING)
 public abstract class Client {
 
     @Id
@@ -26,6 +33,22 @@ public abstract class Client {
     @Getter
     private Province province;
 
+    @Setter
+    @Column(name = "company_id", nullable = false)
+    private Long companyId;
+
+    @Column(name = "sort_key", nullable = false)
+    private String sortKey;
+
+    @Column(name = "search_text", nullable = false)
+    private String searchText;
+
+    @PrePersist @PreUpdate
+    protected void onSave() {
+        this.sortKey = NormaliceText.normalize(computeSortKey());
+        this.searchText = NormaliceText.normalize(computeSearchKey());
+    }
+
     public Client(String cuit, String address, String location, Province province) {
         this.cuit = new CuitValue(cuit);
         this.address = address;
@@ -36,4 +59,7 @@ public abstract class Client {
     public String getCuit() {
         return cuit.get();
     }
+
+    protected abstract String computeSortKey();
+    protected abstract String computeSearchKey();
 }

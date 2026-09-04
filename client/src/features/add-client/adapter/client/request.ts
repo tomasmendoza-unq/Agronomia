@@ -1,6 +1,6 @@
 import type { NaturalPersonSchema } from "../../pages/types/natural-person-schema";
 import type { SocialMotiveSchema } from "../../pages/types/social-motive-schema";
-import { ClientOption } from "../../types/client";
+import { ClientOption } from "../../../../shared/domain/client/client";
 import type { ClientSchema } from "../client-schema";
 
 export type NaturalPersonRequest = NaturalPersonSchema

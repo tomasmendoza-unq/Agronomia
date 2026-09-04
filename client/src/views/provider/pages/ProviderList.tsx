@@ -38,7 +38,6 @@ export const ProvidersList = () => {
                     + Añadir proveedor
                 </Button>
             </div>
-
             <ProvidersGrid />
         </>
     );

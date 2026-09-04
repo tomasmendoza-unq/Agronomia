@@ -2,11 +2,15 @@ package com.agro.feature.client.domain;
 
 import com.agro.shared.entities.province.Province;
 import com.agro.shared.valueObjects.email.EmailValue;
+import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
+@DiscriminatorValue("RAZON_SOCIAL")
 public class RazonSocial extends Client{
 
     @Getter
@@ -24,8 +28,10 @@ public class RazonSocial extends Client{
     @Embedded
     private EmailValue email;
 
+    protected RazonSocial() {}
+
     public RazonSocial(
-            String razon,
+            String razonSocial,
             String associateName,
             String associateSurname,
             String associatePhone,
@@ -35,7 +41,7 @@ public class RazonSocial extends Client{
             String location,
             Province province) {
         super(cuit, address, location, province);
-        this.razonSocial = razon;
+        this.razonSocial = razonSocial;
         this.associateName = associateName;
         this.associateSurname = associateSurname;
         this.associatePhone = associatePhone;
@@ -44,5 +50,15 @@ public class RazonSocial extends Client{
 
     public String getEmail() {
         return email.get();
+    }
+
+    @Override
+    protected String computeSortKey() {
+        return razonSocial;
+    }
+
+    @Override
+    protected String computeSearchKey() {
+        return razonSocial + " " + associateName + " " + associateSurname;
     }
 }
