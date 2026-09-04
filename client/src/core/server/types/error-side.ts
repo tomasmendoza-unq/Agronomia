@@ -1,0 +1,1 @@
+export type ErrorSide = 'Client' | 'Server' | 'Uknow';

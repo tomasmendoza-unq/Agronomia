@@ -1,0 +1,100 @@
+name: CI/CD
+
+on:
+    push:
+        branches:
+            - main
+            - preview
+            - dev
+    pull_request:
+        branches:
+            - main
+            - preview
+            - dev
+    workflow_dispatch:
+    schedule:
+        - cron: "*/10 * * * *"
+
+jobs:
+    frontend-check:
+        name: Frontend validation
+        runs-on: ubuntu-latest
+        defaults:
+            run:
+                working-directory: client
+
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+
+            - name: Setup pnpm
+              uses: pnpm/action-setup@v4
+              with:
+                  version: 9.15.5
+                  run_install: false
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 20
+                  cache: "pnpm"
+                  cache-dependency-path: client/pnpm-lock.yaml
+
+            - name: Install dependencies
+              run: pnpm install --frozen-lockfile
+
+            - name: Lint frontend
+              run: pnpm exec eslint . --max-warnings=0
+
+            - name: Validate frontend
+              run: pnpm run build
+
+    backend-check:
+        name: Backend Docker validation
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+
+            - name: Build backend Docker image
+              uses: docker/build-push-action@v6
+              with:
+                  context: ./server
+                  file: ./server/Dockerfile
+                  target: production
+                  push: false
+
+    api-health-check:
+        name: API health check
+        runs-on: ubuntu-latest
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' || github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/preview' || github.ref == 'refs/heads/main' || (github.event_name == 'pull_request' && (github.base_ref == 'dev' || github.base_ref == 'preview' || github.base_ref == 'main'))
+
+        steps:
+            - name: Ping API
+              run: |
+                  STATUS=$(curl -s -o /dev/null -w "%{http_code}" "https://agronomia-i30s.onrender.com/health")
+                  echo "HTTP status: $STATUS"
+                  if [ "$STATUS" -lt 200 ] || [ "$STATUS" -ge 400 ]; then
+                    echo "Error: API returned $STATUS"
+                    exit 1
+                  fi
+
+    deploy:
+        name: Deploy to Render
+        needs:
+            - frontend-check
+            - backend-check
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Trigger Render deploy hook
+              env:
+                  RENDER_DEPLOY_HOOK_URL: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
+              run: |
+                  if [ -z "$RENDER_DEPLOY_HOOK_URL" ]; then
+                    echo "RENDER_DEPLOY_HOOK_URL is not configured; skipping deployment."
+                    exit 0
+                  fi
+                  curl -fsS -X POST "$RENDER_DEPLOY_HOOK_URL"

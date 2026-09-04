@@ -1,4 +1,7 @@
 import { defineConfig } from "@pandacss/dev";
+import tokenColors from './src/core/styles/token/colors'
+import animations from './src/core/styles/animations/animations'
+import { durationsToken } from './src/core/styles/token/durations'
 
 export default defineConfig({
   // Whether to use css reset
@@ -12,7 +15,13 @@ export default defineConfig({
 
   // Useful for theme customization
   theme: {
-    extend: {},
+    extend: {
+      keyframes: animations,
+      tokens: {
+        colors: tokenColors,
+        durations: durationsToken,
+      },
+    },
   },
 
   // The output directory for your css system

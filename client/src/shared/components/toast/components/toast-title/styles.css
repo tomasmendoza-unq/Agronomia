@@ -1,0 +1,35 @@
+.toast-header-container {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    width: 100%;
+}
+
+.toast-header-container_title {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    gap: 5%
+}
+
+.toast-header-container_title p {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.toast-header-container_title figure {
+    height: 100%;
+}
+
+.toast-header-container_close {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.toast-header-container_close figure {
+    display: grid;
+    place-items: center;
+}
+
+.toast-header-container_close figure img{
+    cursor: pointer;
+}

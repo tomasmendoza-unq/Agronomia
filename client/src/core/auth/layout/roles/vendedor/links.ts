@@ -1,0 +1,10 @@
+import { VENDEDOR_ROUTES } from "@/core/routes/vendedor/paths";
+import type { linkNavbar } from "../../components/protected-routes/link";
+
+export const links: linkNavbar[] = [
+    { name: "Inicio", path: VENDEDOR_ROUTES.BASE },
+    { name: "Proveedores", path: VENDEDOR_ROUTES.PROVEEDORES },
+    { name: "Clientes", path: VENDEDOR_ROUTES.CLIENTES },
+    { name: "Productos", path: VENDEDOR_ROUTES.PRODUCTOS },
+    { name: "Ventas", path: VENDEDOR_ROUTES.VENTAS },
+];
