@@ -12,12 +12,23 @@ import type { ProviderRequest } from "../types/ProviderRequest";
 import { ModalCreateProvider } from "./components/ModalCreateProvider";
 import { ConfirmModal } from "@/shared/components/modal/variants/ConfirmModalProps";
 import { css } from "@styled-system/css";
+import { ADMIN_ROUTES } from "@/core/routes/admin/paths";
 
 const backButtonContainer = css({
     display: "flex",
     justifyContent: "flex-start",
     width: "100%",
     marginBottom: "24px",
+});
+
+const loadingOverlay = css({
+    position: "fixed",
+    inset: 0,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "rgba(255, 255, 255, 0.45)",
+    zIndex: 10,
 });
 
 const AddProvider = () => {
@@ -37,11 +48,11 @@ const AddProvider = () => {
 
     const onCloseCreateProviderModal = () => {
         setIsCreateProviderOpen(false);
-        navigate(-1);
+        backToProviders();
     };
 
     const backToProviders = () => {
-        navigate(-1);
+        navigate(`${ADMIN_ROUTES.BASE}/${ADMIN_ROUTES.PROVEEDORES}`);
     };
 
     return (
@@ -57,16 +68,17 @@ const AddProvider = () => {
                     ← Regresar
                 </Button>
             </div>
-            {loading ? (
-                <Spinner />
-            ) : (
-                <ComposeForm
-                    subForms={providerSubForms}
-                    schema={providerSchema}
-                    buttonData={{ text: "Agregar proveedor" }}
-                    onSubmit={onSubmit}
-                    onCancel={() => setIsCancelOpen(true)}
-                />
+            <ComposeForm
+                subForms={providerSubForms}
+                schema={providerSchema}
+                buttonData={{ text: "Agregar proveedor" }}
+                onSubmit={onSubmit}
+                onCancel={backToProviders}
+            />
+            {loading && (
+                <div className={loadingOverlay}>
+                    <Spinner size="lg" />
+                </div>
             )}
             {error && (
                 <ErrorToast
