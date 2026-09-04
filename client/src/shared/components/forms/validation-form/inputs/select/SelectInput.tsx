@@ -79,7 +79,6 @@ function SelectInput<T extends Schema>({
                     {...register(input.name as Path<output<T>>)}
                     className={className}
                     type={input.type}
-                    name={input.name}
                     id={input.name}
                     placeholder={input.placeholder}
                 />

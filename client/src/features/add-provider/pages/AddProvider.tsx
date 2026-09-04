@@ -44,6 +44,11 @@ const AddProvider = () => {
         navigate(-1);
     };
 
+    const handleCancel = (isData: boolean) => {
+        if(!isData) navigate(-1);
+        else setIsCancelOpen(true);
+    }
+
     return (
         <>
             <div className={backButtonContainer}>
@@ -65,7 +70,7 @@ const AddProvider = () => {
                     schema={providerSchema}
                     buttonData={{ text: "Agregar proveedor" }}
                     onSubmit={onSubmit}
-                    onCancel={() => setIsCancelOpen(true)}
+                    onCancel={handleCancel}
                 />
             )}
             {error && (
