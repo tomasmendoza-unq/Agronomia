@@ -13,14 +13,13 @@ import { Link } from "react-router";
 import { ADMIN_ROUTES } from "@/core/routes/admin/paths";
 
 export const ProviderCard = ({ provider }: { provider: Provider }) => {
-    const providerName = provider.tradeName || provider.legalName;
     const hasPrices = (provider.listPrices?.length ?? 0) > 0;
 
     return (
         <article className={styles.card}>
             <header className={styles.header}>
                 <InitialsName
-                    fullName={providerName}
+                    fullName={provider.tradeName}
                     size="md"
                     nameClassName={styles.providerName}
                 />
@@ -51,7 +50,7 @@ export const ProviderCard = ({ provider }: { provider: Provider }) => {
             </RoleGuard>
 
             <hr className={styles.divider} />
-            <div className={styles.cardBody}>
+            <section className={styles.cardBody}>
                 {contactsSections(provider).map((section) => (
                     <IconList
                         key={section.title}
@@ -59,9 +58,8 @@ export const ProviderCard = ({ provider }: { provider: Provider }) => {
                     />
                 ))}
                 <PaymentsMethods payments={provider.payments} />
-            </div>
-
-            <PricesButton hasPrices={hasPrices} />
+                <PricesButton hasPrices={hasPrices} />
+            </section>
         </article>
     );
 };

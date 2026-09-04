@@ -10,7 +10,7 @@ export const avatarStyle = css({
 });
 
 export const avatarText = css({
-    display: "flex",
+    display: { base: "flex", md: "none" },
     flexDirection: "column",
     minWidth: 0,
     fontSize: "sm",
@@ -20,6 +20,7 @@ export const avatarText = css({
 });
 
 export const avatarRole = css({
+    display: { base: "inline", md: "none" },
     color: "#6B7280",
     fontSize: "xs",
     fontWeight: "normal",
