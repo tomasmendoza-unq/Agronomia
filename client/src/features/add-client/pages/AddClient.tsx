@@ -78,8 +78,8 @@ const AddClient = () => {
             <ModalCreateClient
                 isOpen={isOpen("confirm")}
                 onClose={backToPrev}
-                title="Proveedor agregado"
-                message="El proveedor ha sido agregado correctamente."
+                title="Cliente agregado"
+                message="El cliente ha sido agregado correctamente."
             />
             {isError && <ErrorToast message={`El cuit ${client?.cuit} ya está registrado`} onClose={refresh} />}
             {data && <SuccessToast message={`Se ha creado el cliente ${client?.name} ${client?.surname}`} onClose={refresh} />}
