@@ -11,6 +11,7 @@ import { ModalCreateProvider } from "./components/ModalCreateProvider";
 import { ConfirmModal } from "@/shared/components/modal/variants/ConfirmModalProps";
 import { css } from "@styled-system/css";
 import useIsModal from "@/shared/hooks/use-is-modal";
+import { useState } from "react";
 
 const backButtonContainer = css({
     display: "flex",
@@ -22,12 +23,14 @@ const backButtonContainer = css({
 const AddProvider = () => {
     const { error, loading, addProvider } = useAddProviders();
     const { isOpen, onOpenIs, backToPrev, refresh } = useIsModal();
+    const [cuit, setCuit] = useState<string>();
 
     const onSubmit = async (data: ProviderRequest) => {
+        setCuit(data.cuit);
         const created = await addProvider(data);
         if(created) onOpenIs(!!created, "confirm");
     };
-
+    
     return (
         <>
             <div className={backButtonContainer}>
@@ -54,8 +57,8 @@ const AddProvider = () => {
             )}
             {error && (
                 <ErrorToast
-                    message={error.message}
-                    onClose={() => {}}
+                    message={`El cuit ${cuit} ya está registrado`} 
+                    onClose={refresh}
                 />
             )}
 
