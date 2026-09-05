@@ -7,19 +7,45 @@ import useAddClient from "../hooks/use-add-client";
 import SuccessToast from "@/shared/components/toast/success/SuccessToast";
 import { useState } from "react";
 import type { ClientSchema } from "../adapter/client-schema";
+import useIsModal from "@/shared/hooks/use-is-modal";
+import { ConfirmModal } from "@/shared/components/modal/variants/ConfirmModalProps";
+import { ModalCreateClient } from "../components/modal-create-client/ModalCreateClient";
+import Button from "@/shared/components/button/Button";
+import { token } from "@styled-system/tokens";
+import { css } from "@styled-system/css";
+
+const backButtonContainer = css({
+    display: "flex",
+    justifyContent: "flex-start",
+    width: "100%",
+    marginBottom: "24px",
+});
 
 const AddClient = () => {
 
     const {add, refresh, data, isError} = useAddClient();
     const [client, setClient] = useState<ClientSchema>();
+    const { isOpen, onOpenIs, backToPrev, refresh: r } = useIsModal();
 
-    const handleClient = (clientData: ClientSchema) => {
+    const handleClient = async (clientData: ClientSchema) => {
         setClient(clientData);
-        add(clientData);
+        const client = await add(clientData);
+        if(client) onOpenIs(!!client, "confirm");
     }
 
     return (
         <>
+        <div className={backButtonContainer}>
+            <Button
+                color="white"
+                hoverColor={token("colors.primaryColorHover") + "20"}
+                borderColor={token("colors.primaryColor")}
+                textColor={token("colors.primaryColor")}
+                onClick={backToPrev}
+            >
+                ← Regresar
+            </Button>
+        </div>
             <PolimorficForm 
                 options={[
                     {
@@ -36,7 +62,24 @@ const AddClient = () => {
                     }
                 ]}
                 buttonData={{text: "Agregar cliente"}}
-                onCancel={() => console.log("aa")}
+                onCancel={(isdata) => onOpenIs(isdata, "advertence")}
+            />
+            <ConfirmModal
+                isOpen={isOpen("advertence")}
+                title="¿Seguro deseas cancelar?"
+                message="Si cancelas perderás los cambios realizados."
+                confirmText="Abandonar"
+                cancelText="Continuar editando"
+                danger
+                onConfirm={backToPrev}
+                onCancel={r}
+            />
+            
+            <ModalCreateClient
+                isOpen={isOpen("confirm")}
+                onClose={backToPrev}
+                title="Cliente agregado"
+                message="El cliente ha sido agregado correctamente."
             />
             {isError && <ErrorToast message={`El cuit ${client?.cuit} ya está registrado`} onClose={refresh} />}
             {data && <SuccessToast message={`Se ha creado el cliente ${client?.name} ${client?.surname}`} onClose={refresh} />}

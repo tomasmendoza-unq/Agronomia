@@ -1,7 +1,7 @@
-import type { SubForm } from "@/shared/components/forms/types/sub-form";
+import type { SubFormData } from "@/shared/components/forms/types/sub-form";
 import { formatCuit } from "@/shared/domain/cuit-cuil/format";
 
-export const naturalPersonsubForms: SubForm[] = [
+export const naturalPersonsubForms: SubFormData[] = [
     {
         title: "Datos del cliente",
         inputs: [
@@ -81,7 +81,7 @@ export const naturalPersonsubForms: SubForm[] = [
     }
 ];
 
-export const socialMotiveSubform: SubForm[] = [
+export const socialMotiveSubform: SubFormData[] = [
         {
             title: "Datos cliente",
             inputs: [

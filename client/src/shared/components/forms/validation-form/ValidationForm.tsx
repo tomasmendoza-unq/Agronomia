@@ -4,20 +4,42 @@ import type { InferData, Schema } from "./shema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { styles } from "./styles";
 import { css } from "@styled-system/css";
+import { useImperativeHandle } from "react";
+import type { SubFormData } from "../types/sub-form";
 import SubForm from "./components/subforms/SubForm";
 
-function ValidationForm<T extends Schema>({
-    subForms,
-    schema,
-    onSubmit,
-}: InsertFormProps<T>) {
+export interface ValidationFormHandleProps {
+    confirmCancel: () => void
+}
+
+type ValidationFormProps<T extends Schema> = InsertFormProps<T> & {
+  ref?: React.Ref<ValidationFormHandleProps>;
+};
+
+function buildDefaultValues(subForms: SubFormData[]) {
+    const defaults: Record<string, unknown> = {};
+    subForms.forEach(subForm => {
+        subForm.inputs.flat().forEach(input => {
+            defaults[input.name] = input.defaultValue ?? "";
+        });
+    });
+    return defaults;
+}
+
+
+function ValidationForm<T extends Schema>({subForms, schema, onSubmit, onCancel, ref}: ValidationFormProps<T>) {
     const {
         register,
         handleSubmit,
-        formState: { errors },
+        formState: { isDirty, errors },
     } = useForm<InferData<T>>({
         resolver: zodResolver(schema),
+        defaultValues: buildDefaultValues(subForms) as InferData<T>
     });
+
+    useImperativeHandle(ref, () => ({
+        confirmCancel: () => onCancel(isDirty)
+    }), [isDirty, onCancel])
 
     const handleForm = (data: InferData<T>) => onSubmit(data);
 
@@ -40,7 +62,7 @@ function ValidationForm<T extends Schema>({
                 errors={errors}
             />)}
         </form>
-    );
-}
-
+        );
+    }
+    
 export default ValidationForm;

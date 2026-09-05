@@ -8,7 +8,7 @@ const useAddClient = () => {
     const {error, data, execute, refresh} = useFetch<Client>();
 
     async function add(clientData: ClientSchema) {
-        await execute(addClient)(clientData);
+        return await execute(addClient)(clientData);
     }
 
     const isError = error?.isCause(ErrorCause.BUSINESS_RULE_VIOLATION);
