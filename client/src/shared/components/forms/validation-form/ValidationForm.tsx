@@ -28,40 +28,40 @@ function buildDefaultValues(subForms: SubFormData[]) {
 
 
 function ValidationForm<T extends Schema>({subForms, schema, onSubmit, onCancel, ref}: ValidationFormProps<T>) {
-        const {
-            register,
-            handleSubmit,
-            formState: { isDirty, errors },
-        } = useForm<InferData<T>>({
-            resolver: zodResolver(schema),
-            defaultValues: buildDefaultValues(subForms) as InferData<T>
-        });
+    const {
+        register,
+        handleSubmit,
+        formState: { isDirty, errors },
+    } = useForm<InferData<T>>({
+        resolver: zodResolver(schema),
+        defaultValues: buildDefaultValues(subForms) as InferData<T>
+    });
 
-        useImperativeHandle(ref, () => ({
-            confirmCancel: () => onCancel(isDirty)
-        }), [isDirty, onCancel])
+    useImperativeHandle(ref, () => ({
+        confirmCancel: () => onCancel(isDirty)
+    }), [isDirty, onCancel])
 
-        const handleForm = (data: InferData<T>) => onSubmit(data);
+    const handleForm = (data: InferData<T>) => onSubmit(data);
 
-        const { form, input, row } = styles;
+    const { form, input, row } = styles;
 
-        return (
-            <form
-                onSubmit={handleSubmit(handleForm)}
-                className={css(form)}
-                id={"validation-form"}
-            >
-            {subForms.map(subForm => 
-                <SubForm 
-                    key={subForm.id}
-                    title={subForm.title} 
-                    inputs={subForm.inputs} 
-                    register={register}
-                    rowStyles={row}
-                    inputStyles={input}
-                    errors={errors}
-                />)}
-            </form>
+    return (
+        <form
+            onSubmit={handleSubmit(handleForm)}
+            className={css(form)}
+            id={"validation-form"}
+        >
+        {subForms.map(subForm => 
+            <SubForm 
+                key={subForm.id}
+                title={subForm.title} 
+                inputs={subForm.inputs} 
+                register={register}
+                rowStyles={row}
+                inputStyles={input}
+                errors={errors}
+            />)}
+        </form>
         );
     }
     

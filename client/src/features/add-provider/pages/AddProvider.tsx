@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router";
 import ComposeForm from "@/shared/components/forms/compose-form/ComposeForm";
 import providerSchema from "./types/provider-schema";
 import { providerSubForms } from "./types/input";
@@ -7,11 +6,11 @@ import { token } from "@styled-system/tokens";
 import { useAddProviders } from "../hook/use-add-provider";
 import Spinner from "@/shared/components/spinner/Spinner";
 import ErrorToast from "@/shared/components/toast/error/ErrorToast";
-import { useState } from "react";
 import type { ProviderRequest } from "../types/ProviderRequest";
 import { ModalCreateProvider } from "./components/ModalCreateProvider";
 import { ConfirmModal } from "@/shared/components/modal/variants/ConfirmModalProps";
 import { css } from "@styled-system/css";
+import useIsModal from "@/shared/hooks/use-is-modal";
 
 const backButtonContainer = css({
     display: "flex",
@@ -21,33 +20,13 @@ const backButtonContainer = css({
 });
 
 const AddProvider = () => {
-    const navigate = useNavigate();
-    const [isCancelOpen, setIsCancelOpen] = useState(false);
-    const [isCreateProviderModalOpen, setIsCreateProviderOpen] =
-        useState(false);
     const { error, loading, addProvider } = useAddProviders();
+    const { isOpen, onOpenIs, backToPrev, refresh } = useIsModal();
 
     const onSubmit = async (data: ProviderRequest) => {
         const created = await addProvider(data);
-
-        if (created) {
-            setIsCreateProviderOpen(true);
-        }
+        if(created) onOpenIs(!!created, "confirm");
     };
-
-    const onCloseCreateProviderModal = () => {
-        setIsCreateProviderOpen(false);
-        navigate(-1);
-    };
-
-    const backToProviders = () => {
-        navigate(-1);
-    };
-
-    const handleCancel = (isData: boolean) => {
-        if(!isData) navigate(-1);
-        else setIsCancelOpen(true);
-    }
 
     return (
         <>
@@ -57,7 +36,7 @@ const AddProvider = () => {
                     hoverColor={token("colors.primaryColorHover") + "20"}
                     borderColor={token("colors.primaryColor")}
                     textColor={token("colors.primaryColor")}
-                    onClick={backToProviders}
+                    onClick={backToPrev}
                 >
                     ← Regresar
                 </Button>
@@ -70,7 +49,7 @@ const AddProvider = () => {
                     schema={providerSchema}
                     buttonData={{ text: "Agregar proveedor" }}
                     onSubmit={onSubmit}
-                    onCancel={handleCancel}
+                    onCancel={(isData) => onOpenIs(isData, "advertence")}
                 />
             )}
             {error && (
@@ -81,19 +60,19 @@ const AddProvider = () => {
             )}
 
             <ConfirmModal
-                isOpen={isCancelOpen}
+                isOpen={isOpen("advertence")}
                 title="¿Seguro deseas cancelar?"
                 message="Si cancelas perderás los cambios realizados."
                 confirmText="Abandonar"
                 cancelText="Continuar editando"
                 danger
-                onConfirm={backToProviders}
-                onCancel={() => setIsCancelOpen(false)}
+                onConfirm={backToPrev}
+                onCancel={refresh}
             />
 
             <ModalCreateProvider
-                isOpen={isCreateProviderModalOpen}
-                onClose={onCloseCreateProviderModal}
+                isOpen={isOpen("confirm")}
+                onClose={backToPrev}
                 title="Proveedor agregado"
                 message="El proveedor ha sido agregado correctamente."
             />
