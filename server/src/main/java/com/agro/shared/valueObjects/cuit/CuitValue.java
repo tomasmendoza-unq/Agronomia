@@ -1,5 +1,6 @@
 package com.agro.shared.valueObjects.cuit;
 
+import com.agro.shared.entities.errorMotives.ErrorMotive;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 
@@ -17,10 +18,10 @@ public class CuitValue
 
     private void validate(String value) {
         if(!isOnlyNumber(value)) {
-            throw new CuitException("El Cuit debe tener solo números");
+            throw new CuitException("El Cuit debe tener solo números", ErrorMotive.CUIT_FORMAT);
         }
         else if(!isValidLength(value)) {
-            throw new CuitException("El Cuit debe tener 11 números");
+            throw new CuitException("El Cuit debe tener 11 números", ErrorMotive.CUIT_FORMAT);
         }
         this.cuit = value;
     }

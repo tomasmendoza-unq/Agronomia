@@ -1,7 +1,7 @@
 package com.agro.core.handlers;
 
-import com.agro.core.api.Api;
 import com.agro.shared.dtos.error.CauseError;
+import com.agro.shared.dtos.error.RestBuisnessErrorResponse;
 import com.agro.shared.dtos.error.RestErrorResponse;
 import com.agro.shared.exceptions.BusinessException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -23,16 +23,17 @@ import java.util.stream.Collectors;
 public class GlobalHandlerException {
 
     @ExceptionHandler(BusinessException.class)
-    public ResponseEntity<RestErrorResponse> handleBusinessException(
+    public ResponseEntity<RestBuisnessErrorResponse> handleBusinessException(
             BusinessException exception,
             HttpServletRequest request
     ) {
         log.warn("Business rule violation - URI: {} | Message: {}", request.getRequestURI(), exception.getMessage());
-        RestErrorResponse error = new RestErrorResponse(
+        RestBuisnessErrorResponse error = new RestBuisnessErrorResponse(
                 "Regla de negocio violada",
                 exception.getMessage(),
                 request.getServletPath(),
-                CauseError.BUSINESS_RULE_VIOLATION
+                CauseError.BUSINESS_RULE_VIOLATION,
+                exception.getMotive()
         );
         return ResponseEntity.badRequest().body(error);
     }

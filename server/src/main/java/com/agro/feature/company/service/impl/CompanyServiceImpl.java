@@ -5,6 +5,7 @@ import com.agro.feature.company.domain.Company;
 import com.agro.feature.company.domain.exceptions.IsNotAOwnerOfCompany;
 import com.agro.feature.company.persistence.daos.CompanyDAO;
 import com.agro.feature.company.service.CompanyService;
+import com.agro.shared.entities.errorMotives.ErrorMotive;
 import com.agro.shared.persistence.excepitons.NotFoundEntityException;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
@@ -38,7 +39,7 @@ public class CompanyServiceImpl implements CompanyService, CompanyDataService {
 
     @Override
     public Company editCompany(Long adminId, Company model, Long idCompany) {
-        if(!this.includeUser(idCompany, adminId)) throw new IsNotAOwnerOfCompany();
+        if(!this.includeUser(idCompany, adminId)) throw new IsNotAOwnerOfCompany(ErrorMotive.NOT_OWNER_COMPANY);
 
         Company company = this.getCompanyById(idCompany);
 

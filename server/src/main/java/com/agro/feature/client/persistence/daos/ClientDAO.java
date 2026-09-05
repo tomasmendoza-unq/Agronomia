@@ -21,4 +21,8 @@ public interface ClientDAO extends JpaRepository<Client, Long> {
             @Param("search") String search,
             Pageable pageable
     );
+
+    Boolean existsByCuit_Cuit(String cuit);
+
+    Boolean existsByEmail_Email(String email);
 }
