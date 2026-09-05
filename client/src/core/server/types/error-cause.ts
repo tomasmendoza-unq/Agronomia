@@ -5,4 +5,4 @@ export const ErrorCause = {
     BUSINESS_RULE_VIOLATION: 'BUSINESS_RULE_VIOLATION',
 } as const;
 
-export type ErrorCauseType = typeof ErrorCause[keyof typeof ErrorCause];
+export type ErrorCause = typeof ErrorCause[keyof typeof ErrorCause];

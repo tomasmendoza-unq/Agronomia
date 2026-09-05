@@ -5,10 +5,10 @@ import com.agro.feature.branch.domain.Branch;
 import com.agro.feature.company.contracts.CompanyDataService;
 import com.agro.feature.company.domain.Company;
 import com.agro.feature.email.contracts.EmailSendRegister;
-import com.agro.feature.email.service.EmailService;
 import com.agro.feature.user.domain.User;
-import com.agro.feature.user.domain.exceptions.EmailDuplicatedException;
 import com.agro.feature.user.services.UserService;
+import com.agro.shared.entities.errorMotives.ErrorMotive;
+import com.agro.shared.valueObjects.email.EmailException;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
@@ -34,7 +34,7 @@ public class RegisterOrchestradorImpl implements RegisterOrchestrator {
     @Override
     public User register(User user, Long id_company, Long id_branch) {
         if (userService.existsByEmail(user.getEmail())) {
-            throw new EmailDuplicatedException("El email ya existe");
+            throw new EmailException(ErrorMotive.DUPLICATE_EMAIL);
         }
 
         String rawPassword = user.generateTemporalPassword();

@@ -1,6 +1,7 @@
 package com.agro.shared.valueObjects.email;
 
 
+import com.agro.shared.entities.errorMotives.ErrorMotive;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 
@@ -18,7 +19,7 @@ public class EmailValue {
 
     private void validate(String email) {
         if(isNotArroba(email)) {
-            throw new EmailException();
+            throw new EmailException(ErrorMotive.NOT_ARROBA);
         }
         this.email = email;
     }

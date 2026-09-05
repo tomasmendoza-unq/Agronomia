@@ -1,13 +1,9 @@
 package com.agro.feature.client.domain;
 
 import com.agro.shared.entities.province.Province;
-import com.agro.shared.valueObjects.email.EmailValue;
 import jakarta.persistence.DiscriminatorValue;
-import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
-import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 @Entity
 @DiscriminatorValue("NATURAL_PERSON")
@@ -22,9 +18,6 @@ public class NaturalPerson extends Client {
     @Getter
     private String phone;
 
-    @Embedded
-    private EmailValue email;
-
     protected NaturalPerson() {}
 
     public NaturalPerson(
@@ -36,15 +29,10 @@ public class NaturalPerson extends Client {
             String address,
             String location,
             Province province) {
-        super(cuit, address, location, province);
+        super(cuit, address, location, province, email);
         this.name = name;
         this.surname = surname;
         this.phone = phone;
-        this.email = new EmailValue(email);
-    }
-
-    public String getEmail() {
-        return email.get();
     }
 
     @Override

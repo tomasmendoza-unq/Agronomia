@@ -8,7 +8,7 @@ import com.agro.feature.company.service.CompanyService;
 
 import com.agro.feature.image.domain.Imagen;
 import com.agro.feature.user.domain.User;
-import com.agro.feature.user.domain.exceptions.EmailDuplicatedException;
+import com.agro.shared.valueObjects.email.EmailException;
 import com.agro.shared.valueObjects.email.EmailValue;
 import com.agro.feature.user.orchestrator.RegisterOrchestrator;
 import com.agro.shared.entities.rol.Role;
@@ -97,7 +97,7 @@ public class RegisterOrchestradorImplTest {
                 .role(Role.DUENIO)
                 .build();
 
-        assertThrows(EmailDuplicatedException.class,() -> orchestrator.register(userMailDuplicated,company.getId(), branch.getId()));
+        assertThrows(EmailException.class,() -> orchestrator.register(userMailDuplicated,company.getId(), branch.getId()));
     }
 
     @AfterEach

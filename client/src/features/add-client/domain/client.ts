@@ -4,4 +4,5 @@ export interface Client {
     address?: string
     location: string
     province: string
+    email?: string
 }

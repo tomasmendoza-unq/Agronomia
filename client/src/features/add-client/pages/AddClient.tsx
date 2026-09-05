@@ -23,7 +23,7 @@ const backButtonContainer = css({
 
 const AddClient = () => {
 
-    const {add, refresh, data, isError} = useAddClient();
+    const {add, refresh, errorMessage, data, isError} = useAddClient();
     const [client, setClient] = useState<ClientSchema>();
     const { isOpen, onOpenIs, backToPrev, refresh: r } = useIsModal();
 
@@ -81,8 +81,8 @@ const AddClient = () => {
                 title="Cliente agregado"
                 message="El cliente ha sido agregado correctamente."
             />
-            {isError && <ErrorToast message={`El cuit ${client?.cuit} ya está registrado`} onClose={refresh} />}
-            {data && <SuccessToast message={`Se ha creado el cliente ${client?.name} ${client?.surname}`} onClose={refresh} />}
+            {isError && <ErrorToast message={errorMessage({ cuit: client!.cuit!, email: client!.email })} onClose={refresh} />}
+            {data && <SuccessToast message={`Se ha creado el cliente ${client!.name} ${client!.surname}`} onClose={refresh} />}
         </>
     )
 }
