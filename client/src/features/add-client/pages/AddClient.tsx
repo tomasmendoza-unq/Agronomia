@@ -10,6 +10,16 @@ import type { ClientSchema } from "../adapter/client-schema";
 import useIsModal from "@/shared/hooks/use-is-modal";
 import { ConfirmModal } from "@/shared/components/modal/variants/ConfirmModalProps";
 import { ModalCreateClient } from "../components/modal-create-client/ModalCreateClient";
+import Button from "@/shared/components/button/Button";
+import { token } from "@styled-system/tokens";
+import { css } from "@styled-system/css";
+
+const backButtonContainer = css({
+    display: "flex",
+    justifyContent: "flex-start",
+    width: "100%",
+    marginBottom: "24px",
+});
 
 const AddClient = () => {
 
@@ -25,6 +35,17 @@ const AddClient = () => {
 
     return (
         <>
+        <div className={backButtonContainer}>
+            <Button
+                color="white"
+                hoverColor={token("colors.primaryColorHover") + "20"}
+                borderColor={token("colors.primaryColor")}
+                textColor={token("colors.primaryColor")}
+                onClick={backToPrev}
+            >
+                ← Regresar
+            </Button>
+        </div>
             <PolimorficForm 
                 options={[
                     {
