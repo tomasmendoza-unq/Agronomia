@@ -7,6 +7,7 @@ import com.agro.feature.user.contracts.UserDataService;
 import com.agro.feature.user.domain.User;
 import com.agro.shared.persistence.excepitons.NormaliceText;
 import com.agro.shared.valueObjects.cuit.CuitException;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
@@ -42,5 +43,10 @@ public class ClientServiceImpl implements ClientService {
         User user = userDataService.getUserById(userId);
         String normaliceSearch = NormaliceText.normalize(name);
         return dao.searchClientByCompanyId(user.getCompany().getId(), normaliceSearch, PageRequest.of(page, size));
+    }
+
+    @Override
+    public Client findById(Long id) {
+        return dao.findById(id).orElseThrow(() -> new EntityNotFoundException("El cliente con id " + id + " no fue encontrado"));
     }
 }

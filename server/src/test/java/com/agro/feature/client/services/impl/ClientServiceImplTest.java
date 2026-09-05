@@ -15,6 +15,7 @@ import com.agro.shared.entities.rol.Role;
 import com.agro.shared.service.ResetService;
 import com.agro.shared.valueObjects.cuit.CuitException;
 import com.agro.shared.valueObjects.email.EmailValue;
+import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -117,6 +118,18 @@ class ClientServiceImplTest {
         );
         service.save(client, user.getId());
         assertThrows(CuitException.class, () -> service.save(client1, user.getId()));
+    }
+
+    @Test
+    void testSeRecuperaUnClientePorSuId() {
+        Client addedClient = service.save(client, user.getId());
+        Client findClient = service.findById(addedClient.getId());
+        assertEquals(addedClient.getId(), findClient.getId());
+    }
+
+    @Test
+    void testSiSeBuscaUnClieneNoRegistrado_LanzaExcepcion() {
+        assertThrows(EntityNotFoundException.class, () -> service.findById(1L));
     }
 
     @AfterEach
