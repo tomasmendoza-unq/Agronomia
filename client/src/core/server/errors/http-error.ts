@@ -1,4 +1,5 @@
-import type { ErrorCauseType } from "../types/error-cause";
+import { ErrorCause } from "../types/error-cause";
+import type { ErrorMotive } from "../types/error-motive";
 import type { ErrorResponse } from "../types/error-response";
 import type { ErrorSide } from "../types/error-side";
 
@@ -34,8 +35,16 @@ export class HttpError extends Error {
         return this.side;
     }
 
-    isCause(cause: ErrorCauseType) {
+    get getErrorMotive() {
+        return this.data.motive;
+    }
+
+    isCause(cause: ErrorCause) {
         return this.data.cause === cause;
+    }
+
+    isMotive(cause: ErrorMotive) {
+        return this.isCause(ErrorCause.BUSINESS_RULE_VIOLATION) && this.data.motive === cause;
     }
 
     private errorSide(status: number) {

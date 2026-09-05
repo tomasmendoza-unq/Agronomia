@@ -5,5 +5,4 @@ export interface RazonSocial extends Client {
     razonSocial: string
     associateCompleteName: CompleteName
     associatePhone: string
-    email?: string
 }

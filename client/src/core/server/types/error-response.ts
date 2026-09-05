@@ -1,4 +1,5 @@
 import type { ErrorCause } from "./error-cause";
+import type { ErrorField } from "./error-field";
 import type { ErrorMotive } from "./error-motive";
 
 export interface ErrorResponse {
@@ -8,5 +9,6 @@ export interface ErrorResponse {
     path: string;
     timestamp: Date;
     cause: ErrorCause;
-    motives?: ErrorMotive[]
+    fields?: ErrorField[]
+    motive?: ErrorMotive
 }
