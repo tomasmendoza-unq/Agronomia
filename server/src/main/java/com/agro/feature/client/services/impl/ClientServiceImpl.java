@@ -27,14 +27,13 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public Client save(Client client, Long userId) {
-        try {
-            User user = userDataService.getUserById(userId);
-            client.setCompanyId(user.getCompany().getId());
-            return dao.saveAndFlush(client);
-        }
-        catch(DataIntegrityViolationException e) {
-            throw new CuitException("El cuit " + client.getCuit() + " ya se encuentra registrado");
-        }
+        if(dao.existsByCuit_Cuit(client.getCuit())) throw new CuitException("El cuit " + client.getCuit() + " ya se encuentra registrado");
+
+        User user = userDataService.getUserById(userId);
+
+        client.setCompanyId(user.getCompany().getId());
+
+        return dao.save(client);
     }
 
     @Override

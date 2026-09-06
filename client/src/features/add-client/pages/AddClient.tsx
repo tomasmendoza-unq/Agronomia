@@ -22,46 +22,45 @@ const backButtonContainer = css({
 });
 
 const AddClient = () => {
-
-    const {add, refresh, data, isError} = useAddClient();
+    const { add, refresh, data, error } = useAddClient();
     const [client, setClient] = useState<ClientSchema>();
     const { isOpen, onOpenIs, backToPrev, refresh: r } = useIsModal();
 
     const handleClient = async (clientData: ClientSchema) => {
         setClient(clientData);
         const client = await add(clientData);
-        if(client) onOpenIs(!!client, "confirm");
-    }
+        if (client) onOpenIs(!!client, "confirm");
+    };
 
     return (
         <>
-        <div className={backButtonContainer}>
-            <Button
-                color="white"
-                hoverColor={token("colors.primaryColorHover") + "20"}
-                borderColor={token("colors.primaryColor")}
-                textColor={token("colors.primaryColor")}
-                onClick={backToPrev}
-            >
-                ← Regresar
-            </Button>
-        </div>
-            <PolimorficForm 
+            <div className={backButtonContainer}>
+                <Button
+                    color="white"
+                    hoverColor={token("colors.primaryColorHover") + "20"}
+                    borderColor={token("colors.primaryColor")}
+                    textColor={token("colors.primaryColor")}
+                    onClick={backToPrev}
+                >
+                    ← Regresar
+                </Button>
+            </div>
+            <PolimorficForm
                 options={[
                     {
                         subType: "razon social",
                         subforms: socialMotiveSubform,
                         schema: socialMotiveSchema,
-                        onSubmit: handleClient
+                        onSubmit: handleClient,
                     },
                     {
                         subType: "persona natural",
                         subforms: naturalPersonsubForms,
                         schema: naturalPersonSchema,
-                        onSubmit: handleClient
-                    }
+                        onSubmit: handleClient,
+                    },
                 ]}
-                buttonData={{text: "Agregar cliente"}}
+                buttonData={{ text: "Agregar cliente" }}
                 onCancel={(isdata) => onOpenIs(isdata, "advertence")}
             />
             <ConfirmModal
@@ -74,17 +73,27 @@ const AddClient = () => {
                 onConfirm={backToPrev}
                 onCancel={r}
             />
-            
+
             <ModalCreateClient
                 isOpen={isOpen("confirm")}
                 onClose={backToPrev}
                 title="Cliente agregado"
                 message="El cliente ha sido agregado correctamente."
             />
-            {isError && <ErrorToast message={`El cuit ${client?.cuit} ya está registrado`} onClose={refresh} />}
-            {data && <SuccessToast message={`Se ha creado el cliente ${client?.name} ${client?.surname}`} onClose={refresh} />}
+            {error && (
+                <ErrorToast
+                    message={error.message}
+                    onClose={refresh}
+                />
+            )}
+            {data && (
+                <SuccessToast
+                    message={`Se ha creado el cliente ${client?.name} ${client?.surname}`}
+                    onClose={refresh}
+                />
+            )}
         </>
-    )
-}
+    );
+};
 
 export default AddClient;
