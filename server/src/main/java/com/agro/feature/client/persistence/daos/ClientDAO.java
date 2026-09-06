@@ -1,6 +1,7 @@
 package com.agro.feature.client.persistence.daos;
 
 import com.agro.feature.client.domain.Client;
+import com.agro.shared.valueObjects.cuit.CuitValue;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -21,6 +22,5 @@ public interface ClientDAO extends JpaRepository<Client, Long> {
             @Param("search") String search,
             Pageable pageable
     );
-
-    boolean existsByCuit_Cuit(String cuit);
+    boolean existsByCuit_Cuit(String cuitCuit);
 }

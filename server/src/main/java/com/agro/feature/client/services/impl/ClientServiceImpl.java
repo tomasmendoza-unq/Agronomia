@@ -7,6 +7,7 @@ import com.agro.feature.user.contracts.UserDataService;
 import com.agro.feature.user.domain.User;
 import com.agro.shared.persistence.excepitons.NormaliceText;
 import com.agro.shared.valueObjects.cuit.CuitException;
+import com.agro.shared.valueObjects.email.EmailException;
 import jakarta.transaction.Transactional;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
