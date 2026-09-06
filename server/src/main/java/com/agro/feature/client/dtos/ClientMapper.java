@@ -9,6 +9,7 @@ import com.agro.feature.client.dtos.response.RazonSocialResponse;
 import com.agro.shared.entities.province.Province;
 import com.agro.shared.valueObjects.email.EmailValue;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 @Mapper
@@ -26,6 +27,7 @@ public interface ClientMapper {
 
     NaturalPerson dtoToModel(NaturalPersonRequest clientRequest);
 
+    @Mapping(target = "razonSocial", source = "razonSocial")
     RazonSocial dtoToModel(RazonSocialRequest clientRequest);
 
     NaturalPersonResponse modelToDto(NaturalPerson clientAdded);

@@ -5,9 +5,7 @@ import com.agro.shared.valueObjects.email.EmailValue;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
-import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 @Entity
 @DiscriminatorValue("RAZON_SOCIAL")

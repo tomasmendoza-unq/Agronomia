@@ -2,8 +2,10 @@ package com.agro.shared.valueObjects.cuit;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
+import lombok.EqualsAndHashCode;
 
 @Embeddable
+@EqualsAndHashCode(of = "cuit")
 public class CuitValue
 {
     @Column(name = "cuit", unique = true)

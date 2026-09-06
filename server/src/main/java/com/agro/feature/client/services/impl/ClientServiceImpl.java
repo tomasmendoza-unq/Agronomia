@@ -7,6 +7,7 @@ import com.agro.feature.user.contracts.UserDataService;
 import com.agro.feature.user.domain.User;
 import com.agro.shared.persistence.excepitons.NormaliceText;
 import com.agro.shared.valueObjects.cuit.CuitException;
+import com.agro.shared.valueObjects.email.EmailException;
 import jakarta.transaction.Transactional;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
@@ -27,14 +28,13 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public Client save(Client client, Long userId) {
-        try {
-            User user = userDataService.getUserById(userId);
-            client.setCompanyId(user.getCompany().getId());
-            return dao.saveAndFlush(client);
-        }
-        catch(DataIntegrityViolationException e) {
-            throw new CuitException("El cuit " + client.getCuit() + " ya se encuentra registrado");
-        }
+        if(dao.existsByCuit_Cuit(client.getCuit())) throw new CuitException("El cuit " + client.getCuit() + " ya se encuentra registrado");
+
+        User user = userDataService.getUserById(userId);
+
+        client.setCompanyId(user.getCompany().getId());
+
+        return dao.save(client);
     }
 
     @Override
