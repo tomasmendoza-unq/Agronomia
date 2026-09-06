@@ -64,7 +64,7 @@ export type InputData =
 export type Option = {
     value: string;
     label: string;
-    id: number;
+    id: number | string;
 };
 
 export type InputRow = InputData[];

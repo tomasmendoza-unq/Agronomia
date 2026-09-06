@@ -1,5 +1,6 @@
 import type { SubFormData } from "@/shared/components/forms/types/sub-form";
 import { formatCuit } from "@/shared/domain/cuit-cuil/format";
+import { provinces } from "@/shared/domain/locate/locate";
 
 export const naturalPersonsubForms: SubFormData[] = [
     {
@@ -67,13 +68,13 @@ export const naturalPersonsubForms: SubFormData[] = [
                     name: "province",
                     title: "Provincia",
                     id: 7,
-                    options: [
-                        {
-                            value: "Cordoba",
-                            label: "Córdoba",
-                            id: 0
+                    options: provinces.map(province => {
+                        return {
+                            value: province,
+                            label: province,
+                            id: province
                         }
-                    ]
+                    })
                 },
             ],
         ],
@@ -124,13 +125,13 @@ export const socialMotiveSubform: SubFormData[] = [
                     name: "province",
                     title: "Provincia",
                     id: 7,
-                    options: [
-                        {
-                            value: "Cordoba",
-                            label: "Córdoba",
-                            id: 0
+                    options: provinces.map(province => {
+                        return {
+                            value: province,
+                            label: province,
+                            id: province
                         }
-                    ]
+                    })
                 },
             ],
         ],
