@@ -3,7 +3,7 @@ import { token } from "@styled-system/tokens";
 
 const toastContainer = css.raw({
     position: "fixed",
-    bottom: "24px",
+    top: "74px",
     right: "24px",
     display: "grid",
     gridTemplateColumns: "2% 98%",
