@@ -89,6 +89,7 @@ const AddClient = () => {
             {data && (
                 <SuccessToast
                     message={`Se ha creado el cliente ${client?.name} ${client?.surname}`}
+                    title="Cliente creado"
                     onClose={refresh}
                 />
             )}

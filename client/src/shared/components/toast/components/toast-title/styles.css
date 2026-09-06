@@ -8,7 +8,7 @@
     display: flex;
     align-items: center;
     height: 100%;
-    gap: 5%
+    gap: 5%;
 }
 
 .toast-header-container_title p {
@@ -18,6 +18,12 @@
 
 .toast-header-container_title figure {
     height: 100%;
+}
+
+.toast-header-container_title figure img,
+.toast-header-container_title figure svg {
+    width: 20px;
+    height: 20px;
 }
 
 .toast-header-container_close {
@@ -30,6 +36,6 @@
     place-items: center;
 }
 
-.toast-header-container_close figure img{
+.toast-header-container_close figure img {
     cursor: pointer;
 }
