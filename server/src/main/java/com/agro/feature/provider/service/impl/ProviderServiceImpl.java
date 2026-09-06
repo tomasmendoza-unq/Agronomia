@@ -1,14 +1,12 @@
 package com.agro.feature.provider.service.impl;
 
 import com.agro.feature.provider.contracts.ProviderDataService;
-import com.agro.feature.provider.domain.CUITDuplicatedException;
 import com.agro.feature.provider.domain.Provider;
-import com.agro.feature.provider.dtos.request.ProviderEditRequestDTO;
 import com.agro.feature.provider.persistence.ProviderDAO;
 import com.agro.feature.provider.service.ProviderService;
 import com.agro.feature.user.contracts.UserDataService;
 import com.agro.feature.user.domain.User;
-import com.agro.feature.user.domain.exceptions.EmailDuplicatedException;
+import com.agro.shared.valueObjects.cuit.CuitDuplicatedException;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.data.domain.Page;
@@ -38,8 +36,8 @@ public class ProviderServiceImpl implements ProviderService, ProviderDataService
     public Provider addProvider(Long userId, Provider model) {
         User user = userDataService.getUserById(userId);
 
-        if (providerDAO.existsByCuit_CuitAndCompanyId(model.getCuit().get(), user.getCompany().getId())){
-            throw new CUITDuplicatedException("El CUIT ya existe en el sistema.");
+        if (providerDAO.existsByCuit_CuitAndCompanyId(model.getCuit(), user.getCompany().getId())){
+            throw new CuitDuplicatedException(model.getCuit());
         }
 
         model.setCompanyId(user.getCompany().getId());

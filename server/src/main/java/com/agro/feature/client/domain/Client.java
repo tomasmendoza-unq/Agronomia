@@ -3,6 +3,7 @@ package com.agro.feature.client.domain;
 import com.agro.shared.entities.province.Province;
 import com.agro.shared.persistence.excepitons.NormaliceText;
 import com.agro.shared.valueObjects.cuit.CuitValue;
+import com.agro.shared.valueObjects.email.EmailValue;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -27,6 +28,9 @@ public abstract class Client {
     @Getter
     private String address;
 
+    @Embedded
+    private EmailValue email;
+
     @Getter
     private String location;
 
@@ -49,8 +53,9 @@ public abstract class Client {
         this.searchText = NormaliceText.normalize(computeSearchKey());
     }
 
-    public Client(String cuit, String address, String location, Province province) {
+    public Client(String cuit, String address, String email, String location, Province province) {
         this.cuit = new CuitValue(cuit);
+        this.email = new EmailValue(email);
         this.address = address;
         this.location = location;
         this.province = province;
@@ -58,6 +63,10 @@ public abstract class Client {
 
     public String getCuit() {
         return cuit.get();
+    }
+
+    public String getEmail() {
+        return email.get();
     }
 
     protected abstract String computeSortKey();

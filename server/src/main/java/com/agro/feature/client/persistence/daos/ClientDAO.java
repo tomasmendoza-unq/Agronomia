@@ -23,4 +23,6 @@ public interface ClientDAO extends JpaRepository<Client, Long> {
             Pageable pageable
     );
     boolean existsByCuit_Cuit(String cuitCuit);
+
+    boolean existsByEmail_Email(String emailEmail);
 }

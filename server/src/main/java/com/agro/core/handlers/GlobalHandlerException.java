@@ -1,9 +1,9 @@
 package com.agro.core.handlers;
 
-import com.agro.core.api.Api;
 import com.agro.shared.dtos.error.CauseError;
 import com.agro.shared.dtos.error.RestErrorResponse;
 import com.agro.shared.exceptions.BusinessException;
+import com.agro.shared.exceptions.ConflictException;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -33,6 +33,18 @@ public class GlobalHandlerException {
                 exception.getMessage(),
                 request.getServletPath(),
                 CauseError.BUSINESS_RULE_VIOLATION
+        );
+        return ResponseEntity.badRequest().body(error);
+    }
+
+    @ExceptionHandler(ConflictException.class)
+    public ResponseEntity<RestErrorResponse> handleConflictExcerption(ConflictException exception, HttpServletRequest request) {
+        log.warn("Conflict rule violation - URI: {} | Message: {}", request.getRequestURI(), exception.getMessage());
+        RestErrorResponse error = new RestErrorResponse(
+                "Conflict rule violation",
+                exception.getMessage(),
+                request.getServletPath(),
+                CauseError.CONFLICT_RULE_VIOLATION
         );
         return ResponseEntity.badRequest().body(error);
     }

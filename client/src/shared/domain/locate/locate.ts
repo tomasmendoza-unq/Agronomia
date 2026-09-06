@@ -1,28 +1,27 @@
-
 export const provinces = [
-    "BuenosAires", 
+    "Buenos Aires",
     "Catamarca",
     "Chaco",
     "Chubut",
     "Cordoba",
     "Corrientes",
-    "EntreRios",
+    "Entre Rios",
     "Formosa",
     "Jujuy",
-    "LaPampa",
-    "LaRioja",
+    "La Pampa",
+    "La Rioja",
     "Mendoza",
     "Misiones",
     "Neuquen",
-    "RioNegro",
+    "Rio Negro",
     "Salta",
-    "SanJuan",
-    "SanLuis",
-    "SantaCruz",
-    "SantaFe",
-    "SantiagoDelEstero",
-    "TierraDelFuego",
-    "Tucuman"
-] as const
+    "San Juan",
+    "San Luis",
+    "Santa Cruz",
+    "Santa Fe",
+    "Santiago Del Estero",
+    "Tierra Del Fuego",
+    "Tucuman",
+] as const;
 
-export type Province = typeof provinces
+export type Province = (typeof provinces)[number];
