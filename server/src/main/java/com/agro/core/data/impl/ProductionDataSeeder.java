@@ -118,7 +118,7 @@ public class ProductionDataSeeder implements CommandLineRunner {
     }
 
     private void saveIfMissing(Provider provider) {
-        if (!providerDAO.existsByCuit_Cuit(provider.getCuit().get())) {
+        if (!providerDAO.existsByCuit_Cuit(provider.getCuit())) {
             providerDAO.save(provider);
         }
     }

@@ -17,9 +17,13 @@ public interface ClientMapper {
 
     ClientMapper INSTANCE = Mappers.getMapper(ClientMapper.class);
 
-    Province map(String province);
+    default Province map(String province) {
+        return province == null ? null : Province.fromLabel(province);
+    }
 
-    String map(Province province);
+    default String map(Province province) {
+        return province == null ? null : province.getLabel();
+    }
 
     EmailValue email(String email);
 
@@ -27,7 +31,6 @@ public interface ClientMapper {
 
     NaturalPerson dtoToModel(NaturalPersonRequest clientRequest);
 
-    @Mapping(target = "razonSocial", source = "razonSocial")
     RazonSocial dtoToModel(RazonSocialRequest clientRequest);
 
     NaturalPersonResponse modelToDto(NaturalPerson clientAdded);

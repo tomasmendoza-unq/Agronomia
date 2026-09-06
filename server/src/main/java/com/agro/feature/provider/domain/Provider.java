@@ -58,6 +58,10 @@ public class Provider {
         this.traveler = traveler;
     }
 
+    public String getCuit() {
+        return cuit.get();
+    }
+
     public List<String> getPaymentMethods() {
         return paymentMethods.stream().map(PaymentMethod::getValue).toList();
     }
