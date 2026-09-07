@@ -21,6 +21,8 @@ public record ProviderRequestDTO(
         String phoneNumber,
 
         String travelerName,
+
+        @ValidPhone
         String travelerPhoneNumber
 ) {
 

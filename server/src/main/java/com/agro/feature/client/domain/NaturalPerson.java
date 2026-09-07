@@ -22,8 +22,6 @@ public class NaturalPerson extends Client {
     @Getter
     private String phone;
 
-    @Embedded
-    private EmailValue email;
 
     protected NaturalPerson() {}
 
@@ -36,15 +34,10 @@ public class NaturalPerson extends Client {
             String address,
             String location,
             Province province) {
-        super(cuit, address, location, province);
+        super(cuit, address, email, location, province);
         this.name = name;
         this.surname = surname;
         this.phone = phone;
-        this.email = new EmailValue(email);
-    }
-
-    public String getEmail() {
-        return email.get();
     }
 
     @Override

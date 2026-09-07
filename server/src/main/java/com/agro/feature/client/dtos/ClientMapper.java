@@ -9,6 +9,7 @@ import com.agro.feature.client.dtos.response.RazonSocialResponse;
 import com.agro.shared.entities.province.Province;
 import com.agro.shared.valueObjects.email.EmailValue;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 @Mapper
@@ -16,9 +17,13 @@ public interface ClientMapper {
 
     ClientMapper INSTANCE = Mappers.getMapper(ClientMapper.class);
 
-    Province map(String province);
+    default Province map(String province) {
+        return province == null ? null : Province.fromLabel(province);
+    }
 
-    String map(Province province);
+    default String map(Province province) {
+        return province == null ? null : province.getLabel();
+    }
 
     EmailValue email(String email);
 

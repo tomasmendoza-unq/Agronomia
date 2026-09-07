@@ -42,11 +42,11 @@ export const toastMessage = css({
 
 export const toastLink = css({
     fontSize: "13px",
-    color: "primaryColor",
+    color: "success",
     fontWeight: "500",
     marginLeft: "26px",
     textDecoration: "underline",
     _hover: {
-        color: "primaryColorSubtle",
+        color: "success",
     },
 });
