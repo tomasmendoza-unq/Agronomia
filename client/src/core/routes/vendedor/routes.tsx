@@ -6,6 +6,7 @@ import { ProvidersList } from "@/views/provider/pages/ProviderList";
 import { Client } from "@/views/client/Client";
 import ClientPanel from "@/views/client/pages/ClientPanel";
 import AddClient from "@/features/add-client/pages/AddClient";
+import { EditClient } from "@/features/edit-client/pages/EditClient";
 
 export const VendedorRoutes: RouteData[] = [
     {
@@ -37,6 +38,11 @@ export const VendedorRoutes: RouteData[] = [
                         path: `nuevo-cliente`,
                         element: <AddClient />,
                         handle: { breadcrumb: "Nuevo Cliente" },
+                    },
+                    {
+                        path: VENDEDOR_ROUTES.EDIT_CLIENT,
+                        element: <EditClient />,
+                        handle: { breadcrumb: "Editar Cliente" },
                     },
                 ],
             },

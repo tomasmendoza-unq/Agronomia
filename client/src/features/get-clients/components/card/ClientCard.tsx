@@ -19,10 +19,9 @@ import type { NaturalPerson } from "../../domain/natural-person";
 import { UserIcon } from "@/shared/components/icon/components/icons/User";
 import EmailIcon from "@/shared/components/icon/components/icons/EmailIcon";
 import UbicationIcon from "@/shared/components/icon/components/icons/Ubication";
-import { RoleGuard } from "@/core/auth/components/RoleGuard";
+
 import { Link } from "react-router";
 import { EditIcon } from "@/shared/components/icon/components/icons/EditIcon";
-import { ADMIN_ROUTES } from "@/core/routes/admin/paths";
 
 interface ClientCardProps {
     client: Client;
@@ -44,17 +43,14 @@ export const ClientCard = ({ client }: ClientCardProps) => {
                     labelClassName={inlineLabel}
                     valueClassName={inlineValue}
                 />
-                <RoleGuard allowedRoles={["DUENIO"]}>
-                    <button
-                        type="button"
-                        className={editLink}
-                    >
-                        <Link to={ADMIN_ROUTES.EDIT_CLIENT_PATH(client.id)}>
-                            Editar
-                        </Link>
-                        <EditIcon className={editIcon} />
-                    </button>
-                </RoleGuard>
+
+                <button
+                    type="button"
+                    className={editLink}
+                >
+                    <Link to={`editar-cliente/${client.id}`}>Editar</Link>
+                    <EditIcon className={editIcon} />
+                </button>
             </header>
 
             <div className={cardBody}>
