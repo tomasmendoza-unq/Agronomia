@@ -14,7 +14,6 @@ import ErrorMessage from "../error/ErrorMessage";
 import type { DynamicInputData } from "@/shared/types/input/input";
 import { fieldStyles } from "../styles";
 import type { InferData, Schema } from "../../shema";
-import { useState } from "react";
 
 interface DynamicInputProps<T extends Schema> {
     input: DynamicInputData;
@@ -32,11 +31,7 @@ function DynamicInput<T extends Schema>({
     register,
     error,
 }: DynamicInputProps<T>) {
-    const [value, setValue] = useState(input.defaultValue ?? "");
-
-    const handleValue = (value: string) => {
-        setValue(input.format(value));
-    };
+    const { onChange, ...rest } = register(input.name as Path<output<T>>);
 
     return (
         <div className={css(fieldStyles.container)}>
@@ -55,15 +50,16 @@ function DynamicInput<T extends Schema>({
                 )}
             </label>
             <input
-                {...register(input.name as Path<output<T>>)}
+                {...rest}
                 className={css(inputStyles)}
                 type={input.type}
-                name={input.name}
                 placeholder={input.placeholder}
                 id={input.name}
                 disabled={input.disabled}
-                value={value}
-                onChange={(event) => handleValue(event.target.value)}
+                onChange={(event) => {
+                    event.target.value = input.format(event.target.value);
+                    onChange(event);
+                }}
             />
             {error && <ErrorMessage message={error.message as string} />}
         </div>

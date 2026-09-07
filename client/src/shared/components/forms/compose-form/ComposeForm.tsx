@@ -1,27 +1,33 @@
+import { useRef } from "react";
 import ButtonsContainer from "../components/buttons-container/ButtonsContainer";
 import type { ButtonData } from "../simple-form/types/button/credentials-button";
-import type { SubForm } from "../types/sub-form";
+import type { SubFormData } from "../types/sub-form";
 import type { InferData, Schema } from "../validation-form/shema";
-import ValidationForm from "../validation-form/ValidationForm";
+import ValidationForm, { type ValidationFormHandleProps } from "../validation-form/ValidationForm";
 import { container } from "./styles";
 
 interface FormContainerProps<T> {
-    subForms: SubForm[];
+    subForms: SubFormData[];
     schema: T
     buttonData: ButtonData
     onSubmit: (data: InferData<T>) => void;
-    onCancel: () => void;
+    onCancel: (isCancel: boolean) => void;
 }
 
 function ComposeForm<T extends Schema>({subForms, schema, buttonData, onSubmit, onCancel}: FormContainerProps<T>) {
+    const form = useRef<ValidationFormHandleProps>(null);
+    const handleCancel = () => form.current?.confirmCancel();
+    
     return (
         <section className={container}>
             <ValidationForm 
                 subForms={subForms}
                 schema={schema}
                 onSubmit={onSubmit}
+                onCancel={onCancel}
+                ref={form}
             />
-            <ButtonsContainer buttonData={buttonData} cancelOption={{onSubmit: onCancel}} />
+            <ButtonsContainer buttonData={buttonData} cancelOption={{onSubmit: handleCancel}} />
         </section>
     )
 }

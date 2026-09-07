@@ -1,9 +1,10 @@
-import { css, sva } from "@styled-system/css"
-import { token } from "@styled-system/tokens"
+import { css, sva } from "@styled-system/css";
+import { token } from "@styled-system/tokens";
 
 interface CheckInputProps {
-    value: string 
-    onSubmit: (value: string) => void
+    value: string;
+    onSubmit: (value: string) => void;
+    checked: boolean;
 }
 
 const fieldStyles = sva({
@@ -31,20 +32,25 @@ const fieldStyles = sva({
     },
 }).raw();
 
-
-const CheckInput = ({value, onSubmit}: CheckInputProps) => {
-
+const CheckInput = ({ value, onSubmit, checked }: CheckInputProps) => {
     return (
         <div className={css(fieldStyles.container)}>
-            <label htmlFor={value} className={css(fieldStyles.label)}>{value}</label>
-            <input 
-                type="checkbox" 
+            <label
+                htmlFor={value}
+                className={css(fieldStyles.label)}
+            >
+                {value}
+            </label>
+            <input
+                type="radio"
+                name="client-type"
                 value={value}
-                onClick={() => onSubmit(value)} 
-                key={value} 
+                checked={checked}
+                onChange={() => onSubmit(value)}
+                key={value}
             />
         </div>
-    )
-}
+    );
+};
 
-export default CheckInput
+export default CheckInput;

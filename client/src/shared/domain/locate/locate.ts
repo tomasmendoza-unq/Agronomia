@@ -1,0 +1,27 @@
+export const provinces = [
+    "Buenos Aires",
+    "Catamarca",
+    "Chaco",
+    "Chubut",
+    "Cordoba",
+    "Corrientes",
+    "Entre Rios",
+    "Formosa",
+    "Jujuy",
+    "La Pampa",
+    "La Rioja",
+    "Mendoza",
+    "Misiones",
+    "Neuquen",
+    "Rio Negro",
+    "Salta",
+    "San Juan",
+    "San Luis",
+    "Santa Cruz",
+    "Santa Fe",
+    "Santiago Del Estero",
+    "Tierra Del Fuego",
+    "Tucuman",
+] as const;
+
+export type Province = (typeof provinces)[number];

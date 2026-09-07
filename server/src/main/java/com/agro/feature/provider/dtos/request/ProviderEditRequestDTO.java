@@ -16,6 +16,8 @@ public record ProviderEditRequestDTO(
         String phoneNumber,
 
         String travelerName,
+
+        @ValidPhone
         String travelerPhoneNumber
 ) {
 

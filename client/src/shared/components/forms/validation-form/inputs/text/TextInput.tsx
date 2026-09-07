@@ -51,9 +51,7 @@ function TextInput<T extends Schema>({
                 {...register(input.name as Path<output<T>>)}
                 className={css(inputStyles)}
                 type={input.type}
-                name={input.name}
                 placeholder={input.placeholder}
-                defaultValue={input.defaultValue}
                 id={input.name}
                 disabled={input.disabled}
             />

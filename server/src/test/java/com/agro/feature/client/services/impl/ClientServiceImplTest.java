@@ -13,6 +13,7 @@ import com.agro.feature.user.orchestrator.RegisterOrchestrator;
 import com.agro.shared.entities.province.Province;
 import com.agro.shared.entities.rol.Role;
 import com.agro.shared.service.ResetService;
+import com.agro.shared.valueObjects.cuit.CuitDuplicatedException;
 import com.agro.shared.valueObjects.cuit.CuitException;
 import com.agro.shared.valueObjects.email.EmailValue;
 import org.junit.jupiter.api.AfterEach;
@@ -116,7 +117,7 @@ class ClientServiceImplTest {
                 Province.Cordoba
         );
         service.save(client, user.getId());
-        assertThrows(CuitException.class, () -> service.save(client1, user.getId()));
+        assertThrows(CuitDuplicatedException.class, () -> service.save(client1, user.getId()));
     }
 
     @AfterEach

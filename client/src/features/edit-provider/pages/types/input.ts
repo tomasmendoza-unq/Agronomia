@@ -1,8 +1,8 @@
-import type { SubForm } from "@/shared/components/forms/types/sub-form";
+import type { SubFormData } from "@/shared/components/forms/types/sub-form";
 import { formatCuit } from "@/shared/domain/cuit-cuil/format";
 import type { Provider } from "../../types/Provider";
 
-export const generateSubForm = (data: Provider): SubForm[] => {
+export const generateSubForm = (data: Provider): SubFormData[] => {
     return [
         {
             title: "Datos",

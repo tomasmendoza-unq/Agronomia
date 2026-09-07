@@ -1,7 +1,8 @@
-import type { SubForm } from "@/shared/components/forms/types/sub-form";
+import type { SubFormData } from "@/shared/components/forms/types/sub-form";
 import { formatCuit } from "@/shared/domain/cuit-cuil/format";
+import { provinces } from "@/shared/domain/locate/locate";
 
-export const naturalPersonsubForms: SubForm[] = [
+export const naturalPersonsubForms: SubFormData[] = [
     {
         title: "Datos del cliente",
         inputs: [
@@ -67,13 +68,13 @@ export const naturalPersonsubForms: SubForm[] = [
                     name: "province",
                     title: "Provincia",
                     id: 7,
-                    options: [
-                        {
-                            value: "Cordoba",
-                            label: "Córdoba",
-                            id: 0
+                    options: provinces.map(province => {
+                        return {
+                            value: province,
+                            label: province,
+                            id: province
                         }
-                    ]
+                    })
                 },
             ],
         ],
@@ -81,7 +82,7 @@ export const naturalPersonsubForms: SubForm[] = [
     }
 ];
 
-export const socialMotiveSubform: SubForm[] = [
+export const socialMotiveSubform: SubFormData[] = [
         {
             title: "Datos cliente",
             inputs: [
@@ -124,13 +125,13 @@ export const socialMotiveSubform: SubForm[] = [
                     name: "province",
                     title: "Provincia",
                     id: 7,
-                    options: [
-                        {
-                            value: "Cordoba",
-                            label: "Córdoba",
-                            id: 0
+                    options: provinces.map(province => {
+                        return {
+                            value: province,
+                            label: province,
+                            id: province
                         }
-                    ]
+                    })
                 },
             ],
         ],
