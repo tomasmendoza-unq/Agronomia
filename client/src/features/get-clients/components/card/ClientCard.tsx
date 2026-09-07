@@ -81,8 +81,7 @@ function naturalPersonItems(client: NaturalPerson) {
         {
             icon: UbicationIcon,
             value:
-                (client.ubication.address ??
-                    "Dirección no indicada - [Localidad]") +
+                (client.ubication.address ?? "Dirección no indicada") +
                 " - " +
                 client.ubication.location,
         },
@@ -93,8 +92,7 @@ function legalPersonItems(client: RazonSocial) {
         {
             icon: UbicationIcon,
             value:
-                (client.ubication.address ??
-                    "Dirección no indicada - [Localidad]") +
+                (client.ubication.address ?? "Dirección no indicada") +
                 " - " +
                 client.ubication.location,
         },
