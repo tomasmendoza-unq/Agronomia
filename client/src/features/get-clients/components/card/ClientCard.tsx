@@ -1,6 +1,16 @@
 import type { Client } from "../../domain/client";
 import DataField from "@/shared/components/dataField/DataField";
-import { card, cardBody, clientName, contactHeader, inlineLabel, inlineValue } from "./styles";
+import {
+    card,
+    cardBody,
+    clientName,
+    contactHeader,
+    editIcon,
+    editLink,
+    inlineField,
+    inlineLabel,
+    inlineValue,
+} from "./styles";
 import { IconList } from "@/shared/components/icon/components/iconList/IconList";
 import { PhoneIcon } from "@/shared/components/icon/components/icons/Phone";
 import { InitialsName } from "@/shared/components/avatar/components/initialsName/InitialsName";
@@ -10,8 +20,11 @@ import { UserIcon } from "@/shared/components/icon/components/icons/User";
 import EmailIcon from "@/shared/components/icon/components/icons/EmailIcon";
 import UbicationIcon from "@/shared/components/icon/components/icons/Ubication";
 
+import { Link } from "react-router";
+import { EditIcon } from "@/shared/components/icon/components/icons/EditIcon";
+
 interface ClientCardProps {
-    client: Client
+    client: Client;
 }
 
 export const ClientCard = ({ client }: ClientCardProps) => {
@@ -23,21 +36,37 @@ export const ClientCard = ({ client }: ClientCardProps) => {
                     size="md"
                     nameClassName={clientName}
                 />
-            </header>
                 <DataField
                     label="CUIT/CUIL"
                     value={client.cuit}
+                    className={inlineField}
                     labelClassName={inlineLabel}
                     valueClassName={inlineValue}
                 />
+
+                <button
+                    type="button"
+                    className={editLink}
+                >
+                    <Link to={`editar-cliente/${client.id}`}>Editar</Link>
+                    <EditIcon className={editIcon} />
+                </button>
+            </header>
+
             <div className={cardBody}>
-                <IconList items={clientItems(client)} title={""} />
+                <IconList
+                    items={clientItems(client)}
+                    title={""}
+                />
             </div>
         </article>
     );
 };
 
-const clientItems = (client: Client) => "razonSocial" in client ?  legalPersonItems(client) : naturalPersonItems(client);
+const clientItems = (client: Client) =>
+    "razonSocial" in client
+        ? legalPersonItems(client)
+        : naturalPersonItems(client);
 
 function naturalPersonItems(client: NaturalPerson) {
     return [
@@ -51,15 +80,23 @@ function naturalPersonItems(client: NaturalPerson) {
         },
         {
             icon: UbicationIcon,
-            value: (client.ubication.address ?? "Dirección no indicada - [Localidad]") + " - " + client.ubication.location,
-        }
-    ]
+            value:
+                (client.ubication.address ??
+                    "Dirección no indicada - [Localidad]") +
+                " - " +
+                client.ubication.location,
+        },
+    ];
 }
 function legalPersonItems(client: RazonSocial) {
     return [
         {
             icon: UbicationIcon,
-            value: (client.ubication.address ?? "Dirección no indicada - [Localidad]") + " - " + client.ubication.location,
+            value:
+                (client.ubication.address ??
+                    "Dirección no indicada - [Localidad]") +
+                " - " +
+                client.ubication.location,
         },
         {
             icon: PhoneIcon,
@@ -73,8 +110,7 @@ function legalPersonItems(client: RazonSocial) {
             icon: EmailIcon,
             value: client.email ?? "No indicado",
         },
-    ]
+    ];
 }
-
 
 export default ClientCard;

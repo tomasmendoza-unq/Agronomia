@@ -8,6 +8,7 @@ import com.agro.feature.user.domain.User;
 import com.agro.shared.persistence.excepitons.NormaliceText;
 import com.agro.shared.valueObjects.cuit.CuitDuplicatedException;
 import com.agro.shared.valueObjects.email.EmailDuplicatedException;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -38,9 +39,24 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
+    public Client update(Client client) {
+        if (client.getEmail() != null
+                && !client.getEmail().isBlank()
+                && dao.existsByEmail_EmailAndIdNot(client.getEmail(), client.getId())) {
+            throw new EmailDuplicatedException(client.getEmail());
+        }
+        return dao.save(client);
+    }
+
+    @Override
     public Page<Client> getClients(int page, int size, Long userId, String name) {
         User user = userDataService.getUserById(userId);
         String normaliceSearch = NormaliceText.normalize(name);
         return dao.searchClientByCompanyId(user.getCompany().getId(), normaliceSearch, PageRequest.of(page, size));
+    }
+
+    @Override
+    public Client findById(Long id) {
+        return dao.findById(id).orElseThrow(() -> new EntityNotFoundException("El cliente con id " + id + " no fue encontrado"));
     }
 }

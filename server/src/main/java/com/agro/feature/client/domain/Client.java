@@ -66,7 +66,18 @@ public abstract class Client {
     }
 
     public String getEmail() {
-        return email.get();
+        return email == null ? null : email.get();
+    }
+
+    protected void updateContactData(String email, String address, String location, Province province) {
+        this.email = email == null || email.isBlank() ? null : new EmailValue(email);
+        this.address = normalizeNullable(address);
+        this.location = normalizeNullable(location);
+        this.province = province;
+    }
+
+    private String normalizeNullable(String value) {
+        return value == null || value.isBlank() ? null : value;
     }
 
     protected abstract String computeSortKey();

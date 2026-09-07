@@ -18,7 +18,7 @@ public interface ClientMapper {
     ClientMapper INSTANCE = Mappers.getMapper(ClientMapper.class);
 
     default Province map(String province) {
-        return province == null ? null : Province.fromLabel(province);
+        return province == null || province.isBlank() ? null : Province.fromLabel(province);
     }
 
     default String map(Province province) {

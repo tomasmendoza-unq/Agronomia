@@ -5,4 +5,5 @@ export const VENDEDOR_ROUTES = {
     CLIENTES: `clientes`,
     PRODUCTOS: `productos`,
     VENTAS: `ventas`,
+    EDIT_CLIENT: `editar-cliente/:clientId`,
 };

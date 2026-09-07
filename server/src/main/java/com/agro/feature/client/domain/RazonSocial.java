@@ -43,6 +43,20 @@ public class RazonSocial extends Client{
         this.associatePhone = associatePhone;
     }
 
+    public void update(
+            String associateName,
+            String associateSurname,
+            String associatePhone,
+            String email,
+            String address,
+            String location,
+            Province province) {
+        updateContactData(email, address, location, province);
+        this.associateName = associateName;
+        this.associateSurname = associateSurname;
+        this.associatePhone = associatePhone;
+    }
+
     @Override
     protected String computeSortKey() {
         return razonSocial;

@@ -9,4 +9,7 @@ export const ADMIN_ROUTES = {
     EDIT_PROVIDER: `editar-proveedor/:providerId`,
     EDIT_PROVIDER_PATH: (providerId: number) =>
         `editar-proveedor/${providerId}`,
+    ADD_CLIENT: `nuevo-cliente`,
+    EDIT_CLIENT: `editar-cliente/:clientId`,
+    EDIT_CLIENT_PATH: (clientId: number) => `editar-cliente/${clientId}`,
 };
