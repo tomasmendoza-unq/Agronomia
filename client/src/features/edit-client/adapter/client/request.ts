@@ -8,8 +8,11 @@ export type ClientEditRequest = NaturalEditRequest | LegalEditRequest;
 export function clientRequestAdapter(client: ClientToEdit): ClientEditRequest {
     if ("razonSocial" in client) {
         return {
-            clientType: ClientOption.RAZON_SOCIAL,
             type: ClientOption.RAZON_SOCIAL,
+            associateName: client.name,
+            associateSurname: client.surname,
+            associatePhone: client.phone,
+            email: client.email ?? "",
             address: client.address ?? "",
             locate: client.location,
             province: client.province,
@@ -17,10 +20,9 @@ export function clientRequestAdapter(client: ClientToEdit): ClientEditRequest {
     }
 
     return {
-        clientType: ClientOption.NATURAL_PERSON,
         type: ClientOption.NATURAL_PERSON,
         phoneNumber: client.phone,
-        email: client.email,
+        email: client.email ?? "",
         address: client.address ?? "",
         locate: client.location,
         province: client.province,

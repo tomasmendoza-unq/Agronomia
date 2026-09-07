@@ -7,7 +7,9 @@ const naturalPersonSchema = z.object({
         .length(13, { message: "El CUIT/CUIL debe tener 11 números" }),
     name: z.string().nonempty({ message: "El nombre es obligatorio" }),
     surname: z.string().nonempty({ message: "El apellido es obligatorio" }),
-    phone: z.string({ message: "El teléfono es obligatorio" }),
+    phone: z
+        .string({ message: "El teléfono es obligatorio" })
+        .nonempty({ message: "El teléfono es obligatorio" }),
     email: z
         .union([z.email({ message: "El correo no es valido" }), z.literal("")])
         .nullable()

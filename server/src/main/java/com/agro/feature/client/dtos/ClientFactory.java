@@ -49,7 +49,15 @@ public class ClientFactory {
                 if (!(client instanceof RazonSocial razonSocial)) {
                     throw new IllegalArgumentException("El tipo de edición no coincide con el cliente");
                 }
-                razonSocial.update(r.address(), r.locate(), ClientMapper.INSTANCE.map(r.province()));
+                razonSocial.update(
+                        r.associateName(),
+                        r.associateSurname(),
+                        r.associatePhone(),
+                        r.email(),
+                        r.address(),
+                        r.locate(),
+                        ClientMapper.INSTANCE.map(r.province())
+                );
             }
         }
     }

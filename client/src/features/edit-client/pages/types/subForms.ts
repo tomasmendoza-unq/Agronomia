@@ -206,7 +206,7 @@ export function generateNaturalPersonSubForms(
         surname: client.surname,
         cuit: client.cuit,
         phone: client.phone,
-        email: client.email,
+        email: client.email ?? "",
         address: client.address ?? "",
         location: client.location,
         province: client.province,
@@ -227,6 +227,6 @@ export function generateSocialMotiveSubForms(
         name: client.name,
         surname: client.surname,
         phone: client.phone,
-        email: client.email,
+        email: client.email ?? "",
     });
 }

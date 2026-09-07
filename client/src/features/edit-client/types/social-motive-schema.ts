@@ -13,7 +13,9 @@ const socialMotiveSchema = z.object({
     province: z.string().nonempty({ message: "Seleccione una provincia" }),
     name: z.string().nonempty({ message: "El nombre es obligatorio" }),
     surname: z.string().nonempty({ message: "El apellido es obligatorio" }),
-    phone: z.string({ message: "El teléfono es obligatorio" }),
+    phone: z
+        .string({ message: "El teléfono es obligatorio" })
+        .nonempty({ message: "El teléfono es obligatorio" }),
     email: z
         .union([z.email({ message: "El correo no es valido" }), z.literal("")])
         .nullable()

@@ -1,5 +1,7 @@
-import type { NaturalPersonSchema } from "@/features/add-client/pages/types/natural-person-schema";
-import type { SocialMotiveSchema } from "@/features/add-client/pages/types/social-motive-schema";
+import type { NaturalPersonSchema } from "./natural-person-schema";
+import type { SocialMotiveSchema } from "./social-motive-schema";
+
+export type ClientEditSchema = NaturalPersonSchema | SocialMotiveSchema;
 
 export type NaturalClientToEdit = NaturalPersonSchema & {
     id: number;

@@ -40,7 +40,9 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public Client update(Client client) {
-        if (dao.existsByEmail_EmailAndIdNot(client.getEmail(), client.getId())) {
+        if (client.getEmail() != null
+                && !client.getEmail().isBlank()
+                && dao.existsByEmail_EmailAndIdNot(client.getEmail(), client.getId())) {
             throw new EmailDuplicatedException(client.getEmail());
         }
         return dao.save(client);

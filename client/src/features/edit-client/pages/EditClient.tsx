@@ -1,17 +1,19 @@
-import { useEffect } from "react";
-import { useParams } from "react-router";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router";
 import PolimorficForm from "@/shared/components/forms/polimorfic-form/PolimorficForm";
-import naturalPersonSchema from "@/features/add-client/pages/types/natural-person-schema";
-import socialMotiveSchema from "@/features/add-client/pages/types/social-motive-schema";
+
 import {
     generateNaturalPersonSubForms,
     generateSocialMotiveSubForms,
 } from "./types/subForms";
 import { useGetClientById } from "../hook/use-get-client-by-id";
 import { usePutClient } from "../hook/use-put-client";
-import type { ClientSchema } from "@/features/add-client/adapter/client-schema";
+import type { ClientEditSchema } from "../types/Client";
 import Spinner from "@/shared/components/spinner/Spinner";
 import ErrorToast from "@/shared/components/toast/error/ErrorToast";
+import { ConfirmModal } from "@/shared/components/modal/variants/ConfirmModalProps";
+import socialMotiveSchema from "../types/social-motive-schema";
+import naturalPersonSchema from "../types/natural-person-schema";
 
 export const EditClient = () => {
     const { clientId } = useParams<{ clientId: string }>();
@@ -28,6 +30,8 @@ export const EditClient = () => {
         isLoading: isEditing,
         refresh: refreshEditClient,
     } = usePutClient();
+    const [isCancelOpen, setIsCancelOpen] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (clientId) {
@@ -55,38 +59,43 @@ export const EditClient = () => {
     const isLegalClient = "razonSocial" in client;
     const naturalPersonForms = generateNaturalPersonSubForms(client);
     const socialMotiveForms = generateSocialMotiveSubForms(client);
-    const handleSubmit = async (data: ClientSchema) => {
-        await editClient({ ...data, id: client.id });
+    const handleSubmit = async (data: ClientEditSchema) => {
+        const updatedClient = await editClient({ ...data, id: client.id });
+
+        if (updatedClient) {
+            navigate("..");
+        }
     };
 
     return (
         <>
-            <PolimorficForm
-                options={[
-                    {
-                        subType: "razon social",
-                        subforms: socialMotiveForms,
-                        schema: socialMotiveSchema,
-                        onSubmit: handleSubmit,
-                    },
-                    {
-                        subType: "persona natural",
-                        subforms: naturalPersonForms,
-                        schema: naturalPersonSchema,
-                        onSubmit: handleSubmit,
-                    },
-                ]}
-                initialSubType={
-                    isLegalClient ? "razon social" : "persona natural"
-                }
-                disableOptions
-                buttonData={{ text: "Guardar cambios" }}
-                onCancel={() => undefined}
-            />
-            {isEditing && (
+            {isEditing ? (
                 <Spinner
                     size="lg"
                     centered
+                />
+            ) : (
+                <PolimorficForm
+                    options={[
+                        {
+                            subType: "razon social",
+                            subforms: socialMotiveForms,
+                            schema: socialMotiveSchema,
+                            onSubmit: handleSubmit,
+                        },
+                        {
+                            subType: "persona natural",
+                            subforms: naturalPersonForms,
+                            schema: naturalPersonSchema,
+                            onSubmit: handleSubmit,
+                        },
+                    ]}
+                    initialSubType={
+                        isLegalClient ? "razon social" : "persona natural"
+                    }
+                    disableOptions
+                    buttonData={{ text: "Guardar cambios" }}
+                    onCancel={() => setIsCancelOpen(true)}
                 />
             )}
             {editClientError && (
@@ -95,6 +104,16 @@ export const EditClient = () => {
                     onClose={refreshEditClient}
                 />
             )}
+            <ConfirmModal
+                isOpen={isCancelOpen}
+                title="¿Seguro deseas cancelar?"
+                message="Si cancelas perderás los cambios realizados."
+                confirmText="Abandonar"
+                cancelText="Continuar editando"
+                danger
+                onConfirm={() => navigate("..")}
+                onCancel={() => setIsCancelOpen(false)}
+            />
         </>
     );
 };
