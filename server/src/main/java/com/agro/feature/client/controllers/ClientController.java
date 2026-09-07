@@ -49,4 +49,15 @@ public class ClientController {
                         .map(client -> factory.createToResponse(client))
         ));
     }
+
+    @GetMapping("/{clientId}")
+    @PreAuthorize("hasAnyRole('DUENIO', 'VENDEDOR')")
+    @Operation(summary = "Obtener ubn cliente por id", description = "Devuelve el cliente encontrado.")
+    public ResponseEntity<ClientResponse> getClientById(
+            @RequestParam Long clientId
+
+    ) {
+        Client client = service.findById(clientId);
+        return ResponseEntity.ok(factory.createToResponse(client));
+    }
 }
