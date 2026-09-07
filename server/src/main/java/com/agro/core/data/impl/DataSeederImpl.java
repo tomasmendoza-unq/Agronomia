@@ -100,7 +100,7 @@ public class DataSeederImpl implements DataSeeder {
         userService.save(otherUser);
 
        createProviders(company.getId());
-       createClients(user.getId(), company.getId());
+       //createClients(user.getId(), company.getId());
     }
 
     private void createProviders(Long companyId) {
@@ -227,7 +227,7 @@ public class DataSeederImpl implements DataSeeder {
 
         providers.forEach(providerService::save);
     }
-
+    /*
     private void createClients(Long companyId, Long userId) {
         List<Client> clients = List.of(
 
@@ -328,5 +328,5 @@ public class DataSeederImpl implements DataSeeder {
             client.setCompanyId(companyId);
             clientService.save(client, userId);
         });
-    }
+    }*/
 }
