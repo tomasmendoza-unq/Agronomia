@@ -69,6 +69,15 @@ public class DataSeederImpl implements DataSeeder {
                 .password("123")
                 .build();
 
+        User otherUser = User.builder()
+                .name("Tomas")
+                .surname("Mendoza")
+                .email(new EmailValue("vendedor@gmail.com"))
+                .branch(branch2)
+                .role(Role.VENDEDOR)
+                .password("123")
+                .build();
+
         Imagen imagen = Imagen.builder()
                 .url("https://res.cloudinary.com/dvkvlpq07/image/upload/v1785440325/logo_tfzoil.jpg")
                 .publicId("123123")
@@ -78,15 +87,17 @@ public class DataSeederImpl implements DataSeeder {
                 .name("AgroTech")
                 .legalName("AgroTech S.A.")
                 .cuit("30-12345678-9")
-                .users(new ArrayList<>(List.of(user)))
+                .users(new ArrayList<>(List.of(user, otherUser)))
                 .logo(imagen)
                 .build();
 
         company.addBranches(new ArrayList<>(List.of(branch2, branch, branch3, branch4)));
 
         user.addCompany(company);
+        otherUser.addCompany(company);
 
         userService.save(user);
+        userService.save(otherUser);
 
        createProviders(company.getId());
        createClients(user.getId(), company.getId());
