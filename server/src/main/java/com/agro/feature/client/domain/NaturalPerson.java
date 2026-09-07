@@ -40,6 +40,11 @@ public class NaturalPerson extends Client {
         this.phone = phone;
     }
 
+    public void update(String phone, String email, String address, String location, Province province) {
+        updateContactData(email, address, location, province);
+        this.phone = phone;
+    }
+
     @Override
     protected String computeSortKey() {
         return surname + " " + name;

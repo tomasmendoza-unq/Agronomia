@@ -44,6 +44,7 @@ export const EditClient = () => {
                 },
             ]}
             initialSubType={isLegalClient ? "razon social" : "persona natural"}
+            disableOptions
             buttonData={{ text: "Guardar cambios" }}
             onCancel={() => undefined}
         />

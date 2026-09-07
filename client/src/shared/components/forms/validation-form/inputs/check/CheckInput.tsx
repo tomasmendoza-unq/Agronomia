@@ -5,6 +5,7 @@ interface CheckInputProps {
     value: string;
     onSubmit: (value: string) => void;
     checked: boolean;
+    disabled?: boolean;
 }
 
 const fieldStyles = sva({
@@ -32,12 +33,32 @@ const fieldStyles = sva({
     },
 }).raw();
 
-const CheckInput = ({ value, onSubmit, checked }: CheckInputProps) => {
+const CheckInput = ({
+    value,
+    onSubmit,
+    checked,
+    disabled,
+}: CheckInputProps) => {
+    const selectedStyles = checked
+        ? {
+              borderColor: token("colors.primaryColor"),
+              backgroundColor: `${token("colors.primaryColor")}15`,
+          }
+        : {};
+
     return (
-        <div className={css(fieldStyles.container)}>
+        <div
+            className={css({
+                ...fieldStyles.container,
+                ...selectedStyles,
+            })}
+        >
             <label
                 htmlFor={value}
-                className={css(fieldStyles.label)}
+                className={css({
+                    ...fieldStyles.label,
+                    ...(checked ? { color: token("colors.primaryColor") } : {}),
+                })}
             >
                 {value}
             </label>
@@ -46,6 +67,7 @@ const CheckInput = ({ value, onSubmit, checked }: CheckInputProps) => {
                 name="client-type"
                 value={value}
                 checked={checked}
+                disabled={disabled}
                 onChange={() => onSubmit(value)}
                 key={value}
             />

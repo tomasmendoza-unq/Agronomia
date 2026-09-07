@@ -69,6 +69,13 @@ public abstract class Client {
         return email.get();
     }
 
+    protected void updateContactData(String email, String address, String location, Province province) {
+        this.email = new EmailValue(email);
+        this.address = address;
+        this.location = location;
+        this.province = province;
+    }
+
     protected abstract String computeSortKey();
     protected abstract String computeSearchKey();
 }

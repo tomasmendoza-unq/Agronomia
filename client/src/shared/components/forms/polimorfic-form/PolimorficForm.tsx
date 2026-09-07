@@ -15,6 +15,7 @@ interface PolimorficFormProps<T extends Schema> {
     onCancel: (isCancel: boolean) => void;
     initialSubType?: string;
     initialValues?: Partial<InferData<T>>;
+    disableOptions?: boolean;
 }
 
 function PolimorficForm<T extends Schema>({
@@ -23,6 +24,7 @@ function PolimorficForm<T extends Schema>({
     onCancel,
     initialSubType,
     initialValues,
+    disableOptions = false,
 }: PolimorficFormProps<T>) {
     const form = useRef<ValidationFormHandleProps>(null);
     const [subType, setIsSubtype] = useState<string | undefined>(
@@ -39,6 +41,7 @@ function PolimorficForm<T extends Schema>({
                 onOption={handleOption}
                 options={subTypes}
                 selectedOption={subType}
+                disabled={disableOptions}
             />
             {subType && (
                 <SubFormFactory
