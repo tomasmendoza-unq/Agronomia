@@ -9,6 +9,7 @@ import { ProvidersList } from "@/views/provider/pages/ProviderList";
 import AddProvider from "@/features/add-provider/pages/AddProvider";
 import { EditProvider } from "@/features/edit-provider/pages/EditProvider";
 import { Client } from "@/views/client/Client";
+import { EditClient } from "@/features/edit-client/pages/EditClient";
 
 export const AdminRoutes: RouteData[] = [
     {
@@ -52,9 +53,14 @@ export const AdminRoutes: RouteData[] = [
                         element: <ClientPanel />,
                     },
                     {
-                        path: `nuevo-cliente`,
+                        path: `${ADMIN_ROUTES.ADD_CLIENT}`,
                         element: <AddClient />,
                         handle: { breadcrumb: "Nuevo Cliente" },
+                    },
+                    {
+                        path: ADMIN_ROUTES.EDIT_CLIENT,
+                        element: <EditClient />,
+                        handle: { breadcrumb: "Editar Cliente" },
                     },
                 ],
             },

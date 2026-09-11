@@ -1,4 +1,3 @@
-// subforms.ts
 import type { SubFormData } from "@/shared/components/forms/types/sub-form";
 import { formatCuit } from "@/shared/domain/cuit-cuil/format";
 

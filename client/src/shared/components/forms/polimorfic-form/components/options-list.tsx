@@ -5,6 +5,7 @@ interface OptionListProps {
     options: string[];
     onOption: (option: string) => void;
     selectedOption?: string;
+    disabled?: boolean;
 }
 
 const styles = css({
@@ -17,7 +18,12 @@ const styles = css({
     width: "90%",
 });
 
-const OptionList = ({ options, onOption, selectedOption }: OptionListProps) => {
+const OptionList = ({
+    options,
+    onOption,
+    selectedOption,
+    disabled,
+}: OptionListProps) => {
     return (
         <div className={styles}>
             {options.map((option) => (
@@ -25,6 +31,7 @@ const OptionList = ({ options, onOption, selectedOption }: OptionListProps) => {
                     onSubmit={onOption}
                     value={option}
                     checked={option === selectedOption}
+                    disabled={disabled}
                     key={option}
                 />
             ))}

@@ -25,4 +25,6 @@ public interface ClientDAO extends JpaRepository<Client, Long> {
     boolean existsByCuit_Cuit(String cuitCuit);
 
     boolean existsByEmail_Email(String emailEmail);
+
+    boolean existsByEmail_EmailAndIdNot(String emailEmail, Long id);
 }
