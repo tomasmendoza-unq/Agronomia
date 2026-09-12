@@ -12,9 +12,8 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @Slf4j
 public abstract class BuisnessHandlerException<E extends BusinessException> {
 
-    @ExceptionHandler()
-    public ResponseEntity<BuisnessErrorResponse> handleBusinessException(
-            BusinessException exception,
+    public ResponseEntity<BuisnessErrorResponse> handle(
+            E exception,
             HttpServletRequest request
     ) {
         log.warn("Business rule violation - URI: {} | Message: {}", request.getRequestURI(), exception.getMessage());
